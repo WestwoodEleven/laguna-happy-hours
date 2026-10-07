@@ -1,0 +1,757 @@
+<title>Laguna Happy Hours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow column of venue entries under a sticky filter bar; prices set like a printed bar menu with dotted leaders */
+:root{
+  --bg:#EEF3F1; --surface:#FFFFFF; --ink:#11302E; --muted:#56706C; --line:#D3DFDB;
+  --accent:#D98E04; --accent-ink:#6A4500; --accent-soft:#FBEBC8;
+  --sea:#0F6B66; --sea-soft:#DCEDEA;
+  --ok:#1E7A4C; --ok-soft:#DDF1E5; --warn:#9A5B00; --warn-soft:#FBEAD0; --bad:#A33A2E; --bad-soft:#F6DFDB;
+  --star:#C98200;
+  --land:#F1F0E8; --water:#BFDDE0; --water-ink:#3E7A7F; --road:#FFFFFF; --you:#7A3FD1;
+  --f-display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C1A19; --surface:#132524; --ink:#E4EFEC; --muted:#93AAA6; --line:#26403D;
+  --accent:#F2B13A; --accent-ink:#FFE3A8; --accent-soft:#3A2C10; --sea:#5CC2B9; --sea-soft:#173634;
+  --ok:#6BD39B; --ok-soft:#163525; --warn:#F2B566; --warn-soft:#3A2A12; --bad:#F08A7C; --bad-soft:#3D1D19; --star:#F2B13A; --land:#16292A; --water:#0E3236; --water-ink:#6FB3B3; --road:#33504E; --you:#B58CFF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1A19; --surface:#132524; --ink:#E4EFEC; --muted:#93AAA6; --line:#26403D;
+  --accent:#F2B13A; --accent-ink:#FFE3A8; --accent-soft:#3A2C10; --sea:#5CC2B9; --sea-soft:#173634;
+  --ok:#6BD39B; --ok-soft:#163525; --warn:#F2B566; --warn-soft:#3A2A12; --bad:#F08A7C; --bad-soft:#3D1D19; --star:#F2B13A; --land:#16292A; --water:#0E3236; --water-ink:#6FB3B3; --road:#33504E; --you:#B58CFF; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body)}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:20px 48px}
+h1,h2{font-family:var(--f-display);text-wrap:balance;margin:0}
+header.top{display:grid;gap:6px;padding-block:8px 14px}
+.eyebrow{font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--sea)}
+h1{font-weight:800;font-size:clamp(30px,8vw,46px);line-height:1;letter-spacing:-.02em}
+h1 span{color:var(--accent)}
+.lede{color:var(--muted);max-width:60ch;margin:4px 0 0}
+.clock{font:500 13px/1.3 var(--f-mono);margin-top:4px}
+.clock b{color:var(--accent)}
+.filters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+input[type=search]{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chip,.btn{font:600 13px/1 var(--f-body);padding:8px 11px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip.now[aria-pressed="true"]{background:var(--accent);color:#1c1300;border-color:var(--accent)}
+select{font:600 13px/1 var(--f-body);padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+.count{font:500 12px/1 var(--f-mono);color:var(--muted);margin-left:auto}
+.list{display:grid;gap:12px;margin-top:14px}
+.venue{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:12px;min-width:0}
+.venue.closed{opacity:.72}
+.vhead{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.vhead > div{min-width:0}
+h2{font-weight:600;font-size:21px;line-height:1.15}
+.meta{color:var(--muted);font-size:13px}
+.ratings{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;margin-top:4px}
+.ratings a{color:inherit;text-decoration:none}
+.ratings a:hover{text-decoration:underline}
+.rt b{font-family:var(--f-mono);font-weight:500;font-variant-numeric:tabular-nums}
+.rt .s{color:var(--star)}
+.rt small{color:var(--muted)}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font:600 11px/1 var(--f-body);letter-spacing:.04em;text-transform:uppercase;padding:5px 8px;border-radius:6px;white-space:nowrap}
+.p-on{background:var(--accent);color:#1c1300}
+.p-soon{background:var(--accent-soft);color:var(--accent-ink)}
+.p-verified{background:var(--ok-soft);color:var(--ok)}
+.p-likely{background:var(--sea-soft);color:var(--sea)}
+.p-needs{background:var(--warn-soft);color:var(--warn)}
+.p-closed{background:var(--bad-soft);color:var(--bad)}
+.p-comm{background:var(--sea-soft);color:var(--sea)}
+.tide{display:grid;gap:4px;border-left:3px solid var(--sea);padding-left:10px}
+.tide .t{display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline}
+.days{font:500 12px/1.4 var(--f-mono);letter-spacing:.03em;min-width:9.5em}
+.hrs{font:500 14px/1.4 var(--f-mono);font-variant-numeric:tabular-nums}
+.tnote{color:var(--muted);font-size:13px;flex-basis:100%}
+.sec h3{font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.menu{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.menu.plain{list-style:disc;padding-left:18px}
+.menu li{display:flex;align-items:baseline;gap:6px;min-width:0}
+.mi{min-width:0;overflow-wrap:anywhere}
+.mi small{display:block;color:var(--muted);font-size:12px}
+.lead{flex:1 1 12px;border-bottom:1px dotted var(--line);transform:translateY(-4px);min-width:12px}
+.mp{display:flex;gap:6px;align-items:baseline;white-space:nowrap}
+.price{font:500 14px/1.4 var(--f-mono);font-variant-numeric:tabular-nums;color:var(--accent-ink)}
+.reg{font:400 12px/1 var(--f-mono);color:var(--muted);text-decoration:line-through}
+.save{font:700 11px/1 var(--f-body);color:var(--ok);background:var(--ok-soft);padding:3px 5px;border-radius:4px}
+.np{color:var(--muted);font-size:12px;font-style:italic}
+.msrc{font-size:12px;color:var(--muted);margin-top:6px}
+.msrc a,.links a,.src a{color:var(--sea)}
+.deals{display:grid;gap:8px}
+.deal{border:1px dashed var(--line);border-radius:10px;padding:8px 10px;display:grid;gap:4px}
+.deal .dh{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.deal .dt{font-weight:700}
+.deal .dd{font:500 12px/1.4 var(--f-mono);color:var(--sea)}
+.deal p{margin:0;font-size:14px;color:var(--muted)}
+.restrict{font-size:13px;color:var(--muted)}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:13px}
+.links a{font-weight:600;overflow-wrap:anywhere}
+.community{display:grid;gap:10px;background:var(--bg);border-radius:10px;padding:10px 12px}
+.crow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.cl{font-size:13px;color:var(--muted)}
+.cl b{color:var(--ink);font-weight:600}
+.btn.primary{background:var(--sea);color:var(--surface);border-color:var(--sea)}
+.btn:disabled{opacity:.55;cursor:default}
+.stars{display:flex;gap:4px;align-items:center}
+.stars button{font:600 13px/1 var(--f-mono);width:34px;height:32px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.stars button[aria-pressed="true"]{background:var(--star);color:#1c1300;border-color:var(--star)}
+.upload{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px}
+.upload input[type=file]{font-size:13px;max-width:100%}
+.preview{display:grid;gap:8px;font-size:13px}
+.preview img{max-height:180px;width:auto;border-radius:8px;border:1px solid var(--line)}
+.status{font-size:13px;color:var(--muted)}
+.status.err{color:var(--bad)}
+.notes{display:grid;gap:8px}
+.nh{font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+.posts{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.post{display:grid;gap:4px;border-left:2px solid var(--line);padding-left:10px;min-width:0}
+.post .pm{font-size:12px;color:var(--muted)}
+.post .pm b{color:var(--ink)}
+.post p{margin:0;font-size:14px;overflow-wrap:anywhere;white-space:pre-wrap}
+.pimg{max-width:100%;max-height:320px;width:auto;border-radius:8px;border:1px solid var(--line);display:block}
+.pimg.ph{display:grid;place-items:center;height:120px;width:100%;max-width:280px;color:var(--muted);font-size:12px;background:var(--bg)}
+.linkbtn{background:none;border:0;padding:0;color:var(--sea);font:600 12px/1.4 var(--f-body);cursor:pointer}
+.composer{display:grid;gap:6px}
+.composer textarea{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);resize:vertical}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filebtn{display:inline-block}
+.mapwrap{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:10px;min-width:0}
+.maphead{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.maphead h2{font-size:18px;margin-right:auto}
+.mapbox{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--land);touch-action:none;user-select:none;-webkit-user-select:none}
+.mapbox svg{display:block;width:100%;height:clamp(300px,62vh,520px);cursor:grab}
+.mapbox.setting svg{cursor:crosshair}
+.zoom{position:absolute;right:8px;top:8px;display:grid;gap:4px}
+.zoom button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:700 18px/1 var(--f-body);cursor:pointer}
+.setbanner{position:absolute;left:8px;right:52px;top:8px;background:var(--ink);color:var(--bg);font-size:13px;padding:8px 10px;border-radius:8px}
+.pop{position:absolute;left:8px;right:8px;bottom:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:6px;box-shadow:0 6px 20px rgba(0,0,0,.18);max-height:60%;overflow:auto}
+.pop .pr{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.pop b{font-family:var(--f-display);font-size:16px}
+.pop .x{position:absolute;right:6px;top:4px;background:none;border:0;color:var(--muted);font-size:20px;cursor:pointer;padding:4px 8px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.mstatus{font-size:13px;color:var(--muted)}
+.mstatus.err{color:var(--bad)}
+.dist{font:500 12px/1 var(--f-mono);color:var(--sea);white-space:nowrap}
+.onmap{background:none;border:0;padding:0;color:var(--sea);font:600 13px/1.4 var(--f-body);cursor:pointer}
+.mapwrap,.venue{scroll-margin-top:calc(var(--fh,0px) + 12px)}
+.venue.hl{outline:2px solid var(--accent);outline-offset:2px}
+.claudelink{font-size:13px;color:var(--muted);background:var(--bg);border-radius:10px;padding:10px 12px}
+.claudelink a{color:var(--sea);font-weight:600}
+@media (max-width:600px){.filters{position:static}}
+details{border-top:1px dashed var(--line);padding-top:8px}
+summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--sea)}
+.verify{display:grid;gap:6px;font-size:13px;margin:8px 0 0}
+.verify dt{font:500 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.verify dd{margin:0 0 6px}
+.src{display:flex;flex-wrap:wrap;gap:6px 12px}
+.src a{font-size:13px;overflow-wrap:anywhere}
+.empty{padding:28px 16px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}
+footer{margin-top:28px;color:var(--muted);font-size:13px;display:grid;gap:10px;max-width:65ch}
+footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
+@media (max-width:480px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){.chip,select,.btn,.stars button{transition:background .15s,color .15s}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Laguna Beach, CA · checked Oct 7, 2026</div>
+    <h1>Laguna <span>Happy Hours</span></h1>
+    <p class="lede" id="lede">Happy hours and daily deals across Laguna Beach, with prices, savings and how solid the evidence is. Confirm a deal, rate it, or update it from a menu photo.</p>
+    <div class="clock" id="clock"></div>
+  </header>
+
+  <section class="filters" aria-label="Filters">
+    <input type="search" id="q" placeholder="Search a restaurant, dish, drink or deal" autocomplete="off">
+    <div class="row" id="dayRow" role="group" aria-label="Day"></div>
+    <div class="row">
+      <button class="chip now" id="nowBtn" aria-pressed="false">Happening now</button>
+      <select id="kind" aria-label="Deal type">
+        <option value="">Happy hours and deals</option>
+        <option value="hh">Happy hours only</option>
+        <option value="deal">Daily deals only</option>
+      </select>
+      <select id="hood" aria-label="Neighborhood"><option value="">All areas</option></select>
+      <select id="status" aria-label="Status">
+        <option value="active">Open</option>
+        <option value="unclear">Unclear</option>
+        <option value="closed">Closed</option>
+        <option value="all">All listings</option>
+      </select>
+      <select id="conf" aria-label="Confidence">
+        <option value="">Any confidence</option>
+        <option value="verified">Verified only</option>
+        <option value="vl">Verified or likely</option>
+      </select>
+      <select id="sort" aria-label="Sort">
+        <option value="now">Sort: on now first</option>
+        <option value="near">Sort: closest to me</option>
+        <option value="save">Sort: biggest savings</option>
+        <option value="google">Sort: Google rating</option>
+        <option value="visitor">Sort: visitor rating</option>
+        <option value="name">Sort: name</option>
+      </select>
+      <span class="count" id="count"></span>
+    </div>
+  </section>
+
+  <section class="mapwrap" id="mapwrap" aria-label="Map">
+    <div class="maphead">
+      <h2>Map</h2>
+      <button class="btn primary" id="locBtn">📍 Use my location</button>
+      <button class="chip" id="setBtn" aria-pressed="false">Tap map to set my spot</button>
+      <select id="spot" aria-label="Start from a landmark"><option value="">Or start from…</option></select>
+      <button class="chip" id="mapToggle" aria-expanded="true">Hide map</button>
+    </div>
+    <div id="mapbody" style="display:grid;gap:8px">
+      <div class="mapbox" id="mapbox">
+        <svg id="map" role="img" aria-label="Map of Laguna Beach with happy hour pins"></svg>
+        <div class="zoom"><button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">−</button><button id="zfit" aria-label="Show all" style="font-size:13px">⤢</button></div>
+        <div class="setbanner" id="setbanner" hidden>Tap where you are on the map.</div>
+        <div class="pop" id="pop" hidden></div>
+      </div>
+      <div class="legend"><span><i style="background:var(--accent)"></i>On now</span><span><i style="background:var(--sea)"></i>Happy hour</span><span><i style="background:var(--muted)"></i>Daily deals only</span><span><i style="background:var(--you)"></i>You</span><span id="mapcount"></span></div>
+      <div class="mstatus" id="mstatus">Simplified map: coastline and roads are approximate; pins are placed from street addresses.</div>
+    </div>
+  </section>
+
+  <main class="list" id="list"></main>
+
+  <footer>
+    <div><b>Labels.</b> Verified: the restaurant's own site showed these details in Oct 2026, or two independent 2026 sources agree. Likely: one recent credible source. Needs confirmation: older or conflicting sources. "Save %" compares the deal price with the same item's regular menu price, and appears only when both are published.</div>
+    <div><b>Ratings.</b> Google ratings come from Wanderlog, which mirrors Google's listing data (Oct 2026). Yelp doesn't allow its ratings to be read automatically, so each Yelp link opens Yelp directly. <span data-claude-only>Visitor ratings come from people using this page.</span></div>
+    <div data-claude-only><b>Menu photos.</b> A photo is read by Claude on the uploader's own Claude account, and only the extracted details are saved, not the photo. Each update is labeled with the date it was made.</div>
+    <div data-claude-only><b>Visitor notes and photos.</b> Notes and photos are visible to everyone who can open this page. Photos are resized before saving. You can delete your own posts.</div>
+    <details><summary id="noneSum">Restaurants we checked that had no deals</summary><ul id="noneList"></ul></details>
+  </footer>
+</div>
+
+<script>
+const DATA = __DATA__;
+const CLAUDE_URL = "https://claude.ai/artifact/GhzNP9fe9LD2c3QqsrsDZS";
+const VENUES = DATA.venues;
+const DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const state={q:"",day:"",now:false,kind:"",hood:"",status:"active",conf:"",sort:"now"};
+const C={db:null,user:null,isOwner:false,posts:{},photoCache:{},myPosts:[],sample:null,uid:null,canImg:false,confirms:{},ratings:{},subs:{},mine:{c:{},r:{},s:{}}};
+
+function laNow(){
+  const p=new Intl.DateTimeFormat("en-US",{timeZone:"America/Los_Angeles",weekday:"short",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date());
+  const g=t=>p.find(x=>x.type===t).value;
+  return {day:g("weekday"),min:(+g("hour"))*60+(+g("minute"))};
+}
+const toMin=s=>s?(+s.slice(0,2))*60+(+s.slice(3,5)):null;
+function fmt(s){if(!s)return "?";let h=+s.slice(0,2),m=s.slice(3,5);const ap=h>=12?"pm":"am";h=h%12||12;return m==="00"?h+ap:h+":"+m+ap}
+function dayLabel(d){
+  if(!d||!d.length)return "Days not listed";
+  if(d.length===7)return "Every day";
+  const idx=d.map(x=>DAYS.indexOf(x)).filter(i=>i>=0).sort((a,b)=>a-b);
+  const run=idx.every((v,i)=>i===0||v===idx[i-1]+1);
+  if(run&&idx.length>2)return DAYS[idx[0]]+"–"+DAYS[idx[idx.length-1]];
+  return idx.map(i=>DAYS[i]).join(", ");
+}
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=s=>{const m=/^\$\s*(\d+(?:\.\d+)?)$/.exec(String(s||"").trim());return m?+m[1]:null};
+const pct=(p,r)=>{const a=money(p),b=money(r);return a!=null&&b&&a<b?Math.round((b-a)/b*100):null};
+const shortDate=iso=>{try{return new Date(iso).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric",timeZone:"America/Los_Angeles"})}catch(e){return ""}};
+
+/* the effective data for a venue: a visitor's menu-photo update overrides the researched lists */
+function eff(v){
+  const s=C.subs[v.id];
+  if(!s)return v;
+  const fix=a=>(a||[]).map(i=>({item:i.item,price:i.price||null,regular_price:i.regular_price||null,save_pct:pct(i.price,i.regular_price),note:i.note||null}));
+  return {...v,
+    schedule:s.schedule&&s.schedule.length?s.schedule:v.schedule,
+    drink_items:s.drink_items&&s.drink_items.length?fix(s.drink_items):v.drink_items,
+    food_items:s.food_items&&s.food_items.length?fix(s.food_items):v.food_items,
+    daily_deals:s.daily_deals&&s.daily_deals.length?s.daily_deals.map(d=>({...d,items:fix(d.items)})):v.daily_deals,
+    drink_specials:s.drink_items&&s.drink_items.length?[]:v.drink_specials,
+    food_specials:s.food_items&&s.food_items.length?[]:v.food_specials,
+    _sub:s};
+}
+function liveStatus(v,now){
+  if(v.status!=="active")return null;
+  let soon=null;
+  const blocks=[...(v.schedule||[]).map(b=>({...b,label:"Happy hour"})),...(v.daily_deals||[]).map(d=>({days:d.days,start:d.start,end:d.end,label:d.title||"Deal",allDay:!d.start}))];
+  for(const b of blocks){
+    if(!b.days||!b.days.includes(now.day))continue;
+    if(b.allDay){if(b.days.length===7)continue; /* everyday deals don't make a place "on now" */
+      if(now.min>=660&&now.min<1260)return {on:true,text:b.label+" today"};
+      if(!soon)soon={s:9999,text:b.label+" today"};continue}
+    const s=toMin(b.start),e=toMin(b.end);
+    if(s==null)continue;
+    if(now.min>=s&&(e==null||now.min<e))return {on:true,text:"On now"+(b.end?" · until "+fmt(b.end):"")+(b.label!=="Happy hour"?" · "+b.label:"")};
+    if(now.min<s&&(soon==null||s<soon.s))soon={s,text:"Today "+fmt(b.start)+(b.label!=="Happy hour"?" · "+b.label:"")};
+  }
+  return soon?{on:false,text:soon.text}:null;
+}
+function maxSave(v){let m=0;for(const i of [...(v.drink_items||[]),...(v.food_items||[])])if(i.save_pct>m)m=i.save_pct;for(const d of v.daily_deals||[])for(const i of d.items||[])if(i.save_pct>m)m=i.save_pct;return m}
+function visitorAvg(id){const r=C.ratings[id];return r&&r.n?r.sum/r.n:null}
+
+
+/* ---------- map and location ---------- */
+const IN_CLAUDE=!!window.claude?.use;
+const M={lat0:33.525,vb:null,full:null,sel:null,setting:false,me:null,meLabel:""};
+const MLNG=111320*Math.cos(33.525*Math.PI/180),MLAT=111320;
+const px=(lat,lng)=>[(lng+117.78)*MLNG,-(lat-M.lat0)*MLAT];
+const unpx=(x,y)=>[M.lat0-y/MLAT,x/MLNG-117.78];
+function miles(a,b){const R=3958.8,r=Math.PI/180,dLat=(b.lat-a.lat)*r,dLng=(b.lng-a.lng)*r;const h=Math.sin(dLat/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLng/2)**2;return 2*R*Math.asin(Math.sqrt(h))}
+const distOf=v=>M.me&&v.lat?miles(M.me,v):null;
+const fmtMi=d=>d==null?"":(d<0.1?"< 0.1 mi":d.toFixed(1)+" mi");
+function pathD(pts){return pts.map((p,i)=>{const [x,y]=px(p[0],p[1]);return (i?"L":"M")+x.toFixed(1)+" "+y.toFixed(1)}).join(" ")}
+function setVB(vb){M.vb=vb;document.getElementById("map").setAttribute("viewBox",`${vb.x} ${vb.y} ${vb.w} ${vb.h}`);drawPins()}
+function fitBox(pts,pad){
+  const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);
+  let x0=Math.min(...xs)-pad,x1=Math.max(...xs)+pad,y0=Math.min(...ys)-pad,y1=Math.max(...ys)+pad;
+  const el=document.getElementById("map"),r=(el.clientHeight||400)/Math.max(1,el.clientWidth||600);
+  let w=x1-x0,h=y1-y0;if(h/w<r){const nh=w*r;y0-=(nh-h)/2;h=nh}else{const nw=h/r;x0-=(nw-w)/2;w=nw}
+  return {x:x0,y:y0,w,h};
+}
+function mapBase(){
+  const G=DATA.map,svg=document.getElementById("map");
+  const coast=G.coast.map(p=>px(p[0],p[1]));
+  const sea="M"+coast.map(p=>p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" L")+` L${(coast[coast.length-1][0]+6000).toFixed(1)} ${(coast[coast.length-1][1]+9000).toFixed(1)} L${(coast[0][0]-9000).toFixed(1)} ${(coast[coast.length-1][1]+9000).toFixed(1)} L${(coast[0][0]-9000).toFixed(1)} ${(coast[0][1]-2000).toFixed(1)} Z`;
+  const lm=G.landmarks.map(l=>{const [x,y]=px(l.lat,l.lng);return `<g class="lm" data-x="${x}" data-y="${y}"><circle cx="${x}" cy="${y}" r="1" fill="var(--muted)"/><text x="${x}" y="${y}" fill="var(--muted)" font-family="var(--f-body)">${esc(l.name)}</text></g>`}).join("");
+  const [cx,cy]=px(33.536,-117.79);
+  svg.innerHTML=`<rect x="-30000" y="-30000" width="60000" height="60000" fill="var(--land)"/>
+    <path d="${sea}" fill="var(--water)"/>
+    <path class="road" d="${pathD(G.hwy)}" fill="none" stroke="var(--road)" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="road" d="${pathD(G.canyon)}" fill="none" stroke="var(--road)" stroke-linecap="round" stroke-linejoin="round"/>
+    <text class="sealbl" x="${cx}" y="${cy}" fill="var(--water-ink)" font-family="var(--f-display)" text-anchor="middle">Pacific Ocean</text>
+    <g id="lms">${lm}</g><g id="pins"></g><g id="mepin"></g>`;
+  const pts=VENUES.filter(v=>v.lat).map(v=>px(v.lat,v.lng));
+  M.full=fitBox(pts,350);setVB(M.full);
+}
+function pinGroups(){
+  const g={},now=laNow();
+  for(const v0 of VENUES.filter(v=>matches(v,now))){const v=eff(v0);if(!v.lat)continue;const k=v.lat.toFixed(4)+","+v.lng.toFixed(4);(g[k]||(g[k]=[])).push(v)}
+  return Object.values(g);
+}
+function drawPins(){
+  const svg=document.getElementById("map");if(!M.vb)return;
+  const s=M.vb.w/Math.max(1,svg.clientWidth||600),now=laNow();
+  svg.querySelectorAll(".road").forEach(r=>r.setAttribute("stroke-width",Math.max(4*s,6)));
+  svg.querySelectorAll(".lm").forEach(g=>{const t=g.querySelector("text"),c=g.querySelector("circle");c.setAttribute("r",2.5*s);t.setAttribute("font-size",11*s);t.setAttribute("x",+g.dataset.x+5*s);t.setAttribute("y",+g.dataset.y+4*s)});
+  const sl=svg.querySelector(".sealbl");if(sl)sl.setAttribute("font-size",14*s);
+  const groups=pinGroups();
+  document.getElementById("mapcount").textContent=groups.reduce((n,g)=>n+g.length,0)+" on map";
+  svg.querySelector("#pins").innerHTML=groups.map(g=>{
+    const v=g[0],[x,y]=px(v.lat,v.lng);
+    const on=g.some(x=>liveStatus(x,now)?.on),hh=g.some(x=>(x.schedule||[]).length);
+    const fill=on?"var(--accent)":hh?"var(--sea)":"var(--muted)";
+    const sel=g.some(x=>x.id===M.sel),r=(sel?11:8)*s;
+    return `<g data-pin="${g.map(x=>x.id).join(",")}" style="cursor:pointer"><circle cx="${x}" cy="${y}" r="${r+3*s}" fill="transparent"/><circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" stroke="var(--surface)" stroke-width="${2*s}"/>${g.length>1?`<text x="${x}" y="${y+3.5*s}" text-anchor="middle" font-size="${10*s}" font-weight="700" fill="#fff" font-family="var(--f-mono)">${g.length}</text>`:""}${sel?`<circle cx="${x}" cy="${y}" r="${r+4*s}" fill="none" stroke="var(--ink)" stroke-width="${2*s}"/>`:""}</g>`}).join("");
+  const me=svg.querySelector("#mepin");
+  if(M.me){const [x,y]=px(M.me.lat,M.me.lng);me.innerHTML=`<circle cx="${x}" cy="${y}" r="${16*s}" fill="var(--you)" opacity=".18"/><circle cx="${x}" cy="${y}" r="${7*s}" fill="var(--you)" stroke="#fff" stroke-width="${2.5*s}"/>`}else me.innerHTML="";
+}
+function showPop(ids){
+  const pop=document.getElementById("pop"),now=laNow();
+  const vs=ids.map(id=>VENUES.find(v=>v.id===id)).filter(Boolean).map(eff);
+  if(!vs.length){pop.hidden=true;return}
+  M.sel=vs[0].id;drawPins();
+  pop.innerHTML=`<button class="x" data-mact="close" aria-label="Close">×</button>`+vs.map(v=>{const d=distOf(v),live=liveStatus(v,now),hh=(v.schedule||[])[0];
+    return `<div style="display:grid;gap:4px"><div class="pr"><b>${esc(v.name)}</b>${d!=null?`<span class="dist">${fmtMi(d)}</span>`:""}</div>
+    <div class="pr">${live?`<span class="pill ${live.on?"p-on":"p-soon"}">${esc(live.text)}</span>`:""}${hh?`<span class="cl">${esc(dayLabel(hh.days))} ${hh.start?fmt(hh.start)+"–"+(hh.end?fmt(hh.end):"close"):""}</span>`:""}${(v.daily_deals||[]).length?`<span class="cl">${v.daily_deals.length} daily deal${v.daily_deals.length>1?"s":""}</span>`:""}</div>
+    <div class="cl">${esc(String(v.address||"").replace(/,?\s*Laguna Beach,?\s*CA\s*\d{5}/i,""))}</div>
+    <div class="crow"><button class="btn" data-mact="goto" data-id="${v.id}">See deals</button><a class="cl" style="color:var(--sea);font-weight:600" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(v.name+" "+(v.address||"Laguna Beach CA"))}" target="_blank" rel="noopener">Directions</a></div></div>`}).join('<hr style="border:0;border-top:1px solid var(--line);margin:4px 0">');
+  pop.hidden=false;
+}
+function gotoCard(id){
+  let el=document.getElementById("card-"+id);
+  if(!el){state.q="";document.getElementById("q").value="";state.status="all";document.getElementById("status").value="all";render();el=document.getElementById("card-"+id)}
+  if(!el)return;
+  document.querySelectorAll(".venue.hl").forEach(x=>x.classList.remove("hl"));el.classList.add("hl");
+  el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
+}
+function showOnMap(id){
+  const v=VENUES.find(x=>x.id===id);if(!v||!v.lat)return;
+  setMapOpen(true);
+  const [x,y]=px(v.lat,v.lng),w=Math.min(M.full.w,1800),h=w*M.full.h/M.full.w;
+  setVB({x:x-w/2,y:y-h/2,w,h});showPop([id]);
+  document.getElementById("mapwrap").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function setMe(lat,lng,label){
+  M.me={lat,lng};M.meLabel=label;
+  try{localStorage.setItem("lhh-me",JSON.stringify({lat,lng,label}))}catch(e){}
+  const st=document.getElementById("mstatus");st.className="mstatus";st.textContent=`Distances are from ${label}. Restaurants are sorted closest first.`;
+  state.sort="near";document.getElementById("sort").value="near";
+  render();
+}
+function setMapOpen(open){
+  document.getElementById("mapbody").style.display=open?"grid":"none";
+  const t=document.getElementById("mapToggle");t.textContent=open?"Hide map":"Show map";t.setAttribute("aria-expanded",open);
+  if(open&&M.vb)drawPins();
+}
+function zoomAt(f,cx,cy){
+  const vb=M.vb;if(cx==null){cx=vb.x+vb.w/2;cy=vb.y+vb.h/2}
+  const w=Math.min(Math.max(vb.w*f,300),M.full.w*1.6),k=w/vb.w;
+  setVB({x:cx-(cx-vb.x)*k,y:cy-(cy-vb.y)*k,w,h:vb.h*k});
+}
+function svgPt(e){const svg=document.getElementById("map"),r=svg.getBoundingClientRect();return [M.vb.x+(e.clientX-r.left)/r.width*M.vb.w,M.vb.y+(e.clientY-r.top)/r.height*M.vb.h]}
+function initMap(){
+  if(!DATA.map)return;
+  mapBase();
+  const svg=document.getElementById("map"),ptrs=new Map();let start=null,moved=false,pinch=null;
+  svg.addEventListener("pointerdown",e=>{svg.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});moved=false;start={x:e.clientX,y:e.clientY,vb:{...M.vb},pin:e.target.closest("[data-pin]")};
+    if(ptrs.size===2){const [a,b]=[...ptrs.values()];pinch={d:Math.hypot(a.x-b.x,a.y-b.y),vb:{...M.vb},mid:svgPt({clientX:(a.x+b.x)/2,clientY:(a.y+b.y)/2})}}});
+  svg.addEventListener("pointermove",e=>{if(!ptrs.has(e.pointerId))return;ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(ptrs.size===2&&pinch){const [a,b]=[...ptrs.values()],d=Math.hypot(a.x-b.x,a.y-b.y);moved=true;M.vb=pinch.vb;zoomAt(pinch.d/Math.max(d,1),pinch.mid[0],pinch.mid[1]);return}
+    const dx=e.clientX-start.x,dy=e.clientY-start.y;if(Math.hypot(dx,dy)>6)moved=true;
+    if(moved&&ptrs.size===1){const r=svg.getBoundingClientRect(),k=start.vb.w/r.width;setVB({...start.vb,x:start.vb.x-dx*k,y:start.vb.y-dy*k})}});
+  const end=e=>{const was=ptrs.has(e.pointerId);ptrs.delete(e.pointerId);if(ptrs.size<2)pinch=null;if(!was||moved||ptrs.size)return;
+    if(M.setting){const [x,y]=svgPt(e),[lat,lng]=unpx(x,y);M.setting=false;document.getElementById("setBtn").setAttribute("aria-pressed","false");document.getElementById("setbanner").hidden=true;document.getElementById("mapbox").classList.remove("setting");document.getElementById("spot").value="";setMe(lat,lng,"the spot you picked");return}
+    const pin=start&&start.pin;
+    if(pin)showPop(pin.dataset.pin.split(","));else{document.getElementById("pop").hidden=true;M.sel=null;drawPins()}};
+  svg.addEventListener("pointerup",end);svg.addEventListener("pointercancel",e=>{ptrs.delete(e.pointerId);pinch=null});
+  svg.addEventListener("wheel",e=>{e.preventDefault();const [x,y]=svgPt(e);zoomAt(e.deltaY>0?1.2:1/1.2,x,y)},{passive:false});
+  document.getElementById("zin").onclick=()=>zoomAt(1/1.5);
+  document.getElementById("zout").onclick=()=>zoomAt(1.5);
+  document.getElementById("zfit").onclick=()=>setVB(M.full);
+  document.getElementById("pop").addEventListener("click",e=>{const b=e.target.closest("[data-mact]");if(!b)return;if(b.dataset.mact==="close"){document.getElementById("pop").hidden=true;M.sel=null;drawPins()}if(b.dataset.mact==="goto")gotoCard(b.dataset.id)});
+  document.getElementById("mapToggle").onclick=()=>setMapOpen(document.getElementById("mapbody").style.display==="none");
+  const sp=document.getElementById("spot");
+  DATA.map.landmarks.slice().sort((a,b)=>a.name.localeCompare(b.name)).forEach(l=>{const o=document.createElement("option");o.value=l.name;o.textContent=l.name;sp.appendChild(o)});
+  sp.onchange=()=>{const l=DATA.map.landmarks.find(x=>x.name===sp.value);if(l)setMe(l.lat,l.lng,l.name)};
+  document.getElementById("setBtn").onclick=()=>{M.setting=!M.setting;document.getElementById("setBtn").setAttribute("aria-pressed",M.setting);document.getElementById("setbanner").hidden=!M.setting;document.getElementById("mapbox").classList.toggle("setting",M.setting);setMapOpen(true)};
+  document.getElementById("locBtn").onclick=()=>{
+    const st=document.getElementById("mstatus");st.className="mstatus";st.textContent="Finding your location…";
+    const fail=err=>{st.className="mstatus err";st.textContent=(err&&err.code===1?"Location permission was turned off for this page.":"Your location isn't available here.")+" Tap \"Tap map to set my spot\" and tap where you are, or pick a landmark."};
+    if(!navigator.geolocation)return fail();
+    try{navigator.geolocation.getCurrentPosition(p=>{const {latitude:lat,longitude:lng}=p.coords;
+      if(lat<33.3||lat>33.75||lng<-118||lng>-117.5){setMe(lat,lng,"your location");st.textContent="You're outside Laguna Beach, so every restaurant is a drive away. Distances are straight-line miles.";return}
+      setMe(lat,lng,"your location")},fail,{enableHighAccuracy:true,timeout:10000,maximumAge:60000})}catch(e){fail()}
+  };
+  try{const s=JSON.parse(localStorage.getItem("lhh-me")||"null");if(s&&typeof s.lat==="number")setMe(s.lat,s.lng,s.label||"your saved spot")}catch(e){}
+  window.addEventListener("resize",()=>{if(M.vb)drawPins()});
+}
+
+/* ---------- rendering ---------- */
+function itemRow(i){
+  const save=i.save_pct>0?`<span class="save">Save ${i.save_pct}%</span>`:"";
+  const reg=i.regular_price&&i.save_pct>0?`<span class="reg">${esc(i.regular_price)}</span>`:"";
+  const price=i.price?`<span class="price">${esc(i.price)}</span>`:`<span class="np">price not listed</span>`;
+  return `<li><span class="mi">${esc(i.item)}${i.note?`<small>${esc(i.note)}</small>`:""}</span><span class="lead" aria-hidden="true"></span><span class="mp">${save}${reg}${price}</span></li>`;
+}
+function menuBlock(title,items,fallback){
+  if(items&&items.length)return `<div class="sec"><h3>${title} · ${items.length}</h3><ul class="menu">${items.map(itemRow).join("")}</ul></div>`;
+  if(fallback&&fallback.length)return `<div class="sec"><h3>${title}</h3><ul class="menu plain">${fallback.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
+  return "";
+}
+function ratingsHTML(v){
+  const g=v.google_rating?`<a class="rt" href="${esc(v.google_url||("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(v.name+" Laguna Beach")))}" target="_blank" rel="noopener">Google <span class="s">★</span> <b>${v.google_rating.toFixed(1)}</b> <small>(${(v.google_count||0).toLocaleString()})</small></a>`
+    :`<a class="rt" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name+" Laguna Beach CA")}" target="_blank" rel="noopener">Google <small>see rating</small></a>`;
+  const yurl=v.yelp_url||("https://www.yelp.com/search?find_desc="+encodeURIComponent(v.name)+"&find_loc="+encodeURIComponent("Laguna Beach, CA"));
+  const y=v.yelp_rating?`<a class="rt" href="${esc(yurl)}" target="_blank" rel="noopener">Yelp <span class="s">★</span> <b>${v.yelp_rating.toFixed(1)}</b></a>`:`<a class="rt" href="${esc(yurl)}" target="_blank" rel="noopener">Yelp <small>see rating</small></a>`;
+  return `<div class="ratings">${g}${y}${visitorHTML(v)}</div>`;
+}
+function visitorHTML(v){
+  if(!IN_CLAUDE)return "";
+  const a=visitorAvg(v.id),n=C.ratings[v.id]?.n||0;
+  return `<span class="rt" id="vr-${v.id}">Happy hour rating <span class="s">★</span> <b>${a!=null?a.toFixed(2):"–"}</b> <small>${n?`(${n} visitor${n>1?"s":""})`:"(no ratings yet)"}</small></span>`;
+}
+function communityHTML(v){
+  const last=C.confirms[v.id];
+  const mine=C.mine.r[v.id];
+  const can=!!C.db&&!!C.uid;
+  const stars=[0,1,2,3,4,5].map(n=>`<button data-act="rate" data-id="${v.id}" data-n="${n}" aria-pressed="${mine===n}" aria-label="${n} star${n===1?"":"s"}" ${can?"":"disabled"}>${n}★</button>`).join("");
+  const upload=`<button class="btn" data-act="openUp" data-id="${v.id}">📷 Update from menu photo</button>`;
+  return `<div class="community" id="cm-${v.id}">
+    <div class="crow"><button class="btn primary" data-act="confirm" data-id="${v.id}" ${can?"":"disabled"}>Still active ✓</button>
+      <span class="cl">${last?`Last confirmed by a visitor <b>${esc(shortDate(last))}</b>`:"Not yet confirmed by a visitor"}</span></div>
+    <div class="crow"><span class="cl">Rate this happy hour</span><div class="stars" role="group" aria-label="Rate 0 to 5 stars">${stars}</div></div>
+    ${upload?`<div class="crow">${upload}</div>`:""}
+    <div class="upload" id="up-${v.id}" hidden></div>
+    ${can?"":`<div class="cl">Confirming and rating need a signed-in viewer with access to change this page.</div>`}
+  </div>`;
+}
+function cardHTML(v0,now){
+  const v=eff(v0);
+  const live=liveStatus(v,now);
+  const cp=v.status==="closed"?["p-closed","Closed"]:({verified:["p-verified","Verified"],likely:["p-likely","Likely"],needs_confirmation:["p-needs","Needs confirmation"]}[v.confidence]||["p-needs","Needs confirmation"]);
+  const badges=[live?`<span class="pill ${live.on?"p-on":"p-soon"}">${esc(live.text)}</span>`:"",`<span class="pill ${cp[0]}">${cp[1]}</span>`,v.status==="unclear"?'<span class="pill p-needs">Status unclear</span>':"",v._sub?`<span class="pill p-comm">Updated ${esc(shortDate(v._sub.at))}</span>`:""].join("");
+  const sched=(v.schedule||[]).length?`<div class="sec"><h3>Happy hour</h3><div class="tide">${v.schedule.map(b=>`<div class="t"><span class="days">${esc(dayLabel(b.days))}</span><span class="hrs">${b.start?fmt(b.start)+" – "+(b.end?fmt(b.end):"close"):"Times not listed"}</span>${b.note?`<span class="tnote">${esc(b.note)}</span>`:""}</div>`).join("")}</div></div>`:"";
+  const drinks=menuBlock("Drinks",v.drink_items,v.drink_specials);
+  const food=menuBlock("Food",v.food_items,v.food_specials);
+  const deals=(v.daily_deals||[]).length?`<div class="sec"><h3>Daily deals</h3><div class="deals">${v.daily_deals.map(d=>`<div class="deal"><div class="dh"><span class="dt">${esc(d.title||"Deal")}</span><span class="dd">${esc(dayLabel(d.days))}${d.start?" · "+fmt(d.start)+(d.end?"–"+fmt(d.end):""):" · all day"}</span></div>${d.description?`<p>${esc(d.description)}</p>`:""}${(d.items||[]).length?`<ul class="menu">${d.items.map(itemRow).join("")}</ul>`:""}</div>`).join("")}</div></div>`:"";
+  const none=!drinks&&!food&&!deals&&v.status!=="closed"?`<div class="restrict">No item prices published yet. A menu photo would fill this in.</div>`:"";
+  const subNote=v._sub?`<div class="msrc">Lists updated from a visitor's menu photo on ${esc(shortDate(v._sub.at))}.${v._sub.notes?" "+esc(v._sub.notes):""}</div>`:"";
+  const links=[v.happy_hour_url?`<a href="${esc(v.happy_hour_url)}" target="_blank" rel="noopener">Happy hour menu</a>`:"",v.website?`<a href="${esc(v.website)}" target="_blank" rel="noopener">${esc(host(v.website))}</a>`:"",v.lat?`<button class="onmap" data-act="onmap" data-id="${v.id}">Show on map</button>`:"",v.address?`<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(v.name+" "+v.address)}" target="_blank" rel="noopener">Directions</a>`:""].join("");
+  return `<article class="venue ${v.status==="closed"?"closed":""}" id="card-${v.id}">
+    <div class="vhead"><div><h2>${esc(v.name)}</h2>${distOf(v)!=null?`<span class="dist">${fmtMi(distOf(v))} away</span>`:""}<div class="meta">${esc(v.neighborhood||"")}${v.address?" · "+esc(String(v.address).replace(/,?\s*Laguna Beach,?\s*CA\s*\d{5}/i,"")):""}${v.category?" · "+esc(v.category):""}</div>${ratingsHTML(v)}</div><div class="badges">${badges}</div></div>
+    ${sched}${drinks}${food}${deals}${none}${subNote}
+    ${v.seating_restrictions?`<div class="restrict">${esc(v.seating_restrictions)}</div>`:""}
+    ${links?`<div class="links">${links}</div>`:""}
+    ${v.status==="closed"?"":IN_CLAUDE?communityHTML(v)+`<div class="notes"><div id="nt-${v.id}">${notesHTML(v)}</div>${composerHTML(v)}</div>`:`<div class="claudelink">Been here lately? <a href="${CLAUDE_URL}" target="_blank" rel="noopener">Open the Claude version</a> to confirm it's still running, rate it, add notes and photos, or update it from a menu photo.</div>`}
+    <details><summary>How we checked</summary>
+      <dl class="verify">
+        ${v.audit_note?`<div><dt>Auditor</dt><dd>${esc(v.audit_note)}</dd></div>`:""}
+        ${v.yelp_result?`<div><dt>Yelp check</dt><dd>${esc(v.yelp_result)}</dd></div>`:""}
+        ${v.google_result?`<div><dt>Google check</dt><dd>${esc(v.google_result)}</dd></div>`:""}
+        ${v.google_source?`<div><dt>Google rating source</dt><dd>${esc(v.google_source)}</dd></div>`:""}
+        ${(v.sources||[]).length?`<div><dt>Sources</dt><dd class="src">${v.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label||host(s.url))}</a>`).join("")}</dd></div>`:""}
+      </dl></details>
+  </article>`;
+}
+const host=u=>{try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return "Website"}};
+
+function matches(v0,now){
+  const v=eff(v0),live=liveStatus(v,now);
+  if(state.status!=="all"&&v.status!==state.status)return false;
+  if(state.hood&&v.neighborhood!==state.hood)return false;
+  if(state.conf==="verified"&&v.confidence!=="verified")return false;
+  if(state.conf==="vl"&&v.confidence==="needs_confirmation")return false;
+  const hasHH=(v.schedule||[]).length>0||v.has_happy_hour,hasDeal=(v.daily_deals||[]).length>0;
+  if(state.kind==="hh"&&!hasHH)return false;
+  if(state.kind==="deal"&&!hasDeal)return false;
+  if(state.day&&!(v.schedule||[]).some(b=>(b.days||[]).includes(state.day))&&!(v.daily_deals||[]).some(d=>(d.days||[]).includes(state.day)))return false;
+  if(state.now&&!(live&&live.on))return false;
+  const q=state.q.trim().toLowerCase();
+  if(q){const hay=[v.name,v.neighborhood,v.address,v.category,...(v.drink_specials||[]),...(v.food_specials||[]),...(v.drink_items||[]).map(i=>i.item),...(v.food_items||[]).map(i=>i.item),...(v.daily_deals||[]).flatMap(d=>[d.title,d.description,...(d.items||[]).map(i=>i.item)])].join(" ").toLowerCase();if(!hay.includes(q))return false}
+  return true;
+}
+function render(){
+  const now=laNow();
+  document.getElementById("clock").innerHTML="Laguna time now: <b>"+now.day+" "+fmt(String(Math.floor(now.min/60)).padStart(2,"0")+":"+String(now.min%60).padStart(2,"0"))+"</b>";
+  const rows=VENUES.filter(v=>matches(v,now));
+  const rank={verified:0,likely:1,needs_confirmation:2};
+  const key={
+    now:(a,b)=>((liveStatus(eff(b),now)?.on?1:0)-(liveStatus(eff(a),now)?.on?1:0))||(rank[a.confidence]-rank[b.confidence])||a.name.localeCompare(b.name),
+    save:(a,b)=>maxSave(eff(b))-maxSave(eff(a))||a.name.localeCompare(b.name),
+    google:(a,b)=>(b.google_rating||0)-(a.google_rating||0)||a.name.localeCompare(b.name),
+    visitor:(a,b)=>(visitorAvg(b.id)??-1)-(visitorAvg(a.id)??-1)||a.name.localeCompare(b.name),
+    near:(a,b)=>(distOf(a)??999)-(distOf(b)??999)||a.name.localeCompare(b.name),
+    name:(a,b)=>a.name.localeCompare(b.name)}[state.sort];
+  rows.sort(key);
+  document.getElementById("count").textContent=rows.length+" of "+VENUES.length;
+  const list=document.getElementById("list");
+  setTimeout(()=>loadPhotos(list),0);
+  list.innerHTML=rows.length?rows.map(v=>cardHTML(v,now)).join(""):`<div class="empty">${state.now?"Nothing is running right now with these filters. Most Laguna happy hours start between 2 and 4pm.":"No listings match these filters. Try clearing the search or picking a different day."}</div>`;
+  if(M.vb){drawPins();if(M.sel&&!rows.some(v=>v.id===M.sel)){document.getElementById("pop").hidden=true;M.sel=null}}
+}
+/* refresh one card in place, unless its upload panel is in use */
+function refreshCard(id){
+  const el=document.getElementById("card-"+id);if(!el)return;
+  const up=document.getElementById("up-"+id);if(up&&!up.hidden)return;
+  if(document.getElementById("nt-text-"+id)?.value)return;
+  const v=VENUES.find(x=>x.id===id);if(!v)return;
+  const open=el.querySelector("details")?.open;
+  el.outerHTML=cardHTML(v,laNow());
+  if(open)document.querySelector("#card-"+id+" details").open=true;
+}
+function refreshCommunity(){
+  for(const v of VENUES){const el=document.getElementById("cm-"+v.id);if(!el)continue;const up=document.getElementById("up-"+v.id);if(up&&!up.hidden)continue;
+    el.outerHTML=communityHTML(v);const r=document.getElementById("vr-"+v.id);if(r)r.outerHTML=visitorHTML(v);}
+}
+
+/* ---------- shared data (db) ---------- */
+function aggregate(kind,snap){
+  if(kind==="c"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [id,iso] of Object.entries(o))if(typeof iso==="string"&&(!m[id]||iso>m[id]))m[id]=iso;if(d.id===C.uid)C.mine.c=o}C.confirms=m;refreshCommunity();}
+  if(kind==="r"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [id,n] of Object.entries(o)){const x=Number(n);if(!(x>=0&&x<=5))continue;(m[id]||(m[id]={sum:0,n:0}));m[id].sum+=x;m[id].n++}if(d.id===C.uid)C.mine.r={...o}}C.ratings=m;refreshCommunity();}
+  if(kind==="s"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [id,s] of Object.entries(o))if(s&&s.at&&(!m[id]||s.at>m[id].at))m[id]=s;if(d.id===C.uid)C.mine.s={...o}}const changed=Object.keys({...C.subs,...m}).filter(k=>C.subs[k]?.at!==m[k]?.at);C.subs=m;changed.forEach(refreshCard);}
+}
+async function writeMine(kind,id,value){
+  const next={...C.mine[kind],[id]:value};
+  await C.db.doc(kind+"/"+C.uid).set({v:next});
+  C.mine[kind]=next;
+}
+
+
+/* ---------- visitor notes and photos ---------- */
+const NOTE_MAX=500;
+function notesHTML(v){
+  const list=(C.posts[v.id]||[]);
+  const head=`<h3 class="nh">Visitor notes &amp; photos${list.length?` · ${list.length}`:""}</h3>`;
+  if(!list.length)return head+`<div class="cl">No notes yet. Share how the happy hour was, or add a photo.</div>`;
+  const show=C.expanded?.[v.id]?list:list.slice(0,3);
+  return head+`<ul class="posts">${show.map(p=>{
+    const name=C.names?.[p.uid]||"A visitor";
+    const mine=p.uid===C.uid, canDel=mine||C.isOwner;
+    const ph=p.photo?(C.photoCache[p.uid+"/"+p.id]?`<img class="pimg" src="${C.photoCache[p.uid+"/"+p.id]}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:`<div class="pimg ph" data-photo="${p.uid}/${p.id}">Loading photo…</div>`):"";
+    return `<li class="post"><div class="pm"><b>${esc(mine?"You":name)}</b> · ${esc(shortDate(p.at))}${canDel?` · <button class="linkbtn" data-act="delPost" data-id="${v.id}" data-pid="${p.id}" data-uid="${p.uid}">Delete</button>`:""}</div>${p.text?`<p>${esc(p.text)}</p>`:""}${ph}</li>`}).join("")}</ul>${list.length>3&&!C.expanded?.[v.id]?`<button class="linkbtn" data-act="moreNotes" data-id="${v.id}">Show all ${list.length} notes</button>`:""}`;
+}
+function composerHTML(v){
+  return `<div class="composer" id="nc-${v.id}">
+    <label class="cl" for="nt-text-${v.id}">Add a note</label>
+    <textarea id="nt-text-${v.id}" maxlength="${NOTE_MAX}" rows="2" placeholder="How was it? Busy, good deals, anything changed?"></textarea>
+    <div class="crow"><label class="btn filebtn" for="nt-file-${v.id}">Add photo</label><input type="file" id="nt-file-${v.id}" class="vh" accept="image/*" data-act-change="notePhoto" data-id="${v.id}">
+      <span class="cl" id="nt-fname-${v.id}"></span>
+      <button class="btn primary" data-act="post" data-id="${v.id}" style="margin-left:auto">Post</button></div>
+    <div class="status" id="nt-st-${v.id}"></div></div>`;
+}
+function refreshNotes(id){
+  const el=document.getElementById("nt-"+id);if(!el)return;
+  const v=VENUES.find(x=>x.id===id);if(v)el.innerHTML=notesHTML(v);
+  loadPhotos(el);
+}
+function loadPhotos(root){
+  if(!C.db)return;
+  (root||document).querySelectorAll("[data-photo]").forEach(async el=>{
+    const key=el.dataset.photo;if(C.photoCache[key]){el.outerHTML=`<img class="pimg" src="${C.photoCache[key]}" alt="Visitor photo">`;return}
+    if(el.dataset.loading)return;el.dataset.loading="1";
+    const [uid,pid]=key.split("/");
+    try{const s=await C.db.doc("m/"+uid+"/ph/"+pid).get();const src=s.exists?String(s.data().src||""):"";
+      if(/^data:image\/(jpeg|png|webp);base64,/.test(src)){C.photoCache[key]=src;el.outerHTML=`<img class="pimg" src="${src}" alt="Visitor photo">`}else el.textContent="Photo unavailable";
+    }catch(e){el.textContent="Photo unavailable"}
+  });
+}
+async function shrink(file){
+  const url=URL.createObjectURL(file);
+  try{
+    const img=await new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=url});
+    let max=1280,q=0.72,out="";
+    for(let k=0;k<6;k++){
+      const s=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));
+      const c=document.createElement("canvas");c.width=Math.round(img.naturalWidth*s);c.height=Math.round(img.naturalHeight*s);
+      c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+      out=c.toDataURL("image/jpeg",q);
+      if(out.length<190000)return out;
+      max=Math.round(max*0.8);q=Math.max(0.5,q-0.06);
+    }
+    return out.length<250000?out:null;
+  }finally{URL.revokeObjectURL(url)}
+}
+async function postNote(id,btn){
+  const st=document.getElementById("nt-st-"+id),ta=document.getElementById("nt-text-"+id),fi=document.getElementById("nt-file-"+id);
+  const text=(ta.value||"").trim().slice(0,NOTE_MAX),file=fi.files?.[0];
+  if(!text&&!file){st.className="status err";st.textContent="Write a note or add a photo first.";return}
+  if(!C.db||!C.uid){st.className="status err";st.textContent="Posting needs you to be signed in with access to change this page.";return}
+  btn.disabled=true;st.className="status";st.textContent=file?"Preparing photo…":"Posting…";
+  try{
+    const pid=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+    let photo=false;
+    if(file){const src=await shrink(file);if(!src)throw {code:"too_big"};
+      st.textContent="Uploading photo…";await C.db.doc("m/"+C.uid+"/ph/"+pid).set({src,venue:id});photo=true;C.photoCache[C.uid+"/"+pid]=src}
+    const posts=[{id:pid,venue:id,at:new Date().toISOString(),text,photo},...C.myPosts].slice(0,100);
+    await C.db.doc("m/"+C.uid).set({posts});C.myPosts=posts;
+    ta.value="";fi.value="";document.getElementById("nt-fname-"+id).textContent="";st.textContent="Posted.";
+  }catch(e){st.className="status err";st.textContent=e?.code==="too_big"?"That photo is too large. Try a smaller one.":e?.code==="quota_exceeded"?"Storage is full, so this couldn't be posted.":"Couldn't post. You may not have permission to change this page."}
+  btn.disabled=false;
+}
+async function deletePost(vid,pid,uid){
+  try{
+    if(uid===C.uid){const posts=C.myPosts.filter(p=>p.id!==pid);await C.db.doc("m/"+C.uid).set({posts});C.myPosts=posts}
+    else if(C.isOwner){const s=await C.db.doc("m/"+uid).get();const posts=(s.data()?.posts||[]).filter(p=>p.id!==pid);await C.db.doc("m/"+uid).set({posts})}
+    await C.db.doc("m/"+uid+"/ph/"+pid).delete().catch(()=>{});
+  }catch(e){}
+}
+async function aggregatePosts(snap){
+  const m={},uids=new Set();
+  for(const d of snap.docs){const arr=d.data()?.posts;if(!Array.isArray(arr))continue;
+    if(d.id===C.uid)C.myPosts=arr;
+    for(const p of arr){if(!p||!p.venue||!p.at)continue;(m[p.venue]||(m[p.venue]=[])).push({uid:d.id,id:String(p.id),at:String(p.at),text:String(p.text||"").slice(0,NOTE_MAX),photo:!!p.photo});uids.add(d.id)}}
+  for(const k in m)m[k].sort((a,b)=>b.at.localeCompare(a.at));
+  if(C.user&&uids.size){try{const ps=await C.user.profiles([...uids]);C.names={};for(const u of uids)C.names[u]=ps[u]?.name||""}catch(e){}}
+  const changed=new Set([...Object.keys(m),...Object.keys(C.posts)]);
+  C.posts=m;changed.forEach(refreshNotes);
+}
+
+/* ---------- menu photo update ---------- */
+function openUpload(id){
+  const box=document.getElementById("up-"+id);if(!box)return;
+  if(!box.hidden){box.hidden=true;box.innerHTML="";return}
+  box.hidden=false;
+  const why=!window.claude?.use?"Menu photos can only be read when this page is opened in Claude (claude.ai or the Claude app).":
+    !C.sample?"Reading menu photos isn't available in this view yet. Try opening the page at claude.ai in a web browser.":
+    !C.canImg?"This view can't send photos to Claude. Try opening the page at claude.ai in a web browser, or send the photo to Claude in chat.":
+    (!C.db||!C.uid)?"You can view this page but not change it. Ask the owner for Contributor access to save menu updates.":"";
+  if(why){box.innerHTML=`<div class="status err">${why}</div><div class="crow"><button class="btn" data-act="openUp" data-id="${id}">Close</button></div>`;return}
+  box.innerHTML=`<label class="cl" for="file-${id}">Take or choose a photo of the happy hour or specials menu</label>
+    <input type="file" id="file-${id}" accept="image/jpeg,image/png,image/webp,image/gif" capture="environment">
+    <div class="crow"><button class="btn primary" data-act="analyze" data-id="${id}">Read the menu</button><button class="btn" data-act="openUp" data-id="${id}">Cancel</button></div>
+    <div class="status" id="st-${id}"></div><div class="preview" id="pv-${id}"></div>`;
+}
+const pending={};
+async function analyze(id){
+  const v=VENUES.find(x=>x.id===id),f=document.getElementById("file-"+id)?.files?.[0],st=document.getElementById("st-"+id),pv=document.getElementById("pv-"+id);
+  if(!f){st.textContent="Choose a photo first.";st.className="status err";return}
+  st.className="status";st.textContent="Reading the menu… this can take up to a minute.";pv.innerHTML="";
+  const cur=eff(v);
+  const prompt=`You are reading a photo of a restaurant menu for "${v.name}" in Laguna Beach, California, to update a happy hour and daily deals listing.
+Current listing (may be outdated): ${JSON.stringify({schedule:cur.schedule,drink_items:(cur.drink_items||[]).map(i=>[i.item,i.price]),food_items:(cur.food_items||[]).map(i=>[i.item,i.price]),daily_deals:(cur.daily_deals||[]).map(d=>d.title)})}
+Extract ONLY what is clearly visible in the photo. Never guess. Reply with only this JSON object:
+{"is_relevant": true|false, "reason": "short, if not relevant",
+ "schedule": [{"days":["Mon","Tue"],"start":"15:00","end":"18:00","note":null}],
+ "drink_items": [{"item":"House margarita","price":"$8","regular_price":"$14 or null"}],
+ "food_items": [{"item":"Fish taco","price":"$6","regular_price":null}],
+ "daily_deals": [{"title":"Taco Tuesday","days":["Tue"],"start":null,"end":null,"description":"short","items":[{"item":"","price":"$3","regular_price":null}]}],
+ "notes": "one short sentence on anything uncertain"}
+Use 24h times, day names Mon Tue Wed Thu Fri Sat Sun, prices like "$9" or "$12.50". Use empty arrays for sections not shown. Set is_relevant false if the photo is not a menu or shows no happy hour, specials or prices.`;
+  try{
+    const r=await C.sample.json(prompt,{images:[f]});
+    if(!r||r.is_relevant===false){st.className="status err";st.textContent="This photo doesn't seem to show happy hour or specials prices"+(r?.reason?": "+r.reason:".");return}
+    const clean=a=>(Array.isArray(a)?a:[]).filter(i=>i&&i.item).slice(0,80).map(i=>({item:String(i.item).slice(0,80),price:i.price?String(i.price).slice(0,20):null,regular_price:i.regular_price?String(i.regular_price).slice(0,20):null}));
+    const okDays=d=>(Array.isArray(d)?d:[]).filter(x=>DAYS.includes(x));
+    const okT=t=>/^\d\d:\d\d$/.test(t||"")?t:null;
+    const sub={at:new Date().toISOString(),
+      schedule:(Array.isArray(r.schedule)?r.schedule:[]).slice(0,6).map(b=>({days:okDays(b.days),start:okT(b.start),end:okT(b.end),note:b.note?String(b.note).slice(0,120):null})),
+      drink_items:clean(r.drink_items),food_items:clean(r.food_items),
+      daily_deals:(Array.isArray(r.daily_deals)?r.daily_deals:[]).slice(0,10).map(d=>({title:String(d.title||"Deal").slice(0,60),days:okDays(d.days),start:okT(d.start),end:okT(d.end),description:d.description?String(d.description).slice(0,200):null,items:clean(d.items)})),
+      notes:r.notes?String(r.notes).slice(0,200):null};
+    if(!sub.schedule.length&&!sub.drink_items.length&&!sub.food_items.length&&!sub.daily_deals.length){st.className="status err";st.textContent="No prices or hours could be read from this photo. Try a closer, straighter shot.";return}
+    pending[id]=sub;
+    const li=a=>a.map(i=>`<li>${esc(i.item)} — ${esc(i.price||"no price")}</li>`).join("");
+    st.textContent="Here's what was read. Check it, then save it to the listing.";
+    pv.innerHTML=`${sub.schedule.length?`<div><b>Hours:</b> ${sub.schedule.map(b=>esc(dayLabel(b.days)+" "+(b.start?fmt(b.start):"?")+"–"+(b.end?fmt(b.end):"close"))).join("; ")}</div>`:""}
+      ${sub.drink_items.length?`<div><b>Drinks</b><ul>${li(sub.drink_items)}</ul></div>`:""}
+      ${sub.food_items.length?`<div><b>Food</b><ul>${li(sub.food_items)}</ul></div>`:""}
+      ${sub.daily_deals.length?`<div><b>Deals:</b> ${sub.daily_deals.map(d=>esc(d.title+" ("+dayLabel(d.days)+")")).join("; ")}</div>`:""}
+      ${sub.notes?`<div class="cl">${esc(sub.notes)}</div>`:""}
+      <div class="crow"><button class="btn primary" data-act="save" data-id="${id}">Save to listing</button></div>`;
+  }catch(e){
+    st.className="status err";
+    st.textContent={not_granted:"Reading photos needs permission to use Claude. You can allow it from this page's permissions.",rate_limited:"Too many requests right now. Try again in a few minutes.",image_rejected:"That photo couldn't be used. Try a JPEG or PNG under 20 MB.",invalid_json:"The menu couldn't be read clearly. Try a sharper photo.",refused:"This photo couldn't be processed. Try a different one."}[e?.code]||"Something went wrong reading the photo. Try again.";
+  }
+}
+async function saveSub(id){
+  const st=document.getElementById("st-"+id),sub=pending[id];if(!sub)return;
+  try{st.textContent="Saving…";await writeMine("s",id,sub);delete pending[id];
+    const box=document.getElementById("up-"+id);box.hidden=true;box.innerHTML="";C.subs[id]=sub;refreshCard(id);
+  }catch(e){st.className="status err";st.textContent=e?.code==="quota_exceeded"?"The shared storage is full, so this update couldn't be saved.":"Couldn't save. You may not have permission to change this page."}
+}
+
+document.addEventListener("change",e=>{const f=e.target.closest("[data-act-change='notePhoto']");if(!f)return;const n=document.getElementById("nt-fname-"+f.dataset.id);if(n)n.textContent=f.files?.[0]?.name||""});
+document.addEventListener("click",async e=>{
+  const b=e.target.closest("[data-act]");if(!b)return;
+  const id=b.dataset.id,act=b.dataset.act;
+  if(act==="onmap")return showOnMap(id);
+  if(act==="openUp")return openUpload(id);
+  if(act==="post"){return postNote(id,b)}
+  if(act==="moreNotes"){C.expanded={...(C.expanded||{}),[id]:true};return refreshNotes(id)}
+  if(act==="delPost"){b.disabled=true;return deletePost(id,b.dataset.pid,b.dataset.uid)}
+  if(act==="analyze"){b.disabled=true;await analyze(id);b.disabled=false;return}
+  if(act==="save"){b.disabled=true;await saveSub(id);return}
+  if(!C.db||!C.uid)return;
+  if(act==="confirm"){b.disabled=true;try{const iso=new Date().toISOString();await writeMine("c",id,iso);C.confirms[id]=iso;refreshCommunity()}catch(err){b.textContent="Couldn't save";}}
+  if(act==="rate"){const n=+b.dataset.n;try{await writeMine("r",id,n)}catch(err){b.closest(".stars").insertAdjacentHTML("afterend",'<span class="cl">Couldn\'t save your rating.</span>')}}
+});
+
+(async function init(){
+  const dr=document.getElementById("dayRow"),now=laNow();
+  ["",...DAYS].forEach(d=>{const b=document.createElement("button");b.className="chip";b.id="day-"+(d||"any");b.textContent=d?(d===now.day?d+" (today)":d):"Any day";b.setAttribute("aria-pressed",d===state.day?"true":"false");b.onclick=()=>{state.day=d;dr.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));render()};dr.appendChild(b)});
+  const hs=document.getElementById("hood");[...new Set(VENUES.map(v=>v.neighborhood).filter(Boolean))].sort().forEach(h=>{const o=document.createElement("option");o.value=h;o.textContent=h;hs.appendChild(o)});
+  for(const k of ["hood","status","conf","kind","sort"])document.getElementById(k).onchange=e=>{state[k]=e.target.value;render()};
+  document.getElementById("q").oninput=e=>{state.q=e.target.value;render()};
+  const nb=document.getElementById("nowBtn");nb.onclick=()=>{state.now=!state.now;nb.setAttribute("aria-pressed",state.now);render()};
+  const fh=()=>{const f=document.querySelector(".filters");document.documentElement.style.setProperty("--fh",getComputedStyle(f).position==="sticky"?f.offsetHeight+"px":"0px")};fh();window.addEventListener("resize",fh);
+  if(!IN_CLAUDE){document.querySelectorAll("[data-claude-only]").forEach(e=>e.hidden=true);document.querySelector('#sort option[value="visitor"]')?.remove();
+    document.getElementById("lede").textContent="Happy hours and daily deals across Laguna Beach, with prices, savings, a map and how solid the evidence is.";}
+  initMap();
+  const none=DATA.checked_none||[];
+  document.getElementById("noneSum").textContent=`${none.length} more restaurants we checked had no deals we could find (of ${DATA.roster_total} total)`;
+  document.getElementById("noneList").innerHTML=none.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(x=>`<li>${esc(x.name)} <small>· ${esc(x.result)}</small></li>`).join("");
+  render();
+  setInterval(()=>{if(!document.querySelector("details[open]")&&!document.querySelector(".upload:not([hidden])")&&![...document.querySelectorAll(".composer textarea")].some(x=>x.value))render()},60000);
+  /* light up shared features when the viewer supports them */
+  if(!window.claude?.use)return;
+  const [db,user,sample]=await Promise.all([claude.use("db"),claude.use("user"),claude.use("sample")]);
+  C.db=db;C.user=user;C.uid=user?await user.id():null;C.sample=sample;C.isOwner=user?await user.isOwner():false;
+  if(sample){try{C.canImg=!!(await sample.limits())?.images}catch(e){C.canImg=false}}
+  if(db){for(const k of ["c","r","s"])db.collection(k).onSnapshot(s=>aggregate(k,s),()=>{});db.collection("m").onSnapshot(s=>aggregatePosts(s),()=>{});}
+  render();
+})();
+</script>

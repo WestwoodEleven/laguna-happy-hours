@@ -1,0 +1,6566 @@
+{
+ "venues": [
+  {
+   "id": "starfish-laguna-beach",
+   "name": "Starfish Laguna Beach",
+   "address": "30832 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "South Laguna",
+   "website": "https://starfishhospitalitygroup.com/lagunabeach/",
+   "category": "Asian fusion / sushi",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": "'Opium Hour'; dine-in only"
+    },
+    {
+     "days": [
+      "Sat",
+      "Sun"
+     ],
+     "start": "11:00",
+     "end": "15:00",
+     "note": "Weekend all-day HH Sat-Sun 11am-6pm per official homepage (Oct 2026)"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://starfishhospitalitygroup.com/lagunabeach/menu/happy-hour/",
+   "drink_items": [
+    {
+     "item": "Star Libations signature cocktails",
+     "price": "$13",
+     "regular_price": "$19",
+     "save_pct": 32,
+     "note": null
+    },
+    {
+     "item": "Well cocktails",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "House wine",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular glass list $10-$23"
+    },
+    {
+     "item": "Well martini",
+     "price": "$14",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "House hot sake, large carafe",
+     "price": "$9",
+     "regular_price": "$10",
+     "save_pct": 10,
+     "note": null
+    },
+    {
+     "item": "Lager",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Sapporo 20oz",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Wok Fired Edamame",
+     "price": "$13",
+     "regular_price": "$15",
+     "save_pct": 13,
+     "note": null
+    },
+    {
+     "item": "Crab Wontons (5)",
+     "price": "$13",
+     "regular_price": "$17",
+     "save_pct": 24,
+     "note": null
+    },
+    {
+     "item": "Pork Dumplings (5)",
+     "price": "$13",
+     "regular_price": "$17",
+     "save_pct": 24,
+     "note": null
+    },
+    {
+     "item": "Star Nigiri (4)",
+     "price": "$13",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner plate is 6 pc at $19; not paired"
+    },
+    {
+     "item": "Saigon Summer Roll",
+     "price": "$13",
+     "regular_price": "$17",
+     "save_pct": 24,
+     "note": null
+    },
+    {
+     "item": "Chicken Wontons (5)",
+     "price": "$13",
+     "regular_price": "$16",
+     "save_pct": 19,
+     "note": null
+    },
+    {
+     "item": "Mint Thai Chicken Roll",
+     "price": "$13",
+     "regular_price": "$17",
+     "save_pct": 24,
+     "note": null
+    },
+    {
+     "item": "Singapore Bamboo Roll",
+     "price": "$13",
+     "regular_price": "$16",
+     "save_pct": 19,
+     "note": null
+    },
+    {
+     "item": "Crispy Chicken Spring Roll",
+     "price": "$15",
+     "regular_price": "$17",
+     "save_pct": 12,
+     "note": null
+    },
+    {
+     "item": "Korean Tacos",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner Korean Tacos (3) $17; HH count not stated, so not paired"
+    },
+    {
+     "item": "OG Vietnamese Roll",
+     "price": "$15",
+     "regular_price": "$19",
+     "save_pct": 21,
+     "note": null
+    },
+    {
+     "item": "Silk Road Potstickers",
+     "price": "$15",
+     "regular_price": "$18",
+     "save_pct": 17,
+     "note": null
+    },
+    {
+     "item": "Banh Mi Sliders",
+     "price": "$15",
+     "regular_price": "$18",
+     "save_pct": 17,
+     "note": null
+    },
+    {
+     "item": "Calamari",
+     "price": "$15",
+     "regular_price": "$19",
+     "save_pct": 21,
+     "note": null
+    },
+    {
+     "item": "Ahi Poke Taro Bites",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Naked Buddha Roll",
+     "price": "$15",
+     "regular_price": "$18",
+     "save_pct": 17,
+     "note": null
+    },
+    {
+     "item": "Chicken or Pork Lettuce Wraps",
+     "price": "$17",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner lettuce wraps $18-$21 by protein"
+    },
+    {
+     "item": "Spicy Ahi Tuna Roll",
+     "price": "$17",
+     "regular_price": "$19",
+     "save_pct": 11,
+     "note": null
+    },
+    {
+     "item": "Crab California Roll",
+     "price": "$17",
+     "regular_price": "$19",
+     "save_pct": 11,
+     "note": null
+    },
+    {
+     "item": "Braised BBQ Pork Buns",
+     "price": "$17",
+     "regular_price": "$19",
+     "save_pct": 11,
+     "note": null
+    },
+    {
+     "item": "Shrimp Tempura Roll",
+     "price": "$17",
+     "regular_price": "$20",
+     "save_pct": 15,
+     "note": null
+    },
+    {
+     "item": "Shrimp Dumplings",
+     "price": "$17",
+     "regular_price": "$18",
+     "save_pct": 6,
+     "note": null
+    },
+    {
+     "item": "Hamachi Cut Roll",
+     "price": "$17",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Asia de Philly Roll",
+     "price": "$17",
+     "regular_price": "$19",
+     "save_pct": 11,
+     "note": null
+    },
+    {
+     "item": "Sunset Roll",
+     "price": "$19",
+     "regular_price": "$23",
+     "save_pct": 17,
+     "note": null
+    },
+    {
+     "item": "Steak Satays",
+     "price": "$19",
+     "regular_price": "$23",
+     "save_pct": 17,
+     "note": null
+    },
+    {
+     "item": "Chili Fire Wontons",
+     "price": "$19",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner order is 7 pc at $21; HH count not stated, so not paired"
+    },
+    {
+     "item": "Chicken Satays",
+     "price": "$19",
+     "regular_price": "$21",
+     "save_pct": 10,
+     "note": null
+    },
+    {
+     "item": "Shrimp Lettuce Wraps",
+     "price": "$19",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner lettuce wraps $18-$21 by protein"
+    },
+    {
+     "item": "Lobster Macadamia Roll",
+     "price": "$19",
+     "regular_price": "$24",
+     "save_pct": 21,
+     "note": null
+    },
+    {
+     "item": "Mussels",
+     "price": "$19",
+     "regular_price": "$25",
+     "save_pct": 24,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": null,
+   "price_level": "$$",
+   "google_rating": 4.6,
+   "google_count": 920,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1169223/starfish-laguna-beach",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/starfish-laguna-beach-8",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "'Confirmed' from undated Wanderlog blurb (daily 3-6); no prices.",
+   "audit_note": "Audit Oct 7: HH menu and homepage live (daily 15-18; Sat-Sun from 11:00). Unpaired Korean Tacos and Chili Fire Wontons (dinner piece counts differ / HH count not stated).",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official HH menu (live Oct 2026)",
+     "url": "https://starfishhospitalitygroup.com/lagunabeach/menu/happy-hour/"
+    },
+    {
+     "label": "Official dinner menu (live)",
+     "url": "https://starfishhospitalitygroup.com/lagunabeach/menu/dinner/"
+    },
+    {
+     "label": "Official wine & libations menu (live)",
+     "url": "https://starfishhospitalitygroup.com/lagunabeach/menu/wine-libations/"
+    }
+   ],
+   "lat": 33.516106,
+   "lng": -117.75699
+  },
+  {
+   "id": "mozambique",
+   "name": "Mozambique",
+   "address": "1740 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://mozambiqueoc.com/",
+   "category": "South African steakhouse / live music",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "17:00",
+     "note": "Excluded on select holidays; no takeout"
+    },
+    {
+     "days": [
+      "Sat",
+      "Sun"
+     ],
+     "start": "14:00",
+     "end": "16:00",
+     "note": "Excluded on select holidays; no takeout"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://mozambiqueoc.com/menus/happy-hour/",
+   "drink_items": [
+    {
+     "item": "Select draft beer",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular drafts $8-$9.50"
+    },
+    {
+     "item": "House wine",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Well cocktails",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "House mojito",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "House margarita",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Peppadrop Wedge Salad",
+     "price": "$8",
+     "regular_price": "$14",
+     "save_pct": 43,
+     "note": null
+    },
+    {
+     "item": "Mediterranean Salad",
+     "price": "$8",
+     "regular_price": "$12",
+     "save_pct": 33,
+     "note": null
+    },
+    {
+     "item": "Chicken Wings",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Penne Pasta",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner Penne Pasta Mozambique $27 (portion may differ)"
+    },
+    {
+     "item": "Peri-Peri Chicken",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner entree $34 (portion may differ)"
+    },
+    {
+     "item": "Pork Chop",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner entree $35 (portion may differ)"
+    },
+    {
+     "item": "The Sky Burger",
+     "price": "$15",
+     "regular_price": "$18",
+     "save_pct": 17,
+     "note": null
+    },
+    {
+     "item": "Fish N' Chips",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Wood-Grilled Salmon",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "not on dinner menu (pan-seared salmon $32)"
+    },
+    {
+     "item": "Traditional South African Pie",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner $25 (portion may differ)"
+    },
+    {
+     "item": "Seasoned Fries",
+     "price": "$5",
+     "regular_price": "$5",
+     "save_pct": 0,
+     "note": "side"
+    },
+    {
+     "item": "Fries Gone Wild",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "side"
+    },
+    {
+     "item": "Sweet Potato Fries",
+     "price": "$7",
+     "regular_price": "$7",
+     "save_pct": 0,
+     "note": "side"
+    },
+    {
+     "item": "Mazavaroo Fries",
+     "price": "$8",
+     "regular_price": "$10",
+     "save_pct": 20,
+     "note": "side"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "$25 Steak & Wine Wednesday",
+     "days": [
+      "Wed"
+     ],
+     "start": null,
+     "end": null,
+     "description": "7oz steak, veg, mash or fries + house wine; dine-in; site labels it limited-time, no substitutions",
+     "items": [
+      {
+       "item": "Steak + house wine",
+       "price": "$25",
+       "regular_price": null,
+       "save_pct": null
+      }
+     ]
+    },
+    {
+     "title": "$10 Favorites To-Go",
+     "days": [
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Takeout only, direct orders",
+     "items": [
+      {
+       "item": "South African Pie",
+       "price": "$10",
+       "regular_price": null,
+       "save_pct": null,
+       "note": "dine-in pie is $25 but to-go deal excludes sides; portion may differ, so not paired"
+      },
+      {
+       "item": "Chakalaka Bowl",
+       "price": "$10",
+       "regular_price": null,
+       "save_pct": null
+      }
+     ]
+    }
+   ],
+   "ocean_view": true,
+   "price_level": "$$$",
+   "google_rating": 4.4,
+   "google_count": 3012,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1234902",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/mozambique-laguna-beach-4",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info. Confirms closed Mon-Tue.",
+   "audit_note": "Audit Oct 7: official HH and weekly-specials pages match (Wed-Fri 15-17, Sat-Sun 14-16). To-go pie unpaired from $25 dine-in price. Wings, fish n chips, salmon not on dinner menu. Pie regular $25 is dine-in; to-go pie may differ in size.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official HH menu (live)",
+     "url": "https://mozambiqueoc.com/menus/happy-hour/"
+    },
+    {
+     "label": "Official weekly specials (live)",
+     "url": "https://mozambiqueoc.com/menus/weekly-specials/"
+    },
+    {
+     "label": "Official dinner menu (live)",
+     "url": "https://mozambiqueoc.com/menus/dinner-menu/"
+    }
+   ],
+   "lat": 33.52925,
+   "lng": -117.771643
+  },
+  {
+   "id": "las-brisas",
+   "name": "Las Brisas",
+   "address": "361 Cliff Dr, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.lasbrisaslagunabeach.com/",
+   "category": "Mexican seafood",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": "Cantina only"
+    }
+   ],
+   "seating_restrictions": "cantina only",
+   "happy_hour_url": "https://www.lasbrisaslagunabeach.com/happy-hour/",
+   "drink_items": [
+    {
+     "item": "Las Brisas margarita",
+     "price": "$10",
+     "regular_price": "$16",
+     "save_pct": 38,
+     "note": "pitcher $44"
+    },
+    {
+     "item": "Spicy margarita",
+     "price": "$12",
+     "regular_price": "$18",
+     "save_pct": 33,
+     "note": "pitcher $48"
+    },
+    {
+     "item": "Blueberry jalapeno margarita",
+     "price": "$12",
+     "regular_price": "$18",
+     "save_pct": 33,
+     "note": null
+    },
+    {
+     "item": "Spicy espresso martini",
+     "price": "$13",
+     "regular_price": "$19",
+     "save_pct": 32,
+     "note": null
+    },
+    {
+     "item": "La Diabla",
+     "price": "$14",
+     "regular_price": "$20",
+     "save_pct": 30,
+     "note": null
+    },
+    {
+     "item": "Pineapple pisco",
+     "price": "$11",
+     "regular_price": "$17",
+     "save_pct": 35,
+     "note": null
+    },
+    {
+     "item": "Peach mojito",
+     "price": "$10",
+     "regular_price": "$16",
+     "save_pct": 38,
+     "note": null
+    },
+    {
+     "item": "Beers",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "michelada +$3"
+    },
+    {
+     "item": "Liberty School Cabernet",
+     "price": "$10",
+     "regular_price": "$12",
+     "save_pct": 17,
+     "note": null
+    },
+    {
+     "item": "Rabble Sauvignon Blanc",
+     "price": "$10",
+     "regular_price": "$13",
+     "save_pct": 23,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Chips, Salsa & Guacamole",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular guacamole $16, chips/salsa/bean dip $12"
+    },
+    {
+     "item": "Chef's Salad",
+     "price": "$15",
+     "regular_price": "$18",
+     "save_pct": 17,
+     "note": null
+    },
+    {
+     "item": "Esquites",
+     "price": "$7",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "BBQ Pork Spareribs",
+     "price": "$15",
+     "regular_price": "$21",
+     "save_pct": 29,
+     "note": null
+    },
+    {
+     "item": "Oysters",
+     "price": "$3",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "each; regular $32 half dozen"
+    },
+    {
+     "item": "Calamari",
+     "price": "$18",
+     "regular_price": "$24",
+     "save_pct": 25,
+     "note": null
+    },
+    {
+     "item": "7-Layer Dip",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Seared Tuna Tostada",
+     "price": "$16",
+     "regular_price": "$25",
+     "save_pct": 36,
+     "note": null
+    },
+    {
+     "item": "Chicken Flautas",
+     "price": "$10",
+     "regular_price": "$21",
+     "save_pct": 52,
+     "note": null
+    },
+    {
+     "item": "Beer-Battered Rockfish Taco",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "lunch order of 2 is $22"
+    },
+    {
+     "item": "Roasted Chicken Taco",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "lunch order of 2 is $21"
+    },
+    {
+     "item": "Maitake Mushroom Taco",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Pork Belly Taco",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "lunch order of 2 is $21"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": true,
+   "price_level": "$$$",
+   "google_rating": 4.2,
+   "google_count": 4714,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/40833/las-brisas",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/las-brisas-laguna-beach-2",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info. Franki (not Google) agrees: weekdays 3-6.",
+   "audit_note": "Audit Oct 7: official HH page matches all listed prices (weekdays 15-18, cantina).",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official HH page (live)",
+     "url": "https://www.lasbrisaslagunabeach.com/happy-hour/"
+    },
+    {
+     "label": "Official dinner menu",
+     "url": "https://www.lasbrisaslagunabeach.com/dinner/"
+    },
+    {
+     "label": "Official lunch menu",
+     "url": "https://www.lasbrisaslagunabeach.com/lunch/"
+    },
+    {
+     "label": "Official cocktails",
+     "url": "https://www.lasbrisaslagunabeach.com/cocktails/"
+    },
+    {
+     "label": "Official wine list",
+     "url": "https://www.lasbrisaslagunabeach.com/wine-list/"
+    }
+   ],
+   "lat": 33.543412103954,
+   "lng": -117.789679149419
+  },
+  {
+   "id": "the-cliff-restaurant",
+   "name": "The Cliff Restaurant",
+   "address": "577 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.thecliffrestaurant.com/",
+   "category": "American / ocean view",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": "Bar and fire pit area"
+    }
+   ],
+   "seating_restrictions": "bar and fire pit area",
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Alcoholic beverages",
+     "price": "$2 off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Visit Laguna text reads \"$22 off beverages\", almost certainly a typo for $2; confirm"
+    }
+   ],
+   "food_items": [
+    {
+     "item": "All appetizers",
+     "price": "Half off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar and fire pit area"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": true,
+   "price_level": "$$",
+   "google_rating": 4.4,
+   "google_count": 4544,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/393714/the-cliff-restaurant",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/the-cliff-restaurant-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info. Franki (not Google) Aug 2025 praises HH; too old to count.",
+   "audit_note": "Audit Oct 7: official site confirms HH Mon-Fri 15:00-18:00; Visit Laguna confirms half-off apps. Removed Taco Tuesday (not on official site or Visit Laguna page).",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official homepage (live)",
+     "url": "https://www.thecliffrestaurant.com/"
+    },
+    {
+     "label": "Visit Laguna directory (live)",
+     "url": "https://www.visitlagunabeach.com/directory/the-cliff-restaurant/"
+    }
+   ],
+   "lat": 33.539986374922,
+   "lng": -117.781600416755
+  },
+  {
+   "id": "finneys-crafthouse",
+   "name": "Finney's Crafthouse",
+   "address": "340 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.finneyscrafthouse.com/laguna-beach",
+   "category": "gastropub / craft beer",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": "15:00",
+     "end": "17:00",
+     "note": "Dine-in only"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Any beer",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Wine",
+     "price": "$6/$7/$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "per guide"
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Finney Burger + fries + beer/soda",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "combo"
+    },
+    {
+     "item": "Peggy's Crispy Chicken Sandwich + fries + beer/soda",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "combo; Franki (Feb 2025) cites $16"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": null,
+   "price_level": "$$",
+   "google_rating": 4.4,
+   "google_count": 500,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/7537401/finneys-crafthouse",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/finneys-crafthouse-laguna-beach-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "'Confirmed' from undated Wanderlog blurb ($5 beer, apps from $7); days not shown.",
+   "audit_note": "Official confirms daily 3-5 dine-in; HH prices from earlier guides (menu loads dynamically, unreadable).",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official location page (live)",
+     "url": "https://www.finneyscrafthouse.com/laguna-beach"
+    }
+   ],
+   "lat": 33.542057,
+   "lng": -117.783085
+  },
+  {
+   "id": "oto-sushi",
+   "name": "Oto Sushi",
+   "address": "370 Glenneyre St, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://otosushi.co/",
+   "category": "sushi",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": "Dine-in only"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://cdn.shopify.com/s/files/1/0711/2589/3155/files/MenuForWebsiteJan2025.pdf",
+   "drink_items": [
+    {
+     "item": "Hot or sparkling sake",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "menu PDF lists sake $8/$12; conflict"
+    },
+    {
+     "item": "House wine",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Sapporo",
+     "price": "$9",
+     "regular_price": "$12",
+     "save_pct": 25,
+     "note": "from menu PDF"
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Smash Burger",
+     "price": "$11",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "menu PDF regular $11; HH price unclear"
+    },
+    {
+     "item": "Hand Roll",
+     "price": "$16",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "menu PDF shows '$3 off' hand rolls (regular $16); conflict"
+    },
+    {
+     "item": "Chicken Karaage",
+     "price": "$8",
+     "regular_price": "$13",
+     "save_pct": 38,
+     "note": null
+    },
+    {
+     "item": "4-Piece Nigiri",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Rolls (Scorch, Nikko Groove, Maki)",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular Nikko Groove $15, Scorch $19"
+    },
+    {
+     "item": "Chef's Roll",
+     "price": "$17",
+     "regular_price": "$17",
+     "save_pct": 0,
+     "note": null
+    },
+    {
+     "item": "Pork Belly Robatayaki",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Oysters",
+     "price": "$3",
+     "regular_price": "$3",
+     "save_pct": 0,
+     "note": "each; same price as regular"
+    },
+    {
+     "item": "Tuna Poke",
+     "price": "$13",
+     "regular_price": "$15",
+     "save_pct": 13,
+     "note": null
+    },
+    {
+     "item": "Kyuri Sunomono",
+     "price": "$7",
+     "regular_price": "$8",
+     "save_pct": 12,
+     "note": null
+    },
+    {
+     "item": "Kama (fish collar)",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$$$",
+   "google_rating": 4.7,
+   "google_count": 501,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/13096112/oto-sushi-laguna-beach",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/oto-sushi-laguna-beach-4",
+   "yelp_result": "Title-only; two listings, no HH info.",
+   "google_result": "Not checked (quota). Franki (not Google) Sep 2026 says HH exists; no times.",
+   "audit_note": "Audit: save_pct set to 0 where HH price equals regular (Chef's Roll, oysters). HH daily 3-6 confirmed. PDF may be older than existing data; kept existing HH prices where they conflict.",
+   "last_evidence_date": "2026-09",
+   "sources": [
+    {
+     "label": "Official homepage (live)",
+     "url": "https://otosushi.co/"
+    },
+    {
+     "label": "Official menu PDF (file named Jan 2025)",
+     "url": "https://cdn.shopify.com/s/files/1/0711/2589/3155/files/MenuForWebsiteJan2025.pdf"
+    }
+   ],
+   "lat": 33.542285862632,
+   "lng": -117.782178562475
+  },
+  {
+   "id": "wine-gallery-laguna",
+   "name": "Wine Gallery Wine Bar & Kitchen",
+   "address": "1833 S. Coast Hwy #110, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://winegallerylaguna.com/",
+   "category": "wine bar",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+     ],
+     "start": "16:30",
+     "end": "17:30",
+     "note": null
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://winegallerylaguna.com/s/Happy-Hour-April-2026.png",
+   "drink_items": [
+    {
+     "item": "Wine by the glass",
+     "price": "$2 off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "House wine",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Draft pilsner",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Margherita Pizza",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Pizza of the Day",
+     "price": "Half off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Meatballs",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": "earlier guide (Feb 2026) cited $10; unverified"
+    },
+    {
+     "item": "Frites",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Industry Night",
+     "days": [
+      "Sun"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Service workers: 50% off food, 25% off drinks; dine-in; on OpenTable only, not on official site (Oct 2026)",
+     "items": []
+    },
+    {
+     "title": "Wine Wednesday",
+     "days": [
+      "Wed"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Wine specials; details not listed; on OpenTable only, not on official site (Oct 2026)",
+     "items": []
+    }
+   ],
+   "ocean_view": false,
+   "price_level": "$$",
+   "google_rating": 4.7,
+   "google_count": 223,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1169168/wine-gallery",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/wine-gallery-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "'Confirmed' from undated Wanderlog blurb; hours (closed Mon, opens 4:30) fit.",
+   "audit_note": "Audit Oct 7: official site live confirms HH Tue-Sat 16:30-17:30 (no prices). Removed biweekly Wine Tasting Tuesday (paid event, not a discount); Industry Night and Wine Wednesday appear only on OpenTable. HH image and menu PDFs returned 429; HH item prices from existing data, no regular prices obtained.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official homepage (live)",
+     "url": "https://winegallerylaguna.com/"
+    },
+    {
+     "label": "OpenTable page (live)",
+     "url": "https://www.opentable.com/r/wine-gallery-reservations-laguna-beach"
+    }
+   ],
+   "lat": 33.528512,
+   "lng": -117.771045
+  },
+  {
+   "id": "coyote-grill",
+   "name": "Coyote Grill",
+   "address": "31621 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "South Laguna",
+   "website": "https://www.coyotegrill.tv/",
+   "category": "Mexican",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": "No HH to go"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://www.coyotegrill.tv/menus#menu=happy-hour",
+   "drink_items": [
+    {
+     "item": "Domestic beer",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Mexican beer",
+     "price": "$6.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "HH margarita",
+     "price": "$8.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Well drinks",
+     "price": "$8.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Shot of the week",
+     "price": "$8.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Bean & Rice Taco",
+     "price": "$6.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Beef Taco",
+     "price": "$6.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Calamari Appetizer",
+     "price": "$6.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Calamari Taco",
+     "price": "$6.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Cheese Quesadilla",
+     "price": "$6.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Chicken Taco",
+     "price": "$6.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Crab Ceviche",
+     "price": "$6.75",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Fresh Baja Ceviche",
+     "price": "$6.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Mini Buffalo Wings",
+     "price": "$6.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Mini Chicken Tostada",
+     "price": "$6.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Bacon Wrapped Shrimp Skewer",
+     "price": "$6.75",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Mini Nachos",
+     "price": "$6.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar"
+    },
+    {
+     "item": "Beef Tacos plate",
+     "price": "$15.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room; with rice & beans"
+    },
+    {
+     "item": "Chicken Tacos plate",
+     "price": "$15.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    },
+    {
+     "item": "Carne Asada Tacos plate",
+     "price": "$17.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    },
+    {
+     "item": "Fish Tacos plate",
+     "price": "$17.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    },
+    {
+     "item": "Shrimp Tacos plate",
+     "price": "$17.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    },
+    {
+     "item": "Trio Street Tacos",
+     "price": "$11.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    },
+    {
+     "item": "Calamari Tacos plate",
+     "price": "$17.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    },
+    {
+     "item": "Carnitas Tacos plate",
+     "price": "$16.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    },
+    {
+     "item": "Double Cheese Enchiladas",
+     "price": "$15.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    },
+    {
+     "item": "Shredded Beef Enchiladas",
+     "price": "$15.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    },
+    {
+     "item": "Zucchini Enchiladas",
+     "price": "$15.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    },
+    {
+     "item": "Chicken Verde Enchiladas",
+     "price": "$15.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    },
+    {
+     "item": "Bacon Wrapped Jalapenos",
+     "price": "$12.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dining room"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Taco Tuesday",
+     "days": [
+      "Tue"
+     ],
+     "start": "15:00",
+     "end": null,
+     "description": "Discounted tacos until close; prices not listed",
+     "items": []
+    }
+   ],
+   "ocean_view": true,
+   "price_level": "$$",
+   "google_rating": 4.5,
+   "google_count": 1129,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1171983/coyote-grill",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/coyote-grill-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "'Confirmed' but says Mon-Fri 3-6 (undated blurb); official says daily.",
+   "audit_note": "Audit Oct 7: official HH menu matches every price (daily 15-18, no to-go); Taco Tuesday 3pm-close confirmed on homepage, no prices.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official HH menu (live)",
+     "url": "https://www.coyotegrill.tv/menus#menu=happy-hour"
+    },
+    {
+     "label": "Official homepage (live)",
+     "url": "https://www.coyotegrill.tv/"
+    }
+   ],
+   "lat": 33.503258,
+   "lng": -117.74504
+  },
+  {
+   "id": "230-forest-avenue",
+   "name": "230 Forest Avenue",
+   "address": "230 Forest Ave, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://230forestavenue.com/",
+   "category": "Californian",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "14:30",
+     "end": "17:30",
+     "note": "Drinks only"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Beer",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular beers $7-$17"
+    },
+    {
+     "item": "Wine",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Cocktails",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular handcrafted cocktails $19"
+    }
+   ],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$$$",
+   "google_rating": 4.6,
+   "google_count": 693,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/450893/230-forest-avenue",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/230-forest-avenue-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Not checked (search quota ran out).",
+   "audit_note": "Official site shows no HH details; schedule/prices from Visit Laguna.",
+   "last_evidence_date": "2026-03",
+   "sources": [
+    {
+     "label": "Visit Laguna directory (live)",
+     "url": "https://www.visitlagunabeach.com/directory/230-forest-avenue/"
+    },
+    {
+     "label": "Official drinks menu (live)",
+     "url": "https://230forestavenue.com/drinks"
+    }
+   ],
+   "lat": 33.542630835683,
+   "lng": -117.783036904158
+  },
+  {
+   "id": "avilas-el-ranchito",
+   "name": "Avila's El Ranchito",
+   "address": "1305 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://avilaslagunabeach.com/",
+   "category": "Mexican",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": null
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Drink specials",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": "prices not listed"
+    }
+   ],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [
+    "Food specials (price not listed)"
+   ],
+   "daily_deals": [
+    {
+     "title": "Taco Tuesday",
+     "days": [
+      "Tue"
+     ],
+     "start": null,
+     "end": null,
+     "description": "$5 taco bar + Mexican beer deals (undated blurb; unconfirmed)",
+     "items": []
+    }
+   ],
+   "ocean_view": false,
+   "price_level": "$$",
+   "google_rating": 4.4,
+   "google_count": 835,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1171904/avilas-el-ranchito",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/avilas-el-ranchito-laguna-beach-3",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info. Mentions a Tue taco bar.",
+   "audit_note": "Official site has 'Happy Hour' and 'Daily Specials' menu tabs but contents unreadable; menu page 404.",
+   "last_evidence_date": "2026-08",
+   "sources": [
+    {
+     "label": "Visit Laguna Mexican restaurants article",
+     "url": "https://www.visitlagunabeach.com/?p=18562"
+    },
+    {
+     "label": "Official site (live)",
+     "url": "https://avilaslagunabeach.com/"
+    }
+   ],
+   "lat": 33.532383,
+   "lng": -117.775739
+  },
+  {
+   "id": "brussels-bistro",
+   "name": "Brussels Bistro",
+   "address": "222 Forest Ave, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.brusselsbistro.com/",
+   "category": "Belgian / bar",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Sun"
+     ],
+     "start": "16:30",
+     "end": "18:00",
+     "note": "Visit Laguna lists 4-6pm"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Draft beer",
+     "price": "$2 off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Wine, sangria, bartender's cocktail",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": "discounted; price not listed"
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Large Cone of Belgian Fries",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Brussels Sprouts",
+     "price": "$18",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Cheese Croquettes",
+     "price": "$16",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Bitterballen",
+     "price": "$17",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Garlic Shrimps",
+     "price": "$21",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "All-You-Can-Eat Mussels",
+     "days": [
+      "Tue"
+     ],
+     "start": null,
+     "end": null,
+     "description": "AYCE mussels, 11 flavors",
+     "items": [
+      {
+       "item": "AYCE mussels",
+       "price": "$39",
+       "regular_price": null,
+       "save_pct": null
+      }
+     ]
+    }
+   ],
+   "ocean_view": false,
+   "price_level": "$$",
+   "google_rating": 4.5,
+   "google_count": 845,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/433322/brussels-bistro",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/brussels-bistro-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info. Mon-Thu opening at 4:30 supports a 4:30 start.",
+   "audit_note": "Audit: downgraded - start time conflicts between sources (16:00 vs 16:30) and no official confirmation. Start time conflict (4:00 vs 4:30). Menu on Popmenu not reached; no regular prices.",
+   "last_evidence_date": "2026-03",
+   "sources": [
+    {
+     "label": "Visit Laguna directory (live)",
+     "url": "https://www.visitlagunabeach.com/directory/brussels-bistro/"
+    },
+    {
+     "label": "Official homepage (live)",
+     "url": "https://www.brusselsbistro.com/"
+    }
+   ],
+   "lat": 33.542525,
+   "lng": -117.783113
+  },
+  {
+   "id": "hennesseys-tavern-laguna",
+   "name": "Hennessey's Tavern",
+   "address": "213 Ocean Ave, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.hennesseystavern.com/laguna-beach",
+   "category": "bar / pub",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "16:00",
+     "end": "19:00",
+     "note": null
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://www.hennesseystavern.com/happy-hour",
+   "drink_items": [
+    {
+     "item": "HH drinks (lemonades, margaritas, beer/shot combos)",
+     "price": "$7-$11",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "chain HH page; existing data said $5 drinks"
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Bavarian Pretzel Bites",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Chicken Lemongrass Potstickers",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Seared Ahi Tacos",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Crispy Fried Pickle Spear",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Korean BBQ Chicken Bites",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Monday All-You-Can-Eat BBQ Ribs",
+     "days": [
+      "Mon"
+     ],
+     "start": "18:00",
+     "end": null,
+     "description": "$24 all-you-can-eat ribs with fries and slaw, while supplies last.",
+     "items": [
+      {
+       "item": "AYCE BBQ ribs",
+       "price": "$24",
+       "regular_price": null,
+       "save_pct": null,
+       "note": null
+      }
+     ]
+    },
+    {
+     "title": "Two-for-One Burgers",
+     "days": [
+      "Tue"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Buy one burger, get the second free, all day and night. Dine-in only.",
+     "items": [
+      {
+       "item": "Second burger",
+       "price": "Free",
+       "regular_price": null,
+       "save_pct": 50,
+       "note": "50% off when buying two"
+      }
+     ]
+    },
+    {
+     "title": "Two-for-One Breakfast Entrees",
+     "days": [
+      "Tue"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Buy one breakfast entree, get the second free during breakfast hours. Dine-in only.",
+     "items": [
+      {
+       "item": "Second breakfast entree",
+       "price": "Free",
+       "regular_price": null,
+       "save_pct": 50,
+       "note": "50% off when buying two"
+      }
+     ]
+    },
+    {
+     "title": "Hump Day Happy Hour",
+     "days": [
+      "Wed"
+     ],
+     "start": "16:00",
+     "end": "19:00",
+     "description": "Wednesday happy hour specials on 23 oz Coors Light drafts, Jameson shots, house wine, margaritas, vodka lemonades, greyhounds, screwdrivers and Hawaiian margaritas. Prices not listed.",
+     "items": []
+    },
+    {
+     "title": "Thursday $7 Smash Burger",
+     "days": [
+      "Thu"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Limited time. Dine-in only, at select locations, so check Laguna is taking part.",
+     "items": [
+      {
+       "item": "Smash Burger",
+       "price": "$7",
+       "regular_price": "$18",
+       "save_pct": 61,
+       "note": null
+      }
+     ]
+    },
+    {
+     "title": "Handmade Bloody Mary",
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": null,
+     "end": null,
+     "description": "$7.50 Mon–Fri until noon and Sat–Sun until 5pm. Add a shot for $4.",
+     "items": [
+      {
+       "item": "Bloody Mary",
+       "price": "$7.50",
+       "regular_price": null,
+       "save_pct": null,
+       "note": null
+      }
+     ]
+    },
+    {
+     "title": "Weekend Bubbles",
+     "days": [
+      "Sat",
+      "Sun"
+     ],
+     "start": null,
+     "end": null,
+     "description": "$20 bottles of Champagne or Prosecco with fresh-squeezed orange juice.",
+     "items": [
+      {
+       "item": "Champagne or Prosecco bottle with OJ",
+       "price": "$20",
+       "regular_price": null,
+       "save_pct": null,
+       "note": null
+      }
+     ]
+    },
+    {
+     "title": "$7.50 Fresh-Squeezed Drinks",
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Fresh-squeezed lemonades, greyhounds and screwdrivers made with New Amsterdam vodka, all day every day.",
+     "items": [
+      {
+       "item": "Vodka lemonade, greyhound or screwdriver",
+       "price": "$7.50",
+       "regular_price": null,
+       "save_pct": null,
+       "note": null
+      }
+     ]
+    },
+    {
+     "title": "Oktoberfest steins",
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Samuel Adams OctoberFest, through the end of October.",
+     "items": [
+      {
+       "item": "Half liter",
+       "price": "$8.50",
+       "regular_price": null,
+       "save_pct": null,
+       "note": null
+      },
+      {
+       "item": "Full liter",
+       "price": "$16",
+       "regular_price": null,
+       "save_pct": null,
+       "note": null
+      }
+     ]
+    },
+    {
+     "title": "Margarita Flight Wednesday",
+     "days": [
+      "Wed"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Margarita flight with 3 tequila shots",
+     "items": [
+      {
+       "item": "Margarita flight",
+       "price": "$25",
+       "regular_price": null,
+       "save_pct": null
+      }
+     ]
+    },
+    {
+     "title": "Football deals",
+     "days": [
+      "Mon",
+      "Thu",
+      "Sun"
+     ],
+     "start": null,
+     "end": null,
+     "description": "During games (football season): $8 apps, $6 jumbo drinks",
+     "items": [
+      {
+       "item": "Select appetizers",
+       "price": "$8",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Jumbo drinks",
+       "price": "$6",
+       "regular_price": null,
+       "save_pct": null
+      }
+     ]
+    }
+   ],
+   "ocean_view": false,
+   "price_level": "$",
+   "google_rating": 4.3,
+   "google_count": 740,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1239866/hennesseys-tavern",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/hennesseys-tavern-laguna-beach-2",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "'Confirmed' from undated Wanderlog blurb; no times. Mentions Tue BOGO burgers.",
+   "audit_note": "Official site checked Oct 7, 2026: Mon–Fri 4–7pm happy hour. Weekly deals from the chain's promotions page (screenshot from a user, Oct 7, 2026) and lunch/dinner menu; the promotions page covers all locations, and the $7 smash burger is only at select ones.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Promotions page (user screenshot, Oct 2026)",
+     "url": "https://www.hennesseystavern.com/promotions"
+    },
+    {
+     "label": "Official lunch & dinner menu (Two-Timin' Tuesday banner, Oct 2026)",
+     "url": "https://www.hennesseystavern.com/lunch-dinner"
+    },
+    {
+     "label": "Official Laguna location page (live)",
+     "url": "https://www.hennesseystavern.com/laguna-beach"
+    },
+    {
+     "label": "Official HH page (live, chain-wide)",
+     "url": "https://www.hennesseystavern.com/happy-hour"
+    }
+   ],
+   "lat": 33.542483,
+   "lng": -117.783977
+  },
+  {
+   "id": "lumberyard",
+   "name": "Lumberyard",
+   "address": "384 Forest Ave #10, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://lblumberyard.com/",
+   "category": "American",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": "Bar and patio only"
+    }
+   ],
+   "seating_restrictions": "bar and patio only",
+   "happy_hour_url": "https://www.lblumberyard.com/menus/happy-hour-2?location=laguna-beach",
+   "drink_items": [
+    {
+     "item": "Draft beer",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Wine by the glass",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "City Hall Martini",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "HH margarita",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Retro Old Fashioned",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Seasonal sangria",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Negroni",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Well drinks",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "\"up\" drinks +$3; well martinis $9"
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Cubano Sandwich",
+     "price": "$14",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Today's Fish Tacos",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Guacamole & Chips",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Pork Sliders",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Petite Charcuterie",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Steamed Edamame",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Smashed Burger",
+     "price": "$14",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Lumberyard Planks",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Mezze Plate",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Buffalo Wings",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Shrimp Taquitos",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Soft Pretzel",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "The Robert",
+     "price": "$14",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$$",
+   "google_rating": 4.5,
+   "google_count": 879,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/261063/lumberyard",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/lumberyard-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info.",
+   "audit_note": "Audit Oct 7: official HH menu live (Mon-Fri 15-18, bar & patio). Fixed well drinks to $6 (was $7-$10) and added Retro Old Fashioned $10. Beer now $6 (was $5). Regular menu pages returned a Mother's Day page; no regular prices.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official HH menu (live)",
+     "url": "https://www.lblumberyard.com/menus/happy-hour-2?location=laguna-beach"
+    }
+   ],
+   "lat": 33.544701,
+   "lng": -117.781613
+  },
+  {
+   "id": "oak-laguna-beach",
+   "name": "Oak Laguna Beach",
+   "address": "1100 S. Coast Hwy, Suite 202, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://oak-lagunabeach.com/",
+   "category": "Californian",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": "Visit Laguna says Tue-Fri"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Drinks",
+     "price": "$6-$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Unofficial Meatballs of Laguna Beach",
+     "price": "$14.74",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Calamari",
+     "price": "$15.25",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Sweet & Spicy Ribs",
+     "price": "$12.59",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Crispy Ahi Tuna Tacos",
+     "price": "$13.35",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Bar Burger",
+     "price": "$13.69",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Bar Spicy Chicken Sandwich",
+     "price": "$11.59",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Braised Short Rib Quesadilla",
+     "price": "$14.49",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Mac & Cheese",
+     "price": "$11.96",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Classic Pepperoni Flatbread",
+     "price": "$12.59",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Smoked Blue Cheese Chips",
+     "price": "$13.49",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Wine Wednesday",
+     "days": [
+      "Wed"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Half-off bottles (undated blurb; unconfirmed)",
+     "items": []
+    }
+   ],
+   "ocean_view": true,
+   "price_level": "$$",
+   "google_rating": 4.5,
+   "google_count": 670,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/467771/oak-laguna-beach",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/oak-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "'Confirmed' from undated blurb (weekday HH); lists Mon closed.",
+   "audit_note": "Official says Mon-Fri; Visit Laguna Tue-Fri, bites $11-$17. Menu page 429.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official homepage (live)",
+     "url": "https://oak-lagunabeach.com/"
+    },
+    {
+     "label": "Visit Laguna directory (live)",
+     "url": "https://www.visitlagunabeach.com/directory/oak/"
+    }
+   ],
+   "lat": 33.534168,
+   "lng": -117.776852
+  },
+  {
+   "id": "royal-hawaiian",
+   "name": "Royal Hawaiian",
+   "address": "331 N. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "North Laguna",
+   "website": "https://www.royalhawaiianoc.com/",
+   "category": "tiki bar / Hawaiian",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": null
+    },
+    {
+     "days": [
+      "Sun"
+     ],
+     "start": "12:00",
+     "end": "18:00",
+     "note": null
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Mai Tai",
+     "price": "$10",
+     "regular_price": "$18",
+     "save_pct": 44,
+     "note": null
+    },
+    {
+     "item": "Other discounted drinks",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Veggie Spring Rolls",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "from a Google review; regular 'Veggie Roll' $16.95, may differ"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Tiki Thursday",
+     "days": [
+      "Thu"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Discount for guests in tiki attire (not on official site Oct 2026; unconfirmed)",
+     "items": []
+    }
+   ],
+   "ocean_view": false,
+   "price_level": "$$",
+   "google_rating": 4.2,
+   "google_count": 779,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1198398/royal-hawaiian",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/royal-hawaiian-laguna-beach-7",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Jan 2026 Google review (via Wanderlog): $10 Mai Tai, $10 spring rolls.",
+   "audit_note": "Audit Oct 7: official homepage confirms HH Wed-Fri 15-18, Sun 12-18, closed Mon-Tue; no Tiki Thursday listed there.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official homepage (live)",
+     "url": "https://www.royalhawaiianoc.com/"
+    },
+    {
+     "label": "Official menu (live)",
+     "url": "https://www.royalhawaiianoc.com/menu"
+    },
+    {
+     "label": "OpenTable (live)",
+     "url": "https://www.opentable.com/r/royalhawaiian-laguna-beach-reservations-laguna-beach"
+    }
+   ],
+   "lat": 33.544036660639,
+   "lng": -117.789000125244
+  },
+  {
+   "id": "rumari",
+   "name": "Rumari",
+   "address": "1826 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://www.rumarioc.com/",
+   "category": "Mediterranean / Italian",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": "15:00",
+     "end": "17:00",
+     "note": "Dine-in; not on holidays"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://rumarioc.com/happy-hour/",
+   "drink_items": [
+    {
+     "item": "Bottled beer",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular $6-$7"
+    },
+    {
+     "item": "Well cocktails",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Well martinis",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "HH wines (Prosecco, Pinot Grigio, Chard, Chianti, Pinot Noir)",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular glass $12-$18; Prosecco and Ruffino Pinot Grigio $12"
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Pasta e Fagioli Soup",
+     "price": "$6",
+     "regular_price": "$8",
+     "save_pct": 25,
+     "note": null
+    },
+    {
+     "item": "Spaghetti & Meatballs",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner $28 (portion may differ)"
+    },
+    {
+     "item": "Chopped Caesar",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner Roasted Caesar $15"
+    },
+    {
+     "item": "Greek Salad",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner $18 full / $12 half"
+    },
+    {
+     "item": "Calamari",
+     "price": "$14",
+     "regular_price": "$18",
+     "save_pct": 22,
+     "note": null
+    },
+    {
+     "item": "Bruschetta",
+     "price": "$11",
+     "regular_price": "$16",
+     "save_pct": 31,
+     "note": null
+    },
+    {
+     "item": "Blackened Gamberetti",
+     "price": "$14",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Rigatoni",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner Rigatoni Fileto Marsala $38"
+    },
+    {
+     "item": "Penne Arrabiata",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Melanzane alla Caprese",
+     "price": "$12",
+     "regular_price": "$14",
+     "save_pct": 14,
+     "note": null
+    },
+    {
+     "item": "Beef Filet Souvlakia",
+     "price": "$14",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner entree $26"
+    },
+    {
+     "item": "Chicken Souvlakia",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "dinner entree $21"
+    },
+    {
+     "item": "Margherita Pizza",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Sausage Pizza",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Sliced Meatball Pizza",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Alla Rustica Pizza",
+     "price": "$16",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Grilled Chicken Pizza",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Zucchini al Forno",
+     "price": "$12",
+     "regular_price": "$16",
+     "save_pct": 25,
+     "note": "+$2 add shrimp/spinach/sun-dried tomato"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$$$",
+   "google_rating": 4.5,
+   "google_count": 349,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1234966/rumari",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/rumari-laguna-beach-2",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "'Confirmed' from undated Wanderlog blurb; closed Mon-Tue fits.",
+   "audit_note": "Audit Oct 7: official HH page matches (Wed-Sun 15-17).",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official HH page (live)",
+     "url": "https://rumarioc.com/happy-hour/"
+    },
+    {
+     "label": "Official dinner menu",
+     "url": "https://rumarioc.com/dinner-menu/"
+    },
+    {
+     "label": "Official beverages",
+     "url": "https://rumarioc.com/beverages/"
+    }
+   ],
+   "lat": 33.528636893508,
+   "lng": -117.770916305244
+  },
+  {
+   "id": "kya-bistro",
+   "name": "K'ya Laguna",
+   "address": "1287 S. Coast Hwy (La Casa del Camino), Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://www.opentable.com/kya-bistro",
+   "category": "Californian small plates (hotel)",
+   "status": "unclear",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": "OpenTable now says daily 4:30-5:30"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Sangria",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "House wine by the glass",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Bottled beer",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "OpenTable lists $6 select beers"
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Rotating signature tapas (2)",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "each; selection rotates"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Drink + half-off food",
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": "16:30",
+     "end": "17:30",
+     "description": "Buy any cocktail, beer or wine, get half off any dinner food item (per OpenTable)",
+     "items": []
+    }
+   ],
+   "ocean_view": null,
+   "price_level": "$$",
+   "google_rating": null,
+   "google_count": null,
+   "google_source": null,
+   "google_url": null,
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/kya-bistro-laguna-beach",
+   "yelp_result": "Listing renamed K'YA LAGUNA, not closed; no HH info.",
+   "google_result": "Not checked (search quota ran out).",
+   "audit_note": "Conflicting schedules; kyabistro.com domain does not resolve; not on OpenTable booking. Open status unclear.",
+   "last_evidence_date": "2026-06",
+   "sources": [
+    {
+     "label": "OpenTable listing (live, undated text)",
+     "url": "https://www.opentable.com/kya-bistro"
+    }
+   ],
+   "lat": 33.532591,
+   "lng": -117.775921
+  },
+  {
+   "id": "rooftop-lounge-la-casa-del-camino",
+   "name": "The Rooftop Lounge at La Casa del Camino",
+   "address": "1289 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://www.rooftoplagunabeach.com/",
+   "category": "rooftop bar (hotel)",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "14:00",
+     "end": "17:00",
+     "note": null
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://www.rooftoplagunabeach.com/menu",
+   "drink_items": [
+    {
+     "item": "Draft beer",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular $11.74-$14.75"
+    },
+    {
+     "item": "House wine",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular glass $12-$27"
+    },
+    {
+     "item": "Mojito",
+     "price": "$12",
+     "regular_price": "$22",
+     "save_pct": 45,
+     "note": null
+    },
+    {
+     "item": "Aperol spritz",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "House margarita",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Espresso martini",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Sangria",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Bavarian Pretzel Bites",
+     "price": "$14",
+     "regular_price": "$17",
+     "save_pct": 18,
+     "note": null
+    },
+    {
+     "item": "Crispy Coconut Shrimp",
+     "price": "$16",
+     "regular_price": "$19",
+     "save_pct": 16,
+     "note": null
+    },
+    {
+     "item": "Smokey Chipotle Wings",
+     "price": "$14",
+     "regular_price": "$16",
+     "save_pct": 12,
+     "note": null
+    },
+    {
+     "item": "Patatas Bravas",
+     "price": "$14",
+     "regular_price": "$17",
+     "save_pct": 18,
+     "note": null
+    },
+    {
+     "item": "Fried Calamari",
+     "price": "$14",
+     "regular_price": "$17",
+     "save_pct": 18,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": true,
+   "price_level": null,
+   "google_rating": 4.3,
+   "google_count": 1489,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/393219/the-rooftop-lounge",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/the-rooftop-lounge-laguna-beach",
+   "yelp_result": "Title-only; also a 'Casa Bistro' at same address (Jun 2026).",
+   "google_result": "Wanderlog mirror: open, no HH info. Reviews praise the mojitos.",
+   "audit_note": "Audit Oct 7: official menu matches (Mon-Fri 14-17; $12 drinks; food pairs and $22 mojito confirmed).",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official menu (live)",
+     "url": "https://www.rooftoplagunabeach.com/menu"
+    }
+   ],
+   "lat": 33.532576879857,
+   "lng": -117.775908092616
+  },
+  {
+   "id": "south-of-nicks",
+   "name": "South of Nick's",
+   "address": "540 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://nicksrestaurants.com/south-of-nicks-laguna-beach/",
+   "category": "Mexican",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu"
+     ],
+     "start": "14:00",
+     "end": "17:00",
+     "note": "'Fiesta Hour'"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://nicksrestaurants.com/wp-content/uploads/south-of-nicks-laguna-beach-fiesta-menu.pdf",
+   "drink_items": [
+    {
+     "item": "Skinny margarita",
+     "price": "$10",
+     "regular_price": "$16",
+     "save_pct": 38,
+     "note": null
+    },
+    {
+     "item": "Cucumber margarita",
+     "price": "$10",
+     "regular_price": "$17",
+     "save_pct": 41,
+     "note": null
+    },
+    {
+     "item": "Jalapeno watermelon",
+     "price": "$10",
+     "regular_price": "$17",
+     "save_pct": 41,
+     "note": null
+    },
+    {
+     "item": "Espresso martini",
+     "price": "$10",
+     "regular_price": "$17",
+     "save_pct": 41,
+     "note": null
+    },
+    {
+     "item": "Oaxaca old fashioned",
+     "price": "$10",
+     "regular_price": "$18",
+     "save_pct": 44,
+     "note": null
+    },
+    {
+     "item": "Coco rita",
+     "price": "$10",
+     "regular_price": "$17",
+     "save_pct": 41,
+     "note": null
+    },
+    {
+     "item": "Modelo Especial",
+     "price": "$5",
+     "regular_price": "$10",
+     "save_pct": 50,
+     "note": null
+    },
+    {
+     "item": "Negra Modelo",
+     "price": "$5",
+     "regular_price": "$10",
+     "save_pct": 50,
+     "note": null
+    },
+    {
+     "item": "J Vineyards Chardonnay",
+     "price": "$10",
+     "regular_price": "$15",
+     "save_pct": 33,
+     "note": null
+    },
+    {
+     "item": "Daou Reserve Cabernet",
+     "price": "$11",
+     "regular_price": "$15",
+     "save_pct": 27,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "A La Carte Tacos",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "A La Carte Enchiladas",
+     "price": "$7",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Macha Fries",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Nachos",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Cheese Quesadilla",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Papas Bravas",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Chicken Flautas",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular $21 (portion may differ)"
+    },
+    {
+     "item": "Chimichangitas",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Mini Bean & Cheese Burritos",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Guacamole",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular $15 (portion may differ)"
+    },
+    {
+     "item": "Ceviche",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "regular $23 (portion may differ)"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$$",
+   "google_rating": 4.7,
+   "google_count": 944,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1171895/south-of-nicks-laguna-beach",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/south-of-nicks-laguna-beach-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info.",
+   "audit_note": "Regular menu is platters; most a la carte Fiesta items have no regular counterpart.",
+   "last_evidence_date": "2026-08",
+   "sources": [
+    {
+     "label": "Official Fiesta menu PDF (live)",
+     "url": "https://nicksrestaurants.com/wp-content/uploads/south-of-nicks-laguna-beach-fiesta-menu.pdf"
+    },
+    {
+     "label": "Official beverages PDF (live)",
+     "url": "https://nicksrestaurants.com/wp-content/uploads/south-of-nicks-laguna-beach-beverages-menu.pdf"
+    },
+    {
+     "label": "Official food PDF (live)",
+     "url": "https://nicksrestaurants.com/wp-content/uploads/south-of-nicks-laguna-beach-food-menu.pdf"
+    }
+   ],
+   "lat": 33.54038628794,
+   "lng": -117.781683808588
+  },
+  {
+   "id": "romeo-cucina-laguna-beach",
+   "name": "Romeo Cucina",
+   "address": "249 Broadway St, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.romeocucina.com/",
+   "category": "Italian",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": "17:00",
+     "end": "19:00",
+     "note": "Not on major holidays"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://www.romeocucina.com/menus",
+   "drink_items": [
+    {
+     "item": "Wine (red/white)",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Draft beer",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Misto Fritto",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": "official page spells it 'Misto Fresco'"
+    },
+    {
+     "item": "Melanzane",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Calamari",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Polpette",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Pizza",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Rigatoni",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$$",
+   "google_rating": 4.5,
+   "google_count": 784,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1198408/romeo-cucina",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/romeo-cucina-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Not checked (search quota ran out).",
+   "audit_note": "HH items listed, prices not shown online.",
+   "last_evidence_date": "2026-04",
+   "sources": [
+    {
+     "label": "Official homepage + menus (live)",
+     "url": "https://www.romeocucina.com/menus"
+    }
+   ],
+   "lat": 33.543748,
+   "lng": -117.784299
+  },
+  {
+   "id": "neapolitan-pizzeria-birreria",
+   "name": "NEApolitan Pizzeria & Birreria",
+   "address": "31542 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "South Laguna",
+   "website": "https://www.nealaguna.com/",
+   "category": "pizza / beer",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": null
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Wine",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Sangria",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Craft beer",
+     "price": "Up to $2 off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Half salads",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "8oz veal meatball",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Small wings",
+     "price": "$7",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Pizza",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$$",
+   "google_rating": 4.5,
+   "google_count": 575,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1234969/neapolitan-pizzeria--birreria",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/neapolitan-pizzeria-and-birreria-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info.",
+   "audit_note": "Menus are images only; Visit Laguna lists HH amenity without detail. Existing data kept.",
+   "last_evidence_date": "2026-03",
+   "sources": [
+    {
+     "label": "Official homepage (live)",
+     "url": "https://www.nealaguna.com/"
+    },
+    {
+     "label": "Visit Laguna directory (live)",
+     "url": "https://www.visitlagunabeach.com/directory/neapolitan-pizzeria-birreria/"
+    }
+   ],
+   "lat": 33.504783,
+   "lng": -117.746024
+  },
+  {
+   "id": "cest-la-vie",
+   "name": "C'est La Vie Restaurant & Bakery",
+   "address": "373 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.cestlavierestaurant.com/",
+   "category": "French bistro / bakery",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "19:00",
+     "note": null
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Happy hour drinks",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Prix-fixe Friday",
+     "days": [
+      "Fri"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Three-course French prix fixe",
+     "items": []
+    },
+    {
+     "title": "Lobster Wednesday",
+     "days": [
+      "Wed"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Lobster special",
+     "items": []
+    },
+    {
+     "title": "BYOB Thursday",
+     "days": [
+      "Thu"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Free corkage on your own wine",
+     "items": []
+    }
+   ],
+   "ocean_view": true,
+   "price_level": "$$$",
+   "google_rating": 4.0,
+   "google_count": 1617,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1239865/cest-la-vie",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/cest-la-vie-restaurant-and-bakery-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info.",
+   "audit_note": "Audit Oct 7: Visit Laguna page lists the Fri prix fixe, Wed lobster special and Thu free corkage but no happy hour; HH schedule rests only on older existing data, so downgraded. Official site shows no HH or prices; HH schedule from existing data.",
+   "last_evidence_date": "2026-03",
+   "sources": [
+    {
+     "label": "Visit Laguna directory (live)",
+     "url": "https://www.visitlagunabeach.com/directory/cest-la-vie/"
+    }
+   ],
+   "lat": 33.541561,
+   "lng": -117.782958
+  },
+  {
+   "id": "piatti-laguna-beach",
+   "name": "Piatti Laguna Beach",
+   "address": "222 Ocean Ave, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.laguna.piatti.com/",
+   "category": "Italian",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": "At the bar"
+    }
+   ],
+   "seating_restrictions": "bar only",
+   "happy_hour_url": null,
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Half-off Wine Wednesday",
+     "days": [
+      "Wed"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Half-off wine, dine-in",
+     "items": []
+    }
+   ],
+   "ocean_view": false,
+   "price_level": "$$",
+   "google_rating": null,
+   "google_count": null,
+   "google_source": null,
+   "google_url": null,
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/piatti-laguna-beach-2",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Not checked (search quota ran out).",
+   "audit_note": "Audit Oct 7: official site confirms weekday bar HH 15-18 and half-off wine Wednesday (dine-in).",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official homepage (live)",
+     "url": "https://www.laguna.piatti.com/"
+    }
+   ],
+   "lat": 33.542638,
+   "lng": -117.784019
+  },
+  {
+   "id": "sandpiper-lounge",
+   "name": "The Sandpiper Lounge",
+   "address": "1183 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://www.sandpiperlounge.com/",
+   "category": "dive bar",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": "13:00",
+     "end": "18:00",
+     "note": null
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Domestic beer",
+     "price": "$3",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Well shots",
+     "price": "$4.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$",
+   "google_rating": 4.4,
+   "google_count": 402,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1318279/the-sandpiper-lounge",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/the-sandpiper-lounge-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info. Open noon-2am; cheap drinks noted.",
+   "audit_note": "Official confirms open daily 1pm-2am; HH details not online. Existing data kept.",
+   "last_evidence_date": "2026-03",
+   "sources": [
+    {
+     "label": "Official site (live)",
+     "url": "https://www.sandpiperlounge.com/"
+    }
+   ],
+   "lat": 33.533451863692,
+   "lng": -117.776573664326
+  },
+  {
+   "id": "marine-room-tavern",
+   "name": "Marine Room Tavern",
+   "address": "214 Ocean Ave, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.marineroomtavern.com/",
+   "category": "bar / live music",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": null
+    },
+    {
+     "days": [
+      "Sun"
+     ],
+     "start": "12:00",
+     "end": "15:00",
+     "note": "Doubtful: Pearl and Google list Sun opening 3pm; Visit Laguna says Sat-Sun open 10am"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Draft beer",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Bottled beer",
+     "price": "$3",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "House cocktails",
+     "price": "$4",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$",
+   "google_rating": 4.4,
+   "google_count": 506,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1239869/marine-room-tavern",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/marine-room-tavern-laguna-beach",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info. Sun opens 3pm, which conflicts with a Sun 12-3 HH.",
+   "audit_note": "No HH detail on official site; theme nights (Jazz Sun, Vinyl Mon, Country Tue) carry no deals.",
+   "last_evidence_date": "2026-03",
+   "sources": [
+    {
+     "label": "Official site (live)",
+     "url": "https://www.marineroomtavern.com/"
+    },
+    {
+     "label": "Visit Laguna directory (live)",
+     "url": "https://www.visitlagunabeach.com/directory/marine-room-tavern/"
+    }
+   ],
+   "lat": 33.542531643955,
+   "lng": -117.784103160242
+  },
+  {
+   "id": "greeters-corner",
+   "name": "The Greeter's Corner Restaurant",
+   "address": "329 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.thegreeterscorner.com/",
+   "category": "American / ocean view",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [],
+     "start": "16:00",
+     "end": "18:00",
+     "note": "Days not stated in source (empty day list intentional)"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Drinks",
+     "price": "Half off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Appetizers",
+     "price": "Half off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": true,
+   "price_level": "$$",
+   "google_rating": 3.2,
+   "google_count": 1105,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1239871/the-greeters-corner-restaurant",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/the-greeters-corner-laguna-beach",
+   "yelp_result": "Listing open; undated Q&A asks about weekend HH (no answer).",
+   "google_result": "Wanderlog mirror: open, no HH info. Lists open daily, unlike OpenTable's closed-Thu.",
+   "audit_note": "Official site and menu show no HH info; existing data kept.",
+   "last_evidence_date": "2026-03",
+   "sources": [
+    {
+     "label": "Official site (live)",
+     "url": "https://www.thegreeterscorner.com/"
+    }
+   ],
+   "lat": 33.541823,
+   "lng": -117.783167
+  },
+  {
+   "id": "rasta-taco",
+   "name": "Rasta Taco",
+   "address": "170 Beach St, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "category": "tacos",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": null
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [],
+   "food_items": [
+    {
+     "item": "Happy hour specials",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": "prices not listed"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$",
+   "google_rating": 4.5,
+   "google_count": 480,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1036511/rasta-taco",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": "No Yelp business page found.",
+   "google_result": "Not checked (search quota ran out).",
+   "audit_note": "Audit: downgraded to needs_confirmation - only source is an undated Visit Laguna directory entry with no prices. No item prices found.",
+   "last_evidence_date": null,
+   "sources": [
+    {
+     "label": "Visit Laguna directory (live)",
+     "url": "https://www.visitlagunabeach.com/directory/rasta-taco/"
+    }
+   ],
+   "lat": 33.544149,
+   "lng": -117.783243
+  },
+  {
+   "id": "sapphire-laguna",
+   "name": "Sapphire, Cellar.Craft.Cook",
+   "address": "1200 S. Coast Hwy, Suite 101, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://www.sapphirelagunabeach.com/",
+   "category": "global / wine",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "verified",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": "'Local's Hour', bar area only"
+    }
+   ],
+   "seating_restrictions": "bar only",
+   "happy_hour_url": "https://www.sapphirelagunabeach.com/menus/locals-hour?location=sapphire",
+   "drink_items": [
+    {
+     "item": "Signature cocktails",
+     "price": "$11",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Wine (red, white, rose)",
+     "price": "$7",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Beer",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Roasted Brussels, Broccoli & Cauliflower",
+     "price": "$9.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar area"
+    },
+    {
+     "item": "Meyer Lemon & Honey Duck Wings",
+     "price": "$9.50",
+     "regular_price": "$18",
+     "save_pct": 47,
+     "note": "bar area"
+    },
+    {
+     "item": "Classic BLT Sandwich",
+     "price": "$9.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar area"
+    },
+    {
+     "item": "Tuna Sandwich",
+     "price": "$9.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar area"
+    },
+    {
+     "item": "Beer Battered Fish Tacos",
+     "price": "$9.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar area"
+    },
+    {
+     "item": "Skillet Mac & Cheese",
+     "price": "$8",
+     "regular_price": "$15",
+     "save_pct": 47,
+     "note": "bar area"
+    },
+    {
+     "item": "Hand Cut Herb Fries",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "bar area; dinner has truffle & pecorino fries $12 (different)"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$$",
+   "google_rating": 4.5,
+   "google_count": 1171,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1156099/sapphire",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/sapphire-laguna-beach-4",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info.",
+   "audit_note": "Audit Oct 7: Local's Hour page matches (Mon-Fri 15-18, bar). Duck wings regular is 3 wings at $18; HH count not stated.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official Local's Hour menu (live)",
+     "url": "https://www.sapphirelagunabeach.com/menus/locals-hour?location=sapphire"
+    },
+    {
+     "label": "Official dinner menu (live)",
+     "url": "https://www.sapphirelagunabeach.com/menus/dinner?location=sapphire"
+    }
+   ],
+   "lat": 33.533323478012,
+   "lng": -117.776235345996
+  },
+  {
+   "id": "237-ocean-ave",
+   "name": "237 Ocean Ave",
+   "address": "237 Ocean Ave, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "category": "international bistro / lounge",
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "likely",
+   "schedule": [],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Happy hour menu",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": "2024"
+    }
+   ],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [
+    "Happy hour menu (price not listed)"
+   ],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": null,
+   "google_rating": null,
+   "google_count": null,
+   "google_source": null,
+   "google_url": null,
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/237-ocean-avenue-laguna-beach",
+   "yelp_result": "Listing open as of Dec 2025 crawl; many past tenants closed.",
+   "google_result": "Not checked (search quota ran out).",
+   "audit_note": "Audit: set closed - El Matatan (open per its official site and OpenTable) now operates at 237 Ocean Ave; 2024 HH and local discount dropped.",
+   "last_evidence_date": "2024-06",
+   "sources": [
+    {
+     "label": "Best of Laguna (2024-06)",
+     "url": "https://bestoflagunabeach.substack.com/p/237-ocean-ave-introduces-local-love"
+    }
+   ]
+  },
+  {
+   "id": "laguna-beer-company",
+   "name": "Laguna Beer Company",
+   "address": "859 Laguna Canyon Rd, Laguna Beach, CA 92651",
+   "neighborhood": "Laguna Canyon",
+   "website": "https://www.lagunabeer.com/",
+   "category": "brewery / tasting room",
+   "status": "unclear",
+   "has_happy_hour": false,
+   "confidence": "needs_confirmation",
+   "schedule": [],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Taco Tuesday",
+     "days": [
+      "Tue"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Review summary; unconfirmed",
+     "items": []
+    }
+   ],
+   "ocean_view": false,
+   "price_level": null,
+   "google_rating": 4.7,
+   "google_count": 665,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/76801/laguna-beer-company",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/laguna-beer-company-laguna-beach-2",
+   "yelp_result": "Title-only snippet; listing open, no HH info.",
+   "google_result": "Wanderlog mirror: open, no HH info. Mentions Taco Tuesday.",
+   "audit_note": "Official site lists tasting room address/phone only; no hours or deals.",
+   "last_evidence_date": null,
+   "sources": [
+    {
+     "label": "Official site (live)",
+     "url": "https://www.lagunabeer.com/"
+    }
+   ],
+   "lat": 33.5501,
+   "lng": -117.779813
+  },
+  {
+   "id": "ginas-pizza",
+   "name": "Gina's Pizza & Pastaria",
+   "address": "1100 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://www.ginaspizza.com/",
+   "category": "pizza",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "18:00",
+     "note": null
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Pitchers",
+     "price": "$3 off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Draft beer",
+     "price": "$1 off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "House wine",
+     "price": "$5.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Premium wine",
+     "price": "$7.50",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Pizza slice",
+     "price": "$3",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Flatbreads",
+     "price": "$4-$7",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "individual flatbreads not itemized"
+    },
+    {
+     "item": "Wings",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": "$",
+   "google_rating": 4.3,
+   "google_count": 456,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1274499/ginas-pizza",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/ginas-pizza-laguna-beach-4",
+   "yelp_result": "1100 S Coast listing open; a closed Gina's at 610 N Coast also shown.",
+   "google_result": "Not checked (search quota ran out).",
+   "audit_note": "Official page confirms hours only; HH data from existing record.",
+   "last_evidence_date": "2026-03",
+   "sources": [
+    {
+     "label": "Official location page (live)",
+     "url": "https://www.ginaspizza.com/laguna-beach"
+    }
+   ],
+   "lat": 33.534168,
+   "lng": -117.776852
+  },
+  {
+   "id": "chelas-mexican-kitchen",
+   "name": "Chelas Mexican Kitchen",
+   "address": "412 N. Coast Hwy Suite A, Laguna Beach, CA 92651",
+   "neighborhood": "North Laguna",
+   "website": "https://chelasmexkitchen.com/",
+   "category": "Mexican",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Wed",
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": null,
+     "note": "3pm to close; menu doesn't say if it varies by location"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://chelasmexkitchen.com/pages/menu",
+   "drink_items": [
+    {
+     "item": "Any beer",
+     "price": "$5.00",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Menu doesn't list a regular beer price"
+    }
+   ],
+   "food_items": [
+    {
+     "item": "2 fish tacos",
+     "price": "$7.00",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "HH 2 tacos a la carte; regular fish taco plate ($15.99) includes rice & beans, so not paired"
+    },
+    {
+     "item": "Bean & cheese burrito",
+     "price": "$8.00",
+     "regular_price": "$10.99",
+     "save_pct": 27,
+     "note": null
+    },
+    {
+     "item": "2 al pastor tacos",
+     "price": "$9.00",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Taquitos (3)",
+     "price": "$9.00",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Regular plate is 4 taquitos for $13.99-$14.99, so not the same item"
+    },
+    {
+     "item": "Bean & cheese nachos",
+     "price": "$10.00",
+     "regular_price": "$12.99",
+     "save_pct": 23,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Taco Tuesday",
+     "days": [
+      "Tue"
+     ],
+     "start": null,
+     "end": null,
+     "description": "All day: any beer and 2 crispy tacos",
+     "items": [
+      {
+       "item": "Any beer",
+       "price": "$5.00",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "2 crispy tacos",
+       "price": "$6.50",
+       "regular_price": null,
+       "save_pct": null
+      }
+     ]
+    },
+    {
+     "title": "Thirsty Thursday",
+     "days": [
+      "Thu"
+     ],
+     "start": null,
+     "end": null,
+     "description": "All day: any beer and 2 La Calle tacos",
+     "items": [
+      {
+       "item": "Any beer",
+       "price": "$5.00",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "2 La Calle tacos",
+       "price": "$6.50",
+       "regular_price": null,
+       "save_pct": null
+      }
+     ]
+    }
+   ],
+   "ocean_view": null,
+   "price_level": null,
+   "google_rating": null,
+   "google_count": null,
+   "google_source": null,
+   "google_url": null,
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Audit Oct 7: official menu live confirms HH Mon/Wed/Fri 3pm-close, Taco Tuesday and Thirsty Thursday prices, but it is one menu for 3 locations and never names Laguna; downgraded from verified. Fish-taco pairing removed (plate vs a la carte).",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official menu page (live Oct 2026)",
+     "url": "https://chelasmexkitchen.com/pages/menu"
+    }
+   ],
+   "lat": 33.544794,
+   "lng": -117.790515
+  },
+  {
+   "id": "ahba",
+   "name": "AhbA",
+   "address": "31732 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "South Laguna",
+   "website": "https://www.eatahba.com",
+   "category": "Mediterranean / natural wine bar",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "16:00",
+     "end": "18:00",
+     "note": "Dine-in only"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://www.eatahba.com/menu/",
+   "drink_items": [
+    {
+     "item": "Te Culpo (mezcal cocktail)",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Regular cocktails are $13-16"
+    },
+    {
+     "item": "Abbie (gin cocktail)",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Regular cocktails are $13-16"
+    },
+    {
+     "item": "Margarita",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "AhbA Spritz",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "House lager",
+     "price": "$6",
+     "regular_price": "$6",
+     "save_pct": 0,
+     "note": "Same price as regular"
+    },
+    {
+     "item": "Red/white wine",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Beer + a shot",
+     "price": "$11",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Fries",
+     "price": "$5",
+     "regular_price": "$7",
+     "save_pct": 29,
+     "note": null
+    },
+    {
+     "item": "Single patty burger",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Happy hour only"
+    },
+    {
+     "item": "Little Mac",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Happy hour only"
+    },
+    {
+     "item": "Wings",
+     "price": "$13",
+     "regular_price": "$15",
+     "save_pct": 13,
+     "note": null
+    },
+    {
+     "item": "Whipped feta",
+     "price": "$12",
+     "regular_price": "$15",
+     "save_pct": 20,
+     "note": null
+    },
+    {
+     "item": "Hummus",
+     "price": "$12",
+     "regular_price": "$15",
+     "save_pct": 20,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Taco Tuesday",
+     "days": [
+      "Tue"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Tuesday menu on its online ordering site. That site covers both AhbA locations (Laguna and Costa Mesa).",
+     "items": [
+      {
+       "item": "Barbacoa taco",
+       "price": "$4.75",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Chicken taco",
+       "price": "$4.75",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Potato taco",
+       "price": "$4.75",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Chips and guac",
+       "price": "$7.00",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Frijol (beans)",
+       "price": "$5.00",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Quesadilla",
+       "price": "$9.00",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Chicken quesadilla",
+       "price": "$13.00",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Steak quesadilla",
+       "price": "$14.00",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Nachos",
+       "price": "$12.00",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Arroz (rice)",
+       "price": "$4.00",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Side guac",
+       "price": "$3.50",
+       "regular_price": null,
+       "save_pct": null
+      }
+     ]
+    },
+    {
+     "title": "Burger Wednesday",
+     "days": [
+      "Wed"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Wednesday burger and beer specials.",
+     "items": [
+      {
+       "item": "Burger",
+       "price": "$14.00",
+       "regular_price": null,
+       "save_pct": null
+      },
+      {
+       "item": "Beer",
+       "price": "$5.00",
+       "regular_price": null,
+       "save_pct": null
+      }
+     ]
+    }
+   ],
+   "ocean_view": null,
+   "price_level": null,
+   "google_rating": 4.4,
+   "google_count": 518,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1274498/ahba",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Audit Oct 7: official menu live confirms HH Mon-Fri 16-18 dine-in and all prices, but one menu covers Costa Mesa and Laguna and the HH does not name a location; downgraded from verified. Oct 7: Taco Tuesday and Burger Wednesday added from screenshots of AhbA's online ordering menu.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Online ordering menu, daily specials (user screenshots, Oct 2026)",
+     "url": "https://ahba.toast.site/"
+    },
+    {
+     "label": "Official menus page, HH + dinner (live Oct 2026)",
+     "url": "https://www.eatahba.com/menu/"
+    }
+   ],
+   "lat": 33.501816,
+   "lng": -117.743772
+  },
+  {
+   "id": "laguna-feast",
+   "name": "Laguna Feast",
+   "address": "801 Glenneyre St, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "category": "Mexican",
+   "status": "unclear",
+   "has_happy_hour": false,
+   "confidence": "needs_confirmation",
+   "schedule": [],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": null,
+   "food_specials": null,
+   "daily_deals": [
+    {
+     "title": "Taco Tuesday",
+     "days": [
+      "Tue"
+     ],
+     "start": null,
+     "end": null,
+     "description": "Directory says it's known for Taco Tuesday specials; no details",
+     "items": []
+    }
+   ],
+   "ocean_view": null,
+   "price_level": null,
+   "google_rating": null,
+   "google_count": null,
+   "google_source": null,
+   "google_url": null,
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Only source is the LB Indy directory blurb. Visit Laguna page returned 404. Open status and Taco Tuesday details are unconfirmed; search quota ran out before I could check.",
+   "last_evidence_date": null,
+   "sources": [
+    {
+     "label": "LB Indy Eat+Drink Directory (undated)",
+     "url": "https://www.lagunabeachindy.com/laguna_beach_magazine/eat_drink/eat_drink_directory/"
+    }
+   ],
+   "lat": 33.537231,
+   "lng": -117.778032
+  },
+  {
+   "id": "zinc-cafe-bar",
+   "name": "Zinc Cafe & Bar",
+   "address": "350 Ocean Ave, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.zinccafe.com/",
+   "category": "vegetarian cafe / bar",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": "14:00",
+     "end": "16:00",
+     "note": "Days not stated; menu titled 'Happy Hour 2pm-4pm' and cafe open daily 7am-4pm"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://zinccafe.com/imenus/7376/happy-hour-2pm-4pm",
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": null,
+   "food_specials": null,
+   "daily_deals": [],
+   "ocean_view": null,
+   "price_level": null,
+   "google_rating": 4.4,
+   "google_count": 996,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/393861/zinc-cafe--bar",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Official site confirms Laguna HH 2-4pm; HH menu items/prices didn't render. Rotating daily soups (not discounted).",
+   "last_evidence_date": null,
+   "sources": [
+    {
+     "label": "Official site (Laguna HH 2-4pm menu link)",
+     "url": "https://www.zinccafe.com/laguna-beach"
+    }
+   ],
+   "lat": 33.544512,
+   "lng": -117.78275
+  },
+  {
+   "id": "the-seahorse",
+   "name": "The Seahorse (Pearl St. General)",
+   "address": "1796 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://pearlstgeneral.com/",
+   "category": "neighborhood restaurant / bar",
+   "status": "active",
+   "has_happy_hour": false,
+   "confidence": "likely",
+   "schedule": [],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": null,
+   "food_specials": null,
+   "daily_deals": [
+    {
+     "title": "Taco Tuesday",
+     "days": [
+      "Tue"
+     ],
+     "start": "14:00",
+     "end": "21:00",
+     "description": "$3 single tacos; rotating weekly menu (veggie, shrimp, asada, carnitas, chicken)",
+     "items": [
+      {
+       "item": "Single taco",
+       "price": "$3",
+       "regular_price": null,
+       "save_pct": null
+      }
+     ]
+    }
+   ],
+   "ocean_view": null,
+   "price_level": null,
+   "google_rating": 4.6,
+   "google_count": 77,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1239874/the-seahorse-tavern",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Audit Oct 7: OpenTable live confirms Taco Tuesday $3 tacos 14-21 and daily 7am-10pm; HH mentioned but no details. Visit Laguna page is a 2024 nightlife guide with no deal detail.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "OpenTable listing (Taco Tuesday text)",
+     "url": "https://www.opentable.com/r/the-seahorse-laguna-beach"
+    },
+    {
+     "label": "Official site",
+     "url": "https://pearlstgeneral.com/"
+    },
+    {
+     "label": "Visit Laguna LGBTQ nightlife guide (Feb 2024; HH mention only)",
+     "url": "https://visitlagunabeach.com/?p=13352"
+    }
+   ],
+   "lat": 33.528887000678,
+   "lng": -117.771216216359
+  },
+  {
+   "id": "active-culture",
+   "name": "Active Culture",
+   "address": "1006 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://activeculturecafe.com/",
+   "category": "healthy counter service",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Fri"
+     ],
+     "start": "15:00",
+     "end": "17:00",
+     "note": "Brand-wide promo; Laguna participation not stated"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://activeculturecafe.com/",
+   "drink_items": [
+    {
+     "item": "Draft beer",
+     "price": "Half off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Draft kombucha",
+     "price": "Half off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Frozen yogurt",
+     "price": "Half off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Gelato",
+     "price": "Half off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": null,
+   "price_level": null,
+   "google_rating": 4.4,
+   "google_count": 406,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/449867/active-culture",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Audit Oct 7: official site confirms Fri 15-17 HH, 50% off froyo, gelato, draft beer and kombucha, but does not say which of its 4 locations participate; \"All locations\" claim and daily hours not on the site, so downgraded from verified.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official site (HH banner)",
+     "url": "https://activeculturecafe.com/"
+    },
+    {
+     "label": "Visit Laguna directory",
+     "url": "https://www.visitlagunabeach.com/directory/active-culture/"
+    }
+   ],
+   "lat": 33.534976,
+   "lng": -117.777454
+  },
+  {
+   "id": "biryani-hunter",
+   "name": "Biryani Hunter",
+   "address": "793 Laguna Canyon Rd, Laguna Beach, CA 92651",
+   "neighborhood": "Laguna Canyon",
+   "website": "https://biryanihunter.com/",
+   "category": "Indian",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "start": "11:00",
+     "end": "16:00",
+     "note": "Indian wines paired with snacks; prices not published"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": null,
+   "food_specials": null,
+   "daily_deals": [],
+   "ocean_view": null,
+   "price_level": null,
+   "google_rating": null,
+   "google_count": null,
+   "google_source": null,
+   "google_url": null,
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Audit: removed $50 Indian High Tea (set-price service, not a discount). Only OpenTable mentions a happy hour; the official site does not. The high tea is a set-price service, not a discount.",
+   "last_evidence_date": null,
+   "sources": [
+    {
+     "label": "OpenTable listing (HH 11-4)",
+     "url": "https://www.opentable.com/r/biryani-hunter-laguna-beach"
+    },
+    {
+     "label": "Official site (high tea)",
+     "url": "https://biryanihunter.com/"
+    }
+   ],
+   "lat": 33.549534484217,
+   "lng": -117.780466689975
+  },
+  {
+   "id": "ruby-diner-laguna",
+   "name": "Ruby's Diner",
+   "address": "30622 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "South Laguna",
+   "website": "https://www.rubys.com/",
+   "category": "diner",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu"
+     ],
+     "start": "14:00",
+     "end": "17:00",
+     "note": "Half off regular shakes; limited-time chain promo at participating locations (Laguna not named)"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://www.rubys.com/",
+   "drink_items": [
+    {
+     "item": "Regular-size shake",
+     "price": "Half off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Limited-time offer; participating locations"
+    }
+   ],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": null,
+   "daily_deals": [],
+   "ocean_view": null,
+   "price_level": null,
+   "google_rating": 4.5,
+   "google_count": 2213,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/459808/rubys-diner",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Audit Oct 7: rubys.com still shows the limited-time Mon-Thu 14-17 half-off shake promo; Laguna not named. Chain promo for participating locations, excluding Balboa, casino and airport stores. Laguna's participation is not confirmed, and the promo is labeled limited-time. Store is open 08:00-20:00.",
+   "last_evidence_date": null,
+   "sources": [
+    {
+     "label": "Ruby's official site (Shake Happy Hours)",
+     "url": "https://www.rubys.com/"
+    },
+    {
+     "label": "Ruby's locations (Laguna store, 8am-8pm)",
+     "url": "https://www.rubys.com/locations"
+    }
+   ],
+   "lat": 33.518684,
+   "lng": -117.759602
+  },
+  {
+   "id": "o-fine-japanese",
+   "name": "O Fine Japanese Cuisine",
+   "address": "30872 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "South Laguna",
+   "website": "https://www.ofjc.com/",
+   "category": "sushi",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "needs_confirmation",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu"
+     ],
+     "start": "17:00",
+     "end": "18:30",
+     "note": "Up to 20% off; advertised for Irvine, Laguna unconfirmed"
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": "https://www.ofjc.com/",
+   "drink_items": [
+    {
+     "item": "Alcoholic beverages",
+     "price": "Up to 20% off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Appetizers",
+     "price": "Up to 20% off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Specialty rolls",
+     "price": "Up to 20% off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": null,
+   "price_level": null,
+   "google_rating": 4.4,
+   "google_count": 175,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/1169222/o-fine-japanese-cuisine",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Audit Oct 7: official site advertises HH (Mon-Thu 17:00-18:30, up to 20% off) under the Irvine location only and says pricing may differ by location; Visit Laguna lists HH as an amenity without detail. Call Laguna (949-715-5551) to confirm.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official site (HH note, both locations)",
+     "url": "https://www.ofjc.com/"
+    },
+    {
+     "label": "Visit Laguna directory (lists Happy Hour)",
+     "url": "https://www.visitlagunabeach.com/directory/o-fine-japanese-cuisine/"
+    }
+   ],
+   "lat": 33.515634365613,
+   "lng": -117.756550107135
+  },
+  {
+   "id": "rum-social",
+   "name": "Rum Social Kitchen & Cocktails",
+   "address": "448 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "audit_note": "Both verifiers independently show it closed, possibly by Sep 2025. The 2023 HH has been dropped.",
+   "sources": [
+    {
+     "label": "Wanderlog mirror (closed)",
+     "url": "https://wanderlog.com/place/details/5046572/rum-social-kitchen--cocktails"
+    },
+    {
+     "label": "Yelp (closed, Sep 2026)",
+     "url": "https://www.yelp.com/biz/rum-social-kitchen-and-cocktails-laguna-beach-2"
+    },
+    {
+     "label": "Blue Door Mag (2023-04)",
+     "url": "https://bluedoormagazine.com/?p=3221"
+    },
+    {
+     "label": "FSR Magazine (2023-04)",
+     "url": "https://www.fsrmagazine.com/industry-news/laguna-beachs-rum-social-celebrates-first-anniversary/"
+    },
+    {
+     "label": "AAA",
+     "url": "https://www.aaa.com/tripcanvas/restaurant/rum-social-AA33437"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null
+  },
+  {
+   "id": "reunion-kitchen-drink-laguna",
+   "name": "Reunion Kitchen + Drink",
+   "address": "610 N. Coast Hwy #102, Laguna Beach, CA 92651",
+   "neighborhood": "North Laguna",
+   "website": null,
+   "audit_note": "Closed per Yelp, Google mirror and chain site. Visit Laguna's HH listing is stale.",
+   "sources": [
+    {
+     "label": "Wanderlog",
+     "url": "https://wanderlog.com/place/details/1156097"
+    },
+    {
+     "label": "Official site",
+     "url": "https://www.reunionkitchen.net/"
+    },
+    {
+     "label": "Visit Laguna (2026-03)",
+     "url": "https://visitlagunabeach.com/?p=14044"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null
+  },
+  {
+   "id": "driftwood-kitchen",
+   "name": "Driftwood Kitchen",
+   "address": "619 Sleepy Hollow Ln, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.driftwoodkitchen.com/",
+   "audit_note": "Closed after Aug 2026 for hotel redevelopment (news Jul 2026 + OpenTable). Verifier 'open' signals are lagging listings.",
+   "sources": [
+    {
+     "label": "What Now OC (2026-07)",
+     "url": "https://whatnow.com/orange-county/restaurants/a-hotel-redevelopment-is-ending-two-of-laguna-beachs-most-beloved-restaurants/"
+    },
+    {
+     "label": "OpenTable",
+     "url": "https://opentable.com/driftwood-kitchen"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null
+  },
+  {
+   "id": "the-deck-on-laguna-beach",
+   "name": "The Deck on Laguna Beach",
+   "address": "627 Sleepy Hollow Ln, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "audit_note": "Closed after Aug 2026 for hotel redevelopment (news + OpenTable).",
+   "sources": [
+    {
+     "label": "What Now OC (2026-07)",
+     "url": "https://whatnow.com/orange-county/restaurants/a-hotel-redevelopment-is-ending-two-of-laguna-beachs-most-beloved-restaurants/"
+    },
+    {
+     "label": "OpenTable",
+     "url": "https://www.opentable.com/single.aspx?rid=108175"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null
+  },
+  {
+   "id": "skyloft",
+   "name": "Skyloft",
+   "address": "422 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "audit_note": "Closed Jan 2025; all sources agree.",
+   "sources": [
+    {
+     "label": "Best of Laguna (2025-01)",
+     "url": "https://bestoflagunabeach.substack.com/p/what-led-to-the-sudden-closure-of/comments"
+    },
+    {
+     "label": "OpenTable",
+     "url": "https://opentable.jp/r/skyloft-oc-laguna-beach"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null
+  },
+  {
+   "id": "bodega-laguna",
+   "name": "Bodega Laguna",
+   "address": "400 S. Coast Hwy (Heisler Building), Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "audit_note": "Closed Jan 2025. Street number 400 is from the Yelp snippet only.",
+   "sources": [
+    {
+     "label": "Best of Laguna (2025-01)",
+     "url": "https://bestoflagunabeach.substack.com/p/what-led-to-the-sudden-closure-of/comments"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null
+  },
+  {
+   "id": "watermarc",
+   "name": "Watermarc",
+   "address": "448 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "audit_note": "Closed; three sources agree. Rum Social later took the space and has also closed.",
+   "sources": [
+    {
+     "label": "EnPrimeur",
+     "url": "https://www.enprimeurclub.com/restaurants/watermarc-laguna-beach-restaurant"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null
+  },
+  {
+   "id": "saigon-beach",
+   "name": "Saigon Beach",
+   "address": "1750 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://www.saigonbeach.com/",
+   "category": "Vietnamese",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "14:00",
+     "end": "17:00",
+     "note": "Dine-in only"
+    }
+   ],
+   "seating_restrictions": "Dine-in only",
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Asahi",
+     "price": "$4",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Sapporo",
+     "price": "$4",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Modelo",
+     "price": "$4",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Heineken",
+     "price": "$4",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Saigon Sparkler",
+     "price": "$5",
+     "regular_price": "$7",
+     "save_pct": 29,
+     "note": null
+    },
+    {
+     "item": "Chardonnay (Carmenet)",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Regular glass pours run $10-$15"
+    },
+    {
+     "item": "Cabernet Sauvignon (Oak Farm)",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Regular glass pours run $10-$15"
+    },
+    {
+     "item": "Sauvignon Blanc (Oak Farm)",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Regular glass pours run $10-$15"
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Tofu bites",
+     "price": "$5",
+     "regular_price": "$8",
+     "save_pct": 38,
+     "note": null
+    },
+    {
+     "item": "Seasoned fries",
+     "price": "$5",
+     "regular_price": "$7",
+     "save_pct": 29,
+     "note": null
+    },
+    {
+     "item": "Panna cotta",
+     "price": "$5",
+     "regular_price": "$6",
+     "save_pct": 17,
+     "note": null
+    },
+    {
+     "item": "420 green rice",
+     "price": "$8",
+     "regular_price": "$10",
+     "save_pct": 20,
+     "note": null
+    },
+    {
+     "item": "Rainbow salad",
+     "price": "$8",
+     "regular_price": "$11",
+     "save_pct": 27,
+     "note": null
+    },
+    {
+     "item": "Dirty fries",
+     "price": "$10",
+     "regular_price": "$13",
+     "save_pct": 23,
+     "note": null
+    },
+    {
+     "item": "Garlic noods",
+     "price": "$10",
+     "regular_price": "$13",
+     "save_pct": 23,
+     "note": null
+    },
+    {
+     "item": "Crazy rich bao (2)",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Regular bao priced $7-$12.50 by filling"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Wine Wednesday",
+     "days": [
+      "Wed"
+     ],
+     "start": null,
+     "end": null,
+     "description": "50% off wine bottles all day (excludes Rombauer). Regular bottles run $20-$42.",
+     "items": [
+      {
+       "item": "Wine bottles",
+       "price": "Half off",
+       "regular_price": null,
+       "save_pct": 50
+      }
+     ]
+    }
+   ],
+   "ocean_view": null,
+   "price_level": "$$",
+   "google_rating": 4.5,
+   "google_count": 153,
+   "google_source": "Wanderlog (mirrors Google), fetched Oct 2026",
+   "google_url": "https://wanderlog.com/place/details/3158638/saigon-beach",
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Added Oct 7, 2026 from the restaurant's happy hour and Wine Wednesday flyers (photo supplied by a user, undated). Regular prices for savings come from its online menu PDF.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Happy hour flyer (user photo, Oct 2026)",
+     "url": "https://www.saigonbeach.com/"
+    },
+    {
+     "label": "Regular menu PDF",
+     "url": "https://www.saigonbeach.com/_files/ugd/c6ba17_353242f3bac0447697242337127f8dfb.pdf"
+    }
+   ],
+   "lat": 33.529185577308,
+   "lng": -117.771566763243
+  },
+  {
+   "id": "pinafini",
+   "name": "Pinafini Restaurant & Bar",
+   "address": "480 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.pinafini.com/",
+   "category": "Mediterranean",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu"
+     ],
+     "start": "15:00",
+     "end": "17:00",
+     "note": null
+    }
+   ],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Slap & Tickle draft",
+     "price": "$7",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Stella Artois draft",
+     "price": "$7",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Modelo Especial draft",
+     "price": "$7",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Aperol Spritz",
+     "price": "$11",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Margarita",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Tarragon Sunset",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Mezcal and tequila"
+    },
+    {
+     "item": "Elysion Berry",
+     "price": "$13",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Vodka, strawberry, basil"
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Margarita pizza",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Hummus",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "BBQ chicken pizza",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Smelts & fries",
+     "price": "$14",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Mussels",
+     "price": "$14",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "White wine and garlic"
+    },
+    {
+     "item": "Curry shrimp",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": null,
+   "price_level": null,
+   "google_rating": null,
+   "google_count": null,
+   "google_source": null,
+   "google_url": null,
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Added Oct 7, 2026 from the restaurant's happy hour menu (photo supplied by a user, undated). Regular prices not found online, so no savings shown yet.",
+   "last_evidence_date": "2026-10",
+   "sources": [
+    {
+     "label": "Official site menus page",
+     "url": "https://www.pinafini.com/food-menu-2"
+    },
+    {
+     "label": "Opening news (Best of Laguna)",
+     "url": "https://bestoflagunabeach.substack.com/p/pinafini-opens-monday-piatti-plans"
+    }
+   ],
+   "lat": 33.540857,
+   "lng": -117.782097
+  }
+ ],
+ "checked_none": [
+  {
+   "id": "mcclain-cellars-canyon",
+   "name": "McClain Cellars (Canyon)",
+   "result": "No deals (audit Oct 2026): only weekend live music listed; undated Visit Laguna HH Mon-Fri 3-5 unconfirmed and Canyon Rd location no longer on official site.",
+   "open_status": "unknown"
+  },
+  {
+   "id": "splashes-restaurant-surf-and-sand",
+   "name": "Splashes Restaurant at Surf & Sand",
+   "result": "No happy hour or recurring discount found (audit Oct 2026): Chef's tasting menu ($150+) and \"The Cut & The Catch\" weekend feature are not discounts; Golden Hour not stated as discounted.",
+   "open_status": "open"
+  },
+  {
+   "id": "splashes-bar-surf-and-sand",
+   "name": "Splashes Bar at Surf & Sand Resort",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "selanne-steak-tavern",
+   "name": "Selanne Steak Tavern",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "harvest-ranch-laguna-beach",
+   "name": "Harvest at The Ranch at Laguna Beach",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "smalls-smash-club",
+   "name": "Small's Smash Club (Smalls Smash Burger)",
+   "result": "Nothing published",
+   "open_status": "not_yet_open"
+  },
+  {
+   "id": "bianchi-winery-tasting-room",
+   "name": "Bianchi Winery Tasting Room",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "dai-mei-express-hot-pot",
+   "name": "Dai Mei Express Hot Pot",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "grazie-grazie-pizzeria",
+   "name": "Grazie Grazie! Pizzeria",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "husky-boy-burgers",
+   "name": "Husky Boy Burgers",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "mandarin-king",
+   "name": "Mandarin King",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "miki-sushi-sake",
+   "name": "Miki Sushi & Sake",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "saline-hotel-joaquin",
+   "name": "Saline at Hotel Joaquin",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "urth-caffe-laguna-beach",
+   "name": "Urth Caffé Laguna Beach",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "truly-pizza-laguna-beach",
+   "name": "Truly Pizza",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "zeytoon-cafe",
+   "name": "Zéytoon Cafe",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "adolfos-mexican-food",
+   "name": "Adolfo's Mexican Food",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "adonis-mediterranean-grill",
+   "name": "Adonis Mediterranean Grill",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "alessa-by-chef-pirozzi",
+   "name": "Alessa by Chef Pirozzi",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "anastasia-cafe",
+   "name": "Anastasia Cafe",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "broadway-by-amar-santana",
+   "name": "Broadway by Amar Santana",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "broadway-sandwiches",
+   "name": "Broadway Sandwiches",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "carmelitas-kitchen-de-mexico",
+   "name": "Carmelita's Kitchen de Mexico",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "casa-bistro-la-casa-del-camino",
+   "name": "Casa Bistro (formerly Comedor) at La Casa del Camino",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "coast-kitchen",
+   "name": "Coast Kitchen",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "evans-gourmet",
+   "name": "Evan's Gourmet (Cafe Zoolu space)",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "fin-sushi-sake-hotel-laguna",
+   "name": "Fin Sushi & Sake at Hotel Laguna",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "ggs-bistro",
+   "name": "GG's Bistro",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "gu-ramen-taps-tapas",
+   "name": "GU Ramen Taps & Tapas",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "hapi-sushi",
+   "name": "Hapi Sushi",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "singh-haveli",
+   "name": "Singh Haveli",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "heidelberg-cafe",
+   "name": "Cafe Heidelberg",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "kitchen-in-the-canyon",
+   "name": "Kitchen in the Canyon",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "la-sirena-grill-downtown",
+   "name": "La Sirena Grill (Downtown)",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "laguna-canyon-winery",
+   "name": "Laguna Canyon Winery",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "larsen-hotel-laguna",
+   "name": "Larsen at Hotel Laguna",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "maro-wood-grill",
+   "name": "Maro Wood Grill",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "mcclain-cellars-wine-library",
+   "name": "McClain Cellars Wine Library & Tasting Lounge",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "moulin",
+   "name": "Moulin",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "natraj-cuisine-of-india",
+   "name": "Natraj Cuisine of India",
+   "result": "No happy hour",
+   "open_status": "unknown"
+  },
+  {
+   "id": "nicks-laguna-beach",
+   "name": "Nick's Laguna Beach",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "nirvana-by-chef-lindsay",
+   "name": "Nirvana by Chef Lindsay",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "noble-ace",
+   "name": "Noble Ace",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "olivers-osteria",
+   "name": "Oliver's Osteria Mare e Monti",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "orange-inn",
+   "name": "Orange Inn",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "penguin-cafe",
+   "name": "Penguin Cafe",
+   "result": "No happy hour",
+   "open_status": "unknown"
+  },
+  {
+   "id": "peony-chinese-kitchen",
+   "name": "Peony Chinese Kitchen",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "pizza-bar",
+   "name": "Pizza Bar",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "rebel-omakase",
+   "name": "Rebel Omakase",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "rye-goods",
+   "name": "Rye Goods",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "salerno-by-chef-pirozzi",
+   "name": "Salerno by Chef Pirozzi",
+   "result": "No happy hour",
+   "open_status": "closed"
+  },
+  {
+   "id": "the-saloon",
+   "name": "The Saloon",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "seabutter",
+   "name": "Seabutter",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "sergios-empanadas",
+   "name": "Sergio's Empanadas",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "seven7seven",
+   "name": "Seven7Seven (Art-A-Fair)",
+   "result": "Nothing published",
+   "open_status": "closed"
+  },
+  {
+   "id": "shirleys-bagels",
+   "name": "Shirley's Bagels",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "slice-pizza-beer",
+   "name": "Slice Pizza & Beer (Mor Mor's Table)",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "15fiftyfive-surf-and-sand",
+   "name": "15FiftyFive at Surf & Sand",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "taco-stand",
+   "name": "The Taco Stand",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "tango-laguna-beach",
+   "name": "Tango",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "terra-laguna-beach",
+   "name": "Terra Laguna Beach (Festival of Arts)",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "thai-bros",
+   "name": "Thai Bros",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "wahoos-fish-taco",
+   "name": "Wahoo's Fish Taco",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "wigz",
+   "name": "Wigz Sandwich Shop",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "wild-strawberry-cafe",
+   "name": "Wild Strawberry Café",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "yuzu-laguna-beach",
+   "name": "Yuzu Laguna Beach",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "el-matatan",
+   "name": "El Matatan",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "amorelia-cocina-artesanal",
+   "name": "Amorelia Cocina Artesanal",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "board-and-brew",
+   "name": "Board & Brew",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "wine-craft-oc",
+   "name": "Wine Craft OC",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "nalu-poke-tea-boba",
+   "name": "Nalu Poke, Tea & Boba",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "poke-tiki",
+   "name": "Poke Tiki",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "the-stand-natural-foods",
+   "name": "The Stand Natural Foods",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "kebab-kurry",
+   "name": "Kebab Kurry",
+   "result": "Nothing published",
+   "open_status": "temporarily_closed"
+  },
+  {
+   "id": "yummy-dogs",
+   "name": "Yummy Dogs",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "jersey-mikes-laguna-beach",
+   "name": "Jersey Mike's Subs",
+   "result": "No happy hour",
+   "open_status": "unknown"
+  },
+  {
+   "id": "jack-in-the-box-laguna-beach",
+   "name": "Jack in the Box",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "dominos-laguna-beach",
+   "name": "Domino's Pizza",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "viii-by-selanne",
+   "name": "VIII by Selanne",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "cafe-laguna-holiday-inn",
+   "name": "Cafe Laguna",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "q-terrace",
+   "name": "Q Terrace",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "bear-flag-fish-co-laguna",
+   "name": "Bear Flag Fish Co. (Coast Inn)",
+   "result": "Nothing published",
+   "open_status": "not_yet_open"
+  },
+  {
+   "id": "taste-collective",
+   "name": "Taste Collective",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "zpizza-laguna",
+   "name": "zpizza",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "lost-pier-cafe",
+   "name": "Lost Pier Café",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "the-porch-ranch",
+   "name": "The Porch at The Ranch",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "papas-tacos",
+   "name": "Papa's Tacos",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "raw-bar-laguna",
+   "name": "RAW Bar (Empire Oyster)",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "truly-bagels",
+   "name": "Truly Bagels",
+   "result": "Nothing published",
+   "open_status": "unknown"
+  },
+  {
+   "id": "the-drake-laguna",
+   "name": "The Drake",
+   "result": "Nothing published",
+   "open_status": "open"
+  },
+  {
+   "id": "studio-montage",
+   "name": "Studio Mediterranean at Montage",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "the-loft-montage",
+   "name": "The Loft at Montage",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "mosaic-bar-grille-montage",
+   "name": "Mosaic Bar and Grille at Montage",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "lobby-lounge-montage",
+   "name": "Lobby Lounge at Montage",
+   "result": "No happy hour",
+   "open_status": "open"
+  },
+  {
+   "id": "asada-tacos-beer",
+   "name": "Asada Tacos + Beer",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "la-sirena-grill-south",
+   "name": "La Sirena Grill (South Laguna)",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "dizzs-as-is",
+   "name": "Dizz's As Is",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "sushi-laguna",
+   "name": "Sushi Laguna",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "taco-loco",
+   "name": "Taco Loco",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "tortilla-republic",
+   "name": "Tortilla Republic",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "big-fish-tavern",
+   "name": "Big Fish Tavern",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "suenos-laguna",
+   "name": "Sueños",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "harley-laguna",
+   "name": "Harley",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "laguna-thai-by-the-sea",
+   "name": "Laguna Thai by the Sea",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "royal-thai-cuisine",
+   "name": "Royal Thai Cuisine",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "laguna-fish-company",
+   "name": "Laguna Fish Company",
+   "result": "Closed",
+   "open_status": "closed"
+  }
+ ],
+ "roster_total": 155,
+ "map": {
+  "hwy": [
+   [
+    33.552633,
+    -117.811247
+   ],
+   [
+    33.549353,
+    -117.802347
+   ],
+   [
+    33.54826,
+    -117.799381
+   ],
+   [
+    33.547094,
+    -117.795976
+   ],
+   [
+    33.545054,
+    -117.791219
+   ],
+   [
+    33.543325,
+    -117.786449
+   ],
+   [
+    33.542856,
+    -117.785175
+   ],
+   [
+    33.54149,
+    -117.782638
+   ],
+   [
+    33.53727,
+    -117.779159
+   ],
+   [
+    33.535022,
+    -117.777488
+   ],
+   [
+    33.532516,
+    -117.775604
+   ],
+   [
+    33.53,
+    -117.772531
+   ],
+   [
+    33.528123,
+    -117.770297
+   ],
+   [
+    33.526102,
+    -117.767843
+   ],
+   [
+    33.524102,
+    -117.765363
+   ],
+   [
+    33.521086,
+    -117.761505
+   ],
+   [
+    33.520525,
+    -117.761029
+   ],
+   [
+    33.52022,
+    -117.760821
+   ],
+   [
+    33.518107,
+    -117.758986
+   ],
+   [
+    33.511403,
+    -117.752656
+   ],
+   [
+    33.50357,
+    -117.745015
+   ],
+   [
+    33.497777,
+    -117.739324
+   ],
+   [
+    33.492267,
+    -117.733876
+   ],
+   [
+    33.481247,
+    -117.722981
+   ]
+  ],
+  "canyon": [
+   [
+    33.543583,
+    -117.784636
+   ],
+   [
+    33.548087,
+    -117.781958
+   ],
+   [
+    33.559196,
+    -117.773669
+   ],
+   [
+    33.565861,
+    -117.768696
+   ]
+  ],
+  "coast": [
+   [
+    33.56028,
+    -117.82167
+   ],
+   [
+    33.54706,
+    -117.803845
+   ],
+   [
+    33.543764,
+    -117.790394
+   ],
+   [
+    33.542364,
+    -117.78505
+   ],
+   [
+    33.540625,
+    -117.784148
+   ],
+   [
+    33.536466,
+    -117.780716
+   ],
+   [
+    33.534211,
+    -117.779041
+   ],
+   [
+    33.531426,
+    -117.776888
+   ],
+   [
+    33.528924,
+    -117.773831
+   ],
+   [
+    33.527036,
+    -117.771584
+   ],
+   [
+    33.525005,
+    -117.769117
+   ],
+   [
+    33.522988,
+    -117.766616
+   ],
+   [
+    33.520204,
+    -117.763
+   ],
+   [
+    33.520204,
+    -117.763
+   ],
+   [
+    33.520427,
+    -117.763757
+   ],
+   [
+    33.515558,
+    -117.757598
+   ],
+   [
+    33.510438,
+    -117.752719
+   ],
+   [
+    33.502887,
+    -117.746015
+   ],
+   [
+    33.498363,
+    -117.740385
+   ],
+   [
+    33.492952,
+    -117.732879
+   ],
+   [
+    33.479427,
+    -117.714112
+   ]
+  ],
+  "landmarks": [
+   {
+    "name": "Crescent Bay Beach",
+    "lat": 33.547059726629,
+    "lng": -117.80384523731
+   },
+   {
+    "name": "Heisler Park",
+    "lat": 33.543764073229,
+    "lng": -117.79039409148
+   },
+   {
+    "name": "Main Beach Park",
+    "lat": 33.542363996369,
+    "lng": -117.7850497961
+   },
+   {
+    "name": "Victoria Beach",
+    "lat": 33.5204267348,
+    "lng": -117.76375684276
+   },
+   {
+    "name": "Aliso Beach Park",
+    "lat": 33.510437655347,
+    "lng": -117.75271915291
+   },
+   {
+    "name": "Thousand Steps Beach",
+    "lat": 33.498362797856,
+    "lng": -117.74038514122
+   },
+   {
+    "name": "Treasure Island Beach",
+    "lat": 33.515557999769,
+    "lng": -117.7575981096
+   },
+   {
+    "name": "Crystal Cove State Park",
+    "lat": 33.56028,
+    "lng": -117.82167
+   },
+   {
+    "name": "City Hall",
+    "lat": 33.545134350069,
+    "lng": -117.781351034547
+   },
+   {
+    "name": "Festival of Arts",
+    "lat": 33.548326,
+    "lng": -117.78236
+   }
+  ]
+ }
+}
