@@ -155,6 +155,10 @@ h2{font-weight:600;font-size:21px;line-height:1.15}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9)}}
 :root[data-theme="dark"] .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9)}
 .leaflet-control-attribution{font-size:10px}
+.account{display:grid;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:4px}
+.account input[type=email]{flex:1 1 200px;min-width:0;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+.account form label{flex-basis:100%}
+.nname{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);max-width:100%}
 .claudelink{font-size:13px;color:var(--muted);background:var(--bg);border-radius:10px;padding:10px 12px}
 .claudelink a{color:var(--sea);font-weight:600}
 @media (max-width:600px){.filters{position:static}}
@@ -178,6 +182,7 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
     <h1>Laguna <span>Happy Hours</span></h1>
     <p class="lede" id="lede">Happy hours and daily deals across Laguna Beach, with prices, savings and how solid the evidence is. Confirm a deal, rate it, or update it from a menu photo.</p>
     <div class="clock" id="clock"></div>
+    <div class="account" id="account" hidden></div>
   </header>
 
   <section class="filters" aria-label="Filters">
@@ -239,9 +244,9 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
 
   <footer>
     <div><b>Labels.</b> Verified: the restaurant's own site showed these details in Oct 2026, or two independent 2026 sources agree. Likely: one recent credible source. Needs confirmation: older or conflicting sources. "Save %" compares the deal price with the same item's regular menu price, and appears only when both are published.</div>
-    <div><b>Ratings.</b> Google ratings come from Wanderlog, which mirrors Google's listing data (Oct 2026). Yelp doesn't allow its ratings to be read automatically, so each Yelp link opens Yelp directly. <span data-claude-only>Visitor ratings come from people using this page.</span></div>
+    <div><b>Ratings.</b> Google ratings come from Wanderlog, which mirrors Google's listing data (Oct 2026). Yelp doesn't allow its ratings to be read automatically, so each Yelp link opens Yelp directly. <span data-shared>Visitor ratings come from people using this page.</span></div>
     <div data-claude-only><b>Menu photos.</b> A photo is read by Claude on the uploader's own Claude account, and only the extracted details are saved, not the photo. Each update is labeled with the date it was made.</div>
-    <div data-claude-only><b>Visitor notes and photos.</b> Notes and photos are visible to everyone who can open this page. Photos are resized before saving. You can delete your own posts.</div>
+    <div data-shared><b>Visitor notes and photos.</b> Notes and photos are visible to everyone who can open this page. Photos are resized before saving. You can delete your own posts.</div>
     <details><summary id="noneSum">Restaurants we checked that had no deals</summary><ul id="noneList"></ul></details>
   </footer>
 </div>
@@ -249,6 +254,9 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
 <script>
 const DATA = __DATA__;
 const CLAUDE_URL = "https://claude.ai/artifact/GhzNP9fe9LD2c3QqsrsDZS";
+/* Supabase project for the web version's shared features (publishable key is meant to be public) */
+const SB_URL = "https://eeyunztuwpgkhrxgygky.supabase.co";
+const SB_KEY = "sb_publishable_4hM1QLZDVrCzi62BFv_Dtg_SQ5WUvH2";
 const VENUES = DATA.venues;
 const DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 const state={q:"",day:"",now:false,kind:"",hood:"",status:"active",conf:"",sort:"now"};
@@ -310,6 +318,7 @@ function visitorAvg(id){const r=C.ratings[id];return r&&r.n?r.sum/r.n:null}
 
 /* ---------- map and location ---------- */
 const IN_CLAUDE=!!window.claude?.use;
+const WEB_SHARED=!IN_CLAUDE&&!!window.supabase?.createClient&&!!SB_URL&&!!SB_KEY;
 const M={lat0:33.525,vb:null,full:null,sel:null,setting:false,me:null,meLabel:""};
 const MLNG=111320*Math.cos(33.525*Math.PI/180),MLAT=111320;
 const px=(lat,lng)=>[(lng+117.78)*MLNG,-(lat-M.lat0)*MLAT];
@@ -527,23 +536,23 @@ function ratingsHTML(v){
   return `<div class="ratings">${g}${y}${visitorHTML(v)}</div>`;
 }
 function visitorHTML(v){
-  if(!IN_CLAUDE)return "";
+  if(!IN_CLAUDE&&!WEB_SHARED)return "";
   const a=visitorAvg(v.id),n=C.ratings[v.id]?.n||0;
   return `<span class="rt" id="vr-${v.id}">Happy hour rating <span class="s">★</span> <b>${a!=null?a.toFixed(2):"–"}</b> <small>${n?`(${n} visitor${n>1?"s":""})`:"(no ratings yet)"}</small></span>`;
 }
 function communityHTML(v){
   const last=C.confirms[v.id];
   const mine=C.mine.r[v.id];
-  const can=!!C.db&&!!C.uid;
+  const can=!!C.uid&&(!!C.db||!!C.sb);
   const stars=[0,1,2,3,4,5].map(n=>`<button data-act="rate" data-id="${v.id}" data-n="${n}" aria-pressed="${mine===n}" aria-label="${n} star${n===1?"":"s"}" ${can?"":"disabled"}>${n}★</button>`).join("");
-  const upload=`<button class="btn" data-act="openUp" data-id="${v.id}">📷 Update from menu photo</button>`;
+  const upload=IN_CLAUDE?`<button class="btn" data-act="openUp" data-id="${v.id}">📷 Update from menu photo</button>`:"";
   return `<div class="community" id="cm-${v.id}">
     <div class="crow"><button class="btn primary" data-act="confirm" data-id="${v.id}" ${can?"":"disabled"}>Still active ✓</button>
       <span class="cl">${last?`Last confirmed by a visitor <b>${esc(shortDate(last))}</b>`:"Not yet confirmed by a visitor"}</span></div>
     <div class="crow"><span class="cl">Rate this happy hour</span><div class="stars" role="group" aria-label="Rate 0 to 5 stars">${stars}</div></div>
     ${upload?`<div class="crow">${upload}</div>`:""}
     <div class="upload" id="up-${v.id}" hidden></div>
-    ${can?"":`<div class="cl">Confirming and rating need a signed-in viewer with access to change this page.</div>`}
+    ${can?"":WEB_SHARED?`<div class="cl"><button class="linkbtn" data-act="gosignin">Sign in</button> to confirm, rate or post.</div>`:`<div class="cl">Confirming and rating need a signed-in viewer with access to change this page.</div>`}
   </div>`;
 }
 function cardHTML(v0,now){
@@ -563,7 +572,7 @@ function cardHTML(v0,now){
     ${sched}${drinks}${food}${deals}${none}${subNote}
     ${v.seating_restrictions?`<div class="restrict">${esc(v.seating_restrictions)}</div>`:""}
     ${links?`<div class="links">${links}</div>`:""}
-    ${v.status==="closed"?"":IN_CLAUDE?communityHTML(v)+`<div class="notes"><div id="nt-${v.id}">${notesHTML(v)}</div>${composerHTML(v)}</div>`:`<div class="claudelink">Been here lately? <a href="${CLAUDE_URL}" target="_blank" rel="noopener">Open the Claude version</a> to confirm it's still running, rate it, add notes and photos, or update it from a menu photo.</div>`}
+    ${v.status==="closed"?"":(IN_CLAUDE||WEB_SHARED)?communityHTML(v)+`<div class="notes"><div id="nt-${v.id}">${notesHTML(v)}</div>${composerHTML(v)}</div>`:`<div class="claudelink">Been here lately? <a href="${CLAUDE_URL}" target="_blank" rel="noopener">Open the Claude version</a> to confirm it's still running, rate it, add notes and photos, or update it from a menu photo.</div>`}
     <details><summary>How we checked</summary>
       <dl class="verify">
         ${v.audit_note?`<div><dt>Auditor</dt><dd>${esc(v.audit_note)}</dd></div>`:""}
@@ -646,14 +655,15 @@ function notesHTML(v){
   if(!list.length)return head+`<div class="cl">No notes yet. Share how the happy hour was, or add a photo.</div>`;
   const show=C.expanded?.[v.id]?list:list.slice(0,3);
   return head+`<ul class="posts">${show.map(p=>{
-    const name=C.names?.[p.uid]||"A visitor";
+    const name=p.name||C.names?.[p.uid]||"A visitor";
     const mine=p.uid===C.uid, canDel=mine||C.isOwner;
-    const ph=p.photo?(C.photoCache[p.uid+"/"+p.id]?`<img class="pimg" src="${C.photoCache[p.uid+"/"+p.id]}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:`<div class="pimg ph" data-photo="${p.uid}/${p.id}">Loading photo…</div>`):"";
+    const ph=p.photoUrl?`<img class="pimg" loading="lazy" src="${esc(p.photoUrl)}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:p.photo?(C.photoCache[p.uid+"/"+p.id]?`<img class="pimg" src="${C.photoCache[p.uid+"/"+p.id]}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:`<div class="pimg ph" data-photo="${p.uid}/${p.id}">Loading photo…</div>`):"";
     return `<li class="post"><div class="pm"><b>${esc(mine?"You":name)}</b> · ${esc(shortDate(p.at))}${canDel?` · <button class="linkbtn" data-act="delPost" data-id="${v.id}" data-pid="${p.id}" data-uid="${p.uid}">Delete</button>`:""}</div>${p.text?`<p>${esc(p.text)}</p>`:""}${ph}</li>`}).join("")}</ul>${list.length>3&&!C.expanded?.[v.id]?`<button class="linkbtn" data-act="moreNotes" data-id="${v.id}">Show all ${list.length} notes</button>`:""}`;
 }
 function composerHTML(v){
   return `<div class="composer" id="nc-${v.id}">
     <label class="cl" for="nt-text-${v.id}">Add a note</label>
+    ${WEB_SHARED?`<input class="nname" id="nt-name-${v.id}" maxlength="40" placeholder="Your name (shown with your post)" value="${esc(myName())}" autocomplete="nickname">`:""}
     <textarea id="nt-text-${v.id}" maxlength="${NOTE_MAX}" rows="2" placeholder="How was it? Busy, good deals, anything changed?"></textarea>
     <div class="crow"><label class="btn filebtn" for="nt-file-${v.id}">Add photo</label><input type="file" id="nt-file-${v.id}" class="vh" accept="image/*" data-act-change="notePhoto" data-id="${v.id}">
       <span class="cl" id="nt-fname-${v.id}"></span>
@@ -693,6 +703,7 @@ async function shrink(file){
   }finally{URL.revokeObjectURL(url)}
 }
 async function postNote(id,btn){
+  if(WEB_SHARED)return sbPost(id,btn);
   const st=document.getElementById("nt-st-"+id),ta=document.getElementById("nt-text-"+id),fi=document.getElementById("nt-file-"+id);
   const text=(ta.value||"").trim().slice(0,NOTE_MAX),file=fi.files?.[0];
   if(!text&&!file){st.className="status err";st.textContent="Write a note or add a photo first.";return}
@@ -710,6 +721,7 @@ async function postNote(id,btn){
   btn.disabled=false;
 }
 async function deletePost(vid,pid,uid){
+  if(WEB_SHARED)return sbDelete(pid);
   try{
     if(uid===C.uid){const posts=C.myPosts.filter(p=>p.id!==pid);await C.db.doc("m/"+C.uid).set({posts});C.myPosts=posts}
     else if(C.isOwner){const s=await C.db.doc("m/"+uid).get();const posts=(s.data()?.posts||[]).filter(p=>p.id!==pid);await C.db.doc("m/"+uid).set({posts})}
@@ -725,6 +737,76 @@ async function aggregatePosts(snap){
   if(C.user&&uids.size){try{const ps=await C.user.profiles([...uids]);C.names={};for(const u of uids)C.names[u]=ps[u]?.name||""}catch(e){}}
   const changed=new Set([...Object.keys(m),...Object.keys(C.posts)]);
   C.posts=m;changed.forEach(refreshNotes);
+}
+
+
+/* ---------- web version shared features (Supabase) ---------- */
+function myName(){try{return localStorage.getItem("lhh-name")||""}catch(e){return ""}}
+function goSignIn(){const a=document.getElementById("account");a.scrollIntoView({behavior:"smooth",block:"center"});setTimeout(()=>document.getElementById("si-email")?.focus(),300)}
+function renderAccount(){
+  const a=document.getElementById("account");if(!WEB_SHARED){a.hidden=true;return}
+  a.hidden=false;
+  if(C.uid){a.innerHTML=`<span class="cl">Signed in as <b>${esc(C.email||"you")}</b>${C.isOwner?" · admin":""}</span> <button class="linkbtn" data-act="signout">Sign out</button>`;return}
+  a.innerHTML=`<form id="si-form" class="crow" novalidate><label class="cl" for="si-email">Sign in to confirm deals, rate them and post notes or photos:</label>
+    <input type="email" id="si-email" required placeholder="you@example.com" autocomplete="email">
+    <button class="btn primary" type="submit">Email me a sign-in link</button></form><div class="status" id="si-st"></div>`;
+  document.getElementById("si-form").onsubmit=async e=>{e.preventDefault();
+    const em=document.getElementById("si-email").value.trim(),st=document.getElementById("si-st");
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){st.className="status err";st.textContent="Enter a valid email address.";return}
+    st.className="status";st.textContent="Sending…";
+    const{error}=await C.sb.auth.signInWithOtp({email:em,options:{emailRedirectTo:location.origin+location.pathname}});
+    if(error){st.className="status err";st.textContent=/rate/i.test(error.message)?"Too many sign-in emails were sent recently. Try again in a little while.":"Couldn't send the link: "+error.message}
+    else st.textContent=`Check ${em} for a sign-in link, then tap it on this device.`};
+}
+async function sbLoad(){
+  const sb=C.sb;if(!sb)return;
+  const [c,r,p]=await Promise.all([
+    sb.from("confirmations").select("venue_id,confirmed_at,user_id").limit(5000),
+    sb.from("ratings").select("venue_id,stars,user_id").limit(5000),
+    sb.from("posts").select("id,venue_id,user_id,author_name,body,photo_url,photo_path,created_at").order("created_at",{ascending:false}).limit(1000)]);
+  if(!c.error){const m={};for(const x of c.data){if(!m[x.venue_id]||x.confirmed_at>m[x.venue_id])m[x.venue_id]=x.confirmed_at}C.confirms=m}
+  if(!r.error){const m={},mine={};for(const x of r.data){(m[x.venue_id]||(m[x.venue_id]={sum:0,n:0}));m[x.venue_id].sum+=x.stars;m[x.venue_id].n++;if(x.user_id===C.uid)mine[x.venue_id]=x.stars}C.ratings=m;C.mine.r=mine}
+  if(!p.error){const m={};for(const x of p.data)(m[x.venue_id]||(m[x.venue_id]=[])).push({uid:x.user_id,id:x.id,at:x.created_at,text:x.body||"",name:x.author_name,photoUrl:x.photo_url,photoPath:x.photo_path});
+    const changed=new Set([...Object.keys(m),...Object.keys(C.posts)]);C.posts=m;changed.forEach(refreshNotes)}
+  refreshCommunity();
+}
+async function sbPost(id,btn){
+  const st=document.getElementById("nt-st-"+id),ta=document.getElementById("nt-text-"+id),fi=document.getElementById("nt-file-"+id),nm=document.getElementById("nt-name-"+id);
+  const text=(ta.value||"").trim().slice(0,NOTE_MAX),file=fi.files?.[0],name=((nm?.value||"").trim()||"A visitor").slice(0,40);
+  if(!C.uid){goSignIn();return}
+  if(!text&&!file){st.className="status err";st.textContent="Write a note or add a photo first.";return}
+  try{localStorage.setItem("lhh-name",name==="A visitor"?"":name)}catch(e){}
+  btn.disabled=true;st.className="status";st.textContent=file?"Preparing photo…":"Posting…";
+  try{
+    const pid=crypto.randomUUID();let photo_path=null,photo_url=null;
+    if(file){const src=await shrink(file);if(!src)throw new Error("That photo is too large. Try a smaller one.");
+      const blob=await (await fetch(src)).blob();st.textContent="Uploading photo…";
+      photo_path=`${C.uid}/${pid}.jpg`;
+      const up=await C.sb.storage.from("photos").upload(photo_path,blob,{contentType:"image/jpeg",upsert:false});if(up.error)throw up.error;
+      photo_url=C.sb.storage.from("photos").getPublicUrl(photo_path).data.publicUrl}
+    const{error}=await C.sb.from("posts").insert({id:pid,venue_id:id,user_id:C.uid,author_name:name,body:text,photo_path,photo_url});
+    if(error){if(photo_path)await C.sb.storage.from("photos").remove([photo_path]);throw error}
+    ta.value="";fi.value="";document.getElementById("nt-fname-"+id).textContent="";st.textContent="Posted.";
+    await sbLoad();
+  }catch(e){st.className="status err";st.textContent=/Too many posts/.test(e?.message||"")?"You've posted a lot in the last hour. Try again later.":e?.message?.startsWith("That photo")?e.message:"Couldn't post. Try again in a moment."}
+  btn.disabled=false;
+}
+async function sbDelete(pid){
+  const all=Object.values(C.posts).flat(),p=all.find(x=>x.id===pid);
+  const{error}=await C.sb.from("posts").delete().eq("id",pid);
+  if(!error&&p?.photoPath)await C.sb.storage.from("photos").remove([p.photoPath]);
+  await sbLoad();
+}
+async function sbInit(){
+  C.sb=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:true,detectSessionInUrl:true}});
+  const apply=async session=>{
+    C.uid=session?.user?.id||null;C.email=session?.user?.email||"";
+    C.isOwner=false;if(C.uid){const{data}=await C.sb.rpc("is_admin");C.isOwner=!!data}
+    renderAccount();await sbLoad();
+  };
+  const{data}=await C.sb.auth.getSession();await apply(data.session);
+  C.sb.auth.onAuthStateChange((ev,session)=>{if(ev==="SIGNED_IN"||ev==="SIGNED_OUT")apply(session)});
+  if(location.hash.includes("access_token"))history.replaceState(null,"",location.pathname+location.search);
 }
 
 /* ---------- menu photo update ---------- */
@@ -802,6 +884,14 @@ document.addEventListener("click",async e=>{
   if(act==="delPost"){b.disabled=true;return deletePost(id,b.dataset.pid,b.dataset.uid)}
   if(act==="analyze"){b.disabled=true;await analyze(id);b.disabled=false;return}
   if(act==="save"){b.disabled=true;await saveSub(id);return}
+  if(act==="gosignin")return goSignIn();
+  if(act==="signout"){await C.sb?.auth.signOut();return}
+  if(WEB_SHARED){
+    if(!C.uid)return goSignIn();
+    if(act==="confirm"){b.disabled=true;const{error}=await C.sb.from("confirmations").upsert({venue_id:id,user_id:C.uid,confirmed_at:new Date().toISOString()},{onConflict:"venue_id,user_id"});if(error){b.disabled=false;b.textContent="Couldn't save"}else{C.confirms[id]=new Date().toISOString();refreshCommunity()}return}
+    if(act==="rate"){const n=+b.dataset.n;const{error}=await C.sb.from("ratings").upsert({venue_id:id,user_id:C.uid,stars:n},{onConflict:"venue_id,user_id"});if(error)b.closest(".stars").insertAdjacentHTML("afterend",'<span class="cl">Couldn\'t save your rating.</span>');else sbLoad();return}
+    return;
+  }
   if(!C.db||!C.uid)return;
   if(act==="confirm"){b.disabled=true;try{const iso=new Date().toISOString();await writeMine("c",id,iso);C.confirms[id]=iso;refreshCommunity()}catch(err){b.textContent="Couldn't save";}}
   if(act==="rate"){const n=+b.dataset.n;try{await writeMine("r",id,n)}catch(err){b.closest(".stars").insertAdjacentHTML("afterend",'<span class="cl">Couldn\'t save your rating.</span>')}}
@@ -815,7 +905,8 @@ document.addEventListener("click",async e=>{
   document.getElementById("q").oninput=e=>{state.q=e.target.value;render()};
   const nb=document.getElementById("nowBtn");nb.onclick=()=>{state.now=!state.now;nb.setAttribute("aria-pressed",state.now);render()};
   const fh=()=>{const f=document.querySelector(".filters");document.documentElement.style.setProperty("--fh",getComputedStyle(f).position==="sticky"?f.offsetHeight+"px":"0px")};fh();window.addEventListener("resize",fh);
-  if(!IN_CLAUDE){document.querySelectorAll("[data-claude-only]").forEach(e=>e.hidden=true);document.querySelector('#sort option[value="visitor"]')?.remove();
+  if(!IN_CLAUDE){document.querySelectorAll("[data-claude-only]").forEach(e=>e.hidden=true);
+    if(!WEB_SHARED){document.querySelectorAll("[data-shared]").forEach(e=>e.hidden=true);document.querySelector('#sort option[value="visitor"]')?.remove();}
     document.getElementById("lede").textContent="Happy hours and daily deals across Laguna Beach, with prices, savings, a map and how solid the evidence is.";}
   initMap();
   const none=DATA.checked_none||[];
@@ -824,6 +915,7 @@ document.addEventListener("click",async e=>{
   render();
   setInterval(()=>{if(!document.querySelector("details[open]")&&!document.querySelector(".upload:not([hidden])")&&![...document.querySelectorAll(".composer textarea")].some(x=>x.value))render()},60000);
   /* light up shared features when the viewer supports them */
+  if(WEB_SHARED){renderAccount();try{await sbInit()}catch(e){console.warn("Shared features unavailable",e)}return}
   if(!window.claude?.use)return;
   const [db,user,sample]=await Promise.all([claude.use("db"),claude.use("user"),claude.use("sample")]);
   C.db=db;C.user=user;C.uid=user?await user.id():null;C.sample=sample;C.isOwner=user?await user.isOwner():false;

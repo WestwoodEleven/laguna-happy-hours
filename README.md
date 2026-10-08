@@ -13,7 +13,7 @@ Happy hours and daily deals at Laguna Beach, California restaurants: hours, drin
 - Street map (OpenStreetMap tiles via Leaflet) with pins, **Use my location**, tap-to-set your spot, landmarks, distance on every listing and directions links
 - Confidence labels (Verified / Likely / Needs confirmation) and the sources behind every listing
 
-Confirming a deal, star ratings, visitor notes and photos, and menu-photo updates live in the [Claude version](https://claude.ai/artifact/GhzNP9fe9LD2c3QqsrsDZS), since they need shared storage.
+Signed-in visitors can confirm a deal is still running, rate it 0–5 stars, and post notes and photos. These are stored in Supabase (see below). Menu-photo reading is still only in the [Claude version](https://claude.ai/artifact/GhzNP9fe9LD2c3QqsrsDZS).
 
 ## Files
 
@@ -24,6 +24,7 @@ Confirming a deal, star ratings, visitor notes and photos, and menu-photo update
 | `data/happy-hours.json` | The database: listings, map geometry, restaurants checked with no deals |
 | `data/restaurant-roster.json` | Every Laguna Beach restaurant and bar that was checked |
 | `build.py` | Rebuilds `index.html` from the template and data |
+| `supabase/schema.sql` | Database tables, access rules and photo storage for the shared features |
 | `docs/` | Audit reports from the verification passes |
 
 ## Updating
@@ -35,6 +36,16 @@ python3 build.py
 ```
 
 and commit the rebuilt `index.html`.
+
+## Shared features (Supabase)
+
+The page talks to a Supabase project using its URL and publishable key (set as `SB_URL` and `SB_KEY` in `template.html`; both are designed to be public). Setup, once:
+
+1. In Supabase, open **SQL Editor**, paste all of `supabase/schema.sql`, and click **Run**.
+2. In **Authentication → URL Configuration**, set **Site URL** to `https://westwoodeleven.github.io/laguna-happy-hours/` and add the same address under **Redirect URLs**.
+3. Sign in on the site once with your email, then run the last statement in `schema.sql` (with your email filled in) to make yourself admin, so you can delete anyone's posts.
+
+Sign-in is by emailed magic link. Supabase's built-in email sender only sends a few emails per hour; connect your own SMTP service (Authentication → Emails) if more people start signing in. Anyone can read confirmations, ratings and posts; people can only change their own, and each person can post at most 20 times an hour.
 
 ## Map tiles
 
