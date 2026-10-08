@@ -386,14 +386,14 @@ function gotoCard(id){
 function showOnMap(id){
   const v=VENUES.find(x=>x.id===id);if(!v||!v.lat)return;
   setMapOpen(true);
-  if(M.leaf){M.viewSet=true;M.leaf.setView([v.lat,v.lng],17);showPop([id]);document.getElementById("mapwrap").scrollIntoView({behavior:"smooth",block:"start"});return}
+  if(M.leaf){M.viewSet=true;M.leaf.setView([v.lat,v.lng],16);showPop([id]);document.getElementById("mapwrap").scrollIntoView({behavior:"smooth",block:"start"});return}
   const [x,y]=px(v.lat,v.lng),w=Math.min(M.full.w,1800),h=w*M.full.h/M.full.w;
   setVB({x:x-w/2,y:y-h/2,w,h});showPop([id]);
   document.getElementById("mapwrap").scrollIntoView({behavior:"smooth",block:"start"});
 }
 function setMe(lat,lng,label){
   M.me={lat,lng};M.meLabel=label;
-  if(M.leaf&&label!=="your saved spot"&&(M.viewSet=true))M.leaf.setView([lat,lng],Math.max(M.leaf.getZoom(),15));
+  if(M.leaf&&label!=="your saved spot"&&(M.viewSet=true))M.leaf.setView([lat,lng],Math.max(M.leaf.getZoom(),14));
   try{localStorage.setItem("lhh-me",JSON.stringify({lat,lng,label}))}catch(e){}
   const st=document.getElementById("mstatus");st.className="mstatus";st.textContent=`Distances are from ${label}. Restaurants are sorted closest first.`;
   state.sort="near";document.getElementById("sort").value="near";
@@ -403,7 +403,7 @@ function setMapOpen(open){
   document.getElementById("mapbody").style.display=open?"grid":"none";
   const t=document.getElementById("mapToggle");t.textContent=open?"Hide map":"Show map";t.setAttribute("aria-expanded",open);
   const t2=document.getElementById("mapToggle");t2.textContent=open?"Hide map ▴":"Show map ▾";
-  if(open&&M.leaf)setTimeout(()=>{M.leaf.invalidateSize();if(!M.viewSet){M.leaf.fitBounds(M.lpts,{padding:[24,24]});M.viewSet=true}},0);
+  if(open&&M.leaf)setTimeout(()=>{M.leaf.invalidateSize();if(!M.viewSet){fitAll();M.viewSet=true}},60);
   if(open&&M.vb){if(!M.viewSet&&M.pts){M.full=fitBox(M.pts,350);setVB(M.full);M.viewSet=true}drawPins()}
 }
 function zoomAt(f,cx,cy){
@@ -437,13 +437,21 @@ function leafletPins(){
   if(M.me){const i=L.divIcon({className:"",iconSize:[22,22],iconAnchor:[11,11],html:'<span class="lme"></span>'});
     L.marker([M.me.lat,M.me.lng],{icon:i,interactive:false,zIndexOffset:2000}).addTo(M.layer)}
 }
+function fitAll(){
+  const map=M.leaf;if(!map)return;
+  map.invalidateSize();
+  /* show the whole Coast Highway strip, never closer than zoom 14 */
+  map.fitBounds(M.lpts,{padding:[16,16],maxZoom:14});
+}
 function initLeaflet(){
   document.getElementById("mapbox").classList.add("real");
   const svg=document.getElementById("map");
   const host=document.createElement("div");host.id="lmap";host.setAttribute("aria-label","Street map of Laguna Beach with happy hour pins");
   svg.replaceWith(host);
   const pts=VENUES.filter(v=>v.lat).map(v=>[v.lat,v.lng]);
-  const map=L.map(host,{zoomControl:false,attributionControl:true}).fitBounds(pts,{padding:[24,24]});
+  /* The map starts collapsed (zero size), so don't fit to the pins until it's shown. */
+  const lat=pts.reduce((s,p)=>s+p[0],0)/pts.length,lng=pts.reduce((s,p)=>s+p[1],0)/pts.length;
+  const map=L.map(host,{zoomControl:false,attributionControl:true,zoomSnap:0.5}).setView([lat,lng],13);
   M.leaf=map;M.lpts=pts;M.layer=L.layerGroup().addTo(map);
   tileLayer().addTo(map);
   map.on("click",e=>{
@@ -451,7 +459,7 @@ function initLeaflet(){
     document.getElementById("pop").hidden=true;M.sel=null;leafletPins()});
   document.getElementById("zin").onclick=()=>map.zoomIn();
   document.getElementById("zout").onclick=()=>map.zoomOut();
-  document.getElementById("zfit").onclick=()=>map.fitBounds(pts,{padding:[24,24]});
+  document.getElementById("zfit").onclick=()=>fitAll();
   ["pop","setbanner"].forEach(id=>{const el=document.getElementById(id);L.DomEvent.disableClickPropagation(el);L.DomEvent.disableScrollPropagation(el)});
   document.getElementById("mnote").textContent="Pins are placed from street addresses.";
   wireMapControls();
