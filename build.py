@@ -13,7 +13,7 @@ SITE_URL = "https://westwoodeleven.github.io/laguna-happy-hours/"
 # (goatcounter.com) and put its code here, e.g. "lagunahh". Leave empty to skip.
 GOATCOUNTER_CODE = ""
 
-DESC = "Happy hours and daily deals at Laguna Beach restaurants, with prices, savings and a map."
+DESC = "Happy hours and daily specials at Laguna Beach restaurants, with prices, savings and a map."
 SHARE_HEAD = (
     '<meta name="theme-color" content="#11302E">\n'
     '<link rel="manifest" href="manifest.webmanifest">\n'
@@ -53,7 +53,7 @@ page = template.replace("__DATA__", blob, 1)
 head, body = page.split("<style>", 1)
 page = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'
-        '<meta name="description" content="Happy hours and daily deals at Laguna Beach restaurants, with prices, savings and a map.">\n'
+        '<meta name="description" content="Happy hours and daily specials at Laguna Beach restaurants, with prices, savings and a map.">\n'
         + SHARE_HEAD
         + head.strip() + '\n'
         # Real street map for the web version (Leaflet + OpenStreetMap tiles).

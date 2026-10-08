@@ -246,7 +246,7 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
   <header class="top">
     <div class="eyebrow">Laguna Beach, CA · checked Oct 7, 2026</div>
     <h1><svg class="sunmark" viewBox="0 0 40 40" aria-hidden="true"><defs><clipPath id="sm-c"><rect x="0" y="0" width="40" height="27"/></clipPath></defs><circle cx="20" cy="22" r="14" fill="var(--accent)" clip-path="url(#sm-c)"/><rect x="5" y="17" width="30" height="2.4" fill="var(--bg)"/><rect x="5" y="21.6" width="30" height="2" fill="var(--bg)"/><rect x="0" y="27" width="40" height="5" rx="1" fill="var(--sea)"/></svg>Laguna <span>Happy Hours</span></h1>
-    <p class="lede" id="lede">Happy hours and daily deals across Laguna Beach, with prices, savings and how solid the evidence is. Confirm a deal, rate it, or update it from a menu photo.</p>
+    <p class="lede" id="lede">Happy hours and daily specials across Laguna Beach, with prices, savings and how solid the evidence is. Confirm a deal, rate it, or update it from a menu photo.</p>
     <div class="clockrow"><div class="clock" id="clock"></div><div id="acctLink" class="acctlink"></div></div>
   </header>
 
@@ -259,9 +259,9 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
       <button class="chip" id="favBtn" aria-pressed="false">★ My spots</button>
       <button class="chip" id="expandBtn" aria-pressed="false">Expand all menus</button>
       <select id="kind" aria-label="Deal type">
-        <option value="">Happy hours and deals</option>
+        <option value="">Happy hours and specials</option>
         <option value="hh">Happy hours only</option>
-        <option value="deal">Daily deals only</option>
+        <option value="deal">Daily specials only</option>
       </select>
       <select id="hood" aria-label="Neighborhood"><option value="">All areas</option></select>
       <select id="sort" aria-label="Sort">
@@ -291,7 +291,7 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
         <div class="setbanner" id="setbanner" hidden>Tap where you are on the map.</div>
         <div class="pop" id="pop" hidden></div>
       </div>
-      <div class="legend"><span><i style="background:var(--accent)"></i>On now</span><span><i style="background:var(--sea)"></i>Happy hour</span><span><i style="background:var(--muted)"></i>Daily deals only</span><span><i style="background:var(--you)"></i>You</span><span id="mapcount"></span></div>
+      <div class="legend"><span><i style="background:var(--accent)"></i>On now</span><span><i style="background:var(--sea)"></i>Happy hour</span><span><i style="background:var(--muted)"></i>Daily specials only</span><span><i style="background:var(--you)"></i>You</span><span id="mapcount"></span></div>
       <div class="mstatus" id="mnote">Simplified map: coastline and roads are approximate; pins are placed from street addresses.</div>
     </div>
     <div class="mstatus" id="mstatus"></div>
@@ -529,7 +529,7 @@ function showPop(ids){
   M.sel=vs[0].id;drawPins();
   pop.innerHTML=`<button class="x" data-mact="close" aria-label="Close">×</button>`+vs.map(v=>{const d=distOf(v),live=liveStatus(v,now),hh=(v.schedule||[])[0];
     return `<div style="display:grid;gap:4px"><div class="pr"><b>${esc(v.name)}</b>${d!=null?`<span class="dist">${fmtMi(d)}</span>`:""}</div>
-    <div class="pr">${live?`<span class="pill ${live.on?"p-on":"p-soon"}">${esc(live.text)}</span>`:""}${hh?`<span class="cl">${esc(dayLabel(hh.days))} ${hh.start?fmt(hh.start)+"–"+(hh.end?fmt(hh.end):"close"):""}</span>`:""}${(v.daily_deals||[]).length?`<span class="cl">${v.daily_deals.length} daily deal${v.daily_deals.length>1?"s":""}</span>`:""}</div>
+    <div class="pr">${live?`<span class="pill ${live.on?"p-on":"p-soon"}">${esc(live.text)}</span>`:""}${hh?`<span class="cl">${esc(dayLabel(hh.days))} ${hh.start?fmt(hh.start)+"–"+(hh.end?fmt(hh.end):"close"):""}</span>`:""}${(v.daily_deals||[]).length?`<span class="cl">${v.daily_deals.length} daily special${v.daily_deals.length>1?"s":""}</span>`:""}</div>
     <div class="cl">${esc(String(v.address||"").replace(/,?\s*Laguna Beach,?\s*CA\s*\d{5}/i,""))}</div>
     <div class="crow"><button class="btn" data-mact="goto" data-id="${v.id}">See deals</button><a class="cl" style="color:var(--sea);font-weight:600" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(v.name+" "+(v.address||"Laguna Beach CA"))}" target="_blank" rel="noopener">Directions</a></div></div>`}).join('<hr style="border:0;border-top:1px solid var(--line);margin:4px 0">');
   pop.hidden=false;
@@ -757,17 +757,17 @@ function cardHTML(v0,now){
   const sched=(v.schedule||[]).length?`<div class="sec"><h3>Happy hour</h3><div class="tide">${v.schedule.map(b=>`<div class="t"><span class="days">${esc(dayLabel(b.days))}</span><span class="hrs">${b.start?fmt(b.start)+" – "+(b.end?fmt(b.end):"close"):"Times not listed"}</span>${b.note?`<span class="tnote">${esc(b.note)}</span>`:""}</div>`).join("")}</div></div>`:"";
   const drinks=menuBlock("Drinks",v.drink_items,v.drink_specials,v.id);
   const food=menuBlock("Food",v.food_items,v.food_specials,v.id);
-  const deals=(v.daily_deals||[]).length?`<div class="sec"><h3>Daily deals</h3><div class="deals">${v.daily_deals.map(d=>{const k=dealKey(d),dc=C.dealConf[v.id+"|"+k];return `<div class="deal"><div class="dh"><span class="dt">${esc(d.title||"Deal")}</span><span class="dd">${esc(dayLabel(d.days))}${d.start?" · "+fmt(d.start)+(d.end?"–"+fmt(d.end):""):" · all day"}</span></div>${d.description?`<p>${esc(d.description)}</p>`:""}${(d.items||[]).length?`<ul class="menu">${d.items.map(i=>itemRow(i,v.id)).join("")}</ul>`:""}${SHARED()&&v.status!=="closed"?`<div class="dconf"><button class="linkbtn" data-act="dealok" data-id="${v.id}" data-k="${esc(k)}">Still running? ✓</button>${dc?`<span class="cl">Confirmed by a visitor ${esc(shortDate(dc))}</span>`:""}</div>`:""}</div>`}).join("")}</div></div>`:"";
+  const deals=(v.daily_deals||[]).length?`<div class="sec"><h3>Daily specials</h3><div class="deals">${v.daily_deals.map(d=>{const k=dealKey(d),dc=C.dealConf[v.id+"|"+k];return `<div class="deal"><div class="dh"><span class="dt">${esc(d.title||"Deal")}</span><span class="dd">${esc(dayLabel(d.days))}${d.start?" · "+fmt(d.start)+(d.end?"–"+fmt(d.end):""):" · all day"}</span></div>${d.description?`<p>${esc(d.description)}</p>`:""}${(d.items||[]).length?`<ul class="menu">${d.items.map(i=>itemRow(i,v.id)).join("")}</ul>`:""}${SHARED()&&v.status!=="closed"?`<div class="dconf"><button class="linkbtn" data-act="dealok" data-id="${v.id}" data-k="${esc(k)}">Still running? ✓</button>${dc?`<span class="cl">Confirmed by a visitor ${esc(shortDate(dc))}</span>`:""}</div>`:""}</div>`}).join("")}</div></div>`:"";
   const subNote=v._sub?`<div class="msrc">Lists updated from a visitor's menu photo on ${esc(shortDate(v._sub.at))}.${v._sub.notes?" "+esc(v._sub.notes):""}</div>`:"";
   const none=!drinks&&!food&&!deals&&v.status!=="closed"?`<div class="restrict">No item prices published yet. A menu photo would fill this in.</div>`:"";
   const picks=topPicks(v),nItems=(v.drink_items||[]).length+(v.food_items||[]).length;
   const pickHTML=picks.length?`<div class="sec hhsec"><h3>Best happy hour deals</h3><ul class="menu">${picks.map(i=>itemRow(i,v.id)).join("")}</ul></div>`:(dealKind(v)?`<div class="kind">${esc(dealKind(v))}</div>`:"");
-  const dealChips=(v.daily_deals||[]).length?`<div class="sec dsec"><h3>Daily deals</h3><div class="dchips">${v.daily_deals.map(d=>`<span class="dchip">${esc(d.title||"Deal")} · ${esc(dayLabel(d.days))}</span>`).join("")}</div></div>`:"";
+  const dealChips=(v.daily_deals||[]).length?`<div class="sec dsec"><h3>Daily specials</h3><div class="dchips">${v.daily_deals.map(d=>`<span class="dchip">${esc(d.title||"Deal")} · ${esc(dayLabel(d.days))}</span>`).join("")}</div></div>`:"";
   const hhMenu=drinks+food?`<div class="grp hhgrp"><div class="gh">Happy hour menu${(v.schedule||[]).length?" · "+esc(v.schedule.map(b=>dayLabel(b.days)+(b.start?" "+fmt(b.start)+"–"+(b.end?fmt(b.end):"close"):"")).join("; ")):""}</div>${drinks}${food}</div>`:"";
   const dealGrp=deals?`<div class="grp dgrp">${deals}</div>`:"";
   const fullBody=hhMenu+dealGrp+subNote;
   const needFull=fullBody&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length);
-  const full=needFull&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length)?`<details class="full"${state.expandAll?" open":""}><summary>Full menu${nItems?` · ${nItems} item${nItems>1?"s":""}`:""}${(v.daily_deals||[]).length?` · ${v.daily_deals.length} daily deal${v.daily_deals.length>1?"s":""}`:""}</summary>${fullBody}</details>`:fullBody;
+  const full=needFull&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length)?`<details class="full"${state.expandAll?" open":""}><summary>Full menu${nItems?` · ${nItems} item${nItems>1?"s":""}`:""}${(v.daily_deals||[]).length?` · ${v.daily_deals.length} daily special${v.daily_deals.length>1?"s":""}`:""}</summary>${fullBody}</details>`:fullBody;
   const seat=v.seating_restrictions?`<span class="pill p-seat">${esc(/bar/i.test(v.seating_restrictions)?(/patio/i.test(v.seating_restrictions)?"Bar & patio only":"Bar only"):/dine/i.test(v.seating_restrictions)?"Dine-in only":v.seating_restrictions)}</span>`:"";
   const ended=endedCount(v);
   const age=daysAgo(lastChecked(v));
@@ -1199,7 +1199,7 @@ document.addEventListener("click",async e=>{
   const fh=()=>{const f=document.querySelector(".filters");document.documentElement.style.setProperty("--fh",getComputedStyle(f).position==="sticky"?f.offsetHeight+"px":"0px")};fh();window.addEventListener("resize",fh);
   if(!IN_CLAUDE){document.querySelectorAll("[data-claude-only]").forEach(e=>e.hidden=true);
     if(!WEB_SHARED){document.querySelectorAll("[data-shared]").forEach(e=>e.hidden=true);document.querySelector('#sort option[value="visitor"]')?.remove();}
-    document.getElementById("lede").textContent="Happy hours and daily deals across Laguna Beach, with prices, savings, a map and how solid the evidence is.";}
+    document.getElementById("lede").textContent="Happy hours and daily specials across Laguna Beach, with prices, savings, a map and how solid the evidence is.";}
   initMap();
   const none=DATA.checked_none||[];
   document.getElementById("noneSum").textContent=`${none.length} more Laguna restaurants we checked had no deals we could find (${DATA.roster_total} checked in all)`;
