@@ -226,6 +226,7 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
     <div class="row">
       <button class="chip now" id="nowBtn" aria-pressed="false">Happening now</button>
       <button class="chip" id="oceanBtn" aria-pressed="false">🌅 Ocean view</button>
+      <button class="chip" id="expandBtn" aria-pressed="false">Expand all menus</button>
       <select id="kind" aria-label="Deal type">
         <option value="">Happy hours and deals</option>
         <option value="hh">Happy hours only</option>
@@ -295,7 +296,7 @@ const SB_URL = "https://eeyunztuwpgkhrxgygky.supabase.co";
 const SB_KEY = "sb_publishable_4hM1QLZDVrCzi62BFv_Dtg_SQ5WUvH2";
 const VENUES = DATA.venues;
 const DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-const state={q:"",day:"",now:false,ocean:false,kind:"",hood:"",status:"active",conf:"",sort:"now"};
+const state={q:"",day:"",now:false,ocean:false,expandAll:false,kind:"",hood:"",status:"active",conf:"",sort:"now"};
 const C_ENDED={};
 const C={ended:{},reports:{},db:null,user:null,isOwner:false,posts:{},photoCache:{},myPosts:[],sample:null,uid:null,canImg:false,confirms:{},ratings:{},subs:{},mine:{c:{},r:{},s:{},e:{}}};
 
@@ -654,7 +655,7 @@ function cardHTML(v0,now){
   const dealChips=(v.daily_deals||[]).length?`<div class="dchips">${v.daily_deals.map(d=>`<span class="dchip">${esc(d.title||"Deal")} · ${esc(dayLabel(d.days))}</span>`).join("")}</div>`:"";
   const fullBody=drinks+food+deals+subNote;
   const needFull=fullBody&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length);
-  const full=needFull&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length)?`<details class="full"><summary>Full menu${nItems?` · ${nItems} item${nItems>1?"s":""}`:""}${(v.daily_deals||[]).length?` · ${v.daily_deals.length} daily deal${v.daily_deals.length>1?"s":""}`:""}</summary>${fullBody}</details>`:fullBody;
+  const full=needFull&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length)?`<details class="full"${state.expandAll?" open":""}><summary>Full menu${nItems?` · ${nItems} item${nItems>1?"s":""}`:""}${(v.daily_deals||[]).length?` · ${v.daily_deals.length} daily deal${v.daily_deals.length>1?"s":""}`:""}</summary>${fullBody}</details>`:fullBody;
   const seat=v.seating_restrictions?`<span class="pill p-seat">${esc(/bar/i.test(v.seating_restrictions)?(/patio/i.test(v.seating_restrictions)?"Bar & patio only":"Bar only"):/dine/i.test(v.seating_restrictions)?"Dine-in only":v.seating_restrictions)}</span>`:"";
   const ended=endedCount(v);
   const age=daysAgo(lastChecked(v));
@@ -1020,6 +1021,8 @@ document.addEventListener("click",async e=>{
   for(const k of ["hood","status","conf","kind","sort"])document.getElementById(k).onchange=e=>{state[k]=e.target.value;render()};
   document.getElementById("q").oninput=e=>{state.q=e.target.value;render()};
   const nb=document.getElementById("nowBtn");nb.onclick=()=>{state.now=!state.now;nb.setAttribute("aria-pressed",state.now);render()};
+  const xb=document.getElementById("expandBtn");xb.onclick=()=>{state.expandAll=!state.expandAll;xb.setAttribute("aria-pressed",state.expandAll);xb.textContent=state.expandAll?"Collapse all menus":"Expand all menus";
+    document.querySelectorAll("details.full").forEach(d=>d.open=state.expandAll)};
   const ob=document.getElementById("oceanBtn");ob.onclick=()=>{state.ocean=!state.ocean;ob.setAttribute("aria-pressed",state.ocean);render()};
   const fh=()=>{const f=document.querySelector(".filters");document.documentElement.style.setProperty("--fh",getComputedStyle(f).position==="sticky"?f.offsetHeight+"px":"0px")};fh();window.addEventListener("resize",fh);
   if(!IN_CLAUDE){document.querySelectorAll("[data-claude-only]").forEach(e=>e.hidden=true);
@@ -1031,7 +1034,7 @@ document.addEventListener("click",async e=>{
   document.getElementById("noneList").innerHTML=none.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(x=>`<li>${esc(x.name)} <small>· ${esc(x.result)}</small></li>`).join("");
   render();
   const deep=/^#card-([a-z0-9-]+)$/.exec(location.hash);if(deep)setTimeout(()=>gotoCard(deep[1]),50);
-  setInterval(()=>{if(!document.querySelector("details[open]")&&!document.querySelector(".upload:not([hidden])")&&![...document.querySelectorAll(".composer textarea")].some(x=>x.value))render()},60000);
+  setInterval(()=>{if(!document.querySelector("details[open]:not(.full)")&&(state.expandAll||!document.querySelector("details.full[open]"))&&!document.querySelector(".upload:not([hidden])")&&![...document.querySelectorAll(".composer textarea")].some(x=>x.value))render()},60000);
   /* light up shared features when the viewer supports them */
   if(WEB_SHARED){renderAccount();try{await sbInit()}catch(e){console.warn("Shared features unavailable",e)}return}
   if(!window.claude?.use)return;
