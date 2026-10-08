@@ -281,17 +281,6 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
         <option value="deal">Daily deals only</option>
       </select>
       <select id="hood" aria-label="Neighborhood"><option value="">All areas</option></select>
-      <select id="status" aria-label="Status">
-        <option value="active">Confirmed open</option>
-        <option value="unclear">Status unclear</option>
-        <option value="all">Include status unclear</option>
-      </select>
-      <select id="conf" aria-label="Confidence">
-        <option value="">Any confidence</option>
-        <option value="verified">Verified only</option>
-        <option value="vl">Verified or likely</option>
-        <option value="check">Needs a local's check</option>
-      </select>
       <select id="sort" aria-label="Sort">
         <option value="now">Sort: on now first</option>
         <option value="near">Sort: closest to me</option>
@@ -348,7 +337,7 @@ const VENUES = DATA.venues;
 const DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 let FAVS=new Set();try{FAVS=new Set(JSON.parse(localStorage.getItem("lhh-favs")||"[]"))}catch(e){}
 function saveFavs(){try{localStorage.setItem("lhh-favs",JSON.stringify([...FAVS]))}catch(e){}}
-const state={q:"",day:"",now:false,ocean:false,favs:false,expandAll:false,kind:"",hood:"",status:"active",conf:"",sort:"now"};
+const state={q:"",day:"",now:false,ocean:false,favs:false,expandAll:false,kind:"",hood:"",status:"all",conf:"",sort:"now"};
 const C_ENDED={};
 const C={ended:{},reports:{},dealConf:{},prices:{},db:null,user:null,isOwner:false,posts:{},photoCache:{},myPosts:[],sample:null,uid:null,canImg:false,confirms:{},ratings:{},subs:{},mine:{c:{},r:{},s:{},e:{},d:{},p:{}}};
 
@@ -543,7 +532,7 @@ async function shareCard(id,b){
 }
 function gotoCard(id){
   let el=document.getElementById("card-"+id);
-  if(!el){state.q="";document.getElementById("q").value="";state.status="all";document.getElementById("status").value="all";
+  if(!el){state.q="";document.getElementById("q").value="";
     state.now=false;document.getElementById("nowBtn").setAttribute("aria-pressed","false");state.day="";state.ocean=false;document.getElementById("oceanBtn").setAttribute("aria-pressed","false");
     document.querySelectorAll("#dayRow .chip").forEach(x=>x.setAttribute("aria-pressed",x.id==="day-any"?"true":"false"));render();el=document.getElementById("card-"+id)}
   if(!el)return;
@@ -1187,7 +1176,7 @@ document.addEventListener("click",async e=>{
   const dr=document.getElementById("dayRow"),now=laNow();
   [["any","Any day",""],["today","Today",now.day],...DAYS.map(d=>[d,d,d])].forEach(([idk,label,d])=>{const b=document.createElement("button");b.className="chip";b.id="day-"+idk;b.textContent=label;b.setAttribute("aria-pressed",idk==="any"?"true":"false");if(idk===now.day)b.title="Today";b.onclick=()=>{state.day=d;dr.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));render()};dr.appendChild(b)});
   const hs=document.getElementById("hood");[...new Set(VENUES.map(v=>v.neighborhood).filter(Boolean))].sort().forEach(h=>{const o=document.createElement("option");o.value=h;o.textContent=h;hs.appendChild(o)});
-  for(const k of ["hood","status","conf","kind","sort"])document.getElementById(k).onchange=e=>{state[k]=e.target.value;render()};
+  for(const k of ["hood","kind","sort"])document.getElementById(k).onchange=e=>{state[k]=e.target.value;render()};
   document.getElementById("q").oninput=e=>{state.q=e.target.value;render()};
   const nb=document.getElementById("nowBtn");nb.onclick=()=>{state.now=!state.now;nb.setAttribute("aria-pressed",state.now);render()};
   const xb=document.getElementById("expandBtn");xb.onclick=()=>{state.expandAll=!state.expandAll;xb.setAttribute("aria-pressed",state.expandAll);xb.textContent=state.expandAll?"Collapse all menus":"Expand all menus";

@@ -16,7 +16,7 @@ Happy hours and daily deals at Laguna Beach, California restaurants: hours, drin
 - Compact cards (best 3 deals up front, "Full menu" for the rest), ocean view filter, seating notes, tap-to-call and share links
 - Link previews, an app icon and install-to-home-screen support
 - Today's sunset time, with ocean-view cards tagged "Runs past sunset" or "Ends N min before sunset"
-- ★ My spots favorites (saved on the visitor's device) and a "Needs a local's check" filter, stalest first
+- ★ My spots favorites (saved on the visitor's device)
 - Per-deal "Still running?" confirmations (prices are corrected through menu photos posted in visitor notes, not one item at a time)
 - "Is this your place?" messages from restaurants (private to you), and an "Owner-confirmed" badge once you verify by phone (set `owner_confirmed` to the date in the data)
 - "No longer running" reports show a neutral "Being re-checked"; nothing is marked ended automatically
