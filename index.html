@@ -160,6 +160,8 @@ h2{font-weight:600;font-size:21px;line-height:1.15}
 .lpin.sel{outline:2px solid var(--ink);outline-offset:2px}
 .lme{display:block;width:22px;height:22px;border-radius:50%;background:var(--you);border:3px solid #fff;box-shadow:0 0 0 8px rgba(122,63,209,.25)}
 .leaflet-container{font:inherit}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9)}}
+:root[data-theme="dark"] .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9)}
 .leaflet-control-attribution{font-size:10px}
 .claudelink{font-size:13px;color:var(--muted);background:var(--bg);border-radius:10px;padding:10px 12px}
 .claudelink a{color:var(--sea);font-weight:600}
@@ -420,10 +422,10 @@ function svgPt(e){const svg=document.getElementById("map"),r=svg.getBoundingClie
 
 /* ---------- real street map (Leaflet), used outside Claude when Leaflet loaded ---------- */
 function tileLayer(){
-  const dark=matchMedia("(prefers-color-scheme: dark)").matches;
-  return L.tileLayer(`https://{s}.basemaps.cartocdn.com/${dark?"dark_all":"rastertiles/voyager"}/{z}/{x}/{y}{r}.png`,{
-    subdomains:"abcd",maxZoom:19,
-    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>'});
+  /* OpenStreetMap's own tiles: no key needed; light use only, keep the attribution. */
+  return L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
+    maxZoom:19,
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'});
 }
 function leafletPins(){
   const map=M.leaf;if(!map)return;
@@ -450,9 +452,7 @@ function initLeaflet(){
   const pts=VENUES.filter(v=>v.lat).map(v=>[v.lat,v.lng]);
   const map=L.map(host,{zoomControl:false,attributionControl:true}).fitBounds(pts,{padding:[24,24]});
   M.leaf=map;M.layer=L.layerGroup().addTo(map);
-  let tiles=tileLayer().addTo(map);
-  const mq=matchMedia("(prefers-color-scheme: dark)");
-  if(mq.addEventListener)mq.addEventListener("change",()=>{map.removeLayer(tiles);tiles=tileLayer().addTo(map)});
+  tileLayer().addTo(map);
   map.on("click",e=>{
     if(M.setting){M.setting=false;document.getElementById("setBtn").setAttribute("aria-pressed","false");document.getElementById("setbanner").hidden=true;document.getElementById("mapbox").classList.remove("setting");document.getElementById("spot").value="";setMe(e.latlng.lat,e.latlng.lng,"the spot you picked");return}
     document.getElementById("pop").hidden=true;M.sel=null;leafletPins()});

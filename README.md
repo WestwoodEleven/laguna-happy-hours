@@ -10,7 +10,7 @@ Happy hours and daily deals at Laguna Beach, California restaurants: hours, drin
 - Drink and food prices with "Save %" where the regular price for the same item is published
 - Daily deals (Taco Tuesday, Wine Wednesday, 2-for-1 burgers and more)
 - "Happening now" filter, day filter, search, sort by savings, rating or distance
-- Street map (OpenStreetMap data, CARTO tiles via Leaflet) with pins, **Use my location**, tap-to-set your spot, landmarks, distance on every listing and directions links
+- Street map (OpenStreetMap tiles via Leaflet) with pins, **Use my location**, tap-to-set your spot, landmarks, distance on every listing and directions links
 - Confidence labels (Verified / Likely / Needs confirmation) and the sources behind every listing
 
 Confirming a deal, star ratings, visitor notes and photos, and menu-photo updates live in the [Claude version](https://claude.ai/artifact/GhzNP9fe9LD2c3QqsrsDZS), since they need shared storage.
@@ -38,7 +38,7 @@ and commit the rebuilt `index.html`.
 
 ## Map tiles
 
-The web version uses [Leaflet](https://leafletjs.com) with CARTO basemap tiles built from OpenStreetMap data. No API key is needed; keep the attribution shown on the map. CARTO's free basemaps are meant for light, non-commercial use, so switch to a paid or self-hosted tile provider if traffic grows (change `tileLayer()` in `template.html`). The Claude version can't load outside map tiles, so it keeps a simplified drawn map.
+The web version uses [Leaflet](https://leafletjs.com) with OpenStreetMap's standard tiles (dark mode inverts them). No API key is needed, but OpenStreetMap's [tile usage policy](https://operations.osmfoundation.org/policies/tiles/) only allows light use and requires the attribution shown on the map. If traffic grows, switch to a tile provider with a free key (MapTiler, Stadia Maps, Thunderforest) by changing `tileLayer()` in `template.html`. The Claude version can't load outside map tiles, so it keeps a simplified drawn map.
 
 ## Accuracy
 
