@@ -3868,18 +3868,18 @@
    "drink_items": [
     {
      "item": "Draft beer",
-     "price": "$12",
-     "regular_price": null,
-     "save_pct": null,
-     "note": null,
-     "internal_note": "regular $11.74-$14.75"
+     "price": "$8",
+     "regular_price": "$11.74",
+     "save_pct": 31,
+     "note": "Rooftop Blonde, SOK Mexican Lager, Slap & Tickle West Coast IPA, Dictionary Roulette Hazy, Truly Wild Berry, Twisted Tea",
+     "internal_note": "regular $11.74-$14.75; save_pct uses lowest regular price"
     },
     {
      "item": "House wine",
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": null,
+     "note": "Red or white",
      "internal_note": "regular glass $12-$27"
     },
     {
@@ -3887,7 +3887,7 @@
      "price": "$12",
      "regular_price": "$22",
      "save_pct": 45,
-     "note": null
+     "note": "Classic, tropical, mango or berry"
     },
     {
      "item": "Aperol spritz",
@@ -3908,14 +3908,14 @@
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": null
+     "note": "Ketel One, Mr. Black coffee liqueur"
     },
     {
-     "item": "Sangria",
+     "item": "Sangria (glass)",
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": null
+     "note": "Red or white"
     }
    ],
    "food_items": [
@@ -3924,35 +3924,35 @@
      "price": "$14",
      "regular_price": "$17",
      "save_pct": 18,
-     "note": null
+     "note": "Cheese sauce, dijon"
     },
     {
      "item": "Crispy Coconut Shrimp",
      "price": "$16",
      "regular_price": "$19",
      "save_pct": 16,
-     "note": null
+     "note": "Sweet chili sauce"
     },
     {
      "item": "Smokey Chipotle Wings",
      "price": "$14",
      "regular_price": "$16",
      "save_pct": 12,
-     "note": null
+     "note": "Herb ranch, carrots, jicama"
     },
     {
      "item": "Patatas Bravas",
      "price": "$14",
      "regular_price": "$17",
      "save_pct": 18,
-     "note": null
+     "note": "Paprika oil, garlic aioli"
     },
     {
      "item": "Fried Calamari",
      "price": "$14",
      "regular_price": "$17",
      "save_pct": 18,
-     "note": null
+     "note": "Citrus aioli, togarashi"
     }
    ],
    "drink_specials": [],
@@ -3969,8 +3969,8 @@
    "yelp_url": "https://www.yelp.com/biz/the-rooftop-lounge-laguna-beach",
    "yelp_result": "Title-only; also a 'Casa Bistro' at same address (Jun 2026).",
    "google_result": "Wanderlog mirror: open, no HH info. Reviews praise the mojitos.",
-   "audit_note": "Audit Oct 7: official menu matches (Mon-Fri 14-17; $12 drinks; food pairs and $22 mojito confirmed).",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Audit Oct 7: official menu matches (Mon-Fri 14-17; $12 drinks; food pairs and $22 mojito confirmed). Oct 8: visitor screenshot of official menu; draft beer now $8 (was $12).",
+   "last_evidence_date": "2026-10-08",
    "sources": [
     {
      "label": "Official menu (live)",
@@ -3980,7 +3980,7 @@
    "lat": 33.532576879857,
    "lng": -117.775908092616,
    "phone": "(949) 497-2446",
-   "public_note": "Hours and prices from the restaurant's own menu (Oct 2026).",
+   "public_note": "Hours and prices from the restaurant's own menu (checked Oct 8, 2026).",
    "hours": {
     "Mon": [
      [
@@ -4028,7 +4028,8 @@
    "hours_note": "Closed Mon & Tue during winter hours; last seating 1 hour before close.",
    "hours_source": "https://www.rooftoplagunabeach.com/",
    "hours_source_kind": "official",
-   "internal_hours_note": "Closed Mon & Tue during winter hours; last seating 1 hr before close"
+   "internal_hours_note": "Closed Mon & Tue during winter hours; last seating 1 hr before close",
+   "checked": "2026-10-08"
   },
   {
    "id": "south-of-nicks",
