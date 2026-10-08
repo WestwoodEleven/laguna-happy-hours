@@ -170,6 +170,24 @@ details.full,details.notesbox{border-top:1px dashed var(--line);padding-top:8px;
 details.full[open],details.notesbox[open]{gap:10px}
 details.full>summary,details.notesbox>summary{font-weight:600;font-size:13px;color:var(--sea);cursor:pointer}
 .nextup{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px;text-align:left}
+.p-sun{background:var(--accent);color:#1c1300}
+.p-recheck{background:var(--line);color:var(--muted)}
+.fav{background:none;border:0;padding:0 2px;font-size:20px;line-height:1;color:var(--star);cursor:pointer;vertical-align:1px}
+.myspots{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:8px}
+.myspots h2{font-size:18px}
+.myspots ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.spot{width:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;color:var(--ink);font:inherit;cursor:pointer}
+.spot span{font:500 13px/1.3 var(--f-mono);color:var(--muted)}
+.spot span.on{color:var(--accent-ink)}
+.dconf{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.pfix{background:none;border:0;padding:0;cursor:pointer;border-bottom:1px dashed transparent}
+.pfix:hover,.pfix:focus-visible{border-bottom-color:var(--sea)}
+.local{color:var(--sea)!important}
+.pform{display:flex!important;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 0}
+.pform label{flex-basis:100%}
+.pform input{width:6em;font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.ownerform{display:grid;gap:8px;background:var(--bg);border-radius:10px;padding:10px 12px}
+.ownerform input:not([type=checkbox]),.ownerform textarea{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);width:100%}
 .claudelink{font-size:13px;color:var(--muted);background:var(--bg);border-radius:10px;padding:10px 12px}
 .claudelink a{color:var(--sea);font-weight:600}
 @media (max-width:600px){.filters{position:static}}
@@ -202,6 +220,7 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
     <div class="row">
       <button class="chip now" id="nowBtn" aria-pressed="false">Happening now</button>
       <button class="chip" id="oceanBtn" aria-pressed="false">🌅 Ocean view</button>
+      <button class="chip" id="favBtn" aria-pressed="false">★ My spots</button>
       <button class="chip" id="expandBtn" aria-pressed="false">Expand all menus</button>
       <select id="kind" aria-label="Deal type">
         <option value="">Happy hours and deals</option>
@@ -219,6 +238,7 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
         <option value="">Any confidence</option>
         <option value="verified">Verified only</option>
         <option value="vl">Verified or likely</option>
+        <option value="check">Needs a local's check</option>
       </select>
       <select id="sort" aria-label="Sort">
         <option value="now">Sort: on now first</option>
@@ -253,6 +273,7 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
     <div class="mstatus" id="mstatus"></div>
   </section>
 
+  <section class="myspots" id="myspots" hidden aria-label="My spots"></section>
   <main class="list" id="list"></main>
 
   <footer>
@@ -272,9 +293,11 @@ const SB_URL = "https://eeyunztuwpgkhrxgygky.supabase.co";
 const SB_KEY = "sb_publishable_4hM1QLZDVrCzi62BFv_Dtg_SQ5WUvH2";
 const VENUES = DATA.venues;
 const DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-const state={q:"",day:"",now:false,ocean:false,expandAll:false,kind:"",hood:"",status:"active",conf:"",sort:"now"};
+let FAVS=new Set();try{FAVS=new Set(JSON.parse(localStorage.getItem("lhh-favs")||"[]"))}catch(e){}
+function saveFavs(){try{localStorage.setItem("lhh-favs",JSON.stringify([...FAVS]))}catch(e){}}
+const state={q:"",day:"",now:false,ocean:false,favs:false,expandAll:false,kind:"",hood:"",status:"active",conf:"",sort:"now"};
 const C_ENDED={};
-const C={ended:{},reports:{},db:null,user:null,isOwner:false,posts:{},photoCache:{},myPosts:[],sample:null,uid:null,canImg:false,confirms:{},ratings:{},subs:{},mine:{c:{},r:{},s:{},e:{}}};
+const C={ended:{},reports:{},dealConf:{},prices:{},db:null,user:null,isOwner:false,posts:{},photoCache:{},myPosts:[],sample:null,uid:null,canImg:false,confirms:{},ratings:{},subs:{},mine:{c:{},r:{},s:{},e:{},d:{},p:{}}};
 
 function laNow(){
   const p=new Intl.DateTimeFormat("en-US",{timeZone:"America/Los_Angeles",weekday:"short",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date());
@@ -304,7 +327,9 @@ function lastChecked(v){
 }
 function daysAgo(d){return d?Math.max(0,Math.floor((Date.now()-d.getTime())/DAY_MS)):null}
 function agoText(n){return n==null?"":n===0?"today":n===1?"yesterday":n<60?n+" days ago":Math.round(n/30)+" months ago"}
-function endedCount(v){const e=C.ended[v.id];if(!e)return 0;const conf=C.confirms[v.id];return e.list.filter(x=>!conf||x>conf).length}
+function endedStats(v){const e=C.ended[v.id];if(!e)return {n:0,days:0};const conf=C.confirms[v.id];const l=e.list.filter(x=>!conf||x>conf);
+  return {n:l.length,days:new Set(l.map(x=>new Date(x).toLocaleDateString("en-US",{timeZone:"America/Los_Angeles"}))).size}}
+function endedCount(v){return endedStats(v).n}
 function effConf(v){
   const order=["needs_confirmation","likely","verified"];
   let i=Math.max(0,order.indexOf(v.confidence));
@@ -312,7 +337,8 @@ function effConf(v){
   const age=daysAgo(lastChecked(v));
   if(age!=null&&age>90)i=Math.max(0,i-1);              /* not checked in 90 days: one step down */
   if(conf!=null&&conf<=30&&i<1)i=1;                       /* a visitor confirmed it this month: at least Likely */
-  if(endedCount(v)>=2)i=0;                                /* two visitors say it ended */
+  if(v.owner_confirmed&&daysAgo(new Date(v.owner_confirmed+"T12:00:00"))<=180)i=2;   /* the restaurant confirmed it */
+  const es=endedStats(v);if(es.n>=3&&es.days>=2)i=0;      /* 3+ people on 2+ days say it ended: needs a check (never marked ended automatically) */
   return order[i];
 }
 /* the effective data for a venue: a visitor's menu-photo update overrides the researched lists */
@@ -332,24 +358,53 @@ function eff(v){
 }
 function liveStatus(v,now){
   if(v.status!=="active")return null;
-  let soon=null,best=null;
+  let soon=null,best=null,dealOn=null;
   const blocks=[...(v.schedule||[]).map(b=>({...b,label:"Happy hour"})),...(v.daily_deals||[]).map(d=>({days:d.days,start:d.start,end:d.end,label:d.title||"Deal",allDay:!d.start}))];
   for(const b of blocks){
     if(!b.days||!b.days.includes(now.day))continue;
     const tag=b.label!=="Happy hour"?" · "+b.label:"";
     if(b.allDay){if(b.days.length===7)continue; /* everyday deals don't make a place "on now" */
-      if(now.min>=660&&now.min<1260){const left=1260-now.min;if(!best||left>best.left)best={on:true,left,text:b.label+" today"}}
+      if(now.min>=660&&now.min<1260){const left=1260-now.min;if(!dealOn||left>dealOn.left)dealOn={on:true,left,text:b.label+" today",label:b.label}}
       else if(now.min<660&&(!soon||660<soon.s))soon={s:660,text:b.label+" today"};continue}
     const s=toMin(b.start),e=toMin(b.end);
     if(s==null)continue;
     if(now.min>=s&&(e==null||now.min<e)){const left=e==null?240:e-now.min;
       const text=e!=null&&left<=30?`Ends in ${left} min${tag}`:"On now"+(b.end?" · until "+fmt(b.end):"")+tag;
-      if(!best||left>best.left)best={on:true,left,text,ending:e!=null&&left<=30};continue}
+      const cand={on:true,left,text,ending:e!=null&&left<=30,hh:b.label==="Happy hour",label:b.label};
+      if(!best||(cand.hh&&!best.hh)||(cand.hh===best.hh&&left>best.left))best=cand;continue}
     if(now.min<s&&(soon==null||s<soon.s)){const inm=s-now.min;soon={s,text:(inm<=60?`Starts in ${inm} min`:"Today "+fmt(b.start))+tag}}
   }
-  if(best)return best;
+  if(best){if(dealOn&&best.hh)best.extra=dealOn.label+" today";return best}   /* a running happy hour wins; the day's deal becomes a second chip */
+  if(dealOn)return dealOn;
   return soon?{on:false,s:soon.s,text:soon.text}:null;
 }
+/* sunset for Laguna Beach (SunCalc formula), as minutes after local midnight */
+function sunsetDate(d){
+  const rad=Math.PI/180,J1970=2440588,J2000=2451545,e=rad*23.4397,J0=0.0009,lat=33.542,lng=-117.785;
+  const toDays=x=>x.valueOf()/86400000-0.5+J1970-J2000,fromJ=j=>new Date((j+0.5-J1970)*86400000);
+  const lw=rad*-lng,phi=rad*lat,dd=toDays(d),n=Math.round(dd-J0-lw/(2*Math.PI));
+  const transit=(Ht)=>J0+(Ht+lw)/(2*Math.PI)+n;
+  const ds=transit(0),M=rad*(357.5291+0.98560028*ds);
+  const L=M+rad*(1.9148*Math.sin(M)+0.02*Math.sin(2*M)+0.0003*Math.sin(3*M))+rad*102.9372+Math.PI;
+  const dec=Math.asin(Math.sin(e)*Math.sin(L));
+  const w=Math.acos((Math.sin(-0.833*rad)-Math.sin(phi)*Math.sin(dec))/(Math.cos(phi)*Math.cos(dec)));
+  const a=transit(w);
+  return fromJ(J2000+a+0.0053*Math.sin(M)-0.0069*Math.sin(2*L));
+}
+function sunsetMin(){
+  const p=new Intl.DateTimeFormat("en-US",{timeZone:"America/Los_Angeles",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(sunsetDate(new Date()));
+  const g=t=>+p.find(x=>x.type===t).value;return g("hour")*60+g("minute");
+}
+const mm2hhmm=m=>String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
+function sunsetPill(v,now){
+  if(v.ocean_view!==true||v.status!=="active")return "";
+  const ss=sunsetMin(),b=(v.schedule||[]).find(x=>(x.days||[]).includes(now.day)&&x.end);
+  if(!b)return "";
+  const e=toMin(b.end);
+  if(e>=ss)return '<span class="pill p-sun">Runs past sunset</span>';
+  return `<span class="pill p-seat">Ends ${ss-e} min before sunset</span>`;
+}
+const monthYear=s=>{try{return new Date(String(s).length===10?s+"T12:00:00":s).toLocaleDateString("en-US",{month:"short",year:"numeric"})}catch(e){return ""}};
 function maxSave(v){let m=0;for(const i of [...(v.drink_items||[]),...(v.food_items||[])])if(i.save_pct>m)m=i.save_pct;for(const d of v.daily_deals||[])for(const i of d.items||[])if(i.save_pct>m)m=i.save_pct;return m}
 function visitorAvg(id){const r=C.ratings[id];return r&&r.n?r.sum/r.n:null}
 
@@ -564,14 +619,35 @@ function wireMapControls(){
 }
 
 /* ---------- rendering ---------- */
-function itemRow(i){
+const SHARED=()=>IN_CLAUDE||WEB_SHARED;
+const dealKey=d=>String(d.title||"deal").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60)||"deal";
+function itemRow(i,vid){
   const save=i.save_pct>0?`<span class="save">Save ${i.save_pct}%</span>`:"";
   const reg=i.regular_price&&i.save_pct>0?`<span class="reg">${esc(i.regular_price)}</span>`:"";
-  const price=i.price?`<span class="price">${esc(i.price)}</span>`:`<span class="np">price not listed</span>`;
-  return `<li><span class="mi">${esc(i.item)}${i.note?`<small>${esc(i.note)}</small>`:""}</span><span class="lead" aria-hidden="true"></span><span class="mp">${save}${reg}${price}</span></li>`;
+  const ptxt=i.price?`<span class="price">${esc(i.price)}</span>`:`<span class="np">price not listed</span>`;
+  const price=vid&&SHARED()?`<button class="pfix" data-act="pfix" data-id="${vid}" data-item="${esc(i.item)}" title="Tap to correct this price">${ptxt}</button>`:ptxt;
+  const loc=vid?C.prices[vid+"|"+i.item]:null;
+  return `<li><span class="mi">${esc(i.item)}${i.note?`<small>${esc(i.note)}</small>`:""}${loc?`<small class="local">Local says ${esc(loc.price)} · ${esc(shortDate(loc.at))}</small>`:""}</span><span class="lead" aria-hidden="true"></span><span class="mp">${save}${reg}${price}</span></li>`;
 }
-function menuBlock(title,items,fallback){
-  if(items&&items.length)return `<div class="sec"><h3>${title} · ${items.length}</h3><ul class="menu">${items.map(itemRow).join("")}</ul></div>`;
+function openPriceFix(btn){
+  const li=btn.closest("li");if(!li||li.nextElementSibling?.classList.contains("pform"))return;
+  const f=document.createElement("li");f.className="pform";
+  f.innerHTML=`<label class="cl">What does <b>${esc(btn.dataset.item)}</b> cost now?</label><input inputmode="decimal" placeholder="$9" maxlength="8" aria-label="New price"><button class="btn primary" data-act="psave">Save</button><button class="btn" data-act="pcancel">Cancel</button><span class="status"></span>`;
+  f.dataset.id=btn.dataset.id;f.dataset.item=btn.dataset.item;li.after(f);f.querySelector("input").focus();
+}
+async function savePriceFix(f){
+  const st=f.querySelector(".status"),raw=f.querySelector("input").value.trim().replace(/^\$/,"");
+  if(!/^\d{1,3}(\.\d{1,2})?$/.test(raw)){st.className="status err";st.textContent="Enter a price like 9 or 12.50.";return}
+  const price="$"+(raw.includes(".")?(+raw).toFixed(2):raw),id=f.dataset.id,item=f.dataset.item.slice(0,80);
+  try{
+    if(WEB_SHARED){if(!C.uid){goSignIn();return}
+      const{error}=await C.sb.from("price_reports").upsert({venue_id:id,item,price,user_id:C.uid},{onConflict:"venue_id,item,user_id"});if(error)throw error;await sbLoad()}
+    else if(IN_CLAUDE){if(!C.db||!C.uid)throw 0;await writeMine("p",id+"|"+item,{price,at:new Date().toISOString()})}
+    st.textContent="Thanks, saved.";setTimeout(()=>f.remove(),900);
+  }catch(e){st.className="status err";st.textContent="Couldn't save. Sign in and try again."}
+}
+function menuBlock(title,items,fallback,vid){
+  if(items&&items.length)return `<div class="sec"><h3>${title} · ${items.length}</h3><ul class="menu">${items.map(i=>itemRow(i,vid)).join("")}</ul></div>`;
   if(fallback&&fallback.length)return `<div class="sec"><h3>${title}</h3><ul class="menu plain">${fallback.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
   return "";
 }
@@ -608,7 +684,7 @@ function communityHTML(v){
   return `<div class="community" id="cm-${v.id}">
     <div class="crow"><button class="btn primary" data-act="confirm" data-id="${v.id}" ${can?"":"disabled"}>Still active ✓</button>
       <span class="cl">${last?`Last confirmed by a visitor <b>${esc(shortDate(last))}</b>`:"Not yet confirmed by a visitor"}</span></div>
-    <div class="crow"><button class="btn" data-act="ended" data-id="${v.id}" ${can&&(C.db||C.sb)?"":"disabled"}>No longer running</button>${endedCount(v)?`<span class="cl">${endedCount(v)} visitor${endedCount(v)>1?"s":""} reported it ended since the last confirmation</span>`:""}</div>
+    <div class="crow"><button class="btn" data-act="ended" data-id="${v.id}" ${can&&(C.db||C.sb)?"":"disabled"}>No longer running</button>${endedCount(v)?'<span class="cl">A visitor reported this may have ended. We check reports before changing anything.</span>':""}</div>
     <div class="crow"><span class="cl">Rate this happy hour</span><div class="stars" role="group" aria-label="Rate 0 to 5 stars">${stars}</div></div>
     ${upload?`<div class="crow">${upload}</div>`:""}
     <div class="upload" id="up-${v.id}" hidden></div>
@@ -619,15 +695,15 @@ function cardHTML(v0,now){
   const v=eff(v0);
   const live=liveStatus(v,now);
   const cp=v.status==="closed"?["p-closed","Closed"]:({verified:["p-verified","Verified"],likely:["p-likely","Likely"],needs_confirmation:["p-needs","Needs confirmation"]}[v.confidence]||["p-needs","Needs confirmation"]);
-  const badges=[live?`<span class="pill ${live.on?(live.ending?"p-ending":"p-on"):"p-soon"}">${esc(live.text)}</span>`:"",`<span class="pill ${cp[0]}">${cp[1]}</span>`,v.ocean_view===true?'<span class="pill p-seat">Ocean view</span>':"",v.status==="unclear"?'<span class="pill p-needs">Status unclear</span>':"",v._sub?`<span class="pill p-comm">Updated ${esc(shortDate(v._sub.at))}</span>`:""].join("");
+  const badges=[live?`<span class="pill ${live.on?(live.ending?"p-ending":"p-on"):"p-soon"}">${esc(live.text)}</span>`:"",live&&live.extra?`<span class="pill p-soon">${esc(live.extra)}</span>`:"",sunsetPill(v,now),v.owner_confirmed?`<span class="pill p-verified">Owner-confirmed ${esc(monthYear(v.owner_confirmed))}</span>`:"",`<span class="pill ${cp[0]}">${cp[1]}</span>`,v.ocean_view===true?'<span class="pill p-seat">Ocean view</span>':"",v.status==="unclear"?'<span class="pill p-needs">Status unclear</span>':"",v._sub?`<span class="pill p-comm">Updated ${esc(shortDate(v._sub.at))}</span>`:""].join("");
   const sched=(v.schedule||[]).length?`<div class="sec"><h3>Happy hour</h3><div class="tide">${v.schedule.map(b=>`<div class="t"><span class="days">${esc(dayLabel(b.days))}</span><span class="hrs">${b.start?fmt(b.start)+" – "+(b.end?fmt(b.end):"close"):"Times not listed"}</span>${b.note?`<span class="tnote">${esc(b.note)}</span>`:""}</div>`).join("")}</div></div>`:"";
-  const drinks=menuBlock("Drinks",v.drink_items,v.drink_specials);
-  const food=menuBlock("Food",v.food_items,v.food_specials);
-  const deals=(v.daily_deals||[]).length?`<div class="sec"><h3>Daily deals</h3><div class="deals">${v.daily_deals.map(d=>`<div class="deal"><div class="dh"><span class="dt">${esc(d.title||"Deal")}</span><span class="dd">${esc(dayLabel(d.days))}${d.start?" · "+fmt(d.start)+(d.end?"–"+fmt(d.end):""):" · all day"}</span></div>${d.description?`<p>${esc(d.description)}</p>`:""}${(d.items||[]).length?`<ul class="menu">${d.items.map(itemRow).join("")}</ul>`:""}</div>`).join("")}</div></div>`:"";
+  const drinks=menuBlock("Drinks",v.drink_items,v.drink_specials,v.id);
+  const food=menuBlock("Food",v.food_items,v.food_specials,v.id);
+  const deals=(v.daily_deals||[]).length?`<div class="sec"><h3>Daily deals</h3><div class="deals">${v.daily_deals.map(d=>{const k=dealKey(d),dc=C.dealConf[v.id+"|"+k];return `<div class="deal"><div class="dh"><span class="dt">${esc(d.title||"Deal")}</span><span class="dd">${esc(dayLabel(d.days))}${d.start?" · "+fmt(d.start)+(d.end?"–"+fmt(d.end):""):" · all day"}</span></div>${d.description?`<p>${esc(d.description)}</p>`:""}${(d.items||[]).length?`<ul class="menu">${d.items.map(i=>itemRow(i,v.id)).join("")}</ul>`:""}${SHARED()&&v.status!=="closed"?`<div class="dconf"><button class="linkbtn" data-act="dealok" data-id="${v.id}" data-k="${esc(k)}">Still running? ✓</button>${dc?`<span class="cl">Confirmed by a visitor ${esc(shortDate(dc))}</span>`:""}</div>`:""}</div>`}).join("")}</div></div>`:"";
   const subNote=v._sub?`<div class="msrc">Lists updated from a visitor's menu photo on ${esc(shortDate(v._sub.at))}.${v._sub.notes?" "+esc(v._sub.notes):""}</div>`:"";
   const none=!drinks&&!food&&!deals&&v.status!=="closed"?`<div class="restrict">No item prices published yet. A menu photo would fill this in.</div>`:"";
   const picks=topPicks(v),nItems=(v.drink_items||[]).length+(v.food_items||[]).length;
-  const pickHTML=picks.length?`<div class="sec"><h3>Best deals</h3><ul class="menu">${picks.map(itemRow).join("")}</ul></div>`:(dealKind(v)?`<div class="kind">${esc(dealKind(v))}</div>`:"");
+  const pickHTML=picks.length?`<div class="sec"><h3>Best deals</h3><ul class="menu">${picks.map(i=>itemRow(i,v.id)).join("")}</ul></div>`:(dealKind(v)?`<div class="kind">${esc(dealKind(v))}</div>`:"");
   const dealChips=(v.daily_deals||[]).length?`<div class="dchips">${v.daily_deals.map(d=>`<span class="dchip">${esc(d.title||"Deal")} · ${esc(dayLabel(d.days))}</span>`).join("")}</div>`:"";
   const fullBody=drinks+food+deals+subNote;
   const needFull=fullBody&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length);
@@ -636,17 +712,15 @@ function cardHTML(v0,now){
   const ended=endedCount(v);
   const age=daysAgo(lastChecked(v));
   const call=v.phone?`<a href="tel:${esc(v.phone.replace(/[^0-9+]/g,""))}">Call ${esc(v.phone)}</a>`:"";
-  const links=[call,v.happy_hour_url?`<a href="${esc(v.happy_hour_url)}" target="_blank" rel="noopener">Happy hour menu</a>`:"",v.website?`<a href="${esc(v.website)}" target="_blank" rel="noopener">${esc(host(v.website))}</a>`:"",v.lat?`<button class="onmap" data-act="onmap" data-id="${v.id}">Show on map</button>`:"",v.address?`<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(v.name+" "+v.address)}" target="_blank" rel="noopener">Directions</a>`:"",`<button class="onmap" data-act="share" data-id="${v.id}">Share</button>`].join("");
+  const links=[call,v.happy_hour_url?`<a href="${esc(v.happy_hour_url)}" target="_blank" rel="noopener">Happy hour menu</a>`:"",v.website?`<a href="${esc(v.website)}" target="_blank" rel="noopener">${esc(host(v.website))}</a>`:"",v.lat?`<button class="onmap" data-act="onmap" data-id="${v.id}">Show on map</button>`:"",v.address?`<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(v.name+" "+v.address)}" target="_blank" rel="noopener">Directions</a>`:"",`<button class="onmap" data-act="share" data-id="${v.id}">Share</button>`,WEB_SHARED&&v.status!=="closed"?`<button class="onmap" data-act="owner" data-id="${v.id}">Is this your place?</button>`:""].join("");
   return `<article class="venue ${v.status==="closed"?"closed":""}" id="card-${v.id}">
-    <div class="vhead"><div><h2>${esc(v.name)}</h2>${distOf(v)!=null?`<span class="dist">${fmtMi(distOf(v))} away</span>`:""}${v.status!=="closed"&&age!=null?`<span class="fresh${age>90?" stale":""}">Last checked ${esc(agoText(age))}</span>`:""}<div class="meta">${esc(v.neighborhood||"")}${v.address?" · "+esc(String(v.address).replace(/,?\s*Laguna Beach,?\s*CA\s*\d{5}/i,"")):""}${v.category?" · "+esc(v.category):""}</div>${ratingsHTML(v)}</div><div class="badges">${badges}${seat}${ended?`<span class="pill p-closed">${ended>=2?"Reported ended":ended+" visitor says it ended"}</span>`:""}</div></div>
+    <div class="vhead"><div><h2>${esc(v.name)} <button class="fav" data-act="fav" data-id="${v.id}" aria-pressed="${FAVS.has(v.id)}" aria-label="${FAVS.has(v.id)?"Remove from":"Add to"} my spots">${FAVS.has(v.id)?"★":"☆"}</button></h2>${distOf(v)!=null?`<span class="dist">${fmtMi(distOf(v))} away</span>`:""}${v.status!=="closed"&&age!=null?`<span class="fresh${age>90?" stale":""}">Last checked ${esc(agoText(age))}</span>`:""}<div class="meta">${esc(v.neighborhood||"")}${v.address?" · "+esc(String(v.address).replace(/,?\s*Laguna Beach,?\s*CA\s*\d{5}/i,"")):""}${v.category?" · "+esc(v.category):""}</div>${ratingsHTML(v)}</div><div class="badges">${badges}${seat}${ended?'<span class="pill p-recheck">Being re-checked</span>':""}</div></div>
     ${sched}${needFull?pickHTML+dealChips:""}${full}${picks.length||fullBody?"":none}
     ${links?`<div class="links">${links}</div>`:""}
     ${v.status==="closed"?"":(IN_CLAUDE||WEB_SHARED)?communityHTML(v)+`<details class="notesbox"><summary>Visitor notes &amp; photos${(C.posts[v.id]||[]).length?` · ${(C.posts[v.id]||[]).length}`:""}</summary><div class="notes"><div id="nt-${v.id}">${notesHTML(v)}</div>${composerHTML(v)}</div></details>`:`<div class="claudelink">Been here lately? <a href="${CLAUDE_URL}" target="_blank" rel="noopener">Open the Claude version</a> to confirm it's still running, rate it, add notes and photos, or update it from a menu photo.</div>`}
     <details><summary>How we checked</summary>
       <dl class="verify">
-        ${v.audit_note?`<div><dt>Auditor</dt><dd>${esc(v.audit_note)}</dd></div>`:""}
-        ${v.yelp_result?`<div><dt>Yelp check</dt><dd>${esc(v.yelp_result)}</dd></div>`:""}
-        ${v.google_result?`<div><dt>Google check</dt><dd>${esc(v.google_result)}</dd></div>`:""}
+        ${v.public_note?`<div><dt>About this listing</dt><dd>${esc(v.public_note)}</dd></div>`:""}
         ${v.google_source?`<div><dt>Google rating source</dt><dd>${esc(v.google_source)}</dd></div>`:""}
         ${(v.sources||[]).length?`<div><dt>Sources</dt><dd class="src">${v.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label||host(s.url))}</a>`).join("")}</dd></div>`:""}
       </dl></details>
@@ -666,13 +740,15 @@ function matches(v0,now){
   if(state.day&&!(v.schedule||[]).some(b=>(b.days||[]).includes(state.day))&&!(v.daily_deals||[]).some(d=>(d.days||[]).includes(state.day)))return false;
   if(state.now&&!(live&&live.on))return false;
   if(state.ocean&&v.ocean_view!==true)return false;
+  if(state.favs&&!FAVS.has(v.id))return false;
+  if(state.conf==="check"&&!(v.status!=="closed"&&(v.confidence==="needs_confirmation"||v.confidence==="likely")))return false;
   const q=state.q.trim().toLowerCase();
   if(q){const hay=[v.name,v.neighborhood,v.address,v.category,...(v.drink_specials||[]),...(v.food_specials||[]),...(v.drink_items||[]).map(i=>i.item),...(v.food_items||[]).map(i=>i.item),...(v.daily_deals||[]).flatMap(d=>[d.title,d.description,...(d.items||[]).map(i=>i.item)])].join(" ").toLowerCase();if(!hay.includes(q))return false}
   return true;
 }
 function render(){
   const now=laNow();
-  document.getElementById("clock").innerHTML="Laguna time now: <b>"+now.day+" "+fmt(String(Math.floor(now.min/60)).padStart(2,"0")+":"+String(now.min%60).padStart(2,"0"))+"</b>";
+  document.getElementById("clock").innerHTML="Laguna time now: <b>"+now.day+" "+fmt(mm2hhmm(now.min))+"</b> · Sunset <b>"+fmt(mm2hhmm(sunsetMin()))+"</b>";
   const rows=VENUES.filter(v=>matches(v,now));
   const rank={verified:0,likely:1,needs_confirmation:2};
   const key={
@@ -686,12 +762,41 @@ function render(){
     visitor:(a,b)=>(visitorAvg(b.id)??-1)-(visitorAvg(a.id)??-1)||a.name.localeCompare(b.name),
     near:(a,b)=>(distOf(a)??999)-(distOf(b)??999)||a.name.localeCompare(b.name),
     name:(a,b)=>a.name.localeCompare(b.name)}[state.sort];
-  rows.sort(key);
+  rows.sort(state.conf==="check"?(a,b)=>(lastChecked(a)||0)-(lastChecked(b)||0)||a.name.localeCompare(b.name):key);
+  renderMySpots(now);
   document.getElementById("count").textContent=rows.length+" of "+VENUES.length;
   const list=document.getElementById("list");
   setTimeout(()=>loadPhotos(list),0);
   list.innerHTML=rows.length?rows.map(v=>cardHTML(v,now)).join(""):`<div class="empty">${state.now?nextUpHTML(now):"No listings match these filters. Try clearing the search or picking a different day."}</div>`;
   if(M.vb||M.leaf){drawPins();if(M.sel&&!rows.some(v=>v.id===M.sel)){document.getElementById("pop").hidden=true;M.sel=null}}
+}
+function renderMySpots(now){
+  const el=document.getElementById("myspots"),vs=VENUES.filter(v=>FAVS.has(v.id));
+  if(!vs.length){el.hidden=true;return}
+  el.hidden=false;
+  const rows=vs.map(v=>({v,l:liveStatus(eff(v),now)})).sort((a,b)=>(a.l?.on?0:a.l?1:2)-(b.l?.on?0:b.l?1:2)||a.v.name.localeCompare(b.v.name));
+  el.innerHTML=`<h2>My spots today</h2><ul>${rows.map(x=>`<li><button class="spot" data-act="goto" data-id="${x.v.id}"><b>${esc(x.v.name)}</b><span class="${x.l?.on?"on":""}">${esc(x.l?x.l.text:"No happy hour today")}</span></button></li>`).join("")}</ul>`;
+}
+function openOwnerForm(id,btn){
+  if(!C.uid){goSignIn();return}
+  const card=document.getElementById("card-"+id);if(card.querySelector(".ownerform"))return;
+  const v=VENUES.find(x=>x.id===id),hh=(v.schedule||[]).map(b=>dayLabel(b.days)+" "+(b.start?fmt(b.start)+"–"+(b.end?fmt(b.end):"close"):"")).join("; ")||"not listed";
+  const f=document.createElement("form");f.className="ownerform";f.noValidate=true;
+  f.innerHTML=`<b>Confirm or correct ${esc(v.name)}</b>
+    <p class="cl">We list happy hour as: ${esc(hh)}. Tell us what's right; we call the restaurant's listed number to verify before adding an Owner-confirmed badge.</p>
+    <label class="cl"><input type="checkbox" name="ok"> Everything listed here is correct</label>
+    <input name="who" maxlength="60" placeholder="Your name and role (e.g. Sam, general manager)" required>
+    <input name="phone" maxlength="30" placeholder="Best phone number to reach you" inputmode="tel">
+    <textarea name="msg" maxlength="1000" rows="3" placeholder="Corrections: days, times, prices, deals…"></textarea>
+    <div class="crow"><button class="btn primary" type="submit">Send to the site owner</button><button class="btn" type="button" data-act="ocancel">Cancel</button></div><div class="status"></div>`;
+  card.querySelector(".links").after(f);
+  f.onsubmit=async e=>{e.preventDefault();const st=f.querySelector(".status"),fd=new FormData(f);
+    const who=String(fd.get("who")||"").trim(),msg=String(fd.get("msg")||"").trim(),ok=!!fd.get("ok");
+    if(!who){st.className="status err";st.textContent="Add your name and role.";return}
+    if(!ok&&!msg){st.className="status err";st.textContent="Tick the box or describe what to correct.";return}
+    const{error}=await C.sb.from("owner_claims").insert({venue_id:id,user_id:C.uid,contact_name:who,contact_phone:String(fd.get("phone")||"").trim(),message:msg,all_correct:ok});
+    if(error){st.className="status err";st.textContent="Couldn't send. Try again in a moment.";return}
+    f.innerHTML='<p class="cl">Thanks. The site owner will check and update the listing.</p>'};
 }
 function nextUpHTML(now){
   const up=VENUES.map(v=>({v,l:liveStatus(eff(v),now)})).filter(x=>x.l&&!x.l.on&&x.l.s!=null).sort((a,b)=>a.l.s-b.l.s).slice(0,5);
@@ -715,6 +820,8 @@ function refreshCommunity(){
 
 /* ---------- shared data (db) ---------- */
 function aggregate(kind,snap){
+  if(kind==="d"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [k,iso] of Object.entries(o))if(typeof iso==="string"&&(!m[k]||iso>m[k]))m[k]=iso;if(d.id===C.uid)C.mine.d=o}C.dealConf=m;VENUES.forEach(v=>refreshCard(v.id));}
+  if(kind==="p"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [k,x] of Object.entries(o))if(x&&x.price&&x.at&&(!m[k]||x.at>m[k].at))m[k]={price:String(x.price).slice(0,10),at:x.at};if(d.id===C.uid)C.mine.p=o}C.prices=m;VENUES.forEach(v=>refreshCard(v.id));}
   if(kind==="e"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [id,iso] of Object.entries(o))if(typeof iso==="string")(m[id]||(m[id]={list:[]})).list.push(iso);if(d.id===C.uid)C.mine.e=o}C.ended=m;refreshCommunity();VENUES.forEach(v=>refreshCard(v.id));}
   if(kind==="c"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [id,iso] of Object.entries(o))if(typeof iso==="string"&&(!m[id]||iso>m[id]))m[id]=iso;if(d.id===C.uid)C.mine.c=o}C.confirms=m;refreshCommunity();}
   if(kind==="r"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [id,n] of Object.entries(o)){const x=Number(n);if(!(x>=0&&x<=5))continue;(m[id]||(m[id]={sum:0,n:0}));m[id].sum+=x;m[id].n++}if(d.id===C.uid)C.mine.r={...o}}C.ratings=m;refreshCommunity();}
@@ -840,12 +947,18 @@ function renderAccount(){
 }
 async function sbLoad(){
   const sb=C.sb;if(!sb)return;
-  const [c,r,p,e,mr]=await Promise.all([
+  const [c,r,p,e,mr,dc,pr]=await Promise.all([
     sb.from("confirmations").select("venue_id,confirmed_at,user_id").limit(5000),
     sb.from("ratings").select("venue_id,stars,user_id").limit(5000),
     sb.from("posts").select("id,venue_id,user_id,author_name,body,photo_url,photo_path,created_at,hidden").order("created_at",{ascending:false}).limit(1000),
     sb.from("ended_reports").select("venue_id,reported_at").limit(5000),
-    C.uid?sb.from("post_reports").select("post_id").eq("user_id",C.uid).limit(1000):Promise.resolve({data:[]})]);
+    C.uid?sb.from("post_reports").select("post_id").eq("user_id",C.uid).limit(1000):Promise.resolve({data:[]}),
+    sb.from("deal_confirmations").select("venue_id,deal_key,confirmed_at").limit(5000),
+    sb.from("price_reports").select("venue_id,item,price,reported_at").order("reported_at",{ascending:false}).limit(5000)]);
+  const before=JSON.stringify([C.dealConf,C.prices]);
+  if(!dc.error){const m={};for(const x of dc.data){const k=x.venue_id+"|"+x.deal_key;if(!m[k]||x.confirmed_at>m[k])m[k]=x.confirmed_at}C.dealConf=m}
+  if(!pr.error){const m={};for(const x of pr.data){const k=x.venue_id+"|"+x.item;if(!m[k]||x.reported_at>m[k].at)m[k]={price:x.price,at:x.reported_at}}C.prices=m}
+  const shareChanged=before!==JSON.stringify([C.dealConf,C.prices]);
   if(!e.error){const m={};for(const x of e.data)(m[x.venue_id]||(m[x.venue_id]={list:[]})).list.push(x.reported_at);C.ended=m}
   if(!mr.error){C.reports={};for(const x of mr.data||[])C.reports[x.post_id]=true}
   if(!c.error){const m={};for(const x of c.data){if(!m[x.venue_id]||x.confirmed_at>m[x.venue_id])m[x.venue_id]=x.confirmed_at}C.confirms=m}
@@ -853,7 +966,8 @@ async function sbLoad(){
   if(!p.error){const m={};for(const x of p.data)(m[x.venue_id]||(m[x.venue_id]=[])).push({uid:x.user_id,id:x.id,at:x.created_at,text:x.body||"",name:x.author_name,photoUrl:x.photo_url,photoPath:x.photo_path,hidden:!!x.hidden});
     const changed=new Set([...Object.keys(m),...Object.keys(C.posts)]);C.posts=m;changed.forEach(refreshNotes)}
   refreshCommunity();
-  if(!e.error)VENUES.forEach(v=>{if(C.ended[v.id])refreshCard(v.id)});
+  if(shareChanged)VENUES.forEach(v=>refreshCard(v.id));
+  else if(!e.error)VENUES.forEach(v=>{if(C.ended[v.id])refreshCard(v.id)});
 }
 async function sbPost(id,btn){
   const st=document.getElementById("nt-st-"+id),ta=document.getElementById("nt-text-"+id),fi=document.getElementById("nt-file-"+id),nm=document.getElementById("nt-name-"+id);
@@ -966,6 +1080,12 @@ document.addEventListener("click",async e=>{
   const id=b.dataset.id,act=b.dataset.act;
   if(act==="onmap")return showOnMap(id);
   if(act==="goto")return gotoCard(id);
+  if(act==="fav"){FAVS.has(id)?FAVS.delete(id):FAVS.add(id);saveFavs();b.setAttribute("aria-pressed",FAVS.has(id));b.textContent=FAVS.has(id)?"★":"☆";renderMySpots(laNow());if(state.favs)render();return}
+  if(act==="pfix")return openPriceFix(b);
+  if(act==="pcancel")return b.closest(".pform").remove();
+  if(act==="psave")return savePriceFix(b.closest(".pform"));
+  if(act==="owner")return openOwnerForm(id,b);
+  if(act==="ocancel")return b.closest(".ownerform").remove();
   if(act==="share")return shareCard(id,b);
   if(act==="openUp")return openUpload(id);
   if(act==="post"){return postNote(id,b)}
@@ -978,6 +1098,7 @@ document.addEventListener("click",async e=>{
   if(WEB_SHARED){
     if(!C.uid)return goSignIn();
     if(act==="confirm"){b.disabled=true;const{error}=await C.sb.from("confirmations").upsert({venue_id:id,user_id:C.uid,confirmed_at:new Date().toISOString()},{onConflict:"venue_id,user_id"});if(error){b.disabled=false;b.textContent="Couldn't save"}else{C.confirms[id]=new Date().toISOString();refreshCommunity()}return}
+    if(act==="dealok"){b.disabled=true;const{error}=await C.sb.from("deal_confirmations").upsert({venue_id:id,deal_key:b.dataset.k,user_id:C.uid},{onConflict:"venue_id,deal_key,user_id"});b.textContent=error?"Couldn't save":"Thanks ✓";if(!error)await sbLoad();return}
     if(act==="ended"){b.disabled=true;const{error}=await C.sb.from("ended_reports").upsert({venue_id:id,user_id:C.uid,reported_at:new Date().toISOString()},{onConflict:"venue_id,user_id"});if(error){b.disabled=false;b.textContent="Couldn't save"}else{b.textContent="Thanks, reported";await sbLoad()}return}
     if(act==="report"){b.disabled=true;const{error}=await C.sb.from("post_reports").insert({post_id:b.dataset.pid,user_id:C.uid});b.textContent=error&&!/duplicate/i.test(error.message)?"Couldn't report":"Reported";C.reports[b.dataset.pid]=true;await sbLoad();return}
     if(act==="restore"){b.disabled=true;await C.sb.from("posts").update({hidden:false}).eq("id",b.dataset.pid);await C.sb.from("post_reports").delete().eq("post_id",b.dataset.pid);await sbLoad();return}
@@ -985,6 +1106,7 @@ document.addEventListener("click",async e=>{
     return;
   }
   if(!C.db||!C.uid)return;
+  if(act==="dealok"){b.disabled=true;try{await writeMine("d",id+"|"+b.dataset.k,new Date().toISOString());b.textContent="Thanks ✓"}catch(err){b.textContent="Couldn't save"}return}
   if(act==="ended"){b.disabled=true;try{await writeMine("e",id,new Date().toISOString());b.textContent="Thanks, reported"}catch(err){b.textContent="Couldn't save"}return}
   if(act==="confirm"){b.disabled=true;try{const iso=new Date().toISOString();await writeMine("c",id,iso);C.confirms[id]=iso;refreshCommunity()}catch(err){b.textContent="Couldn't save";}}
   if(act==="rate"){const n=+b.dataset.n;try{await writeMine("r",id,n)}catch(err){b.closest(".stars").insertAdjacentHTML("afterend",'<span class="cl">Couldn\'t save your rating.</span>')}}
@@ -999,6 +1121,7 @@ document.addEventListener("click",async e=>{
   const nb=document.getElementById("nowBtn");nb.onclick=()=>{state.now=!state.now;nb.setAttribute("aria-pressed",state.now);render()};
   const xb=document.getElementById("expandBtn");xb.onclick=()=>{state.expandAll=!state.expandAll;xb.setAttribute("aria-pressed",state.expandAll);xb.textContent=state.expandAll?"Collapse all menus":"Expand all menus";
     document.querySelectorAll("details.full").forEach(d=>d.open=state.expandAll)};
+  const fb=document.getElementById("favBtn");fb.onclick=()=>{state.favs=!state.favs;fb.setAttribute("aria-pressed",state.favs);render()};
   const ob=document.getElementById("oceanBtn");ob.onclick=()=>{state.ocean=!state.ocean;ob.setAttribute("aria-pressed",state.ocean);render()};
   const fh=()=>{const f=document.querySelector(".filters");document.documentElement.style.setProperty("--fh",getComputedStyle(f).position==="sticky"?f.offsetHeight+"px":"0px")};fh();window.addEventListener("resize",fh);
   if(!IN_CLAUDE){document.querySelectorAll("[data-claude-only]").forEach(e=>e.hidden=true);
@@ -1017,7 +1140,7 @@ document.addEventListener("click",async e=>{
   const [db,user,sample]=await Promise.all([claude.use("db"),claude.use("user"),claude.use("sample")]);
   C.db=db;C.user=user;C.uid=user?await user.id():null;C.sample=sample;C.isOwner=user?await user.isOwner():false;
   if(sample){try{C.canImg=!!(await sample.limits())?.images}catch(e){C.canImg=false}}
-  if(db){for(const k of ["c","r","s","e"])db.collection(k).onSnapshot(s=>aggregate(k,s),()=>{});db.collection("m").onSnapshot(s=>aggregatePosts(s),()=>{});}
+  if(db){for(const k of ["c","r","s","e","d","p"])db.collection(k).onSnapshot(s=>aggregate(k,s),()=>{});db.collection("m").onSnapshot(s=>aggregatePosts(s),()=>{});}
   render();
 })();
 </script>

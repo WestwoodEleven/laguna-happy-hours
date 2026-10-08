@@ -31,6 +31,11 @@ SHARE_HEAD = (
     + (f'<script data-goatcounter="https://{GOATCOUNTER_CODE}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>\n' if GOATCOUNTER_CODE else '')
 )
 data = json.loads((root / "data" / "happy-hours.json").read_text())
+# Internal research notes stay in the repo's JSON; the page shows each listing's public_note instead.
+INTERNAL = ("audit_note", "yelp_result", "google_result")
+for v in data["venues"]:
+    for k in INTERNAL:
+        v.pop(k, None)
 template = (root / "template.html").read_text()
 assert "__DATA__" in template, "template.html is missing the __DATA__ placeholder"
 blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
@@ -55,4 +60,8 @@ page = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<style>' + body.split("</style>", 1)[0] + '</style>\n</head>\n<body>\n'
         + body.split("</style>", 1)[1].strip() + '\n</body>\n</html>\n')
 (root / "index.html").write_text(page)
+# The Claude-hosted version uses the same page without the document wrapper.
+import sys
+if len(sys.argv) > 2 and sys.argv[1] == "--claude":
+    Path(sys.argv[2]).write_text(template.replace("__DATA__", blob, 1))
 print(f"Built index.html with {len(data['venues'])} listings")

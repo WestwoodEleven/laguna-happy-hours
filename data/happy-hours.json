@@ -339,7 +339,8 @@
    ],
    "lat": 33.516106,
    "lng": -117.75699,
-   "phone": "(949) 715-9200"
+   "phone": "(949) 715-9200",
+   "public_note": "Hours and prices from the restaurant's own happy hour menu (Oct 2026)."
   },
   {
    "id": "mozambique",
@@ -589,7 +590,8 @@
    ],
    "lat": 33.52925,
    "lng": -117.771643,
-   "phone": "(949) 715-7777"
+   "phone": "(949) 715-7777",
+   "public_note": "Hours and prices from the restaurant's own happy hour and weekly specials pages (Oct 2026)."
   },
   {
    "id": "las-brisas",
@@ -822,7 +824,8 @@
    ],
    "lat": 33.543412103954,
    "lng": -117.789679149419,
-   "phone": "(949) 497-5434"
+   "phone": "(949) 497-5434",
+   "public_note": "Hours and prices from the restaurant's own happy hour page (Oct 2026)."
   },
   {
    "id": "the-cliff-restaurant",
@@ -896,7 +899,8 @@
    ],
    "lat": 33.539986374922,
    "lng": -117.781600416755,
-   "phone": "(949) 494-1956"
+   "phone": "(949) 494-1956",
+   "public_note": "Hours from the restaurant's website (Oct 2026); appetizer deal also listed by Visit Laguna Beach."
   },
   {
    "id": "finneys-crafthouse",
@@ -982,7 +986,8 @@
    ],
    "lat": 33.542057,
    "lng": -117.783085,
-   "phone": "(949) 484-8140"
+   "phone": "(949) 484-8140",
+   "public_note": "Times from the restaurant's website (Oct 2026); prices from earlier guides, waiting for the restaurant to confirm."
   },
   {
    "id": "oto-sushi",
@@ -1142,7 +1147,8 @@
    ],
    "lat": 33.542285862632,
    "lng": -117.782178562475,
-   "phone": "(949) 306-0279"
+   "phone": "(949) 306-0279",
+   "public_note": "Times from the restaurant's website (Sep 2026); some prices from an earlier menu, waiting for the restaurant to confirm."
   },
   {
    "id": "wine-gallery-laguna",
@@ -1272,7 +1278,8 @@
    ],
    "lat": 33.528512,
    "lng": -117.771045,
-   "phone": "(949) 715-8744"
+   "phone": "(949) 715-8744",
+   "public_note": "Times from the restaurant's website (Oct 2026); item prices from earlier listings, waiting for the restaurant to confirm."
   },
   {
    "id": "coyote-grill",
@@ -1555,7 +1562,8 @@
    ],
    "lat": 33.503258,
    "lng": -117.74504,
-   "phone": "(949) 499-4033"
+   "phone": "(949) 499-4033",
+   "public_note": "Hours and prices from the restaurant's own happy hour menu (Oct 2026). Taco Tuesday from its website; prices not listed."
   },
   {
    "id": "230-forest-avenue",
@@ -1635,7 +1643,8 @@
    ],
    "lat": 33.542630835683,
    "lng": -117.783036904158,
-   "phone": "(949) 494-2545"
+   "phone": "(949) 494-2545",
+   "public_note": "Times and prices from Visit Laguna Beach (Mar 2026); waiting for the restaurant to confirm."
   },
   {
    "id": "avilas-el-ranchito",
@@ -1714,7 +1723,8 @@
    ],
    "lat": 33.532383,
    "lng": -117.775739,
-   "phone": "(949) 376-7040"
+   "phone": "(949) 376-7040",
+   "public_note": "Details from Visit Laguna Beach and the restaurant's website (Aug 2026); waiting for the restaurant to confirm times and prices."
   },
   {
    "id": "brussels-bistro",
@@ -1841,7 +1851,8 @@
    ],
    "lat": 33.542525,
    "lng": -117.783113,
-   "phone": "(949) 376-7955"
+   "phone": "(949) 376-7955",
+   "public_note": "Sources list different start times; we're waiting for the restaurant to confirm."
   },
   {
    "id": "hennesseys-tavern-laguna",
@@ -2174,7 +2185,8 @@
    ],
    "lat": 33.542483,
    "lng": -117.783977,
-   "phone": "(949) 494-2743"
+   "phone": "(949) 494-2743",
+   "public_note": "Hours from the restaurant's website (Oct 2026); weekly deals from its promotions page. Some deals are only at select locations."
   },
   {
    "id": "lumberyard",
@@ -2377,7 +2389,8 @@
    ],
    "lat": 33.544701,
    "lng": -117.781613,
-   "phone": "(949) 715-3900"
+   "phone": "(949) 715-3900",
+   "public_note": "Hours and prices from the restaurant's own happy hour menu (Oct 2026); regular prices not yet published."
   },
   {
    "id": "oak-laguna-beach",
@@ -2525,7 +2538,8 @@
    ],
    "lat": 33.534168,
    "lng": -117.776852,
-   "phone": "(949) 940-3010"
+   "phone": "(949) 940-3010",
+   "public_note": "Sources list different happy hour days; we're waiting for the restaurant to confirm."
   },
   {
    "id": "royal-hawaiian",
@@ -2627,7 +2641,8 @@
    ],
    "lat": 33.544036660639,
    "lng": -117.789000125244,
-   "phone": "(949) 549-4354"
+   "phone": "(949) 549-4354",
+   "public_note": "Hours from the restaurant's website (Oct 2026)."
   },
   {
    "id": "rumari",
@@ -2845,7 +2860,8 @@
    ],
    "lat": 33.528636893508,
    "lng": -117.770916305244,
-   "phone": "(949) 494-0400"
+   "phone": "(949) 494-0400",
+   "public_note": "Hours and prices from the restaurant's own happy hour page (Oct 2026)."
   },
   {
    "id": "kya-bistro",
@@ -2946,7 +2962,8 @@
     }
    ],
    "lat": 33.532591,
-   "lng": -117.775921
+   "lng": -117.775921,
+   "public_note": "Sources list different schedules; we're waiting for the restaurant to confirm."
   },
   {
    "id": "rooftop-lounge-la-casa-del-camino",
@@ -3086,7 +3103,8 @@
    ],
    "lat": 33.532576879857,
    "lng": -117.775908092616,
-   "phone": "(949) 497-2446"
+   "phone": "(949) 497-2446",
+   "public_note": "Hours and prices from the restaurant's own menu (Oct 2026)."
   },
   {
    "id": "south-of-nicks",
@@ -3296,7 +3314,8 @@
    ],
    "lat": 33.54038628794,
    "lng": -117.781683808588,
-   "phone": "(949) 715-3717"
+   "phone": "(949) 715-3717",
+   "public_note": "Hours and prices from the restaurant's own menus (Aug 2026)."
   },
   {
    "id": "romeo-cucina-laguna-beach",
@@ -3410,7 +3429,8 @@
    ],
    "lat": 33.543748,
    "lng": -117.784299,
-   "phone": "(949) 497-6627"
+   "phone": "(949) 497-6627",
+   "public_note": "Happy hour items from the restaurant's website (Apr 2026); prices not yet published online."
   },
   {
    "id": "neapolitan-pizzeria-birreria",
@@ -3519,7 +3539,8 @@
    ],
    "lat": 33.504783,
    "lng": -117.746024,
-   "phone": "(949) 499-4531"
+   "phone": "(949) 499-4531",
+   "public_note": "Happy hour listed by Visit Laguna Beach (Mar 2026); waiting for the restaurant to confirm times and prices."
   },
   {
    "id": "cest-la-vie",
@@ -3612,7 +3633,8 @@
    ],
    "lat": 33.541561,
    "lng": -117.782958,
-   "phone": "(949) 497-5100"
+   "phone": "(949) 497-5100",
+   "public_note": "Weekly specials listed by Visit Laguna Beach (Mar 2026); happy hour times from earlier listings, waiting for the restaurant to confirm."
   },
   {
    "id": "piatti-laguna-beach",
@@ -3639,9 +3661,109 @@
     }
    ],
    "seating_restrictions": "bar only",
-   "happy_hour_url": null,
-   "drink_items": [],
-   "food_items": [],
+   "happy_hour_url": "https://www.laguna.piatti.com/",
+   "drink_items": [
+    {
+     "item": "Margarita",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Martini",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Vodka or gin"
+    },
+    {
+     "item": "Piatti Spritz",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Peroni",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Moretti",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Menabrea",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Red Trolley",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Pinot Grigio",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Chianti",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Parmesan fries",
+     "price": "$5",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Spicy meatballs with polenta",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Fritto misto",
+     "price": "$11",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Pepperoni pizza",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Pancetta cheeseburger",
+     "price": "$14",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
    "drink_specials": [],
    "food_specials": [],
    "daily_deals": [
@@ -3667,7 +3789,7 @@
    "yelp_url": "https://www.yelp.com/biz/piatti-laguna-beach-2",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Not checked (search quota ran out).",
-   "audit_note": "Audit Oct 7: official site confirms weekday bar HH 15-18 and half-off wine Wednesday (dine-in).",
+   "audit_note": "Audit Oct 7: official site confirms weekday bar HH 15-18 and half-off wine Wednesday (dine-in). Oct 7: happy hour drinks and food added from a user's screenshots of laguna.piatti.com's Happy Hour menu tab.",
    "last_evidence_date": "2026-10",
    "sources": [
     {
@@ -3677,7 +3799,9 @@
    ],
    "lat": 33.542638,
    "lng": -117.784019,
-   "phone": "(949) 377-1100"
+   "phone": "(949) 377-1100",
+   "public_note": "Hours from the restaurant's website; happy hour menu from the restaurant's site (visitor screenshot, Oct 2026).",
+   "checked": "2026-10-07"
   },
   {
    "id": "sandpiper-lounge",
@@ -3748,7 +3872,8 @@
    ],
    "lat": 33.533451863692,
    "lng": -117.776573664326,
-   "phone": "(949) 494-4694"
+   "phone": "(949) 494-4694",
+   "public_note": "Opening hours from the venue's website; happy hour details from earlier listings, waiting for the venue to confirm."
   },
   {
    "id": "marine-room-tavern",
@@ -3836,7 +3961,8 @@
    ],
    "lat": 33.542531643955,
    "lng": -117.784103160242,
-   "phone": "(949) 494-3027"
+   "phone": "(949) 494-3027",
+   "public_note": "Happy hour details from earlier listings (Mar 2026); waiting for the venue to confirm times."
   },
   {
    "id": "greeters-corner",
@@ -3900,7 +4026,8 @@
    ],
    "lat": 33.541823,
    "lng": -117.783167,
-   "phone": "(949) 494-0361"
+   "phone": "(949) 494-0361",
+   "public_note": "Happy hour details from earlier listings (Mar 2026); waiting for the restaurant to confirm."
   },
   {
    "id": "rasta-taco",
@@ -3961,7 +4088,8 @@
    ],
    "lat": 33.544149,
    "lng": -117.783243,
-   "phone": "(949) 715-1510"
+   "phone": "(949) 715-1510",
+   "public_note": "Happy hour listed by Visit Laguna Beach; waiting for the restaurant to confirm times and prices."
   },
   {
    "id": "sapphire-laguna",
@@ -4091,7 +4219,8 @@
    ],
    "lat": 33.533323478012,
    "lng": -117.776235345996,
-   "phone": "(949) 715-9888"
+   "phone": "(949) 715-9888",
+   "public_note": "Hours and prices from the restaurant's own Local's Hour menu (Oct 2026)."
   },
   {
    "id": "237-ocean-ave",
@@ -4139,7 +4268,8 @@
      "label": "Best of Laguna (2024-06)",
      "url": "https://bestoflagunabeach.substack.com/p/237-ocean-ave-introduces-local-love"
     }
-   ]
+   ],
+   "public_note": "Listed as closed; another restaurant now operates at this address. Kept here for reference."
   },
   {
    "id": "laguna-beer-company",
@@ -4191,7 +4321,8 @@
    ],
    "lat": 33.5501,
    "lng": -117.779813,
-   "phone": "(949) 715-0805"
+   "phone": "(949) 715-0805",
+   "public_note": "Details not yet published online; waiting for the business to confirm hours and deals."
   },
   {
    "id": "ginas-pizza",
@@ -4296,7 +4427,8 @@
    ],
    "lat": 33.534168,
    "lng": -117.776852,
-   "phone": "(949) 494-4342"
+   "phone": "(949) 494-4342",
+   "public_note": "Opening hours from the restaurant's website; happy hour details from earlier listings, waiting for the restaurant to confirm."
   },
   {
    "id": "chelas-mexican-kitchen",
@@ -4439,7 +4571,8 @@
    ],
    "lat": 33.544794,
    "lng": -117.790515,
-   "phone": "(949) 549-4353"
+   "phone": "(949) 549-4353",
+   "public_note": "Hours and prices from the restaurant's own menu (Oct 2026), shared across its locations; waiting to confirm for Laguna Beach."
   },
   {
    "id": "ahba",
@@ -4691,7 +4824,8 @@
    ],
    "lat": 33.501816,
    "lng": -117.743772,
-   "phone": "(949) 549-4556"
+   "phone": "(949) 549-4556",
+   "public_note": "Hours and prices from the restaurant's own menus (Oct 2026), shared across its locations; daily specials from its online ordering menu."
   },
   {
    "id": "laguna-feast",
@@ -4742,7 +4876,8 @@
     }
    ],
    "lat": 33.537231,
-   "lng": -117.778032
+   "lng": -117.778032,
+   "public_note": "Details from a local dining directory; waiting for the restaurant to confirm."
   },
   {
    "id": "zinc-cafe-bar",
@@ -4798,7 +4933,8 @@
    ],
    "lat": 33.544512,
    "lng": -117.78275,
-   "phone": "(949) 494-6302"
+   "phone": "(949) 494-6302",
+   "public_note": "Happy hour times from the restaurant's website; menu prices not yet published online."
   },
   {
    "id": "the-seahorse",
@@ -4864,7 +5000,8 @@
     }
    ],
    "lat": 33.528887000678,
-   "lng": -117.771216216359
+   "lng": -117.771216216359,
+   "public_note": "Taco Tuesday details from the venue's reservation listing (Oct 2026); happy hour details still to be confirmed."
   },
   {
    "id": "active-culture",
@@ -4948,7 +5085,8 @@
    ],
    "lat": 33.534976,
    "lng": -117.777454,
-   "phone": "(949) 715-5188"
+   "phone": "(949) 715-5188",
+   "public_note": "Friday happy hour from the restaurant's website (Oct 2026); waiting to confirm which locations take part."
   },
   {
    "id": "biryani-hunter",
@@ -5008,7 +5146,8 @@
    ],
    "lat": 33.549534484217,
    "lng": -117.780466689975,
-   "phone": "(949) 549-4145"
+   "phone": "(949) 549-4145",
+   "public_note": "Happy hour times from the restaurant's reservation listing; waiting for the restaurant to confirm."
   },
   {
    "id": "ruby-diner-laguna",
@@ -5073,7 +5212,8 @@
    ],
    "lat": 33.518684,
    "lng": -117.759602,
-   "phone": "(949) 497-7829"
+   "phone": "(949) 497-7829",
+   "public_note": "Shake happy hour from Ruby's website, offered at participating locations; waiting to confirm for the Laguna Beach diner."
   },
   {
    "id": "o-fine-japanese",
@@ -5153,7 +5293,8 @@
    ],
    "lat": 33.515634365613,
    "lng": -117.756550107135,
-   "phone": "(949) 715-5551"
+   "phone": "(949) 715-5551",
+   "public_note": "Happy hour details from the restaurant's website, which notes pricing may differ by location; waiting to confirm for Laguna Beach."
   },
   {
    "id": "rum-social",
@@ -5194,7 +5335,8 @@
    "food_specials": [],
    "daily_deals": [],
    "google_rating": null,
-   "yelp_rating": null
+   "yelp_rating": null,
+   "public_note": "Listed as closed based on business listing reports; kept here for reference."
   },
   {
    "id": "reunion-kitchen-drink-laguna",
@@ -5227,7 +5369,8 @@
    "food_specials": [],
    "daily_deals": [],
    "google_rating": null,
-   "yelp_rating": null
+   "yelp_rating": null,
+   "public_note": "Listed as closed based on the restaurant group's website and business listings; kept here for reference."
   },
   {
    "id": "driftwood-kitchen",
@@ -5256,7 +5399,8 @@
    "food_specials": [],
    "daily_deals": [],
    "google_rating": null,
-   "yelp_rating": null
+   "yelp_rating": null,
+   "public_note": "Listed as closed for hotel redevelopment based on local news reports (Jul 2026); kept here for reference."
   },
   {
    "id": "the-deck-on-laguna-beach",
@@ -5285,7 +5429,8 @@
    "food_specials": [],
    "daily_deals": [],
    "google_rating": null,
-   "yelp_rating": null
+   "yelp_rating": null,
+   "public_note": "Listed as closed for hotel redevelopment based on local news reports (Jul 2026); kept here for reference."
   },
   {
    "id": "skyloft",
@@ -5314,7 +5459,8 @@
    "food_specials": [],
    "daily_deals": [],
    "google_rating": null,
-   "yelp_rating": null
+   "yelp_rating": null,
+   "public_note": "Listed as closed based on local news reports (Jan 2025); kept here for reference."
   },
   {
    "id": "bodega-laguna",
@@ -5339,7 +5485,8 @@
    "food_specials": [],
    "daily_deals": [],
    "google_rating": null,
-   "yelp_rating": null
+   "yelp_rating": null,
+   "public_note": "Listed as closed based on local news reports (Jan 2025); kept here for reference."
   },
   {
    "id": "watermarc",
@@ -5364,7 +5511,8 @@
    "food_specials": [],
    "daily_deals": [],
    "google_rating": null,
-   "yelp_rating": null
+   "yelp_rating": null,
+   "public_note": "Listed as closed; kept here for reference."
   },
   {
    "id": "saigon-beach",
@@ -5553,7 +5701,8 @@
    ],
    "lat": 33.529185577308,
    "lng": -117.771566763243,
-   "phone": "(657) 392-4424"
+   "phone": "(657) 392-4424",
+   "public_note": "Happy hour and Wine Wednesday from the restaurant's flyers (visitor's photo, Oct 2026); regular prices from its menu."
   },
   {
    "id": "pinafini",
@@ -5703,7 +5852,8 @@
    ],
    "lat": 33.540857,
    "lng": -117.782097,
-   "phone": "(949) 313-7670"
+   "phone": "(949) 313-7670",
+   "public_note": "Happy hour menu from a visitor's photo (Oct 2026); regular prices not yet published."
   },
   {
    "id": "noble-ace",
@@ -5821,7 +5971,8 @@
      "url": "https://whatnow.com/orange-county/restaurants/old-hollywood-inspired-speakeasy-to-debut-in-laguna-beach-this-summer/"
     }
    ],
-   "phone": "(949) 715-4646"
+   "phone": "(949) 715-4646",
+   "public_note": "Sunset Hour menu from the restaurant's social media (Oct 2026); regular prices not yet published."
   }
  ],
  "checked_none": [

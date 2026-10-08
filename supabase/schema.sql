@@ -143,6 +143,83 @@ returns trigger language plpgsql as $$ begin new.reported_at := now(); return ne
 drop trigger if exists ended_time on public.ended_reports;
 create trigger ended_time before insert or update on public.ended_reports for each row execute function public.touch_reported();
 
+-- ---------- "Still running?" on a single daily deal ----------
+create table if not exists public.deal_confirmations (
+  venue_id     text not null check (venue_id ~ '^[a-z0-9-]{1,80}$'),
+  deal_key     text not null check (deal_key ~ '^[a-z0-9-]{1,60}$'),
+  user_id      uuid not null default auth.uid() references auth.users(id) on delete cascade,
+  confirmed_at timestamptz not null default now(),
+  primary key (venue_id, deal_key, user_id)
+);
+alter table public.deal_confirmations enable row level security;
+drop policy if exists "deal confirmations are public" on public.deal_confirmations;
+create policy "deal confirmations are public" on public.deal_confirmations for select using (true);
+drop policy if exists "confirm deal as yourself" on public.deal_confirmations;
+create policy "confirm deal as yourself" on public.deal_confirmations for insert to authenticated with check (user_id = auth.uid());
+drop policy if exists "update your deal confirmation" on public.deal_confirmations;
+create policy "update your deal confirmation" on public.deal_confirmations for update to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid());
+create or replace function public.touch_confirmed()
+returns trigger language plpgsql as $$ begin new.confirmed_at := now(); return new; end $$;
+drop trigger if exists deal_conf_time on public.deal_confirmations;
+create trigger deal_conf_time before insert or update on public.deal_confirmations for each row execute function public.touch_confirmed();
+
+-- ---------- "Local says $11": price corrections on a menu line ----------
+create table if not exists public.price_reports (
+  venue_id    text not null check (venue_id ~ '^[a-z0-9-]{1,80}$'),
+  item        text not null check (char_length(item) between 1 and 80),
+  price       text not null check (price ~ '^\$[0-9]{1,3}(\.[0-9]{1,2})?$'),
+  user_id     uuid not null default auth.uid() references auth.users(id) on delete cascade,
+  reported_at timestamptz not null default now(),
+  primary key (venue_id, item, user_id)
+);
+alter table public.price_reports enable row level security;
+drop policy if exists "price reports are public" on public.price_reports;
+create policy "price reports are public" on public.price_reports for select using (true);
+drop policy if exists "report price as yourself" on public.price_reports;
+create policy "report price as yourself" on public.price_reports for insert to authenticated with check (user_id = auth.uid());
+drop policy if exists "update your price report" on public.price_reports;
+create policy "update your price report" on public.price_reports for update to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid());
+drop trigger if exists price_time on public.price_reports;
+create trigger price_time before insert or update on public.price_reports for each row execute function public.touch_reported();
+
+-- ---------- "Is this your place?" messages from restaurants (private: only the sender and admin can read) ----------
+create table if not exists public.owner_claims (
+  id            uuid primary key default gen_random_uuid(),
+  venue_id      text not null check (venue_id ~ '^[a-z0-9-]{1,80}$'),
+  user_id       uuid not null default auth.uid() references auth.users(id) on delete cascade,
+  contact_name  text not null check (char_length(contact_name) between 1 and 60),
+  contact_phone text not null default '' check (char_length(contact_phone) <= 30),
+  message       text not null default '' check (char_length(message) <= 1000),
+  all_correct   boolean not null default false,
+  status        text not null default 'new' check (status in ('new','verified','rejected','done')),
+  created_at    timestamptz not null default now()
+);
+alter table public.owner_claims enable row level security;
+drop policy if exists "see your own claims or admin" on public.owner_claims;
+create policy "see your own claims or admin" on public.owner_claims for select to authenticated using (user_id = auth.uid() or public.is_admin());
+drop policy if exists "send a claim as yourself" on public.owner_claims;
+create policy "send a claim as yourself" on public.owner_claims for insert to authenticated with check (user_id = auth.uid() and status = 'new');
+drop policy if exists "admin updates claims" on public.owner_claims;
+create policy "admin updates claims" on public.owner_claims for update to authenticated using (public.is_admin()) with check (public.is_admin());
+
+create or replace function public.owner_claims_limit()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  if (select count(*) from public.owner_claims where user_id = new.user_id and created_at > now() - interval '1 day') >= 5 then
+    raise exception 'Too many messages today. Try again tomorrow.';
+  end if;
+  new.created_at := now();
+  return new;
+end $$;
+drop trigger if exists owner_claims_limit on public.owner_claims;
+create trigger owner_claims_limit before insert on public.owner_claims for each row execute function public.owner_claims_limit();
+
+-- lets the scheduled check count new restaurant messages without being able to read them
+create or replace function public.new_owner_claims_count()
+returns integer language sql stable security definer set search_path = public
+as $$ select count(*)::int from public.owner_claims where status = 'new' $$;
+grant execute on function public.new_owner_claims_count() to anon, authenticated;
+
 -- ---------- photo storage (public read, 2 MB images, each person writes their own folder) ----------
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('photos', 'photos', true, 2097152, array['image/jpeg','image/png','image/webp'])

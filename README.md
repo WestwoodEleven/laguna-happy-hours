@@ -15,6 +15,12 @@ Happy hours and daily deals at Laguna Beach, California restaurants: hours, drin
 - "Ends in 15 min" / "Starts in 20 min" timing, with places sorted by time left and a "Next up today" list when nothing is on
 - Compact cards (best 3 deals up front, "Full menu" for the rest), ocean view filter, seating notes, tap-to-call and share links
 - Link previews, an app icon and install-to-home-screen support
+- Today's sunset time, with ocean-view cards tagged "Runs past sunset" or "Ends N min before sunset"
+- ★ My spots favorites (saved on the visitor's device) and a "Needs a local's check" filter, stalest first
+- Per-deal "Still running?" confirmations and tap-a-price corrections ("Local says $11")
+- "Is this your place?" messages from restaurants (private to you), and an "Owner-confirmed" badge once you verify by phone (set `owner_confirmed` to the date in the data)
+- "No longer running" reports show a neutral "Being re-checked"; nothing is marked ended automatically
+- Each listing shows a neutral `public_note`; internal research notes (`audit_note` etc.) stay in the JSON and are stripped from the page
 
 Signed-in visitors can confirm a deal is still running, report that it ended, rate it 0–5 stars, post notes and photos, and report posts (3 reports hide a post until the admin restores it). These are stored in Supabase (see below). Menu-photo reading is still only in the [Claude version](https://claude.ai/artifact/GhzNP9fe9LD2c3QqsrsDZS).
 
@@ -57,6 +63,7 @@ After pulling an update that changes `supabase/schema.sql`, run the whole file a
 Two Claude scheduled tasks open pull requests with proposed data changes for you to review and merge:
 
 - **Monthly re-check** (1st of each month): rechecks official happy hour pages and uncertain listings, and every quarter looks for new places in the restaurant roster.
+- **Daily report check** (mornings): alerts you only when there are new "No longer running" reports or restaurant messages.
 - **Weekly visitor review** (Mondays): reads the week's "No longer running" reports, confirmations, notes and photos from Supabase and proposes updates.
 
 ## Visitor counts (optional)
