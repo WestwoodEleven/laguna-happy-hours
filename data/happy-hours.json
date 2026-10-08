@@ -32,7 +32,8 @@
      ],
      "start": "11:00",
      "end": "15:00",
-     "note": "Weekend all-day HH Sat-Sun 11am-6pm per official homepage (Oct 2026)"
+     "note": "Weekend happy hour Sat–Sun 11am–6pm",
+     "internal_note": "Weekend all-day HH Sat-Sun 11am-6pm per official homepage (Oct 2026)"
     }
    ],
    "seating_restrictions": null,
@@ -57,7 +58,8 @@
      "price": "$10",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular glass list $10-$23"
+     "note": null,
+     "internal_note": "regular glass list $10-$23"
     },
     {
      "item": "Well martini",
@@ -115,7 +117,8 @@
      "price": "$13",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner plate is 6 pc at $19; not paired"
+     "note": null,
+     "internal_note": "dinner plate is 6 pc at $19; not paired"
     },
     {
      "item": "Saigon Summer Roll",
@@ -157,7 +160,8 @@
      "price": "$15",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner Korean Tacos (3) $17; HH count not stated, so not paired"
+     "note": null,
+     "internal_note": "dinner Korean Tacos (3) $17; HH count not stated, so not paired"
     },
     {
      "item": "OG Vietnamese Roll",
@@ -206,7 +210,8 @@
      "price": "$17",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner lettuce wraps $18-$21 by protein"
+     "note": null,
+     "internal_note": "dinner lettuce wraps $18-$21 by protein"
     },
     {
      "item": "Spicy Ahi Tuna Roll",
@@ -276,7 +281,8 @@
      "price": "$19",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner order is 7 pc at $21; HH count not stated, so not paired"
+     "note": null,
+     "internal_note": "dinner order is 7 pc at $21; HH count not stated, so not paired"
     },
     {
      "item": "Chicken Satays",
@@ -290,7 +296,8 @@
      "price": "$19",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner lettuce wraps $18-$21 by protein"
+     "note": null,
+     "internal_note": "dinner lettuce wraps $18-$21 by protein"
     },
     {
      "item": "Lobster Macadamia Roll",
@@ -381,7 +388,8 @@
      "price": "$5",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular drafts $8-$9.50"
+     "note": null,
+     "internal_note": "regular drafts $8-$9.50"
     },
     {
      "item": "House wine",
@@ -439,21 +447,24 @@
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner Penne Pasta Mozambique $27 (portion may differ)"
+     "note": null,
+     "internal_note": "dinner Penne Pasta Mozambique $27 (portion may differ)"
     },
     {
      "item": "Peri-Peri Chicken",
      "price": "$15",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner entree $34 (portion may differ)"
+     "note": null,
+     "internal_note": "dinner entree $34 (portion may differ)"
     },
     {
      "item": "Pork Chop",
      "price": "$15",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner entree $35 (portion may differ)"
+     "note": null,
+     "internal_note": "dinner entree $35 (portion may differ)"
     },
     {
      "item": "The Sky Burger",
@@ -474,42 +485,48 @@
      "price": "$15",
      "regular_price": null,
      "save_pct": null,
-     "note": "not on dinner menu (pan-seared salmon $32)"
+     "note": null,
+     "internal_note": "not on dinner menu (pan-seared salmon $32)"
     },
     {
      "item": "Traditional South African Pie",
      "price": "$15",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner $25 (portion may differ)"
+     "note": null,
+     "internal_note": "dinner $25 (portion may differ)"
     },
     {
      "item": "Seasoned Fries",
      "price": "$5",
      "regular_price": "$5",
      "save_pct": 0,
-     "note": "side"
+     "note": "Side",
+     "internal_note": "side"
     },
     {
      "item": "Fries Gone Wild",
      "price": "$6",
      "regular_price": null,
      "save_pct": null,
-     "note": "side"
+     "note": "Side",
+     "internal_note": "side"
     },
     {
      "item": "Sweet Potato Fries",
      "price": "$7",
      "regular_price": "$7",
      "save_pct": 0,
-     "note": "side"
+     "note": "Side",
+     "internal_note": "side"
     },
     {
      "item": "Mazavaroo Fries",
      "price": "$8",
      "regular_price": "$10",
      "save_pct": 20,
-     "note": "side"
+     "note": "Side",
+     "internal_note": "side"
     }
    ],
    "drink_specials": [],
@@ -522,7 +539,7 @@
      ],
      "start": null,
      "end": null,
-     "description": "7oz steak, veg, mash or fries + house wine; dine-in; site labels it limited-time, no substitutions",
+     "description": "7oz steak, veggies, mash or fries, plus house wine. Dine-in only; limited time; no substitutions.",
      "items": [
       {
        "item": "Steak + house wine",
@@ -530,7 +547,8 @@
        "regular_price": null,
        "save_pct": null
       }
-     ]
+     ],
+     "internal_description": "7oz steak, veg, mash or fries + house wine; dine-in; site labels it limited-time, no substitutions"
     },
     {
      "title": "$10 Favorites To-Go",
@@ -550,7 +568,8 @@
        "price": "$10",
        "regular_price": null,
        "save_pct": null,
-       "note": "dine-in pie is $25 but to-go deal excludes sides; portion may differ, so not paired"
+       "note": null,
+       "internal_note": "dine-in pie is $25 but to-go deal excludes sides; portion may differ, so not paired"
       },
       {
        "item": "Chakalaka Bowl",
@@ -617,7 +636,7 @@
      "note": "Cantina only"
     }
    ],
-   "seating_restrictions": "cantina only",
+   "seating_restrictions": "Cantina only",
    "happy_hour_url": "https://www.lasbrisaslagunabeach.com/happy-hour/",
    "drink_items": [
     {
@@ -625,14 +644,16 @@
      "price": "$10",
      "regular_price": "$16",
      "save_pct": 38,
-     "note": "pitcher $44"
+     "note": "Pitcher $44",
+     "internal_note": "pitcher $44"
     },
     {
      "item": "Spicy margarita",
      "price": "$12",
      "regular_price": "$18",
      "save_pct": 33,
-     "note": "pitcher $48"
+     "note": "Pitcher $48",
+     "internal_note": "pitcher $48"
     },
     {
      "item": "Blueberry jalapeno margarita",
@@ -674,7 +695,8 @@
      "price": "$5",
      "regular_price": null,
      "save_pct": null,
-     "note": "michelada +$3"
+     "note": "Michelada +$3",
+     "internal_note": "michelada +$3"
     },
     {
      "item": "Liberty School Cabernet",
@@ -697,7 +719,8 @@
      "price": "$9",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular guacamole $16, chips/salsa/bean dip $12"
+     "note": null,
+     "internal_note": "regular guacamole $16, chips/salsa/bean dip $12"
     },
     {
      "item": "Chef's Salad",
@@ -725,7 +748,8 @@
      "price": "$3",
      "regular_price": null,
      "save_pct": null,
-     "note": "each; regular $32 half dozen"
+     "note": "Each",
+     "internal_note": "each; regular $32 half dozen"
     },
     {
      "item": "Calamari",
@@ -760,14 +784,16 @@
      "price": "$10",
      "regular_price": null,
      "save_pct": null,
-     "note": "lunch order of 2 is $22"
+     "note": null,
+     "internal_note": "lunch order of 2 is $22"
     },
     {
      "item": "Roasted Chicken Taco",
      "price": "$10",
      "regular_price": null,
      "save_pct": null,
-     "note": "lunch order of 2 is $21"
+     "note": null,
+     "internal_note": "lunch order of 2 is $21"
     },
     {
      "item": "Maitake Mushroom Taco",
@@ -781,7 +807,8 @@
      "price": "$8",
      "regular_price": null,
      "save_pct": null,
-     "note": "lunch order of 2 is $21"
+     "note": null,
+     "internal_note": "lunch order of 2 is $21"
     }
    ],
    "drink_specials": [],
@@ -825,7 +852,8 @@
    "lat": 33.543412103954,
    "lng": -117.789679149419,
    "phone": "(949) 497-5434",
-   "public_note": "Hours and prices from the restaurant's own happy hour page (Oct 2026)."
+   "public_note": "Hours and prices from the restaurant's own happy hour page (Oct 2026).",
+   "internal_seating": "cantina only"
   },
   {
    "id": "the-cliff-restaurant",
@@ -851,7 +879,7 @@
      "note": "Bar and fire pit area"
     }
    ],
-   "seating_restrictions": "bar and fire pit area",
+   "seating_restrictions": "Bar and fire pit area",
    "happy_hour_url": null,
    "drink_items": [
     {
@@ -859,7 +887,8 @@
      "price": "$2 off",
      "regular_price": null,
      "save_pct": null,
-     "note": "Visit Laguna text reads \"$22 off beverages\", almost certainly a typo for $2; confirm"
+     "note": null,
+     "internal_note": "Visit Laguna text reads \"$22 off beverages\", almost certainly a typo for $2; confirm"
     }
    ],
    "food_items": [
@@ -868,7 +897,8 @@
      "price": "Half off",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar and fire pit area"
+     "note": "Bar and fire pit area",
+     "internal_note": "bar and fire pit area"
     }
    ],
    "drink_specials": [],
@@ -900,7 +930,8 @@
    "lat": 33.539986374922,
    "lng": -117.781600416755,
    "phone": "(949) 494-1956",
-   "public_note": "Hours from the restaurant's website (Oct 2026); appetizer deal also listed by Visit Laguna Beach."
+   "public_note": "Hours from the restaurant's website (Oct 2026); appetizer deal also listed by Visit Laguna Beach.",
+   "internal_seating": "bar and fire pit area"
   },
   {
    "id": "finneys-crafthouse",
@@ -943,7 +974,8 @@
      "price": "$6/$7/$9",
      "regular_price": null,
      "save_pct": null,
-     "note": "per guide"
+     "note": null,
+     "internal_note": "per guide"
     }
    ],
    "food_items": [
@@ -952,14 +984,16 @@
      "price": "$15",
      "regular_price": null,
      "save_pct": null,
-     "note": "combo"
+     "note": "Combo",
+     "internal_note": "combo"
     },
     {
      "item": "Peggy's Crispy Chicken Sandwich + fries + beer/soda",
      "price": "$15",
      "regular_price": null,
      "save_pct": null,
-     "note": "combo; Franki (Feb 2025) cites $16"
+     "note": "Combo",
+     "internal_note": "combo; Franki (Feb 2025) cites $16"
     }
    ],
    "drink_specials": [],
@@ -1023,7 +1057,8 @@
      "price": "$6",
      "regular_price": null,
      "save_pct": null,
-     "note": "menu PDF lists sake $8/$12; conflict"
+     "note": null,
+     "internal_note": "menu PDF lists sake $8/$12; conflict"
     },
     {
      "item": "House wine",
@@ -1037,7 +1072,8 @@
      "price": "$9",
      "regular_price": "$12",
      "save_pct": 25,
-     "note": "from menu PDF"
+     "note": null,
+     "internal_note": "from menu PDF"
     }
    ],
    "food_items": [
@@ -1046,14 +1082,16 @@
      "price": "$11",
      "regular_price": null,
      "save_pct": null,
-     "note": "menu PDF regular $11; HH price unclear"
+     "note": null,
+     "internal_note": "menu PDF regular $11; HH price unclear"
     },
     {
      "item": "Hand Roll",
      "price": "$16",
      "regular_price": null,
      "save_pct": null,
-     "note": "menu PDF shows '$3 off' hand rolls (regular $16); conflict"
+     "note": null,
+     "internal_note": "menu PDF shows '$3 off' hand rolls (regular $16); conflict"
     },
     {
      "item": "Chicken Karaage",
@@ -1074,7 +1112,8 @@
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular Nikko Groove $15, Scorch $19"
+     "note": null,
+     "internal_note": "regular Nikko Groove $15, Scorch $19"
     },
     {
      "item": "Chef's Roll",
@@ -1095,7 +1134,8 @@
      "price": "$3",
      "regular_price": "$3",
      "save_pct": 0,
-     "note": "each; same price as regular"
+     "note": "Each",
+     "internal_note": "each; same price as regular"
     },
     {
      "item": "Tuna Poke",
@@ -1219,7 +1259,8 @@
      "price": null,
      "regular_price": null,
      "save_pct": null,
-     "note": "earlier guide (Feb 2026) cited $10; unverified"
+     "note": null,
+     "internal_note": "earlier guide (Feb 2026) cited $10; unverified"
     },
     {
      "item": "Frites",
@@ -1239,8 +1280,9 @@
      ],
      "start": null,
      "end": null,
-     "description": "Service workers: 50% off food, 25% off drinks; dine-in; on OpenTable only, not on official site (Oct 2026)",
-     "items": []
+     "description": "Service workers: 50% off food, 25% off drinks. Dine-in only.",
+     "items": [],
+     "internal_description": "Service workers: 50% off food, 25% off drinks; dine-in; on OpenTable only, not on official site (Oct 2026)"
     },
     {
      "title": "Wine Wednesday",
@@ -1249,8 +1291,9 @@
      ],
      "start": null,
      "end": null,
-     "description": "Wine specials; details not listed; on OpenTable only, not on official site (Oct 2026)",
-     "items": []
+     "description": "Wine specials",
+     "items": [],
+     "internal_description": "Wine specials; details not listed; on OpenTable only, not on official site (Oct 2026)"
     }
    ],
    "ocean_view": false,
@@ -1304,7 +1347,8 @@
      ],
      "start": "15:00",
      "end": "18:00",
-     "note": "No HH to go"
+     "note": "No happy hour to go",
+     "internal_note": "No HH to go"
     }
    ],
    "seating_restrictions": null,
@@ -1352,175 +1396,200 @@
      "price": "$6.25",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Beef Taco",
      "price": "$6.25",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Calamari Appetizer",
      "price": "$6.25",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Calamari Taco",
      "price": "$6.25",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Cheese Quesadilla",
      "price": "$6.25",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Chicken Taco",
      "price": "$6.25",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Crab Ceviche",
      "price": "$6.75",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Fresh Baja Ceviche",
      "price": "$6.25",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Mini Buffalo Wings",
      "price": "$6.25",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Mini Chicken Tostada",
      "price": "$6.25",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Bacon Wrapped Shrimp Skewer",
      "price": "$6.75",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Mini Nachos",
      "price": "$6.25",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar"
+     "note": "In the bar",
+     "internal_note": "bar"
     },
     {
      "item": "Beef Tacos plate",
      "price": "$15.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room; with rice & beans"
+     "note": "In the dining room; with rice & beans",
+     "internal_note": "dining room; with rice & beans"
     },
     {
      "item": "Chicken Tacos plate",
      "price": "$15.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     },
     {
      "item": "Carne Asada Tacos plate",
      "price": "$17.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     },
     {
      "item": "Fish Tacos plate",
      "price": "$17.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     },
     {
      "item": "Shrimp Tacos plate",
      "price": "$17.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     },
     {
      "item": "Trio Street Tacos",
      "price": "$11.25",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     },
     {
      "item": "Calamari Tacos plate",
      "price": "$17.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     },
     {
      "item": "Carnitas Tacos plate",
      "price": "$16.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     },
     {
      "item": "Double Cheese Enchiladas",
      "price": "$15.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     },
     {
      "item": "Shredded Beef Enchiladas",
      "price": "$15.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     },
     {
      "item": "Zucchini Enchiladas",
      "price": "$15.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     },
     {
      "item": "Chicken Verde Enchiladas",
      "price": "$15.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     },
     {
      "item": "Bacon Wrapped Jalapenos",
      "price": "$12.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "dining room"
+     "note": "In the dining room",
+     "internal_note": "dining room"
     }
    ],
    "drink_specials": [],
@@ -1533,8 +1602,9 @@
      ],
      "start": "15:00",
      "end": null,
-     "description": "Discounted tacos until close; prices not listed",
-     "items": []
+     "description": "Discounted tacos until close",
+     "items": [],
+     "internal_description": "Discounted tacos until close; prices not listed"
     }
    ],
    "ocean_view": true,
@@ -1597,7 +1667,8 @@
      "price": "$6",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular beers $7-$17"
+     "note": null,
+     "internal_note": "regular beers $7-$17"
     },
     {
      "item": "Wine",
@@ -1611,7 +1682,8 @@
      "price": "$10",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular handcrafted cocktails $19"
+     "note": null,
+     "internal_note": "regular handcrafted cocktails $19"
     }
    ],
    "food_items": [],
@@ -1678,7 +1750,8 @@
      "price": null,
      "regular_price": null,
      "save_pct": null,
-     "note": "prices not listed"
+     "note": null,
+     "internal_note": "prices not listed"
     }
    ],
    "food_items": [],
@@ -1694,8 +1767,9 @@
      ],
      "start": null,
      "end": null,
-     "description": "$5 taco bar + Mexican beer deals (undated blurb; unconfirmed)",
-     "items": []
+     "description": "$5 taco bar and Mexican beer deals",
+     "items": [],
+     "internal_description": "$5 taco bar + Mexican beer deals (undated blurb; unconfirmed)"
     }
    ],
    "ocean_view": false,
@@ -1747,7 +1821,8 @@
      ],
      "start": "16:30",
      "end": "18:00",
-     "note": "Visit Laguna lists 4-6pm"
+     "note": null,
+     "internal_note": "Visit Laguna lists 4-6pm"
     }
    ],
    "seating_restrictions": null,
@@ -1765,7 +1840,8 @@
      "price": null,
      "regular_price": null,
      "save_pct": null,
-     "note": "discounted; price not listed"
+     "note": "Discounted",
+     "internal_note": "discounted; price not listed"
     }
    ],
    "food_items": [
@@ -1815,7 +1891,7 @@
      ],
      "start": null,
      "end": null,
-     "description": "AYCE mussels, 11 flavors",
+     "description": "All-you-can-eat mussels in 11 flavors",
      "items": [
       {
        "item": "AYCE mussels",
@@ -1823,7 +1899,8 @@
        "regular_price": null,
        "save_pct": null
       }
-     ]
+     ],
+     "internal_description": "AYCE mussels, 11 flavors"
     }
    ],
    "ocean_view": false,
@@ -1886,7 +1963,8 @@
      "price": "$7-$11",
      "regular_price": null,
      "save_pct": null,
-     "note": "chain HH page; existing data said $5 drinks"
+     "note": null,
+     "internal_note": "chain HH page; existing data said $5 drinks"
     }
    ],
    "food_items": [
@@ -1990,8 +2068,9 @@
      ],
      "start": "16:00",
      "end": "19:00",
-     "description": "Wednesday happy hour specials on 23 oz Coors Light drafts, Jameson shots, house wine, margaritas, vodka lemonades, greyhounds, screwdrivers and Hawaiian margaritas. Prices not listed.",
-     "items": []
+     "description": "Wednesday specials on 23 oz Coors Light drafts, Jameson shots, house wine, margaritas, vodka lemonades, greyhounds, screwdrivers and Hawaiian margaritas.",
+     "items": [],
+     "internal_description": "Wednesday happy hour specials on 23 oz Coors Light drafts, Jameson shots, house wine, margaritas, vodka lemonades, greyhounds, screwdrivers and Hawaiian margaritas. Prices not listed."
     },
     {
      "title": "Thursday $7 Smash Burger",
@@ -2000,7 +2079,7 @@
      ],
      "start": null,
      "end": null,
-     "description": "Limited time. Dine-in only, at select locations, so check Laguna is taking part.",
+     "description": "Limited time. Dine-in only, at select locations; confirm Laguna takes part.",
      "items": [
       {
        "item": "Smash Burger",
@@ -2009,7 +2088,8 @@
        "save_pct": 61,
        "note": null
       }
-     ]
+     ],
+     "internal_description": "Limited time. Dine-in only, at select locations, so check Laguna is taking part."
     },
     {
      "title": "Handmade Bloody Mary",
@@ -2212,7 +2292,7 @@
      "note": "Bar and patio only"
     }
    ],
-   "seating_restrictions": "bar and patio only",
+   "seating_restrictions": "Bar and patio only",
    "happy_hour_url": "https://www.lblumberyard.com/menus/happy-hour-2?location=laguna-beach",
    "drink_items": [
     {
@@ -2269,7 +2349,8 @@
      "price": "$6",
      "regular_price": null,
      "save_pct": null,
-     "note": "\"up\" drinks +$3; well martinis $9"
+     "note": "Drinks served up +$3; well martinis $9",
+     "internal_note": "\"up\" drinks +$3; well martinis $9"
     }
    ],
    "food_items": [
@@ -2390,7 +2471,8 @@
    "lat": 33.544701,
    "lng": -117.781613,
    "phone": "(949) 715-3900",
-   "public_note": "Hours and prices from the restaurant's own happy hour menu (Oct 2026); regular prices not yet published."
+   "public_note": "Hours and prices from the restaurant's own happy hour menu (Oct 2026); regular prices not yet published.",
+   "internal_seating": "bar and patio only"
   },
   {
    "id": "oak-laguna-beach",
@@ -2413,7 +2495,8 @@
      ],
      "start": "15:00",
      "end": "18:00",
-     "note": "Visit Laguna says Tue-Fri"
+     "note": null,
+     "internal_note": "Visit Laguna says Tue-Fri"
     }
    ],
    "seating_restrictions": null,
@@ -2509,8 +2592,9 @@
      ],
      "start": null,
      "end": null,
-     "description": "Half-off bottles (undated blurb; unconfirmed)",
-     "items": []
+     "description": "Half-off bottles",
+     "items": [],
+     "internal_description": "Half-off bottles (undated blurb; unconfirmed)"
     }
    ],
    "ocean_view": true,
@@ -2595,7 +2679,8 @@
      "price": "$10",
      "regular_price": null,
      "save_pct": null,
-     "note": "from a Google review; regular 'Veggie Roll' $16.95, may differ"
+     "note": null,
+     "internal_note": "from a Google review; regular 'Veggie Roll' $16.95, may differ"
     }
    ],
    "drink_specials": [],
@@ -2608,8 +2693,9 @@
      ],
      "start": null,
      "end": null,
-     "description": "Discount for guests in tiki attire (not on official site Oct 2026; unconfirmed)",
-     "items": []
+     "description": "Discount for guests in tiki attire",
+     "items": [],
+     "internal_description": "Discount for guests in tiki attire (not on official site Oct 2026; unconfirmed)"
     }
    ],
    "ocean_view": false,
@@ -2676,7 +2762,8 @@
      "price": "$5",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular $6-$7"
+     "note": null,
+     "internal_note": "regular $6-$7"
     },
     {
      "item": "Well cocktails",
@@ -2697,7 +2784,8 @@
      "price": "$10",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular glass $12-$18; Prosecco and Ruffino Pinot Grigio $12"
+     "note": null,
+     "internal_note": "regular glass $12-$18; Prosecco and Ruffino Pinot Grigio $12"
     }
    ],
    "food_items": [
@@ -2713,21 +2801,24 @@
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner $28 (portion may differ)"
+     "note": null,
+     "internal_note": "dinner $28 (portion may differ)"
     },
     {
      "item": "Chopped Caesar",
      "price": "$10",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner Roasted Caesar $15"
+     "note": null,
+     "internal_note": "dinner Roasted Caesar $15"
     },
     {
      "item": "Greek Salad",
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner $18 full / $12 half"
+     "note": null,
+     "internal_note": "dinner $18 full / $12 half"
     },
     {
      "item": "Calamari",
@@ -2755,7 +2846,8 @@
      "price": "$15",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner Rigatoni Fileto Marsala $38"
+     "note": null,
+     "internal_note": "dinner Rigatoni Fileto Marsala $38"
     },
     {
      "item": "Penne Arrabiata",
@@ -2776,14 +2868,16 @@
      "price": "$14",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner entree $26"
+     "note": null,
+     "internal_note": "dinner entree $26"
     },
     {
      "item": "Chicken Souvlakia",
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": "dinner entree $21"
+     "note": null,
+     "internal_note": "dinner entree $21"
     },
     {
      "item": "Margherita Pizza",
@@ -2825,7 +2919,8 @@
      "price": "$12",
      "regular_price": "$16",
      "save_pct": 25,
-     "note": "+$2 add shrimp/spinach/sun-dried tomato"
+     "note": "Add shrimp, spinach or sun-dried tomato +$2",
+     "internal_note": "+$2 add shrimp/spinach/sun-dried tomato"
     }
    ],
    "drink_specials": [],
@@ -2885,7 +2980,8 @@
      ],
      "start": "15:00",
      "end": "18:00",
-     "note": "OpenTable now says daily 4:30-5:30"
+     "note": null,
+     "internal_note": "OpenTable now says daily 4:30-5:30"
     }
    ],
    "seating_restrictions": null,
@@ -2910,7 +3006,8 @@
      "price": "$5",
      "regular_price": null,
      "save_pct": null,
-     "note": "OpenTable lists $6 select beers"
+     "note": null,
+     "internal_note": "OpenTable lists $6 select beers"
     }
    ],
    "food_items": [
@@ -2919,7 +3016,8 @@
      "price": "$5",
      "regular_price": null,
      "save_pct": null,
-     "note": "each; selection rotates"
+     "note": "Each; selection rotates",
+     "internal_note": "each; selection rotates"
     }
    ],
    "drink_specials": [],
@@ -2938,8 +3036,9 @@
      ],
      "start": "16:30",
      "end": "17:30",
-     "description": "Buy any cocktail, beer or wine, get half off any dinner food item (per OpenTable)",
-     "items": []
+     "description": "Buy any cocktail, beer or wine, get half off any dinner food item",
+     "items": [],
+     "internal_description": "Buy any cocktail, beer or wine, get half off any dinner food item (per OpenTable)"
     }
    ],
    "ocean_view": null,
@@ -2997,14 +3096,16 @@
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular $11.74-$14.75"
+     "note": null,
+     "internal_note": "regular $11.74-$14.75"
     },
     {
      "item": "House wine",
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular glass $12-$27"
+     "note": null,
+     "internal_note": "regular glass $12-$27"
     },
     {
      "item": "Mojito",
@@ -3251,7 +3352,8 @@
      "price": "$10",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular $21 (portion may differ)"
+     "note": null,
+     "internal_note": "regular $21 (portion may differ)"
     },
     {
      "item": "Chimichangitas",
@@ -3272,14 +3374,16 @@
      "price": "$9",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular $15 (portion may differ)"
+     "note": null,
+     "internal_note": "regular $15 (portion may differ)"
     },
     {
      "item": "Ceviche",
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": "regular $23 (portion may differ)"
+     "note": null,
+     "internal_note": "regular $23 (portion may differ)"
     }
    ],
    "drink_specials": [],
@@ -3367,7 +3471,8 @@
      "price": null,
      "regular_price": null,
      "save_pct": null,
-     "note": "official page spells it 'Misto Fresco'"
+     "note": null,
+     "internal_note": "official page spells it 'Misto Fresco'"
     },
     {
      "item": "Melanzane",
@@ -3660,7 +3765,7 @@
      "note": "At the bar"
     }
    ],
-   "seating_restrictions": "bar only",
+   "seating_restrictions": "Bar only",
    "happy_hour_url": "https://www.laguna.piatti.com/",
    "drink_items": [
     {
@@ -3774,8 +3879,9 @@
      ],
      "start": null,
      "end": null,
-     "description": "Half-off wine, dine-in",
-     "items": []
+     "description": "Half-off wine; dine-in only",
+     "items": [],
+     "internal_description": "Half-off wine, dine-in"
     }
    ],
    "ocean_view": false,
@@ -3801,7 +3907,8 @@
    "lng": -117.784019,
    "phone": "(949) 377-1100",
    "public_note": "Hours from the restaurant's website; happy hour menu from the restaurant's site (visitor screenshot, Oct 2026).",
-   "checked": "2026-10-07"
+   "checked": "2026-10-07",
+   "internal_seating": "bar only"
   },
   {
    "id": "sandpiper-lounge",
@@ -3904,7 +4011,8 @@
      ],
      "start": "12:00",
      "end": "15:00",
-     "note": "Doubtful: Pearl and Google list Sun opening 3pm; Visit Laguna says Sat-Sun open 10am"
+     "note": null,
+     "internal_note": "Doubtful: Pearl and Google list Sun opening 3pm; Visit Laguna says Sat-Sun open 10am"
     }
    ],
    "seating_restrictions": null,
@@ -3979,7 +4087,8 @@
      "days": [],
      "start": "16:00",
      "end": "18:00",
-     "note": "Days not stated in source (empty day list intentional)"
+     "note": null,
+     "internal_note": "Days not stated in source (empty day list intentional)"
     }
    ],
    "seating_restrictions": null,
@@ -4061,7 +4170,8 @@
      "price": null,
      "regular_price": null,
      "save_pct": null,
-     "note": "prices not listed"
+     "note": null,
+     "internal_note": "prices not listed"
     }
    ],
    "drink_specials": [],
@@ -4115,7 +4225,7 @@
      "note": "'Local's Hour', bar area only"
     }
    ],
-   "seating_restrictions": "bar only",
+   "seating_restrictions": "Bar only",
    "happy_hour_url": "https://www.sapphirelagunabeach.com/menus/locals-hour?location=sapphire",
    "drink_items": [
     {
@@ -4146,49 +4256,56 @@
      "price": "$9.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar area"
+     "note": "In the bar area",
+     "internal_note": "bar area"
     },
     {
      "item": "Meyer Lemon & Honey Duck Wings",
      "price": "$9.50",
      "regular_price": "$18",
      "save_pct": 47,
-     "note": "bar area"
+     "note": "In the bar area",
+     "internal_note": "bar area"
     },
     {
      "item": "Classic BLT Sandwich",
      "price": "$9.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar area"
+     "note": "In the bar area",
+     "internal_note": "bar area"
     },
     {
      "item": "Tuna Sandwich",
      "price": "$9.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar area"
+     "note": "In the bar area",
+     "internal_note": "bar area"
     },
     {
      "item": "Beer Battered Fish Tacos",
      "price": "$9.50",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar area"
+     "note": "In the bar area",
+     "internal_note": "bar area"
     },
     {
      "item": "Skillet Mac & Cheese",
      "price": "$8",
      "regular_price": "$15",
      "save_pct": 47,
-     "note": "bar area"
+     "note": "In the bar area",
+     "internal_note": "bar area"
     },
     {
      "item": "Hand Cut Herb Fries",
      "price": "$9",
      "regular_price": null,
      "save_pct": null,
-     "note": "bar area; dinner has truffle & pecorino fries $12 (different)"
+     "note": "In the bar area",
+     "internal_note": "bar area; dinner has truffle & pecorino fries $12 (different)"
     }
    ],
    "drink_specials": [],
@@ -4220,7 +4337,8 @@
    "lat": 33.533323478012,
    "lng": -117.776235345996,
    "phone": "(949) 715-9888",
-   "public_note": "Hours and prices from the restaurant's own Local's Hour menu (Oct 2026)."
+   "public_note": "Hours and prices from the restaurant's own Local's Hour menu (Oct 2026).",
+   "internal_seating": "bar only"
   },
   {
    "id": "237-ocean-ave",
@@ -4241,7 +4359,8 @@
      "price": null,
      "regular_price": null,
      "save_pct": null,
-     "note": "2024"
+     "note": null,
+     "internal_note": "2024"
     }
    ],
    "food_items": [],
@@ -4296,8 +4415,9 @@
      ],
      "start": null,
      "end": null,
-     "description": "Review summary; unconfirmed",
-     "items": []
+     "description": null,
+     "items": [],
+     "internal_description": "Review summary; unconfirmed"
     }
    ],
    "ocean_view": false,
@@ -4393,7 +4513,8 @@
      "price": "$4-$7",
      "regular_price": null,
      "save_pct": null,
-     "note": "individual flatbreads not itemized"
+     "note": null,
+     "internal_note": "individual flatbreads not itemized"
     },
     {
      "item": "Wings",
@@ -4449,7 +4570,8 @@
      ],
      "start": "15:00",
      "end": null,
-     "note": "3pm to close; menu doesn't say if it varies by location"
+     "note": "3pm to close",
+     "internal_note": "3pm to close; menu doesn't say if it varies by location"
     }
    ],
    "seating_restrictions": null,
@@ -4460,7 +4582,8 @@
      "price": "$5.00",
      "regular_price": null,
      "save_pct": null,
-     "note": "Menu doesn't list a regular beer price"
+     "note": null,
+     "internal_note": "Menu doesn't list a regular beer price"
     }
    ],
    "food_items": [
@@ -4469,7 +4592,8 @@
      "price": "$7.00",
      "regular_price": null,
      "save_pct": null,
-     "note": "HH 2 tacos a la carte; regular fish taco plate ($15.99) includes rice & beans, so not paired"
+     "note": "A la carte",
+     "internal_note": "HH 2 tacos a la carte; regular fish taco plate ($15.99) includes rice & beans, so not paired"
     },
     {
      "item": "Bean & cheese burrito",
@@ -4490,7 +4614,8 @@
      "price": "$9.00",
      "regular_price": null,
      "save_pct": null,
-     "note": "Regular plate is 4 taquitos for $13.99-$14.99, so not the same item"
+     "note": null,
+     "internal_note": "Regular plate is 4 taquitos for $13.99-$14.99, so not the same item"
     },
     {
      "item": "Bean & cheese nachos",
@@ -4608,14 +4733,16 @@
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": "Regular cocktails are $13-16"
+     "note": null,
+     "internal_note": "Regular cocktails are $13-16"
     },
     {
      "item": "Abbie (gin cocktail)",
      "price": "$12",
      "regular_price": null,
      "save_pct": null,
-     "note": "Regular cocktails are $13-16"
+     "note": null,
+     "internal_note": "Regular cocktails are $13-16"
     },
     {
      "item": "Margarita",
@@ -4636,7 +4763,8 @@
      "price": "$6",
      "regular_price": "$6",
      "save_pct": 0,
-     "note": "Same price as regular"
+     "note": null,
+     "internal_note": "Same price as regular"
     },
     {
      "item": "Red/white wine",
@@ -4707,7 +4835,7 @@
      ],
      "start": null,
      "end": null,
-     "description": "Tuesday menu on its online ordering site. That site covers both AhbA locations (Laguna and Costa Mesa).",
+     "description": "Tuesday specials menu, listed on the online ordering site",
      "items": [
       {
        "item": "Barbacoa taco",
@@ -4775,7 +4903,8 @@
        "regular_price": null,
        "save_pct": null
       }
-     ]
+     ],
+     "internal_description": "Tuesday menu on its online ordering site. That site covers both AhbA locations (Laguna and Costa Mesa)."
     },
     {
      "title": "Burger Wednesday",
@@ -4854,8 +4983,9 @@
      ],
      "start": null,
      "end": null,
-     "description": "Directory says it's known for Taco Tuesday specials; no details",
-     "items": []
+     "description": "Taco Tuesday specials",
+     "items": [],
+     "internal_description": "Directory says it's known for Taco Tuesday specials; no details"
     }
    ],
    "ocean_view": null,
@@ -4904,7 +5034,8 @@
      ],
      "start": "14:00",
      "end": "16:00",
-     "note": "Days not stated; menu titled 'Happy Hour 2pm-4pm' and cafe open daily 7am-4pm"
+     "note": "Happy hour 2pm–4pm; cafe open daily 7am–4pm",
+     "internal_note": "Days not stated; menu titled 'Happy Hour 2pm-4pm' and cafe open daily 7am-4pm"
     }
    ],
    "seating_restrictions": null,
@@ -5022,7 +5153,8 @@
      ],
      "start": "15:00",
      "end": "17:00",
-     "note": "Brand-wide promo; Laguna participation not stated"
+     "note": "Brand-wide promo; confirm Laguna takes part",
+     "internal_note": "Brand-wide promo; Laguna participation not stated"
     }
    ],
    "seating_restrictions": null,
@@ -5113,7 +5245,8 @@
      ],
      "start": "11:00",
      "end": "16:00",
-     "note": "Indian wines paired with snacks; prices not published"
+     "note": "Indian wines paired with snacks",
+     "internal_note": "Indian wines paired with snacks; prices not published"
     }
    ],
    "seating_restrictions": null,
@@ -5171,7 +5304,8 @@
      ],
      "start": "14:00",
      "end": "17:00",
-     "note": "Half off regular shakes; limited-time chain promo at participating locations (Laguna not named)"
+     "note": "Half off regular shakes; limited time at participating locations",
+     "internal_note": "Half off regular shakes; limited-time chain promo at participating locations (Laguna not named)"
     }
    ],
    "seating_restrictions": null,
@@ -5237,7 +5371,8 @@
      ],
      "start": "17:00",
      "end": "18:30",
-     "note": "Up to 20% off; advertised for Irvine, Laguna unconfirmed"
+     "note": "Up to 20% off; confirm Laguna takes part",
+     "internal_note": "Up to 20% off; advertised for Irvine, Laguna unconfirmed"
     }
    ],
    "seating_restrictions": null,
@@ -5582,21 +5717,24 @@
      "price": "$8",
      "regular_price": null,
      "save_pct": null,
-     "note": "Regular glass pours run $10-$15"
+     "note": null,
+     "internal_note": "Regular glass pours run $10-$15"
     },
     {
      "item": "Cabernet Sauvignon (Oak Farm)",
      "price": "$8",
      "regular_price": null,
      "save_pct": null,
-     "note": "Regular glass pours run $10-$15"
+     "note": null,
+     "internal_note": "Regular glass pours run $10-$15"
     },
     {
      "item": "Sauvignon Blanc (Oak Farm)",
      "price": "$8",
      "regular_price": null,
      "save_pct": null,
-     "note": "Regular glass pours run $10-$15"
+     "note": null,
+     "internal_note": "Regular glass pours run $10-$15"
     }
    ],
    "food_items": [
@@ -5654,7 +5792,8 @@
      "price": "$10",
      "regular_price": null,
      "save_pct": null,
-     "note": "Regular bao priced $7-$12.50 by filling"
+     "note": null,
+     "internal_note": "Regular bao priced $7-$12.50 by filling"
     }
    ],
    "drink_specials": [],
@@ -5667,7 +5806,7 @@
      ],
      "start": null,
      "end": null,
-     "description": "50% off wine bottles all day (excludes Rombauer). Regular bottles run $20-$42.",
+     "description": "50% off wine bottles all day (excludes Rombauer)",
      "items": [
       {
        "item": "Wine bottles",
@@ -5675,7 +5814,8 @@
        "regular_price": null,
        "save_pct": 50
       }
-     ]
+     ],
+     "internal_description": "50% off wine bottles all day (excludes Rombauer). Regular bottles run $20-$42."
     }
    ],
    "ocean_view": null,

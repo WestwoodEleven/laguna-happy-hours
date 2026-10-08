@@ -33,9 +33,16 @@ SHARE_HEAD = (
 data = json.loads((root / "data" / "happy-hours.json").read_text())
 # Internal research notes stay in the repo's JSON; the page shows each listing's public_note instead.
 INTERNAL = ("audit_note", "yelp_result", "google_result")
-for v in data["venues"]:
-    for k in INTERNAL:
-        v.pop(k, None)
+def strip(o):
+    if isinstance(o, dict):
+        for k in [k for k in o if k in INTERNAL or k.startswith("internal_")]:
+            o.pop(k)
+        for x in o.values():
+            strip(x)
+    elif isinstance(o, list):
+        for x in o:
+            strip(x)
+strip(data["venues"])
 template = (root / "template.html").read_text()
 assert "__DATA__" in template, "template.html is missing the __DATA__ placeholder"
 blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
