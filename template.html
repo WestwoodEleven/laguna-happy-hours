@@ -137,6 +137,7 @@ h2{font-weight:600;font-size:21px;line-height:1.15}
 .legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted)}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
 .mstatus{font-size:13px;color:var(--muted)}
+.mstatus:empty{display:none}
 .mstatus.err{color:var(--bad)}
 .dist{font:500 12px/1 var(--f-mono);color:var(--sea);white-space:nowrap}
 .onmap{background:none;border:0;padding:0;color:var(--sea);font:600 13px/1.4 var(--f-body);cursor:pointer}
@@ -219,9 +220,9 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
       <button class="btn primary" id="locBtn">📍 Use my location</button>
       <button class="chip" id="setBtn" aria-pressed="false">Tap map to set my spot</button>
       <select id="spot" aria-label="Start from a landmark"><option value="">Or start from…</option></select>
-      <button class="chip" id="mapToggle" aria-expanded="true">Hide map</button>
+      <button class="chip" id="mapToggle" aria-expanded="false" aria-controls="mapbody">Show map ▾</button>
     </div>
-    <div id="mapbody" style="display:grid;gap:8px">
+    <div id="mapbody" style="display:none;gap:8px">
       <div class="mapbox" id="mapbox">
         <svg id="map" role="img" aria-label="Map of Laguna Beach with happy hour pins"></svg>
         <div class="zoom"><button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">−</button><button id="zfit" aria-label="Show all" style="font-size:13px">⤢</button></div>
@@ -229,8 +230,9 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
         <div class="pop" id="pop" hidden></div>
       </div>
       <div class="legend"><span><i style="background:var(--accent)"></i>On now</span><span><i style="background:var(--sea)"></i>Happy hour</span><span><i style="background:var(--muted)"></i>Daily deals only</span><span><i style="background:var(--you)"></i>You</span><span id="mapcount"></span></div>
-      <div class="mstatus" id="mstatus">Simplified map: coastline and roads are approximate; pins are placed from street addresses.</div>
+      <div class="mstatus" id="mnote">Simplified map: coastline and roads are approximate; pins are placed from street addresses.</div>
     </div>
+    <div class="mstatus" id="mstatus"></div>
   </section>
 
   <main class="list" id="list"></main>
@@ -337,7 +339,7 @@ function mapBase(){
     <text class="sealbl" x="${cx}" y="${cy}" fill="var(--water-ink)" font-family="var(--f-display)" text-anchor="middle">Pacific Ocean</text>
     <g id="lms">${lm}</g><g id="pins"></g><g id="mepin"></g>`;
   const pts=VENUES.filter(v=>v.lat).map(v=>px(v.lat,v.lng));
-  M.full=fitBox(pts,350);setVB(M.full);
+  M.pts=pts;M.full=fitBox(pts,350);setVB(M.full);
 }
 function pinGroups(){
   const g={},now=laNow();
@@ -384,14 +386,14 @@ function gotoCard(id){
 function showOnMap(id){
   const v=VENUES.find(x=>x.id===id);if(!v||!v.lat)return;
   setMapOpen(true);
-  if(M.leaf){M.leaf.setView([v.lat,v.lng],17);showPop([id]);document.getElementById("mapwrap").scrollIntoView({behavior:"smooth",block:"start"});return}
+  if(M.leaf){M.viewSet=true;M.leaf.setView([v.lat,v.lng],17);showPop([id]);document.getElementById("mapwrap").scrollIntoView({behavior:"smooth",block:"start"});return}
   const [x,y]=px(v.lat,v.lng),w=Math.min(M.full.w,1800),h=w*M.full.h/M.full.w;
   setVB({x:x-w/2,y:y-h/2,w,h});showPop([id]);
   document.getElementById("mapwrap").scrollIntoView({behavior:"smooth",block:"start"});
 }
 function setMe(lat,lng,label){
   M.me={lat,lng};M.meLabel=label;
-  if(M.leaf&&label!=="your saved spot")M.leaf.setView([lat,lng],Math.max(M.leaf.getZoom(),15));
+  if(M.leaf&&label!=="your saved spot"&&(M.viewSet=true))M.leaf.setView([lat,lng],Math.max(M.leaf.getZoom(),15));
   try{localStorage.setItem("lhh-me",JSON.stringify({lat,lng,label}))}catch(e){}
   const st=document.getElementById("mstatus");st.className="mstatus";st.textContent=`Distances are from ${label}. Restaurants are sorted closest first.`;
   state.sort="near";document.getElementById("sort").value="near";
@@ -400,8 +402,9 @@ function setMe(lat,lng,label){
 function setMapOpen(open){
   document.getElementById("mapbody").style.display=open?"grid":"none";
   const t=document.getElementById("mapToggle");t.textContent=open?"Hide map":"Show map";t.setAttribute("aria-expanded",open);
-  if(open&&M.leaf)setTimeout(()=>M.leaf.invalidateSize(),0);
-  if(open&&M.vb)drawPins();
+  const t2=document.getElementById("mapToggle");t2.textContent=open?"Hide map ▴":"Show map ▾";
+  if(open&&M.leaf)setTimeout(()=>{M.leaf.invalidateSize();if(!M.viewSet){M.leaf.fitBounds(M.lpts,{padding:[24,24]});M.viewSet=true}},0);
+  if(open&&M.vb){if(!M.viewSet&&M.pts){M.full=fitBox(M.pts,350);setVB(M.full);M.viewSet=true}drawPins()}
 }
 function zoomAt(f,cx,cy){
   const vb=M.vb;if(cx==null){cx=vb.x+vb.w/2;cy=vb.y+vb.h/2}
@@ -441,7 +444,7 @@ function initLeaflet(){
   svg.replaceWith(host);
   const pts=VENUES.filter(v=>v.lat).map(v=>[v.lat,v.lng]);
   const map=L.map(host,{zoomControl:false,attributionControl:true}).fitBounds(pts,{padding:[24,24]});
-  M.leaf=map;M.layer=L.layerGroup().addTo(map);
+  M.leaf=map;M.lpts=pts;M.layer=L.layerGroup().addTo(map);
   tileLayer().addTo(map);
   map.on("click",e=>{
     if(M.setting){M.setting=false;document.getElementById("setBtn").setAttribute("aria-pressed","false");document.getElementById("setbanner").hidden=true;document.getElementById("mapbox").classList.remove("setting");document.getElementById("spot").value="";setMe(e.latlng.lat,e.latlng.lng,"the spot you picked");return}
@@ -450,7 +453,7 @@ function initLeaflet(){
   document.getElementById("zout").onclick=()=>map.zoomOut();
   document.getElementById("zfit").onclick=()=>map.fitBounds(pts,{padding:[24,24]});
   ["pop","setbanner"].forEach(id=>{const el=document.getElementById(id);L.DomEvent.disableClickPropagation(el);L.DomEvent.disableScrollPropagation(el)});
-  document.getElementById("mstatus").textContent="Pins are placed from street addresses.";
+  document.getElementById("mnote").textContent="Pins are placed from street addresses.";
   wireMapControls();
   leafletPins();
 }
