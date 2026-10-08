@@ -31,6 +31,7 @@ Signed-in visitors can confirm a deal is still running, report that it ended, ra
 | `index.html` | The web app (built; don't edit by hand) |
 | `template.html` | Page source with a `__DATA__` placeholder |
 | `data/happy-hours.json` | The database: listings, map geometry, restaurants checked with no deals |
+| `data/closed-places.json` | Places confirmed permanently closed, removed from the site (kept for reference) |
 | `data/restaurant-roster.json` | Every Laguna Beach restaurant and bar that was checked |
 | `build.py` | Rebuilds `index.html` from the template and data |
 | `supabase/schema.sql` | Database tables, access rules and photo storage for the shared features |

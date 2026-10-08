@@ -1,0 +1,353 @@
+{
+ "note": "Places confirmed permanently closed, removed from the site on 2026-10-08. Kept for reference.",
+ "listings": [
+  {
+   "id": "237-ocean-ave",
+   "name": "237 Ocean Ave",
+   "address": "237 Ocean Ave, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "category": "international bistro / lounge",
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "likely",
+   "schedule": [],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Happy hour menu",
+     "price": null,
+     "regular_price": null,
+     "save_pct": null,
+     "note": null,
+     "internal_note": "2024"
+    }
+   ],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [
+    "Happy hour menu (price not listed)"
+   ],
+   "daily_deals": [],
+   "ocean_view": false,
+   "price_level": null,
+   "google_rating": null,
+   "google_count": null,
+   "google_source": null,
+   "google_url": null,
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": "https://www.yelp.com/biz/237-ocean-avenue-laguna-beach",
+   "yelp_result": "Listing open as of Dec 2025 crawl; many past tenants closed.",
+   "google_result": "Not checked (search quota ran out).",
+   "audit_note": "Audit: set closed - El Matatan (open per its official site and OpenTable) now operates at 237 Ocean Ave; 2024 HH and local discount dropped.",
+   "last_evidence_date": "2024-06",
+   "sources": [
+    {
+     "label": "Best of Laguna (2024-06)",
+     "url": "https://bestoflagunabeach.substack.com/p/237-ocean-ave-introduces-local-love"
+    }
+   ],
+   "public_note": "Listed as closed; another restaurant now operates at this address. Kept here for reference."
+  },
+  {
+   "id": "rum-social",
+   "name": "Rum Social Kitchen & Cocktails",
+   "address": "448 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "audit_note": "Both verifiers independently show it closed, possibly by Sep 2025. The 2023 HH has been dropped.",
+   "sources": [
+    {
+     "label": "Wanderlog mirror (closed)",
+     "url": "https://wanderlog.com/place/details/5046572/rum-social-kitchen--cocktails"
+    },
+    {
+     "label": "Yelp (closed, Sep 2026)",
+     "url": "https://www.yelp.com/biz/rum-social-kitchen-and-cocktails-laguna-beach-2"
+    },
+    {
+     "label": "Blue Door Mag (2023-04)",
+     "url": "https://bluedoormagazine.com/?p=3221"
+    },
+    {
+     "label": "FSR Magazine (2023-04)",
+     "url": "https://www.fsrmagazine.com/industry-news/laguna-beachs-rum-social-celebrates-first-anniversary/"
+    },
+    {
+     "label": "AAA",
+     "url": "https://www.aaa.com/tripcanvas/restaurant/rum-social-AA33437"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null,
+   "public_note": "Listed as closed based on business listing reports; kept here for reference."
+  },
+  {
+   "id": "reunion-kitchen-drink-laguna",
+   "name": "Reunion Kitchen + Drink",
+   "address": "610 N. Coast Hwy #102, Laguna Beach, CA 92651",
+   "neighborhood": "North Laguna",
+   "website": null,
+   "audit_note": "Closed per Yelp, Google mirror and chain site. Visit Laguna's HH listing is stale.",
+   "sources": [
+    {
+     "label": "Wanderlog",
+     "url": "https://wanderlog.com/place/details/1156097"
+    },
+    {
+     "label": "Official site",
+     "url": "https://www.reunionkitchen.net/"
+    },
+    {
+     "label": "Visit Laguna (2026-03)",
+     "url": "https://visitlagunabeach.com/?p=14044"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null,
+   "public_note": "Listed as closed based on the restaurant group's website and business listings; kept here for reference."
+  },
+  {
+   "id": "driftwood-kitchen",
+   "name": "Driftwood Kitchen",
+   "address": "619 Sleepy Hollow Ln, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": "https://www.driftwoodkitchen.com/",
+   "audit_note": "Closed after Aug 2026 for hotel redevelopment (news Jul 2026 + OpenTable). Verifier 'open' signals are lagging listings.",
+   "sources": [
+    {
+     "label": "What Now OC (2026-07)",
+     "url": "https://whatnow.com/orange-county/restaurants/a-hotel-redevelopment-is-ending-two-of-laguna-beachs-most-beloved-restaurants/"
+    },
+    {
+     "label": "OpenTable",
+     "url": "https://opentable.com/driftwood-kitchen"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null,
+   "public_note": "Listed as closed for hotel redevelopment based on local news reports (Jul 2026); kept here for reference."
+  },
+  {
+   "id": "the-deck-on-laguna-beach",
+   "name": "The Deck on Laguna Beach",
+   "address": "627 Sleepy Hollow Ln, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "audit_note": "Closed after Aug 2026 for hotel redevelopment (news + OpenTable).",
+   "sources": [
+    {
+     "label": "What Now OC (2026-07)",
+     "url": "https://whatnow.com/orange-county/restaurants/a-hotel-redevelopment-is-ending-two-of-laguna-beachs-most-beloved-restaurants/"
+    },
+    {
+     "label": "OpenTable",
+     "url": "https://www.opentable.com/single.aspx?rid=108175"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null,
+   "public_note": "Listed as closed for hotel redevelopment based on local news reports (Jul 2026); kept here for reference."
+  },
+  {
+   "id": "skyloft",
+   "name": "Skyloft",
+   "address": "422 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "audit_note": "Closed Jan 2025; all sources agree.",
+   "sources": [
+    {
+     "label": "Best of Laguna (2025-01)",
+     "url": "https://bestoflagunabeach.substack.com/p/what-led-to-the-sudden-closure-of/comments"
+    },
+    {
+     "label": "OpenTable",
+     "url": "https://opentable.jp/r/skyloft-oc-laguna-beach"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null,
+   "public_note": "Listed as closed based on local news reports (Jan 2025); kept here for reference."
+  },
+  {
+   "id": "bodega-laguna",
+   "name": "Bodega Laguna",
+   "address": "400 S. Coast Hwy (Heisler Building), Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "audit_note": "Closed Jan 2025. Street number 400 is from the Yelp snippet only.",
+   "sources": [
+    {
+     "label": "Best of Laguna (2025-01)",
+     "url": "https://bestoflagunabeach.substack.com/p/what-led-to-the-sudden-closure-of/comments"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null,
+   "public_note": "Listed as closed based on local news reports (Jan 2025); kept here for reference."
+  },
+  {
+   "id": "watermarc",
+   "name": "Watermarc",
+   "address": "448 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "audit_note": "Closed; three sources agree. Rum Social later took the space and has also closed.",
+   "sources": [
+    {
+     "label": "EnPrimeur",
+     "url": "https://www.enprimeurclub.com/restaurants/watermarc-laguna-beach-restaurant"
+    }
+   ],
+   "status": "closed",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "google_rating": null,
+   "yelp_rating": null,
+   "public_note": "Listed as closed; kept here for reference."
+  }
+ ],
+ "checked_without_deals": [
+  {
+   "id": "salerno-by-chef-pirozzi",
+   "name": "Salerno by Chef Pirozzi",
+   "result": "No happy hour",
+   "open_status": "closed"
+  },
+  {
+   "id": "asada-tacos-beer",
+   "name": "Asada Tacos + Beer",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "la-sirena-grill-south",
+   "name": "La Sirena Grill (South Laguna)",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "dizzs-as-is",
+   "name": "Dizz's As Is",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "sushi-laguna",
+   "name": "Sushi Laguna",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "taco-loco",
+   "name": "Taco Loco",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "tortilla-republic",
+   "name": "Tortilla Republic",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "big-fish-tavern",
+   "name": "Big Fish Tavern",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "suenos-laguna",
+   "name": "Sueños",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "harley-laguna",
+   "name": "Harley",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "laguna-thai-by-the-sea",
+   "name": "Laguna Thai by the Sea",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "royal-thai-cuisine",
+   "name": "Royal Thai Cuisine",
+   "result": "Closed",
+   "open_status": "closed"
+  },
+  {
+   "id": "laguna-fish-company",
+   "name": "Laguna Fish Company",
+   "result": "Closed",
+   "open_status": "closed"
+  }
+ ]
+}

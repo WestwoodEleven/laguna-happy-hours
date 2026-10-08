@@ -258,10 +258,9 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
       </select>
       <select id="hood" aria-label="Neighborhood"><option value="">All areas</option></select>
       <select id="status" aria-label="Status">
-        <option value="active">Hide closed places</option>
+        <option value="active">Confirmed open</option>
         <option value="unclear">Status unclear</option>
-        <option value="closed">Closed places</option>
-        <option value="all">All places</option>
+        <option value="all">Include status unclear</option>
       </select>
       <select id="conf" aria-label="Confidence">
         <option value="">Any confidence</option>
@@ -1177,7 +1176,7 @@ document.addEventListener("click",async e=>{
     document.getElementById("lede").textContent="Happy hours and daily deals across Laguna Beach, with prices, savings, a map and how solid the evidence is.";}
   initMap();
   const none=DATA.checked_none||[];
-  document.getElementById("noneSum").textContent=`${none.length} more restaurants we checked had no deals we could find (of ${DATA.roster_total} total)`;
+  document.getElementById("noneSum").textContent=`${none.length} more Laguna restaurants we checked had no deals we could find (${DATA.roster_total} checked in all)`;
   document.getElementById("noneList").innerHTML=none.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(x=>`<li>${esc(x.name)} <small>· ${esc(x.result)}</small></li>`).join("");
   render();
   const deep=/^#card-([a-z0-9-]+)$/.exec(location.hash);if(deep)setTimeout(()=>gotoCard(deep[1]),50);
