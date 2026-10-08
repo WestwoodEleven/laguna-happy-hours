@@ -347,7 +347,55 @@
    "lat": 33.516106,
    "lng": -117.75699,
    "phone": "(949) 715-9200",
-   "public_note": "Hours and prices from the restaurant's own happy hour menu (Oct 2026)."
+   "public_note": "Hours and prices from the restaurant's own happy hour menu (Oct 2026).",
+   "hours": {
+    "Mon": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ]
+   },
+   "hours_note": "Lunch 11am–3pm, dinner from 3pm. Closing time may vary; call ahead late in the evening.",
+   "hours_source": "https://www.opentable.com/r/starfish-laguna-beach",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Lunch 11-3, dinner from 3pm; happy hour daily 3-6pm (dine-in). OpenTable's description says dinner until 9pm, so closing time may vary."
   },
   {
    "id": "mozambique",
@@ -610,7 +658,45 @@
    "lat": 33.52925,
    "lng": -117.771643,
    "phone": "(949) 715-7777",
-   "public_note": "Hours and prices from the restaurant's own happy hour and weekly specials pages (Oct 2026)."
+   "public_note": "Hours and prices from the restaurant's own happy hour and weekly specials pages (Oct 2026).",
+   "hours": {
+    "Mon": [],
+    "Tue": [],
+    "Wed": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:00",
+      "24:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "10:00",
+      "24:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "10:00",
+      "23:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://mozambiqueoc.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "closed Mon & Tue"
   },
   {
    "id": "las-brisas",
@@ -853,7 +939,54 @@
    "lng": -117.789679149419,
    "phone": "(949) 497-5434",
    "public_note": "Hours and prices from the restaurant's own happy hour page (Oct 2026).",
-   "internal_seating": "cantina only"
+   "internal_seating": "cantina only",
+   "hours": {
+    "Mon": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "08:00",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "08:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": "Breakfast weekdays 8-11, lunch 11-3, weekend brunch 8-3, dinner from 3pm",
+   "hours_source": "https://www.lasbrisaslagunabeach.com/",
+   "hours_source_kind": "official"
   },
   {
    "id": "the-cliff-restaurant",
@@ -931,7 +1064,54 @@
    "lng": -117.781600416755,
    "phone": "(949) 494-1956",
    "public_note": "Hours from the restaurant's website (Oct 2026); appetizer deal also listed by Visit Laguna Beach.",
-   "internal_seating": "bar and fire pit area"
+   "internal_seating": "bar and fire pit area",
+   "hours": {
+    "Mon": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "08:30",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "08:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://www.thecliffrestaurant.com/",
+   "hours_source_kind": "official"
   },
   {
    "id": "finneys-crafthouse",
@@ -1021,7 +1201,54 @@
    "lat": 33.542057,
    "lng": -117.783085,
    "phone": "(949) 484-8140",
-   "public_note": "Times from the restaurant's website (Oct 2026); prices from earlier guides, waiting for the restaurant to confirm."
+   "public_note": "Times from the restaurant's website (Oct 2026); prices from earlier guides, waiting for the restaurant to confirm.",
+   "hours": {
+    "Mon": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "10:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://www.finneyscrafthouse.com/laguna-beach",
+   "hours_source_kind": "official"
   },
   {
    "id": "oto-sushi",
@@ -1188,7 +1415,55 @@
    "lat": 33.542285862632,
    "lng": -117.782178562475,
    "phone": "(949) 306-0279",
-   "public_note": "Times from the restaurant's website (Sep 2026); some prices from an earlier menu, waiting for the restaurant to confirm."
+   "public_note": "Times from the restaurant's website (Sep 2026); some prices from an earlier menu, waiting for the restaurant to confirm.",
+   "hours": {
+    "Mon": [
+     [
+      "16:30",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "16:30",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "16:30",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://otosushi.co/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Site lists one set of hours (also has an Encinitas location); assumed to apply to Laguna Beach"
   },
   {
    "id": "wine-gallery-laguna",
@@ -1322,7 +1597,55 @@
    "lat": 33.528512,
    "lng": -117.771045,
    "phone": "(949) 715-8744",
-   "public_note": "Times from the restaurant's website (Oct 2026); item prices from earlier listings, waiting for the restaurant to confirm."
+   "public_note": "Times from the restaurant's website (Oct 2026); item prices from earlier listings, waiting for the restaurant to confirm.",
+   "hours": {
+    "Mon": [
+     [
+      "16:30",
+      "20:30"
+     ]
+    ],
+    "Tue": [
+     [
+      "16:30",
+      "20:30"
+     ]
+    ],
+    "Wed": [
+     [
+      "16:30",
+      "20:30"
+     ]
+    ],
+    "Thu": [
+     [
+      "16:30",
+      "20:30"
+     ]
+    ],
+    "Fri": [
+     [
+      "16:30",
+      "21:30"
+     ]
+    ],
+    "Sat": [
+     [
+      "16:30",
+      "21:30"
+     ]
+    ],
+    "Sun": [
+     [
+      "16:30",
+      "20:30"
+     ]
+    ]
+   },
+   "hours_note": "Dinner hours shown; the bar may stay open later.",
+   "hours_source": "https://www.opentable.com/r/wine-gallery-laguna-beach",
+   "hours_source_kind": "listing",
+   "internal_hours_note": "OpenTable dinner hours; official site has no hours; bar may stay open later"
   },
   {
    "id": "coyote-grill",
@@ -1633,7 +1956,54 @@
    "lat": 33.503258,
    "lng": -117.74504,
    "phone": "(949) 499-4033",
-   "public_note": "Hours and prices from the restaurant's own happy hour menu (Oct 2026). Taco Tuesday from its website; prices not listed."
+   "public_note": "Hours and prices from the restaurant's own happy hour menu (Oct 2026). Taco Tuesday from its website; prices not listed.",
+   "hours": {
+    "Mon": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": "Closes early on Halloween; closed Thanksgiving, Christmas Eve and Christmas Day",
+   "hours_source": "https://www.coyotegrill.tv/",
+   "hours_source_kind": "official"
   },
   {
    "id": "230-forest-avenue",
@@ -1716,7 +2086,54 @@
    "lat": 33.542630835683,
    "lng": -117.783036904158,
    "phone": "(949) 494-2545",
-   "public_note": "Times and prices from Visit Laguna Beach (Mar 2026); waiting for the restaurant to confirm."
+   "public_note": "Times and prices from Visit Laguna Beach (Mar 2026); waiting for the restaurant to confirm.",
+   "hours": {
+    "Mon": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://www.visitlagunabeach.com/?p=15765",
+   "hours_source_kind": "directory"
   },
   {
    "id": "avilas-el-ranchito",
@@ -1798,7 +2215,55 @@
    "lat": 33.532383,
    "lng": -117.775739,
    "phone": "(949) 376-7040",
-   "public_note": "Details from Visit Laguna Beach and the restaurant's website (Aug 2026); waiting for the restaurant to confirm times and prices."
+   "public_note": "Details from Visit Laguna Beach and the restaurant's website (Aug 2026); waiting for the restaurant to confirm times and prices.",
+   "hours": {
+    "Mon": [
+     [
+      "11:30",
+      "20:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:30",
+      "20:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:30",
+      "20:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "10:00",
+      "20:00"
+     ]
+    ]
+   },
+   "hours_note": "Takeout and delivery hours differ slightly.",
+   "hours_source": "https://avilaslagunabeach.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "to-go/delivery hours differ slightly (Mon-Thu 11-8, Fri-Sat 11-9, Sun 11-8)"
   },
   {
    "id": "brussels-bistro",
@@ -1929,7 +2394,55 @@
    "lat": 33.542525,
    "lng": -117.783113,
    "phone": "(949) 376-7955",
-   "public_note": "Sources list different start times; we're waiting for the restaurant to confirm."
+   "public_note": "Sources list different start times; we're waiting for the restaurant to confirm.",
+   "hours": {
+    "Mon": [
+     [
+      "16:30",
+      "21:30"
+     ]
+    ],
+    "Tue": [
+     [
+      "16:30",
+      "21:30"
+     ]
+    ],
+    "Wed": [
+     [
+      "16:30",
+      "21:30"
+     ]
+    ],
+    "Thu": [
+     [
+      "16:30",
+      "21:30"
+     ]
+    ],
+    "Fri": [
+     [
+      "16:30",
+      "21:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": "Friday closing time as published by the restaurant.",
+   "hours_source": "https://www.brusselsbistro.com/locations",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Friday closing (9pm) earlier than Mon-Thu (9:30pm) as published; verify"
   },
   {
    "id": "hennesseys-tavern-laguna",
@@ -2266,7 +2779,55 @@
    "lat": 33.542483,
    "lng": -117.783977,
    "phone": "(949) 494-2743",
-   "public_note": "Hours from the restaurant's website (Oct 2026); weekly deals from its promotions page. Some deals are only at select locations."
+   "public_note": "Hours from the restaurant's website (Oct 2026); weekly deals from its promotions page. Some deals are only at select locations.",
+   "hours": {
+    "Mon": [
+     [
+      "10:00",
+      "24:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "10:00",
+      "24:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "10:00",
+      "24:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "10:00",
+      "24:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "10:00",
+      "24:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "09:00",
+      "02:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "09:00",
+      "02:00"
+     ]
+    ]
+   },
+   "hours_note": "Kitchen hours may be shorter than bar hours.",
+   "hours_source": "https://www.hennesseystavern.com/laguna-beach",
+   "hours_source_kind": "official",
+   "internal_hours_note": "site lists Mon-Fri 10am-12am, Sat-Sun 9am-2am; kitchen hours may be shorter"
   },
   {
    "id": "lumberyard",
@@ -2472,7 +3033,54 @@
    "lng": -117.781613,
    "phone": "(949) 715-3900",
    "public_note": "Hours and prices from the restaurant's own happy hour menu (Oct 2026); regular prices not yet published.",
-   "internal_seating": "bar and patio only"
+   "internal_seating": "bar and patio only",
+   "hours": {
+    "Mon": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": "Lunch until 3pm every day",
+   "hours_source": "https://lblumberyard.com/",
+   "hours_source_kind": "official"
   },
   {
    "id": "oak-laguna-beach",
@@ -2623,7 +3231,55 @@
    "lat": 33.534168,
    "lng": -117.776852,
    "phone": "(949) 940-3010",
-   "public_note": "Sources list different happy hour days; we're waiting for the restaurant to confirm."
+   "public_note": "Sources list different happy hour days; we're waiting for the restaurant to confirm.",
+   "hours": {
+    "Mon": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:30",
+      "23:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:30",
+      "23:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "10:00",
+      "22:00"
+     ]
+    ]
+   },
+   "hours_note": "Sunday brunch 10am–3pm. Some listings show different hours; call ahead to confirm.",
+   "hours_source": "https://oak-lagunabeach.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Sunday brunch 10am-3pm. Visit Laguna Beach directory lists different hours (Mon closed, Tue-Thu 11-9, Fri 11-10, Sat 10-10, Sun 10-9)"
   },
   {
    "id": "royal-hawaiian",
@@ -2728,7 +3384,45 @@
    "lat": 33.544036660639,
    "lng": -117.789000125244,
    "phone": "(949) 549-4354",
-   "public_note": "Hours from the restaurant's website (Oct 2026)."
+   "public_note": "Hours from the restaurant's website (Oct 2026).",
+   "hours": {
+    "Mon": [],
+    "Tue": [],
+    "Wed": [
+     [
+      "15:00",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "15:00",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "15:00",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "12:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "12:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": "Hours subject to change.",
+   "hours_source": "https://www.royalhawaiianoc.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Site says hours subject to change"
   },
   {
    "id": "rumari",
@@ -2956,7 +3650,45 @@
    "lat": 33.528636893508,
    "lng": -117.770916305244,
    "phone": "(949) 494-0400",
-   "public_note": "Hours and prices from the restaurant's own happy hour page (Oct 2026)."
+   "public_note": "Hours and prices from the restaurant's own happy hour page (Oct 2026).",
+   "hours": {
+    "Mon": [],
+    "Tue": [],
+    "Wed": [
+     [
+      "15:00",
+      "21:30"
+     ]
+    ],
+    "Thu": [
+     [
+      "15:00",
+      "21:30"
+     ]
+    ],
+    "Fri": [
+     [
+      "15:00",
+      "21:30"
+     ]
+    ],
+    "Sat": [
+     [
+      "15:00",
+      "21:30"
+     ]
+    ],
+    "Sun": [
+     [
+      "15:00",
+      "21:30"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://www.rumarioc.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Official site lists Wed-Sun 3-9:30pm; Mon/Tue closed per joinpearl.co listing"
   },
   {
    "id": "kya-bistro",
@@ -3062,7 +3794,50 @@
    ],
    "lat": 33.532591,
    "lng": -117.775921,
-   "public_note": "Sources list different schedules; we're waiting for the restaurant to confirm."
+   "public_note": "Sources list different schedules; we're waiting for the restaurant to confirm.",
+   "hours": {
+    "Mon": [],
+    "Tue": [
+     [
+      "15:00",
+      "22:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "15:00",
+      "22:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "15:00",
+      "22:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "15:00",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "15:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "15:00",
+      "22:00"
+     ]
+    ]
+   },
+   "hours_note": "Dinner service; call ahead to confirm hours.",
+   "hours_source": "https://www.lacasadelcamino.com/dining",
+   "hours_source_kind": "official",
+   "internal_hours_note": "From La Casa del Camino hotel dining page; OpenTable says dinner 4:30pm to close"
   },
   {
    "id": "rooftop-lounge-la-casa-del-camino",
@@ -3205,7 +3980,55 @@
    "lat": 33.532576879857,
    "lng": -117.775908092616,
    "phone": "(949) 497-2446",
-   "public_note": "Hours and prices from the restaurant's own menu (Oct 2026)."
+   "public_note": "Hours and prices from the restaurant's own menu (Oct 2026).",
+   "hours": {
+    "Mon": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "10:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "10:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": "Closed Mon & Tue during winter hours; last seating 1 hour before close.",
+   "hours_source": "https://www.rooftoplagunabeach.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Closed Mon & Tue during winter hours; last seating 1 hr before close"
   },
   {
    "id": "south-of-nicks",
@@ -3419,7 +4242,55 @@
    "lat": 33.54038628794,
    "lng": -117.781683808588,
    "phone": "(949) 715-3717",
-   "public_note": "Hours and prices from the restaurant's own menus (Aug 2026)."
+   "public_note": "Hours and prices from the restaurant's own menus (Aug 2026).",
+   "hours": {
+    "Mon": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:00",
+      "23:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "23:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ]
+   },
+   "hours_note": "Lunch 11am–4pm, dinner from 4pm.",
+   "hours_source": "https://www.opentable.com/r/south-of-nicks-laguna-beach",
+   "hours_source_kind": "listing",
+   "internal_hours_note": "Official site only says 'open daily at 11am'; closing times from OpenTable (lunch 11-4, dinner 4-10/11)"
   },
   {
    "id": "romeo-cucina-laguna-beach",
@@ -3535,7 +4406,8 @@
    "lat": 33.543748,
    "lng": -117.784299,
    "phone": "(949) 497-6627",
-   "public_note": "Happy hour items from the restaurant's website (Apr 2026); prices not yet published online."
+   "public_note": "Happy hour items from the restaurant's website (Apr 2026); prices not yet published online.",
+   "hours_note": "Dinner daily from 5pm; closing time not published"
   },
   {
    "id": "neapolitan-pizzeria-birreria",
@@ -3645,7 +4517,54 @@
    "lat": 33.504783,
    "lng": -117.746024,
    "phone": "(949) 499-4531",
-   "public_note": "Happy hour listed by Visit Laguna Beach (Mar 2026); waiting for the restaurant to confirm times and prices."
+   "public_note": "Happy hour listed by Visit Laguna Beach (Mar 2026); waiting for the restaurant to confirm times and prices.",
+   "hours": {
+    "Mon": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://www.nealaguna.com/",
+   "hours_source_kind": "official"
   },
   {
    "id": "cest-la-vie",
@@ -3739,7 +4658,55 @@
    "lat": 33.541561,
    "lng": -117.782958,
    "phone": "(949) 497-5100",
-   "public_note": "Weekly specials listed by Visit Laguna Beach (Mar 2026); happy hour times from earlier listings, waiting for the restaurant to confirm."
+   "public_note": "Weekly specials listed by Visit Laguna Beach (Mar 2026); happy hour times from earlier listings, waiting for the restaurant to confirm.",
+   "hours": {
+    "Mon": [
+     [
+      "08:00",
+      "20:30"
+     ]
+    ],
+    "Tue": [
+     [
+      "08:00",
+      "20:30"
+     ]
+    ],
+    "Wed": [
+     [
+      "08:00",
+      "20:30"
+     ]
+    ],
+    "Thu": [
+     [
+      "08:00",
+      "20:30"
+     ]
+    ],
+    "Fri": [
+     [
+      "08:00",
+      "20:30"
+     ]
+    ],
+    "Sat": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": "Open daily for breakfast, lunch and dinner.",
+   "hours_source": "https://opentable.com/r/cest-la-vie-restaurant-and-bakery-laguna-beach",
+   "hours_source_kind": "listing",
+   "internal_hours_note": "Official site only says open daily for breakfast, lunch, dinner"
   },
   {
    "id": "piatti-laguna-beach",
@@ -3908,7 +4875,55 @@
    "phone": "(949) 377-1100",
    "public_note": "Hours from the restaurant's website; happy hour menu from the restaurant's site (visitor screenshot, Oct 2026).",
    "checked": "2026-10-07",
-   "internal_seating": "bar only"
+   "internal_seating": "bar only",
+   "hours": {
+    "Mon": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": "Lunch 11:30am–4pm, dinner 4–9pm.",
+   "hours_source": "https://www.laguna.piatti.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "open daily: lunch 11:30am-4pm, dinner 4-9pm"
   },
   {
    "id": "sandpiper-lounge",
@@ -3980,7 +4995,54 @@
    "lat": 33.533451863692,
    "lng": -117.776573664326,
    "phone": "(949) 494-4694",
-   "public_note": "Opening hours from the venue's website; happy hour details from earlier listings, waiting for the venue to confirm."
+   "public_note": "Opening hours from the venue's website; happy hour details from earlier listings, waiting for the venue to confirm.",
+   "hours": {
+    "Mon": [
+     [
+      "13:00",
+      "02:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "13:00",
+      "02:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "13:00",
+      "02:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "13:00",
+      "02:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "13:00",
+      "02:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "13:00",
+      "02:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "13:00",
+      "02:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://www.sandpiperlounge.com/",
+   "hours_source_kind": "official"
   },
   {
    "id": "marine-room-tavern",
@@ -4070,7 +5132,54 @@
    "lat": 33.542531643955,
    "lng": -117.784103160242,
    "phone": "(949) 494-3027",
-   "public_note": "Happy hour details from earlier listings (Mar 2026); waiting for the venue to confirm times."
+   "public_note": "Happy hour details from earlier listings (Mar 2026); waiting for the venue to confirm times.",
+   "hours": {
+    "Mon": [
+     [
+      "15:00",
+      "02:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "15:00",
+      "02:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "15:00",
+      "02:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "15:00",
+      "02:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "15:00",
+      "02:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "10:00",
+      "02:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "10:00",
+      "02:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://www.visitlagunabeach.com/directory/marine-room-tavern/",
+   "hours_source_kind": "directory"
   },
   {
    "id": "greeters-corner",
@@ -4136,7 +5245,50 @@
    "lat": 33.541823,
    "lng": -117.783167,
    "phone": "(949) 494-0361",
-   "public_note": "Happy hour details from earlier listings (Mar 2026); waiting for the restaurant to confirm."
+   "public_note": "Happy hour details from earlier listings (Mar 2026); waiting for the restaurant to confirm.",
+   "hours": {
+    "Mon": [
+     [
+      "08:00",
+      "20:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "08:00",
+      "20:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "08:00",
+      "20:00"
+     ]
+    ],
+    "Thu": [],
+    "Fri": [
+     [
+      "08:00",
+      "20:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "08:00",
+      "20:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "08:00",
+      "20:00"
+     ]
+    ]
+   },
+   "hours_note": "Thursday hours not published; call ahead.",
+   "hours_source": "https://www.opentable.ie/r/the-greeters-corner-restaurant-laguna-beach-2",
+   "hours_source_kind": "directory",
+   "internal_hours_note": "Sources list Mon-Wed, Fri-Sun 8am-8pm; Thursday omitted (likely closed, unconfirmed)"
   },
   {
    "id": "rasta-taco",
@@ -4199,7 +5351,50 @@
    "lat": 33.544149,
    "lng": -117.783243,
    "phone": "(949) 715-1510",
-   "public_note": "Happy hour listed by Visit Laguna Beach; waiting for the restaurant to confirm times and prices."
+   "public_note": "Happy hour listed by Visit Laguna Beach; waiting for the restaurant to confirm times and prices.",
+   "hours": {
+    "Mon": [],
+    "Tue": [
+     [
+      "11:00",
+      "20:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:00",
+      "20:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:00",
+      "20:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:00",
+      "20:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "20:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:00",
+      "20:00"
+     ]
+    ]
+   },
+   "hours_note": "Closing time may be earlier on some days; call ahead.",
+   "hours_source": "https://visitlagunabeach.com/directory/rasta-taco",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Closed Mon. Source is a tourism listing; the Clover ordering page showed 11am-6pm for Wed Oct 7, so closing time may be earlier (possibly seasonal or ordering-only)"
   },
   {
    "id": "sapphire-laguna",
@@ -4338,7 +5533,55 @@
    "lng": -117.776235345996,
    "phone": "(949) 715-9888",
    "public_note": "Hours and prices from the restaurant's own Local's Hour menu (Oct 2026).",
-   "internal_seating": "bar only"
+   "internal_seating": "bar only",
+   "hours": {
+    "Mon": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "10:00",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "10:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": "Sapphire Pantry next door is open daily 7am–3pm.",
+   "hours_source": "https://www.sapphirelagunabeach.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Sapphire Pantry (same site) open daily 7am-3pm"
   },
   {
    "id": "laguna-beer-company",
@@ -4392,7 +5635,54 @@
    "lat": 33.5501,
    "lng": -117.779813,
    "phone": "(949) 715-0805",
-   "public_note": "Details not yet published online; waiting for the business to confirm hours and deals."
+   "public_note": "Details not yet published online; waiting for the business to confirm hours and deals.",
+   "hours": {
+    "Mon": [
+     [
+      "12:00",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "12:00",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "12:00",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "12:00",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "12:00",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://www.lagunabeer.com/tasting-room",
+   "hours_source_kind": "official"
   },
   {
    "id": "ginas-pizza",
@@ -4499,7 +5789,54 @@
    "lat": 33.534168,
    "lng": -117.776852,
    "phone": "(949) 494-4342",
-   "public_note": "Opening hours from the restaurant's website; happy hour details from earlier listings, waiting for the restaurant to confirm."
+   "public_note": "Opening hours from the restaurant's website; happy hour details from earlier listings, waiting for the restaurant to confirm.",
+   "hours": {
+    "Mon": [
+     [
+      "10:30",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "10:30",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "10:30",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "10:30",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "10:30",
+      "21:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://www.ginaspizza.com/",
+   "hours_source_kind": "official"
   },
   {
    "id": "chelas-mexican-kitchen",
@@ -4649,7 +5986,55 @@
    "phone": "(949) 549-4353",
    "public_note": "Hours and prices from the restaurant's own menu (Oct 2026), shared across its locations; waiting to confirm for Laguna Beach.",
    "open": "10:00",
-   "close": "20:00"
+   "close": "20:00",
+   "hours": {
+    "Mon": [
+     [
+      "10:00",
+      "20:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "10:00",
+      "20:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "10:00",
+      "20:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "10:00",
+      "20:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "10:00",
+      "20:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "10:00",
+      "20:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "10:00",
+      "20:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://chelasmexkitchen.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Laguna Beach location: daily 10am-8pm"
   },
   {
    "id": "ahba",
@@ -4906,7 +6291,55 @@
    "lat": 33.501816,
    "lng": -117.743772,
    "phone": "(949) 549-4556",
-   "public_note": "Hours and prices from the restaurant's own menus (Oct 2026), shared across its locations; daily specials from its online ordering menu."
+   "public_note": "Hours and prices from the restaurant's own menus (Oct 2026), shared across its locations; daily specials from its online ordering menu.",
+   "hours": {
+    "Mon": [
+     [
+      "17:00",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "17:00",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "17:00",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "17:00",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "17:00",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "09:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "09:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": "Call ahead to confirm hours.",
+   "hours_source": "https://www.visitlagunabeach.com/directory/ahba/",
+   "hours_source_kind": "directory",
+   "internal_hours_note": "Directory listing; may be out of date (also mentions breakfast/lunch)"
   },
   {
    "id": "laguna-feast",
@@ -5017,7 +6450,55 @@
    "lat": 33.544512,
    "lng": -117.78275,
    "phone": "(949) 494-6302",
-   "public_note": "Happy hour times from the restaurant's website; menu prices not yet published online."
+   "public_note": "Happy hour times from the restaurant's website; menu prices not yet published online.",
+   "hours": {
+    "Mon": [
+     [
+      "07:00",
+      "16:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "07:00",
+      "16:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "07:00",
+      "16:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "07:00",
+      "16:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "07:00",
+      "16:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "07:00",
+      "16:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "07:00",
+      "16:00"
+     ]
+    ]
+   },
+   "hours_note": "Café and market hours.",
+   "hours_source": "https://www.zinccafe.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Market & Cafe hours; no separate bar hours listed"
   },
   {
    "id": "the-seahorse",
@@ -5084,7 +6565,55 @@
    ],
    "lat": 33.528887000678,
    "lng": -117.771216216359,
-   "public_note": "Taco Tuesday details from the venue's reservation listing (Oct 2026); happy hour details still to be confirmed."
+   "public_note": "Taco Tuesday details from the venue's reservation listing (Oct 2026); happy hour details still to be confirmed.",
+   "hours": {
+    "Mon": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:30",
+      "22:00"
+     ]
+    ]
+   },
+   "hours_note": "Bar hours shown; food served 11am–10pm.",
+   "hours_source": "https://pearlstgeneral.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Seahorse bar hours; Pearl St. General store 7am-8pm; food served 11am-10pm"
   },
   {
    "id": "active-culture",
@@ -5170,7 +6699,55 @@
    "lat": 33.534976,
    "lng": -117.777454,
    "phone": "(949) 715-5188",
-   "public_note": "Friday happy hour from the restaurant's website (Oct 2026); waiting to confirm which locations take part."
+   "public_note": "Friday happy hour from the restaurant's website (Oct 2026); waiting to confirm which locations take part.",
+   "hours": {
+    "Mon": [
+     [
+      "09:00",
+      "20:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "09:00",
+      "20:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "09:00",
+      "20:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "09:00",
+      "20:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "09:00",
+      "20:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "09:00",
+      "20:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "09:00",
+      "20:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://frankiapp.com/business/active-culture-lb-116.md",
+   "hours_source_kind": "official",
+   "internal_hours_note": "from third-party listing; own site does not show hours"
   },
   {
    "id": "biryani-hunter",
@@ -5232,7 +6809,55 @@
    "lat": 33.549534484217,
    "lng": -117.780466689975,
    "phone": "(949) 549-4145",
-   "public_note": "Happy hour times from the restaurant's reservation listing; waiting for the restaurant to confirm."
+   "public_note": "Happy hour times from the restaurant's reservation listing; waiting for the restaurant to confirm.",
+   "hours": {
+    "Mon": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": "Indian high tea served daily 12–4pm.",
+   "hours_source": "https://www.aaa.com/tripcanvas/restaurant/biryani-hunter-AA101475",
+   "hours_source_kind": "directory",
+   "internal_hours_note": "Indian High Tea served daily 12-4pm (official site)"
   },
   {
    "id": "ruby-diner-laguna",
@@ -5299,7 +6924,54 @@
    "lat": 33.518684,
    "lng": -117.759602,
    "phone": "(949) 497-7829",
-   "public_note": "Shake happy hour from Ruby's website, offered at participating locations; waiting to confirm for the Laguna Beach diner."
+   "public_note": "Shake happy hour from Ruby's website, offered at participating locations; waiting to confirm for the Laguna Beach diner.",
+   "hours": {
+    "Mon": [
+     [
+      "08:00",
+      "20:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "08:00",
+      "20:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "08:00",
+      "20:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "08:00",
+      "20:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "08:00",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "08:00",
+      "20:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://www.rubys.com/locations/laguna-beach/",
+   "hours_source_kind": "official"
   },
   {
    "id": "o-fine-japanese",
@@ -5381,7 +7053,83 @@
    "lat": 33.515634365613,
    "lng": -117.756550107135,
    "phone": "(949) 715-5551",
-   "public_note": "Happy hour details from the restaurant's website, which notes pricing may differ by location; waiting to confirm for Laguna Beach."
+   "public_note": "Happy hour details from the restaurant's website, which notes pricing may differ by location; waiting to confirm for Laguna Beach.",
+   "hours": {
+    "Mon": [
+     [
+      "11:30",
+      "14:30"
+     ],
+     [
+      "17:00",
+      "21:30"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:30",
+      "14:30"
+     ],
+     [
+      "17:00",
+      "21:30"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:30",
+      "14:30"
+     ],
+     [
+      "17:00",
+      "21:30"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:30",
+      "14:30"
+     ],
+     [
+      "17:00",
+      "21:30"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:30",
+      "14:30"
+     ],
+     [
+      "17:00",
+      "22:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "12:00",
+      "14:30"
+     ],
+     [
+      "17:00",
+      "22:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "12:00",
+      "14:30"
+     ],
+     [
+      "17:00",
+      "21:30"
+     ]
+    ]
+   },
+   "hours_note": "Lunch and dinner service.",
+   "hours_source": "https://www.ofjc.com/",
+   "hours_source_kind": "official",
+   "internal_hours_note": "Lunch and dinner service"
   },
   {
    "id": "saigon-beach",
@@ -5576,7 +7324,50 @@
    "lat": 33.529185577308,
    "lng": -117.771566763243,
    "phone": "(657) 392-4424",
-   "public_note": "Happy hour and Wine Wednesday from the restaurant's flyers (visitor's photo, Oct 2026); regular prices from its menu."
+   "public_note": "Happy hour and Wine Wednesday from the restaurant's flyers (visitor's photo, Oct 2026); regular prices from its menu.",
+   "hours": {
+    "Mon": [],
+    "Tue": [
+     [
+      "11:00",
+      "20:30"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:00",
+      "20:30"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:00",
+      "20:30"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "10:00",
+      "21:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "10:00",
+      "20:30"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://wanderlog.com/place/details/3158638/saigon-beach-laguna-beach",
+   "hours_source_kind": "listing",
+   "internal_hours_note": "Closed Mondays"
   },
   {
    "id": "pinafini",
@@ -5727,7 +7518,54 @@
    "lat": 33.540857,
    "lng": -117.782097,
    "phone": "(949) 313-7670",
-   "public_note": "Happy hour menu from a visitor's photo (Oct 2026); regular prices not yet published."
+   "public_note": "Happy hour menu from a visitor's photo (Oct 2026); regular prices not yet published.",
+   "hours": {
+    "Mon": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:30",
+      "21:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:00",
+      "22:30"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "22:30"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:00",
+      "21:00"
+     ]
+    ]
+   },
+   "hours_note": null,
+   "hours_source": "https://www.pinafini.com/",
+   "hours_source_kind": "official"
   },
   {
    "id": "noble-ace",
@@ -5846,7 +7684,55 @@
     }
    ],
    "phone": "(949) 715-4646",
-   "public_note": "Sunset Hour menu from the restaurant's social media (Oct 2026); regular prices not yet published."
+   "public_note": "Sunset Hour menu from the restaurant's social media (Oct 2026); regular prices not yet published.",
+   "hours": {
+    "Mon": [
+     [
+      "16:30",
+      "22:00"
+     ]
+    ],
+    "Tue": [
+     [
+      "16:30",
+      "22:00"
+     ]
+    ],
+    "Wed": [
+     [
+      "16:30",
+      "22:00"
+     ]
+    ],
+    "Thu": [
+     [
+      "16:30",
+      "22:00"
+     ]
+    ],
+    "Fri": [
+     [
+      "16:30",
+      "23:00"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "23:00"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:00",
+      "22:00"
+     ]
+    ]
+   },
+   "hours_note": "Dinner from 4:30pm; weekend brunch 11am–2pm, bar menu 2–4:30pm.",
+   "hours_source": "https://www.aaa.com/tripcanvas/restaurant/noble-ace-AA94892",
+   "hours_source_kind": "directory",
+   "internal_hours_note": "Dinner from 4:30pm; weekend brunch 11am-2pm, bar menu 2-4:30pm"
   }
  ],
  "checked_none": [

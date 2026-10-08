@@ -218,6 +218,13 @@ details.contrib>summary{font-weight:600;font-size:14px;color:var(--sea);cursor:p
 .gh{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--sea)}
 .dgrp .sec>h3{color:var(--accent-ink)}
 .dgrp .deal{background:var(--surface)}
+details.hrsbox{border:0;padding:0;margin-top:-4px}
+details.hrsbox>summary{font-size:13px;cursor:pointer;min-height:28px;display:flex;align-items:center;flex-wrap:wrap;color:var(--ink);font-weight:400}
+.os{font-weight:600;color:var(--muted)}
+.hrsline{margin-top:-4px;font-size:13px}
+.os.on{color:var(--ok)}
+.week{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;font:500 12px/1.6 var(--f-mono);margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.week .wd{color:var(--muted)}
 .claudelink{font-size:13px;color:var(--muted);background:var(--bg);border-radius:10px;padding:10px 12px}
 .claudelink a{color:var(--sea);font-weight:600}
 @media (max-width:600px){.filters{position:static}}
@@ -374,7 +381,32 @@ function eff(v){
     confidence:effConf(v),_base:v.confidence,
     _sub:s};
 }
-const closeMin=v=>toMin(v.close)??1260;
+/* opening hours: {Mon:[["11:00","21:00"]], ...}; a close earlier than the open means after midnight */
+const ranges=(v,day)=>((v.hours||{})[day]||[]).map(([a,b])=>{const s=toMin(a),e0=toMin(b);return [s,e0<=s?e0+1440:e0]});
+const prevDay=d=>DAYS[(DAYS.indexOf(d)+6)%7];
+function openState(v,now){
+  if(!v.hours)return null;
+  for(const [s,e] of ranges(v,now.day))if(now.min>=s&&now.min<e)return {open:true,closes:e};
+  for(const [s,e] of ranges(v,prevDay(now.day)))if(e>1440&&now.min<e-1440)return {open:true,closes:e-1440};
+  const later=ranges(v,now.day).filter(([s])=>s>now.min).sort((a,b)=>a[0]-b[0])[0];
+  if(later)return {open:false,opens:later[0],when:"today"};
+  for(let i=1;i<=7;i++){const d=DAYS[(DAYS.indexOf(now.day)+i)%7],r=ranges(v,d).sort((a,b)=>a[0]-b[0])[0];if(r)return {open:false,opens:r[0],when:i===1?"tomorrow":d}}
+  return {open:false};
+}
+const fmtM=m=>fmt(mm2hhmm(((m%1440)+1440)%1440));
+function hoursText(v,now){
+  const o=openState(v,now);if(!o)return "";
+  return o.open?`Open now · closes ${fmtM(o.closes)}`:o.opens!=null?`Closed · opens ${fmtM(o.opens)}${o.when==="today"?"":o.when==="tomorrow"?" tomorrow":" "+o.when}`:"Closed";
+}
+function weekHours(v){
+  return DAYS.map(d=>{const r=(v.hours||{})[d]||[];return `<span class="wd">${d}</span><span>${r.length?r.map(([a,b])=>fmt(a)+"–"+fmt(b)).join(", "):"Closed"}</span>`}).join("");
+}
+/* when a happy hour runs "until close", end it at today's closing time if we know it */
+function closeMin(v){
+  const now=laNow(),r=ranges(v,now.day);
+  if(r.length)return Math.max(...r.map(x=>x[1]));
+  return toMin(v.close)??1260;
+}
 function liveStatus(v,now){
   if(v.status!=="active")return null;
   let soon=null,best=null,dealOn=null;
@@ -383,6 +415,9 @@ function liveStatus(v,now){
     if(!b.days||!b.days.includes(now.day))continue;
     const tag=b.label!=="Happy hour"?" · "+b.label:"";
     if(b.allDay){if(b.days.length===7)continue; /* everyday deals don't make a place "on now" */
+      const os=openState(v,now);
+      if(os&&!os.open){if(os.when==="today"&&(!soon||os.opens<soon.s))soon={s:os.opens,text:b.label+" today"};continue}
+      if(os&&os.open){const left=os.closes-now.min;if(!dealOn||left>dealOn.left)dealOn={on:true,left,text:b.label+" today",label:b.label};continue}
       if(now.min>=Math.max(660,toMin(v.open)??0)&&now.min<closeMin(v)){const left=closeMin(v)-now.min;if(!dealOn||left>dealOn.left)dealOn={on:true,left,text:b.label+" today",label:b.label}}
       else if(now.min<660&&(!soon||660<soon.s))soon={s:660,text:b.label+" today"};continue}
     /* "until close": use the restaurant's closing time if we know it, otherwise assume 9pm */
@@ -749,6 +784,8 @@ function cardHTML(v0,now){
     <div class="badges">${badges}${seat}${ended?'<span class="pill p-recheck">Being re-checked</span>':""}</div>
     <div class="meta">${distOf(v)!=null?`<span class="dist">${fmtMi(distOf(v))}</span> · `:""}${esc(v.neighborhood||"")}${v.address?" · "+esc(String(v.address).replace(/,?\s*Laguna Beach,?\s*CA\s*\d{5}/i,"")):""}${v.category?" · "+esc(v.category):""}</div>
     ${ratingsHTML(v)}
+    ${!v.hours&&v.hours_note?`<div class="hrsline cl">${esc(v.hours_note)}</div>`:""}
+    ${v.hours?`<details class="hrsbox"><summary><span class="os ${openState(v,now)?.open?"on":""}">${esc(hoursText(v,now)||"Hours")}</span><span class="cl"> · Hours</span></summary><div class="week">${v.hours?weekHours(v):""}</div>${v.hours_note?`<div class="cl">${esc(v.hours_note)}</div>`:""}</details>`:""}
     ${sched}${needFull?pickHTML+dealChips:""}${full}${picks.length||fullBody?"":none}
     ${actions}
     ${links?`<div class="links">${links}</div>`:""}
