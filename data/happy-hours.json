@@ -7734,6 +7734,68 @@
    "hours_source": "https://www.aaa.com/tripcanvas/restaurant/noble-ace-AA94892",
    "hours_source_kind": "directory",
    "internal_hours_note": "Dinner from 4:30pm; weekend brunch 11am-2pm, bar menu 2-4:30pm"
+  },
+  {
+   "id": "smalls-smash-club",
+   "name": "Small's Smash Club",
+   "address": "2794 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Central",
+   "website": "https://www.smallssmashclub.com/",
+   "category": "smash burgers / full bar",
+   "status": "active",
+   "has_happy_hour": false,
+   "confidence": "verified",
+   "schedule": [],
+   "seating_restrictions": null,
+   "happy_hour_url": null,
+   "drink_items": [],
+   "food_items": [],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [
+    {
+     "title": "Locals' Wednesday: 20% off",
+     "days": [
+      "Wed"
+     ],
+     "start": null,
+     "end": null,
+     "description": "20% off your order for Laguna Beach residents. Show a driver's license with a local address; everyone in the order needs a valid ID. Dine-in only.",
+     "items": [],
+     "internal_description": "Instagram post Oct 7 2026 + official site; SC residents get it at the San Clemente location"
+    }
+   ],
+   "ocean_view": false,
+   "price_level": null,
+   "google_rating": null,
+   "google_count": null,
+   "google_source": null,
+   "google_url": null,
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Oct 8 2026: user screenshot of @smallssmashclub Instagram post (Local's Wednesday 20% off, both locations) + official site deals text. Opened in former Dizz's As Is space. No regular happy hour published.",
+   "last_evidence_date": "2026-10-08",
+   "checked": "2026-10-08",
+   "sources": [
+    {
+     "label": "Official site (live)",
+     "url": "https://www.smallssmashclub.com/"
+    },
+    {
+     "label": "Instagram @smallssmashclub",
+     "url": "https://www.instagram.com/smallssmashclub/"
+    }
+   ],
+   "lat": 33.5226,
+   "lng": -117.7656,
+   "phone": null,
+   "public_note": "Deal from the restaurant's own website and Instagram (Oct 2026).",
+   "hours_note": "Closed Mondays; opening times not published.",
+   "hours_source": "https://www.smallssmashclub.com/",
+   "hours_source_kind": "official"
   }
  ],
  "checked_none": [
@@ -7766,12 +7828,6 @@
    "name": "Harvest at The Ranch at Laguna Beach",
    "result": "Nothing published",
    "open_status": "open"
-  },
-  {
-   "id": "smalls-smash-club",
-   "name": "Small's Smash Club (Smalls Smash Burger)",
-   "result": "Nothing published",
-   "open_status": "not_yet_open"
   },
   {
    "id": "bianchi-winery-tasting-room",
