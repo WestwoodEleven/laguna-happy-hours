@@ -163,7 +163,7 @@ returns trigger language plpgsql as $$ begin new.confirmed_at := now(); return n
 drop trigger if exists deal_conf_time on public.deal_confirmations;
 create trigger deal_conf_time before insert or update on public.deal_confirmations for each row execute function public.touch_confirmed();
 
--- ---------- "Local says $11": price corrections on a menu line ----------
+-- ---------- price corrections on a menu line (turned off; kept for past data) ----------
 create table if not exists public.price_reports (
   venue_id    text not null check (venue_id ~ '^[a-z0-9-]{1,80}$'),
   item        text not null check (char_length(item) between 1 and 80),
@@ -175,10 +175,9 @@ create table if not exists public.price_reports (
 alter table public.price_reports enable row level security;
 drop policy if exists "price reports are public" on public.price_reports;
 create policy "price reports are public" on public.price_reports for select using (true);
+-- Single-price corrections are turned off (prices change through menu photos), so nobody can add or change rows.
 drop policy if exists "report price as yourself" on public.price_reports;
-create policy "report price as yourself" on public.price_reports for insert to authenticated with check (user_id = auth.uid());
 drop policy if exists "update your price report" on public.price_reports;
-create policy "update your price report" on public.price_reports for update to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid());
 drop trigger if exists price_time on public.price_reports;
 create trigger price_time before insert or update on public.price_reports for each row execute function public.touch_reported();
 

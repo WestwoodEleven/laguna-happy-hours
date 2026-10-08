@@ -673,8 +673,8 @@ function itemRow(i,vid){
   const save=i.save_pct>0?`<span class="save">Save ${i.save_pct}%</span>`:"";
   const reg=i.regular_price&&i.save_pct>0?`<span class="reg">${esc(i.regular_price)}</span>`:"";
   const ptxt=i.price?`<span class="price">${esc(i.price)}</span>`:`<span class="np">price not listed</span>`;
-  const price=vid&&SHARED()?`<button class="pfix" data-act="pfix" data-id="${vid}" data-item="${esc(i.item)}" title="Tap to correct this price">${ptxt}</button>`:ptxt;
-  const loc=vid?C.prices[vid+"|"+i.item]:null;
+  /* single-price corrections are turned off; prices change through menu photos instead */
+  const price=ptxt,loc=null;
   return `<li><span class="mi">${esc(i.item)}${i.note?`<small>${esc(i.note)}</small>`:""}${loc?`<small class="local">Local says ${esc(loc.price)} · ${esc(shortDate(loc.at))}</small>`:""}</span><span class="lead" aria-hidden="true"></span><span class="mp">${save}${reg}${price}</span></li>`;
 }
 function openPriceFix(btn){
@@ -911,8 +911,8 @@ function composerHTML(v){
   return `<div class="composer" id="nc-${v.id}">
     <label class="cl" for="nt-text-${v.id}">Add a note</label>
     ${WEB_SHARED?`<input class="nname" id="nt-name-${v.id}" maxlength="40" placeholder="Your name (shown with your post)" value="${esc(myName())}" autocomplete="nickname">`:""}
-    <textarea id="nt-text-${v.id}" maxlength="${NOTE_MAX}" rows="2" placeholder="How was it? Busy, good deals, anything changed?"></textarea>
-    <div class="crow"><label class="btn filebtn" for="nt-file-${v.id}">Add photo</label><input type="file" id="nt-file-${v.id}" class="vh" accept="image/*" data-act-change="notePhoto" data-id="${v.id}">
+    <textarea id="nt-text-${v.id}" maxlength="${NOTE_MAX}" rows="2" placeholder="How was it? Prices or deals changed? A photo of the menu helps us update them."></textarea>
+    <div class="crow"><label class="btn filebtn" for="nt-file-${v.id}">📷 Add photo</label><input type="file" id="nt-file-${v.id}" class="vh" accept="image/*" data-act-change="notePhoto" data-id="${v.id}">
       <span class="cl" id="nt-fname-${v.id}"></span>
       <button class="btn primary" data-act="post" data-id="${v.id}" style="margin-left:auto">Post</button></div>
     <div class="status" id="nt-st-${v.id}"></div></div>`;
