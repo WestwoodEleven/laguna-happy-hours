@@ -305,7 +305,7 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
   <section class="mapwrap" id="mapwrap" aria-label="Map">
     <div class="maphead">
       <h2>Map</h2>
-      <button class="btn primary" id="locBtn">📍 Use my location</button>
+      <button class="btn" id="locBtn">📍 Use my location</button>
       <button class="chip" id="setBtn" aria-pressed="false">Tap map to set my spot</button>
       <select id="spot" aria-label="Start from a landmark"><option value="">Or start from…</option></select>
       <button class="chip" id="mapToggle" aria-expanded="false" aria-controls="mapbody">Show map ▾</button>
@@ -686,7 +686,7 @@ function initMap(){
 }
 function wireMapControls(){
   document.getElementById("pop").addEventListener("click",e=>{const b=e.target.closest("[data-mact]");if(!b)return;if(b.dataset.mact==="close"){document.getElementById("pop").hidden=true;M.sel=null;drawPins()}if(b.dataset.mact==="goto")gotoCard(b.dataset.id)});
-  document.getElementById("mapToggle").onclick=()=>setMapOpen(document.getElementById("mapbody").style.display==="none");
+  document.getElementById("mapToggle").onclick=()=>{const open=document.getElementById("mapbody").style.display==="none";if(open)M.viewSet=false;setMapOpen(open)};
   const sp=document.getElementById("spot");
   DATA.map.landmarks.slice().sort((a,b)=>a.name.localeCompare(b.name)).forEach(l=>{const o=document.createElement("option");o.value=l.name;o.textContent=l.name;sp.appendChild(o)});
   sp.onchange=()=>{const l=DATA.map.landmarks.find(x=>x.name===sp.value);if(l)setMe(l.lat,l.lng,l.name)};
@@ -699,7 +699,7 @@ function wireMapControls(){
       if(lat<33.3||lat>33.75||lng<-118||lng>-117.5){setMe(lat,lng,"your location");st.textContent="You're outside Laguna Beach, so every restaurant is a drive away. Distances are straight-line miles.";return}
       setMe(lat,lng,"your location")},fail,{enableHighAccuracy:true,timeout:10000,maximumAge:60000})}catch(e){fail()}
   };
-  try{const s=JSON.parse(localStorage.getItem("lhh-me")||"null");if(s&&typeof s.lat==="number")setMe(s.lat,s.lng,s.label||"your saved spot")}catch(e){}
+  /* No location by default: a saved spot is no longer restored on load; visitors tap "Use my location" when they want distances */
 }
 
 /* ---------- rendering ---------- */
