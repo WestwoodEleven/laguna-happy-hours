@@ -5666,6 +5666,123 @@
    ],
    "lat": 33.540857,
    "lng": -117.782097
+  },
+  {
+   "id": "noble-ace",
+   "name": "Noble Ace",
+   "address": "400 S. Coast Hwy, Laguna Beach, CA 92651",
+   "neighborhood": "Downtown/Main Beach",
+   "website": null,
+   "category": "American / piano bar",
+   "status": "active",
+   "has_happy_hour": true,
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu"
+     ],
+     "start": "16:30",
+     "end": "18:30",
+     "note": "'Sunset Hour'; bar only. Drinks 4:30–6:30, kitchen 5–6:30"
+    }
+   ],
+   "seating_restrictions": "Bar only",
+   "happy_hour_url": null,
+   "drink_items": [
+    {
+     "item": "Well drinks",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Signature cocktails",
+     "price": "$15",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Excludes Noble Prestige"
+    },
+    {
+     "item": "Select wines",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Select beers",
+     "price": "$2 off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Warm assorted olives",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "From 5pm"
+    },
+    {
+     "item": "Chive & cheddar biscuits",
+     "price": "$11",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "From 5pm"
+    },
+    {
+     "item": "Shishito peppers",
+     "price": "$13",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "From 5pm"
+    },
+    {
+     "item": "Grilled portobello bruschetta",
+     "price": "$13",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "From 5pm"
+    },
+    {
+     "item": "Jumbo beef eggrolls",
+     "price": "$17",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "From 5pm"
+    }
+   ],
+   "drink_specials": [],
+   "food_specials": [],
+   "daily_deals": [],
+   "ocean_view": null,
+   "price_level": null,
+   "google_rating": null,
+   "google_count": null,
+   "google_source": null,
+   "google_url": null,
+   "yelp_rating": null,
+   "yelp_count": null,
+   "yelp_url": null,
+   "yelp_result": null,
+   "google_result": null,
+   "audit_note": "Added Oct 7, 2026 from Noble Ace's 'Sunset Hour' menu (Instagram screenshot supplied by a user, undated). Regular prices not found, so no savings shown yet.",
+   "last_evidence_date": "2026-10",
+   "lat": 33.541490115439,
+   "lng": -117.782638226894,
+   "sources": [
+    {
+     "label": "Opening news (WhatNow)",
+     "url": "https://whatnow.com/orange-county/restaurants/old-hollywood-inspired-speakeasy-to-debut-in-laguna-beach-this-summer/"
+    }
+   ]
   }
  ],
  "checked_none": [
@@ -5919,12 +6036,6 @@
    "id": "nirvana-by-chef-lindsay",
    "name": "Nirvana by Chef Lindsay",
    "result": "No happy hour",
-   "open_status": "open"
-  },
-  {
-   "id": "noble-ace",
-   "name": "Noble Ace",
-   "result": "Nothing published",
    "open_status": "open"
   },
   {
