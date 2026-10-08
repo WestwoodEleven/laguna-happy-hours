@@ -268,7 +268,7 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="eyebrow">Laguna Beach, CA · checked Oct 7, 2026</div>
+    <div class="eyebrow">Laguna Beach, CA · checked Oct 8, 2026</div>
     <h1><svg class="sunmark" viewBox="0 0 40 40" aria-hidden="true"><defs><clipPath id="sm-c"><rect x="0" y="0" width="40" height="27"/></clipPath></defs><circle cx="20" cy="22" r="14" fill="var(--accent)" clip-path="url(#sm-c)"/><rect x="5" y="17" width="30" height="2.4" fill="var(--bg)"/><rect x="5" y="21.6" width="30" height="2" fill="var(--bg)"/><rect x="0" y="27" width="40" height="5" rx="1" fill="var(--sea)"/></svg>Laguna <span>Happy Hours</span></h1>
     <p class="lede" id="lede">Happy hours and daily specials across Laguna Beach, with prices, savings and how solid the evidence is. Confirm a deal, rate it, or update it from a menu photo.</p>
     <div class="clockrow"><div class="clock" id="clock"></div><div id="acctLink" class="acctlink"></div></div>
@@ -284,8 +284,8 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
       <button class="chip" id="expandBtn" aria-pressed="false">Expand all menus</button>
       <select id="kind" aria-label="Deal type">
         <option value="">Happy hours and specials</option>
-        <option value="hh">Happy hours only</option>
-        <option value="deal">Daily specials only</option>
+        <option value="hh">Happy hour menus</option>
+        <option value="deal">Daily specials</option>
       </select>
       <select id="hood" aria-label="Neighborhood"><option value="">All areas</option></select>
       <select id="sort" aria-label="Sort">
@@ -525,7 +525,7 @@ function mapBase(){
 }
 function pinGroups(){
   const g={},now=laNow();
-  for(const v0 of VENUES.filter(v=>matches(v,now))){const v=eff(v0);if(!v.lat)continue;const k=v.lat.toFixed(4)+","+v.lng.toFixed(4);(g[k]||(g[k]=[])).push(v)}
+  for(const v0 of VENUES.filter(v=>matches(v,now))){const v=byKind(eff(v0));if(!v.lat)continue;const k=v.lat.toFixed(4)+","+v.lng.toFixed(4);(g[k]||(g[k]=[])).push(v)}
   return Object.values(g);
 }
 function drawPins(){
@@ -548,7 +548,7 @@ function drawPins(){
 }
 function showPop(ids){
   const pop=document.getElementById("pop"),now=laNow();
-  const vs=ids.map(id=>VENUES.find(v=>v.id===id)).filter(Boolean).map(eff);
+  const vs=ids.map(id=>VENUES.find(v=>v.id===id)).filter(Boolean).map(v=>byKind(eff(v)));
   if(!vs.length){pop.hidden=true;return}
   M.sel=vs[0].id;drawPins();
   pop.innerHTML=`<button class="x" data-mact="close" aria-label="Close">×</button>`+vs.map(v=>{const d=distOf(v),live=liveStatus(v,now),hh=(v.schedule||[])[0];
@@ -773,8 +773,14 @@ function communityHTML(v){
     ${can?"":WEB_SHARED?`<div class="cl"><button class="linkbtn" data-act="gosignin">Sign in</button> to confirm, rate or post.</div>`:`<div class="cl">Confirming and rating need a signed-in viewer with access to change this page.</div>`}
   </div>`;
 }
+/* Deal-type filter: "hh" shows only happy hour, "deal" only daily specials; default shows both with highlights */
+function byKind(v){
+  if(state.kind==="hh")return {...v,daily_deals:[]};
+  if(state.kind==="deal")return {...v,schedule:[],drink_items:[],food_items:[],drink_specials:[],food_specials:[]};
+  return v;
+}
 function cardHTML(v0,now){
-  const v=eff(v0);
+  const v=byKind(eff(v0));
   const live=liveStatus(v,now);
   const cp=v.status==="closed"?["p-closed","Closed"]:({verified:["p-verified","Verified"],likely:["p-likely","Likely"],needs_confirmation:["p-needs","Needs confirmation"]}[v.confidence]||["p-needs","Needs confirmation"]);
   const badges=[live?`<span class="pill ${live.on?(live.ending?"p-ending":"p-on"):"p-soon"}">${esc(live.text)}</span>`:"",live&&live.extra?`<span class="pill p-soon">${esc(live.extra)}</span>`:"",sunsetPill(v,now),v.owner_confirmed?`<span class="pill p-verified">Owner-confirmed ${esc(monthYear(v.owner_confirmed))}</span>`:"",`<span class="pill ${cp[0]}">${cp[1]}</span>`,v.ocean_view===true?'<span class="pill p-seat">Ocean view</span>':"",v.status==="unclear"?'<span class="pill p-needs">Status unclear</span>':"",v._sub?`<span class="pill p-comm">Updated ${esc(shortDate(v._sub.at))}</span>`:""].join("");
@@ -790,8 +796,10 @@ function cardHTML(v0,now){
   const hhMenu=drinks+food?`<div class="grp hhgrp"><div class="gh">Happy hour menu${(v.schedule||[]).length?" · "+esc(v.schedule.map(b=>dayLabel(b.days)+(b.start?" "+fmt(b.start)+"–"+(b.end?fmt(b.end):"close"):"")).join("; ")):""}</div>${drinks}${food}</div>`:"";
   const dealGrp=deals?`<div class="grp dgrp">${deals}</div>`:"";
   const fullBody=hhMenu+dealGrp+subNote;
-  const needFull=fullBody&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length);
-  const full=needFull&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length)?`<details class="full"${state.expandAll?" open":""}><summary>Full menu${nItems?` · ${nItems} item${nItems>1?"s":""}`:""}${(v.daily_deals||[]).length?` · ${v.daily_deals.length} daily special${v.daily_deals.length>1?"s":""}`:""}</summary>${fullBody}</details>`:fullBody;
+  /* With a deal-type filter on, show that full menu open, with no highlights or collapsed section */
+  const focused=state.kind==="hh"||state.kind==="deal";
+  const needFull=!focused&&fullBody&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length);
+  const full=needFull?`<details class="full"${state.expandAll?" open":""}><summary>Full menu${nItems?` · ${nItems} item${nItems>1?"s":""}`:""}${(v.daily_deals||[]).length?` · ${v.daily_deals.length} daily special${v.daily_deals.length>1?"s":""}`:""}</summary>${fullBody}</details>`:fullBody;
   const seat=v.seating_restrictions?`<span class="pill p-seat">${esc(/bar/i.test(v.seating_restrictions)?(/patio/i.test(v.seating_restrictions)?"Bar & patio only":"Bar only"):/dine/i.test(v.seating_restrictions)?"Dine-in only":v.seating_restrictions)}</span>`:"";
   const ended=endedCount(v);
   const age=daysAgo(lastChecked(v));
@@ -802,7 +810,7 @@ function cardHTML(v0,now){
     v.lat?ACT("🗺️","Map",`data-act="onmap" data-id="${v.id}"`):"",
     ACT("↗","Share",`data-act="share" data-id="${v.id}"`)].join("")}</div>`;
   const yelp=v.yelp_url?`<a href="${esc(v.yelp_url)}" target="_blank" rel="noopener">Yelp reviews</a>`:"";
-  const links=[v.happy_hour_url?`<a href="${esc(v.happy_hour_url)}" target="_blank" rel="noopener">Happy hour menu</a>`:"",v.website?`<a href="${esc(v.website)}" target="_blank" rel="noopener">${esc(host(v.website))}</a>`:"",yelp,WEB_SHARED&&v.status!=="closed"?`<button class="onmap" data-act="owner" data-id="${v.id}">Is this your place?</button>`:""].join("");
+  const links=[v.happy_hour_url&&state.kind!=="deal"?`<a href="${esc(v.happy_hour_url)}" target="_blank" rel="noopener">Happy hour menu</a>`:"",v.website?`<a href="${esc(v.website)}" target="_blank" rel="noopener">${esc(host(v.website))}</a>`:"",yelp,WEB_SHARED&&v.status!=="closed"?`<button class="onmap" data-act="owner" data-id="${v.id}">Is this your place?</button>`:""].join("");
   return `<article class="venue ${v.status==="closed"?"closed":""}" id="card-${v.id}">
     <div class="vtop"><h2>${esc(v.name)}</h2><button class="fav" data-act="fav" data-id="${v.id}" aria-pressed="${FAVS.has(v.id)}" aria-label="${FAVS.has(v.id)?"Remove from":"Add to"} my spots">${FAVS.has(v.id)?"★":"☆"}</button></div>
     <div class="badges">${badges}${seat}${ended?'<span class="pill p-recheck">Being re-checked</span>':""}</div>
@@ -825,7 +833,7 @@ function cardHTML(v0,now){
 const host=u=>{try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return "Website"}};
 
 function matches(v0,now){
-  const v=eff(v0),live=liveStatus(v,now);
+  const v=eff(v0),live=liveStatus(byKind(v),now);
   if(state.status!=="all"&&v.status!==state.status)return false;
   if(state.hood&&v.neighborhood!==state.hood)return false;
   if(state.conf==="verified"&&v.confidence!=="verified")return false;
@@ -833,7 +841,8 @@ function matches(v0,now){
   const hasHH=(v.schedule||[]).length>0||v.has_happy_hour,hasDeal=(v.daily_deals||[]).length>0;
   if(state.kind==="hh"&&!hasHH)return false;
   if(state.kind==="deal"&&!hasDeal)return false;
-  if(state.day&&!(v.schedule||[]).some(b=>(b.days||[]).includes(state.day))&&!(v.daily_deals||[]).some(d=>(d.days||[]).includes(state.day)))return false;
+  const vk=byKind(v);
+  if(state.day&&!(vk.schedule||[]).some(b=>(b.days||[]).includes(state.day))&&!(vk.daily_deals||[]).some(d=>(d.days||[]).includes(state.day)))return false;
   if(state.now&&!(live&&live.on))return false;
   if(state.ocean&&v.ocean_view!==true)return false;
   if(state.favs&&!FAVS.has(v.id))return false;
@@ -848,7 +857,7 @@ function render(){
   const rows=VENUES.filter(v=>matches(v,now));
   const rank={verified:0,likely:1,needs_confirmation:2};
   const key={
-    now:(a,b)=>{const la=liveStatus(eff(a),now),lb=liveStatus(eff(b),now);
+    now:(a,b)=>{const la=liveStatus(byKind(eff(a)),now),lb=liveStatus(byKind(eff(b)),now);
       const ga=la?.on?0:la?1:2,gb=lb?.on?0:lb?1:2;if(ga!==gb)return ga-gb;
       if(ga===0&&la.left!==lb.left)return lb.left-la.left;          /* on now: most time left first */
       if(ga===1&&la.s!==lb.s)return la.s-lb.s;                       /* later today: soonest start first */
@@ -895,7 +904,7 @@ function openOwnerForm(id,btn){
     f.innerHTML='<p class="cl">Thanks. The site owner will check and update the listing.</p>'};
 }
 function nextUpHTML(now){
-  const up=VENUES.map(v=>({v,l:liveStatus(eff(v),now)})).filter(x=>x.l&&!x.l.on&&x.l.s!=null).sort((a,b)=>a.l.s-b.l.s).slice(0,5);
+  const up=VENUES.filter(v=>{const e=eff(v);return state.kind!=="hh"&&state.kind!=="deal"||(state.kind==="hh"?(e.schedule||[]).length:(e.daily_deals||[]).length)}).map(v=>({v,l:liveStatus(byKind(eff(v)),now)})).filter(x=>x.l&&!x.l.on&&x.l.s!=null).sort((a,b)=>a.l.s-b.l.s).slice(0,5);
   if(!up.length)return "Nothing is running right now, and nothing else starts later today. Try picking tomorrow in the day filter.";
   return `Nothing is running right now with these filters. Next up today:<ul class="nextup">${up.map(x=>`<li><button class="linkbtn" data-act="goto" data-id="${x.v.id}">${esc(x.v.name)}</button> <span class="cl">${esc(x.l.text)}</span></li>`).join("")}</ul>`;
 }
