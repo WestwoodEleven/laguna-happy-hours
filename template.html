@@ -159,6 +159,17 @@ h2{font-weight:600;font-size:21px;line-height:1.15}
 .account input[type=email]{flex:1 1 200px;min-width:0;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
 .account form label{flex-basis:100%}
 .nname{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);max-width:100%}
+.fresh{display:inline-block;font:500 11px/1 var(--f-mono);color:var(--muted);margin-left:8px}
+.fresh.stale{color:var(--warn)}
+.p-ending{background:var(--bad);color:#fff}
+.p-seat{background:var(--sea-soft);color:var(--sea)}
+.kind{font-size:14px;color:var(--muted)}
+.dchips{display:flex;flex-wrap:wrap;gap:6px}
+.dchip{font:600 12px/1 var(--f-body);padding:6px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink)}
+details.full,details.notesbox{border-top:1px dashed var(--line);padding-top:8px;display:grid;gap:10px}
+details.full[open],details.notesbox[open]{gap:10px}
+details.full>summary,details.notesbox>summary{font-weight:600;font-size:13px;color:var(--sea);cursor:pointer}
+.nextup{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px;text-align:left}
 .claudelink{font-size:13px;color:var(--muted);background:var(--bg);border-radius:10px;padding:10px 12px}
 .claudelink a{color:var(--sea);font-weight:600}
 @media (max-width:600px){.filters{position:static}}
@@ -190,6 +201,7 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
     <div class="row" id="dayRow" role="group" aria-label="Day"></div>
     <div class="row">
       <button class="chip now" id="nowBtn" aria-pressed="false">Happening now</button>
+      <button class="chip" id="oceanBtn" aria-pressed="false">🌅 Ocean view</button>
       <select id="kind" aria-label="Deal type">
         <option value="">Happy hours and deals</option>
         <option value="hh">Happy hours only</option>
@@ -259,8 +271,9 @@ const SB_URL = "https://eeyunztuwpgkhrxgygky.supabase.co";
 const SB_KEY = "sb_publishable_4hM1QLZDVrCzi62BFv_Dtg_SQ5WUvH2";
 const VENUES = DATA.venues;
 const DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-const state={q:"",day:"",now:false,kind:"",hood:"",status:"active",conf:"",sort:"now"};
-const C={db:null,user:null,isOwner:false,posts:{},photoCache:{},myPosts:[],sample:null,uid:null,canImg:false,confirms:{},ratings:{},subs:{},mine:{c:{},r:{},s:{}}};
+const state={q:"",day:"",now:false,ocean:false,kind:"",hood:"",status:"active",conf:"",sort:"now"};
+const C_ENDED={};
+const C={ended:{},reports:{},db:null,user:null,isOwner:false,posts:{},photoCache:{},myPosts:[],sample:null,uid:null,canImg:false,confirms:{},ratings:{},subs:{},mine:{c:{},r:{},s:{},e:{}}};
 
 function laNow(){
   const p=new Intl.DateTimeFormat("en-US",{timeZone:"America/Los_Angeles",weekday:"short",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date());
@@ -282,10 +295,29 @@ const money=s=>{const m=/^\$\s*(\d+(?:\.\d+)?)$/.exec(String(s||"").trim());retu
 const pct=(p,r)=>{const a=money(p),b=money(r);return a!=null&&b&&a<b?Math.round((b-a)/b*100):null};
 const shortDate=iso=>{try{return new Date(iso).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric",timeZone:"America/Los_Angeles"})}catch(e){return ""}};
 
+/* freshness: when was this listing last checked, by us or by a visitor */
+const DAY_MS=86400000;
+function lastChecked(v){
+  const c=[v.checked||DATA.checked,C.confirms[v.id],C.subs[v.id]?.at].filter(Boolean).map(x=>new Date(String(x).length===10?x+"T12:00:00":x)).filter(d=>!isNaN(d));
+  return c.length?new Date(Math.max(...c)):null;
+}
+function daysAgo(d){return d?Math.max(0,Math.floor((Date.now()-d.getTime())/DAY_MS)):null}
+function agoText(n){return n==null?"":n===0?"today":n===1?"yesterday":n<60?n+" days ago":Math.round(n/30)+" months ago"}
+function endedCount(v){const e=C.ended[v.id];if(!e)return 0;const conf=C.confirms[v.id];return e.list.filter(x=>!conf||x>conf).length}
+function effConf(v){
+  const order=["needs_confirmation","likely","verified"];
+  let i=Math.max(0,order.indexOf(v.confidence));
+  const conf=C.confirms[v.id]?daysAgo(new Date(C.confirms[v.id])):null;
+  const age=daysAgo(lastChecked(v));
+  if(age!=null&&age>90)i=Math.max(0,i-1);              /* not checked in 90 days: one step down */
+  if(conf!=null&&conf<=30&&i<1)i=1;                       /* a visitor confirmed it this month: at least Likely */
+  if(endedCount(v)>=2)i=0;                                /* two visitors say it ended */
+  return order[i];
+}
 /* the effective data for a venue: a visitor's menu-photo update overrides the researched lists */
 function eff(v){
   const s=C.subs[v.id];
-  if(!s)return v;
+  if(!s)return {...v,confidence:effConf(v),_base:v.confidence};
   const fix=a=>(a||[]).map(i=>({item:i.item,price:i.price||null,regular_price:i.regular_price||null,save_pct:pct(i.price,i.regular_price),note:i.note||null}));
   return {...v,
     schedule:s.schedule&&s.schedule.length?s.schedule:v.schedule,
@@ -294,23 +326,28 @@ function eff(v){
     daily_deals:s.daily_deals&&s.daily_deals.length?s.daily_deals.map(d=>({...d,items:fix(d.items)})):v.daily_deals,
     drink_specials:s.drink_items&&s.drink_items.length?[]:v.drink_specials,
     food_specials:s.food_items&&s.food_items.length?[]:v.food_specials,
+    confidence:effConf(v),_base:v.confidence,
     _sub:s};
 }
 function liveStatus(v,now){
   if(v.status!=="active")return null;
-  let soon=null;
+  let soon=null,best=null;
   const blocks=[...(v.schedule||[]).map(b=>({...b,label:"Happy hour"})),...(v.daily_deals||[]).map(d=>({days:d.days,start:d.start,end:d.end,label:d.title||"Deal",allDay:!d.start}))];
   for(const b of blocks){
     if(!b.days||!b.days.includes(now.day))continue;
+    const tag=b.label!=="Happy hour"?" · "+b.label:"";
     if(b.allDay){if(b.days.length===7)continue; /* everyday deals don't make a place "on now" */
-      if(now.min>=660&&now.min<1260)return {on:true,text:b.label+" today"};
-      if(!soon)soon={s:9999,text:b.label+" today"};continue}
+      if(now.min>=660&&now.min<1260){const left=1260-now.min;if(!best||left>best.left)best={on:true,left,text:b.label+" today"}}
+      else if(now.min<660&&(!soon||660<soon.s))soon={s:660,text:b.label+" today"};continue}
     const s=toMin(b.start),e=toMin(b.end);
     if(s==null)continue;
-    if(now.min>=s&&(e==null||now.min<e))return {on:true,text:"On now"+(b.end?" · until "+fmt(b.end):"")+(b.label!=="Happy hour"?" · "+b.label:"")};
-    if(now.min<s&&(soon==null||s<soon.s))soon={s,text:"Today "+fmt(b.start)+(b.label!=="Happy hour"?" · "+b.label:"")};
+    if(now.min>=s&&(e==null||now.min<e)){const left=e==null?240:e-now.min;
+      const text=e!=null&&left<=30?`Ends in ${left} min${tag}`:"On now"+(b.end?" · until "+fmt(b.end):"")+tag;
+      if(!best||left>best.left)best={on:true,left,text,ending:e!=null&&left<=30};continue}
+    if(now.min<s&&(soon==null||s<soon.s)){const inm=s-now.min;soon={s,text:(inm<=60?`Starts in ${inm} min`:"Today "+fmt(b.start))+tag}}
   }
-  return soon?{on:false,text:soon.text}:null;
+  if(best)return best;
+  return soon?{on:false,s:soon.s,text:soon.text}:null;
 }
 function maxSave(v){let m=0;for(const i of [...(v.drink_items||[]),...(v.food_items||[])])if(i.save_pct>m)m=i.save_pct;for(const d of v.daily_deals||[])for(const i of d.items||[])if(i.save_pct>m)m=i.save_pct;return m}
 function visitorAvg(id){const r=C.ratings[id];return r&&r.n?r.sum/r.n:null}
@@ -385,9 +422,18 @@ function showPop(ids){
     <div class="crow"><button class="btn" data-mact="goto" data-id="${v.id}">See deals</button><a class="cl" style="color:var(--sea);font-weight:600" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(v.name+" "+(v.address||"Laguna Beach CA"))}" target="_blank" rel="noopener">Directions</a></div></div>`}).join('<hr style="border:0;border-top:1px solid var(--line);margin:4px 0">');
   pop.hidden=false;
 }
+async function shareCard(id,b){
+  const v=VENUES.find(x=>x.id===id);if(!v)return;
+  const url=location.origin+location.pathname+"#card-"+id;
+  try{if(navigator.share){await navigator.share({title:v.name+" happy hour",text:v.name+" · Laguna Happy Hours",url});return}}catch(e){if(e&&e.name==="AbortError")return}
+  try{await navigator.clipboard.writeText(url);b.textContent="Link copied"}catch(e){b.textContent=url}
+  setTimeout(()=>{b.textContent="Share"},2500);
+}
 function gotoCard(id){
   let el=document.getElementById("card-"+id);
-  if(!el){state.q="";document.getElementById("q").value="";state.status="all";document.getElementById("status").value="all";render();el=document.getElementById("card-"+id)}
+  if(!el){state.q="";document.getElementById("q").value="";state.status="all";document.getElementById("status").value="all";
+    state.now=false;document.getElementById("nowBtn").setAttribute("aria-pressed","false");state.day="";state.ocean=false;document.getElementById("oceanBtn").setAttribute("aria-pressed","false");
+    document.querySelectorAll("#dayRow .chip").forEach(x=>x.setAttribute("aria-pressed",x.id==="day-any"?"true":"false"));render();el=document.getElementById("card-"+id)}
   if(!el)return;
   document.querySelectorAll(".venue.hl").forEach(x=>x.classList.remove("hl"));el.classList.add("hl");
   el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
@@ -528,6 +574,18 @@ function menuBlock(title,items,fallback){
   if(fallback&&fallback.length)return `<div class="sec"><h3>${title}</h3><ul class="menu plain">${fallback.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
   return "";
 }
+function topPicks(v){
+  const all=[...(v.drink_items||[]),...(v.food_items||[])].filter(i=>i.price);
+  const num=i=>{const m=/\$\s*(\d+(?:\.\d+)?)/.exec(i.price);return m?+m[1]:99};
+  return all.slice().sort((a,b)=>(b.save_pct||0)-(a.save_pct||0)||num(a)-num(b)).slice(0,3);
+}
+function dealKind(v){
+  if((v.drink_items||[]).length&&!(v.food_items||[]).length)return "Drink specials";
+  if((v.drink_specials||[]).length)return v.drink_specials.join(" · ");
+  if((v.food_specials||[]).length)return v.food_specials.join(" · ");
+  if((v.schedule||[]).length)return "Happy hour; item prices aren't published yet";
+  return "";
+}
 function ratingsHTML(v){
   const g=v.google_rating?`<a class="rt" href="${esc(v.google_url||("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(v.name+" Laguna Beach")))}" target="_blank" rel="noopener">Google <span class="s">★</span> <b>${v.google_rating.toFixed(1)}</b> <small>(${(v.google_count||0).toLocaleString()})</small></a>`
     :`<a class="rt" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name+" Laguna Beach CA")}" target="_blank" rel="noopener">Google <small>see rating</small></a>`;
@@ -549,6 +607,7 @@ function communityHTML(v){
   return `<div class="community" id="cm-${v.id}">
     <div class="crow"><button class="btn primary" data-act="confirm" data-id="${v.id}" ${can?"":"disabled"}>Still active ✓</button>
       <span class="cl">${last?`Last confirmed by a visitor <b>${esc(shortDate(last))}</b>`:"Not yet confirmed by a visitor"}</span></div>
+    <div class="crow"><button class="btn" data-act="ended" data-id="${v.id}" ${can&&(C.db||C.sb)?"":"disabled"}>No longer running</button>${endedCount(v)?`<span class="cl">${endedCount(v)} visitor${endedCount(v)>1?"s":""} reported it ended since the last confirmation</span>`:""}</div>
     <div class="crow"><span class="cl">Rate this happy hour</span><div class="stars" role="group" aria-label="Rate 0 to 5 stars">${stars}</div></div>
     ${upload?`<div class="crow">${upload}</div>`:""}
     <div class="upload" id="up-${v.id}" hidden></div>
@@ -559,20 +618,29 @@ function cardHTML(v0,now){
   const v=eff(v0);
   const live=liveStatus(v,now);
   const cp=v.status==="closed"?["p-closed","Closed"]:({verified:["p-verified","Verified"],likely:["p-likely","Likely"],needs_confirmation:["p-needs","Needs confirmation"]}[v.confidence]||["p-needs","Needs confirmation"]);
-  const badges=[live?`<span class="pill ${live.on?"p-on":"p-soon"}">${esc(live.text)}</span>`:"",`<span class="pill ${cp[0]}">${cp[1]}</span>`,v.status==="unclear"?'<span class="pill p-needs">Status unclear</span>':"",v._sub?`<span class="pill p-comm">Updated ${esc(shortDate(v._sub.at))}</span>`:""].join("");
+  const badges=[live?`<span class="pill ${live.on?(live.ending?"p-ending":"p-on"):"p-soon"}">${esc(live.text)}</span>`:"",`<span class="pill ${cp[0]}">${cp[1]}</span>`,v.ocean_view===true?'<span class="pill p-seat">Ocean view</span>':"",v.status==="unclear"?'<span class="pill p-needs">Status unclear</span>':"",v._sub?`<span class="pill p-comm">Updated ${esc(shortDate(v._sub.at))}</span>`:""].join("");
   const sched=(v.schedule||[]).length?`<div class="sec"><h3>Happy hour</h3><div class="tide">${v.schedule.map(b=>`<div class="t"><span class="days">${esc(dayLabel(b.days))}</span><span class="hrs">${b.start?fmt(b.start)+" – "+(b.end?fmt(b.end):"close"):"Times not listed"}</span>${b.note?`<span class="tnote">${esc(b.note)}</span>`:""}</div>`).join("")}</div></div>`:"";
   const drinks=menuBlock("Drinks",v.drink_items,v.drink_specials);
   const food=menuBlock("Food",v.food_items,v.food_specials);
   const deals=(v.daily_deals||[]).length?`<div class="sec"><h3>Daily deals</h3><div class="deals">${v.daily_deals.map(d=>`<div class="deal"><div class="dh"><span class="dt">${esc(d.title||"Deal")}</span><span class="dd">${esc(dayLabel(d.days))}${d.start?" · "+fmt(d.start)+(d.end?"–"+fmt(d.end):""):" · all day"}</span></div>${d.description?`<p>${esc(d.description)}</p>`:""}${(d.items||[]).length?`<ul class="menu">${d.items.map(itemRow).join("")}</ul>`:""}</div>`).join("")}</div></div>`:"";
-  const none=!drinks&&!food&&!deals&&v.status!=="closed"?`<div class="restrict">No item prices published yet. A menu photo would fill this in.</div>`:"";
   const subNote=v._sub?`<div class="msrc">Lists updated from a visitor's menu photo on ${esc(shortDate(v._sub.at))}.${v._sub.notes?" "+esc(v._sub.notes):""}</div>`:"";
-  const links=[v.happy_hour_url?`<a href="${esc(v.happy_hour_url)}" target="_blank" rel="noopener">Happy hour menu</a>`:"",v.website?`<a href="${esc(v.website)}" target="_blank" rel="noopener">${esc(host(v.website))}</a>`:"",v.lat?`<button class="onmap" data-act="onmap" data-id="${v.id}">Show on map</button>`:"",v.address?`<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(v.name+" "+v.address)}" target="_blank" rel="noopener">Directions</a>`:""].join("");
+  const none=!drinks&&!food&&!deals&&v.status!=="closed"?`<div class="restrict">No item prices published yet. A menu photo would fill this in.</div>`:"";
+  const picks=topPicks(v),nItems=(v.drink_items||[]).length+(v.food_items||[]).length;
+  const pickHTML=picks.length?`<div class="sec"><h3>Best deals</h3><ul class="menu">${picks.map(itemRow).join("")}</ul></div>`:(dealKind(v)?`<div class="kind">${esc(dealKind(v))}</div>`:"");
+  const dealChips=(v.daily_deals||[]).length?`<div class="dchips">${v.daily_deals.map(d=>`<span class="dchip">${esc(d.title||"Deal")} · ${esc(dayLabel(d.days))}</span>`).join("")}</div>`:"";
+  const fullBody=drinks+food+deals+subNote;
+  const needFull=fullBody&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length);
+  const full=needFull&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length)?`<details class="full"><summary>Full menu${nItems?` · ${nItems} item${nItems>1?"s":""}`:""}${(v.daily_deals||[]).length?` · ${v.daily_deals.length} daily deal${v.daily_deals.length>1?"s":""}`:""}</summary>${fullBody}</details>`:fullBody;
+  const seat=v.seating_restrictions?`<span class="pill p-seat">${esc(/bar/i.test(v.seating_restrictions)?(/patio/i.test(v.seating_restrictions)?"Bar & patio only":"Bar only"):/dine/i.test(v.seating_restrictions)?"Dine-in only":v.seating_restrictions)}</span>`:"";
+  const ended=endedCount(v);
+  const age=daysAgo(lastChecked(v));
+  const call=v.phone?`<a href="tel:${esc(v.phone.replace(/[^0-9+]/g,""))}">Call ${esc(v.phone)}</a>`:"";
+  const links=[call,v.happy_hour_url?`<a href="${esc(v.happy_hour_url)}" target="_blank" rel="noopener">Happy hour menu</a>`:"",v.website?`<a href="${esc(v.website)}" target="_blank" rel="noopener">${esc(host(v.website))}</a>`:"",v.lat?`<button class="onmap" data-act="onmap" data-id="${v.id}">Show on map</button>`:"",v.address?`<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(v.name+" "+v.address)}" target="_blank" rel="noopener">Directions</a>`:"",`<button class="onmap" data-act="share" data-id="${v.id}">Share</button>`].join("");
   return `<article class="venue ${v.status==="closed"?"closed":""}" id="card-${v.id}">
-    <div class="vhead"><div><h2>${esc(v.name)}</h2>${distOf(v)!=null?`<span class="dist">${fmtMi(distOf(v))} away</span>`:""}<div class="meta">${esc(v.neighborhood||"")}${v.address?" · "+esc(String(v.address).replace(/,?\s*Laguna Beach,?\s*CA\s*\d{5}/i,"")):""}${v.category?" · "+esc(v.category):""}</div>${ratingsHTML(v)}</div><div class="badges">${badges}</div></div>
-    ${sched}${drinks}${food}${deals}${none}${subNote}
-    ${v.seating_restrictions?`<div class="restrict">${esc(v.seating_restrictions)}</div>`:""}
+    <div class="vhead"><div><h2>${esc(v.name)}</h2>${distOf(v)!=null?`<span class="dist">${fmtMi(distOf(v))} away</span>`:""}${v.status!=="closed"&&age!=null?`<span class="fresh${age>90?" stale":""}">Last checked ${esc(agoText(age))}</span>`:""}<div class="meta">${esc(v.neighborhood||"")}${v.address?" · "+esc(String(v.address).replace(/,?\s*Laguna Beach,?\s*CA\s*\d{5}/i,"")):""}${v.category?" · "+esc(v.category):""}</div>${ratingsHTML(v)}</div><div class="badges">${badges}${seat}${ended?`<span class="pill p-closed">${ended>=2?"Reported ended":ended+" visitor says it ended"}</span>`:""}</div></div>
+    ${sched}${needFull?pickHTML+dealChips:""}${full}${picks.length||fullBody?"":none}
     ${links?`<div class="links">${links}</div>`:""}
-    ${v.status==="closed"?"":(IN_CLAUDE||WEB_SHARED)?communityHTML(v)+`<div class="notes"><div id="nt-${v.id}">${notesHTML(v)}</div>${composerHTML(v)}</div>`:`<div class="claudelink">Been here lately? <a href="${CLAUDE_URL}" target="_blank" rel="noopener">Open the Claude version</a> to confirm it's still running, rate it, add notes and photos, or update it from a menu photo.</div>`}
+    ${v.status==="closed"?"":(IN_CLAUDE||WEB_SHARED)?communityHTML(v)+`<details class="notesbox"><summary>Visitor notes &amp; photos${(C.posts[v.id]||[]).length?` · ${(C.posts[v.id]||[]).length}`:""}</summary><div class="notes"><div id="nt-${v.id}">${notesHTML(v)}</div>${composerHTML(v)}</div></details>`:`<div class="claudelink">Been here lately? <a href="${CLAUDE_URL}" target="_blank" rel="noopener">Open the Claude version</a> to confirm it's still running, rate it, add notes and photos, or update it from a menu photo.</div>`}
     <details><summary>How we checked</summary>
       <dl class="verify">
         ${v.audit_note?`<div><dt>Auditor</dt><dd>${esc(v.audit_note)}</dd></div>`:""}
@@ -596,6 +664,7 @@ function matches(v0,now){
   if(state.kind==="deal"&&!hasDeal)return false;
   if(state.day&&!(v.schedule||[]).some(b=>(b.days||[]).includes(state.day))&&!(v.daily_deals||[]).some(d=>(d.days||[]).includes(state.day)))return false;
   if(state.now&&!(live&&live.on))return false;
+  if(state.ocean&&v.ocean_view!==true)return false;
   const q=state.q.trim().toLowerCase();
   if(q){const hay=[v.name,v.neighborhood,v.address,v.category,...(v.drink_specials||[]),...(v.food_specials||[]),...(v.drink_items||[]).map(i=>i.item),...(v.food_items||[]).map(i=>i.item),...(v.daily_deals||[]).flatMap(d=>[d.title,d.description,...(d.items||[]).map(i=>i.item)])].join(" ").toLowerCase();if(!hay.includes(q))return false}
   return true;
@@ -606,7 +675,11 @@ function render(){
   const rows=VENUES.filter(v=>matches(v,now));
   const rank={verified:0,likely:1,needs_confirmation:2};
   const key={
-    now:(a,b)=>((liveStatus(eff(b),now)?.on?1:0)-(liveStatus(eff(a),now)?.on?1:0))||(rank[a.confidence]-rank[b.confidence])||a.name.localeCompare(b.name),
+    now:(a,b)=>{const la=liveStatus(eff(a),now),lb=liveStatus(eff(b),now);
+      const ga=la?.on?0:la?1:2,gb=lb?.on?0:lb?1:2;if(ga!==gb)return ga-gb;
+      if(ga===0&&la.left!==lb.left)return lb.left-la.left;          /* on now: most time left first */
+      if(ga===1&&la.s!==lb.s)return la.s-lb.s;                       /* later today: soonest start first */
+      return (rank[eff(a).confidence]-rank[eff(b).confidence])||a.name.localeCompare(b.name)},
     save:(a,b)=>maxSave(eff(b))-maxSave(eff(a))||a.name.localeCompare(b.name),
     google:(a,b)=>(b.google_rating||0)-(a.google_rating||0)||a.name.localeCompare(b.name),
     visitor:(a,b)=>(visitorAvg(b.id)??-1)-(visitorAvg(a.id)??-1)||a.name.localeCompare(b.name),
@@ -616,8 +689,13 @@ function render(){
   document.getElementById("count").textContent=rows.length+" of "+VENUES.length;
   const list=document.getElementById("list");
   setTimeout(()=>loadPhotos(list),0);
-  list.innerHTML=rows.length?rows.map(v=>cardHTML(v,now)).join(""):`<div class="empty">${state.now?"Nothing is running right now with these filters. Most Laguna happy hours start between 2 and 4pm.":"No listings match these filters. Try clearing the search or picking a different day."}</div>`;
+  list.innerHTML=rows.length?rows.map(v=>cardHTML(v,now)).join(""):`<div class="empty">${state.now?nextUpHTML(now):"No listings match these filters. Try clearing the search or picking a different day."}</div>`;
   if(M.vb||M.leaf){drawPins();if(M.sel&&!rows.some(v=>v.id===M.sel)){document.getElementById("pop").hidden=true;M.sel=null}}
+}
+function nextUpHTML(now){
+  const up=VENUES.map(v=>({v,l:liveStatus(eff(v),now)})).filter(x=>x.l&&!x.l.on&&x.l.s!=null).sort((a,b)=>a.l.s-b.l.s).slice(0,5);
+  if(!up.length)return "Nothing is running right now, and nothing else starts later today. Try picking tomorrow in the day filter.";
+  return `Nothing is running right now with these filters. Next up today:<ul class="nextup">${up.map(x=>`<li><button class="linkbtn" data-act="goto" data-id="${x.v.id}">${esc(x.v.name)}</button> <span class="cl">${esc(x.l.text)}</span></li>`).join("")}</ul>`;
 }
 /* refresh one card in place, unless its upload panel is in use */
 function refreshCard(id){
@@ -625,9 +703,9 @@ function refreshCard(id){
   const up=document.getElementById("up-"+id);if(up&&!up.hidden)return;
   if(document.getElementById("nt-text-"+id)?.value)return;
   const v=VENUES.find(x=>x.id===id);if(!v)return;
-  const open=el.querySelector("details")?.open;
+  const open=[...el.querySelectorAll("details")].map(d=>d.open);
   el.outerHTML=cardHTML(v,laNow());
-  if(open)document.querySelector("#card-"+id+" details").open=true;
+  [...document.querySelectorAll("#card-"+id+" details")].forEach((d,i)=>{if(open[i])d.open=true});
 }
 function refreshCommunity(){
   for(const v of VENUES){const el=document.getElementById("cm-"+v.id);if(!el)continue;const up=document.getElementById("up-"+v.id);if(up&&!up.hidden)continue;
@@ -636,6 +714,7 @@ function refreshCommunity(){
 
 /* ---------- shared data (db) ---------- */
 function aggregate(kind,snap){
+  if(kind==="e"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [id,iso] of Object.entries(o))if(typeof iso==="string")(m[id]||(m[id]={list:[]})).list.push(iso);if(d.id===C.uid)C.mine.e=o}C.ended=m;refreshCommunity();VENUES.forEach(v=>refreshCard(v.id));}
   if(kind==="c"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [id,iso] of Object.entries(o))if(typeof iso==="string"&&(!m[id]||iso>m[id]))m[id]=iso;if(d.id===C.uid)C.mine.c=o}C.confirms=m;refreshCommunity();}
   if(kind==="r"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [id,n] of Object.entries(o)){const x=Number(n);if(!(x>=0&&x<=5))continue;(m[id]||(m[id]={sum:0,n:0}));m[id].sum+=x;m[id].n++}if(d.id===C.uid)C.mine.r={...o}}C.ratings=m;refreshCommunity();}
   if(kind==="s"){const m={};for(const d of snap.docs){const o=d.data()?.v||{};for(const [id,s] of Object.entries(o))if(s&&s.at&&(!m[id]||s.at>m[id].at))m[id]=s;if(d.id===C.uid)C.mine.s={...o}}const changed=Object.keys({...C.subs,...m}).filter(k=>C.subs[k]?.at!==m[k]?.at);C.subs=m;changed.forEach(refreshCard);}
@@ -657,8 +736,8 @@ function notesHTML(v){
   return head+`<ul class="posts">${show.map(p=>{
     const name=p.name||C.names?.[p.uid]||"A visitor";
     const mine=p.uid===C.uid, canDel=mine||C.isOwner;
-    const ph=p.photoUrl?`<img class="pimg" loading="lazy" src="${esc(p.photoUrl)}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:p.photo?(C.photoCache[p.uid+"/"+p.id]?`<img class="pimg" src="${C.photoCache[p.uid+"/"+p.id]}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:`<div class="pimg ph" data-photo="${p.uid}/${p.id}">Loading photo…</div>`):"";
-    return `<li class="post"><div class="pm"><b>${esc(mine?"You":name)}</b> · ${esc(shortDate(p.at))}${canDel?` · <button class="linkbtn" data-act="delPost" data-id="${v.id}" data-pid="${p.id}" data-uid="${p.uid}">Delete</button>`:""}</div>${p.text?`<p>${esc(p.text)}</p>`:""}${ph}</li>`}).join("")}</ul>${list.length>3&&!C.expanded?.[v.id]?`<button class="linkbtn" data-act="moreNotes" data-id="${v.id}">Show all ${list.length} notes</button>`:""}`;
+    const ph=p.photoUrl?`<img class="pimg" loading="lazy" onerror="this.remove()" src="${esc(p.photoUrl)}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:p.photo?(C.photoCache[p.uid+"/"+p.id]?`<img class="pimg" src="${C.photoCache[p.uid+"/"+p.id]}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:`<div class="pimg ph" data-photo="${p.uid}/${p.id}">Loading photo…</div>`):"";
+    return `<li class="post"><div class="pm"><b>${esc(mine?"You":name)}</b> · ${esc(shortDate(p.at))}${canDel?` · <button class="linkbtn" data-act="delPost" data-id="${v.id}" data-pid="${p.id}" data-uid="${p.uid}">Delete</button>`:""}${WEB_SHARED&&!mine&&C.uid?` · <button class="linkbtn" data-act="report" data-id="${v.id}" data-pid="${p.id}">${C.reports[p.id]?"Reported":"Report"}</button>`:""}${p.hidden?` · <b>Hidden after reports</b>${C.isOwner?` <button class="linkbtn" data-act="restore" data-id="${v.id}" data-pid="${p.id}">Restore</button>`:""}`:""}</div>${p.text?`<p>${esc(p.text)}</p>`:""}${ph}</li>`}).join("")}</ul>${list.length>3&&!C.expanded?.[v.id]?`<button class="linkbtn" data-act="moreNotes" data-id="${v.id}">Show all ${list.length} notes</button>`:""}`;
 }
 function composerHTML(v){
   return `<div class="composer" id="nc-${v.id}">
@@ -760,15 +839,20 @@ function renderAccount(){
 }
 async function sbLoad(){
   const sb=C.sb;if(!sb)return;
-  const [c,r,p]=await Promise.all([
+  const [c,r,p,e,mr]=await Promise.all([
     sb.from("confirmations").select("venue_id,confirmed_at,user_id").limit(5000),
     sb.from("ratings").select("venue_id,stars,user_id").limit(5000),
-    sb.from("posts").select("id,venue_id,user_id,author_name,body,photo_url,photo_path,created_at").order("created_at",{ascending:false}).limit(1000)]);
+    sb.from("posts").select("id,venue_id,user_id,author_name,body,photo_url,photo_path,created_at,hidden").order("created_at",{ascending:false}).limit(1000),
+    sb.from("ended_reports").select("venue_id,reported_at").limit(5000),
+    C.uid?sb.from("post_reports").select("post_id").eq("user_id",C.uid).limit(1000):Promise.resolve({data:[]})]);
+  if(!e.error){const m={};for(const x of e.data)(m[x.venue_id]||(m[x.venue_id]={list:[]})).list.push(x.reported_at);C.ended=m}
+  if(!mr.error){C.reports={};for(const x of mr.data||[])C.reports[x.post_id]=true}
   if(!c.error){const m={};for(const x of c.data){if(!m[x.venue_id]||x.confirmed_at>m[x.venue_id])m[x.venue_id]=x.confirmed_at}C.confirms=m}
   if(!r.error){const m={},mine={};for(const x of r.data){(m[x.venue_id]||(m[x.venue_id]={sum:0,n:0}));m[x.venue_id].sum+=x.stars;m[x.venue_id].n++;if(x.user_id===C.uid)mine[x.venue_id]=x.stars}C.ratings=m;C.mine.r=mine}
-  if(!p.error){const m={};for(const x of p.data)(m[x.venue_id]||(m[x.venue_id]=[])).push({uid:x.user_id,id:x.id,at:x.created_at,text:x.body||"",name:x.author_name,photoUrl:x.photo_url,photoPath:x.photo_path});
+  if(!p.error){const m={};for(const x of p.data)(m[x.venue_id]||(m[x.venue_id]=[])).push({uid:x.user_id,id:x.id,at:x.created_at,text:x.body||"",name:x.author_name,photoUrl:x.photo_url,photoPath:x.photo_path,hidden:!!x.hidden});
     const changed=new Set([...Object.keys(m),...Object.keys(C.posts)]);C.posts=m;changed.forEach(refreshNotes)}
   refreshCommunity();
+  if(!e.error)VENUES.forEach(v=>{if(C.ended[v.id])refreshCard(v.id)});
 }
 async function sbPost(id,btn){
   const st=document.getElementById("nt-st-"+id),ta=document.getElementById("nt-text-"+id),fi=document.getElementById("nt-file-"+id),nm=document.getElementById("nt-name-"+id);
@@ -778,14 +862,16 @@ async function sbPost(id,btn){
   try{localStorage.setItem("lhh-name",name==="A visitor"?"":name)}catch(e){}
   btn.disabled=true;st.className="status";st.textContent=file?"Preparing photo…":"Posting…";
   try{
-    const pid=crypto.randomUUID();let photo_path=null,photo_url=null;
+    /* the post is saved first; storage only accepts a photo that a fresh post of yours points to */
+    const pid=crypto.randomUUID();let photo_path=null,photo_url=null,blob=null;
     if(file){const src=await shrink(file);if(!src)throw new Error("That photo is too large. Try a smaller one.");
-      const blob=await (await fetch(src)).blob();st.textContent="Uploading photo…";
-      photo_path=`${C.uid}/${pid}.jpg`;
-      const up=await C.sb.storage.from("photos").upload(photo_path,blob,{contentType:"image/jpeg",upsert:false});if(up.error)throw up.error;
-      photo_url=C.sb.storage.from("photos").getPublicUrl(photo_path).data.publicUrl}
+      blob=await (await fetch(src)).blob();
+      photo_path=`${C.uid}/${pid}.jpg`;photo_url=C.sb.storage.from("photos").getPublicUrl(photo_path).data.publicUrl}
     const{error}=await C.sb.from("posts").insert({id:pid,venue_id:id,user_id:C.uid,author_name:name,body:text,photo_path,photo_url});
-    if(error){if(photo_path)await C.sb.storage.from("photos").remove([photo_path]);throw error}
+    if(error)throw error;
+    if(blob){st.textContent="Uploading photo…";
+      const up=await C.sb.storage.from("photos").upload(photo_path,blob,{contentType:"image/jpeg",upsert:false});
+      if(up.error){await C.sb.from("posts").delete().eq("id",pid);throw up.error}}
     ta.value="";fi.value="";document.getElementById("nt-fname-"+id).textContent="";st.textContent="Posted.";
     await sbLoad();
   }catch(e){st.className="status err";st.textContent=/Too many posts/.test(e?.message||"")?"You've posted a lot in the last hour. Try again later.":e?.message?.startsWith("That photo")?e.message:"Couldn't post. Try again in a moment."}
@@ -878,6 +964,8 @@ document.addEventListener("click",async e=>{
   const b=e.target.closest("[data-act]");if(!b)return;
   const id=b.dataset.id,act=b.dataset.act;
   if(act==="onmap")return showOnMap(id);
+  if(act==="goto")return gotoCard(id);
+  if(act==="share")return shareCard(id,b);
   if(act==="openUp")return openUpload(id);
   if(act==="post"){return postNote(id,b)}
   if(act==="moreNotes"){C.expanded={...(C.expanded||{}),[id]:true};return refreshNotes(id)}
@@ -889,10 +977,14 @@ document.addEventListener("click",async e=>{
   if(WEB_SHARED){
     if(!C.uid)return goSignIn();
     if(act==="confirm"){b.disabled=true;const{error}=await C.sb.from("confirmations").upsert({venue_id:id,user_id:C.uid,confirmed_at:new Date().toISOString()},{onConflict:"venue_id,user_id"});if(error){b.disabled=false;b.textContent="Couldn't save"}else{C.confirms[id]=new Date().toISOString();refreshCommunity()}return}
+    if(act==="ended"){b.disabled=true;const{error}=await C.sb.from("ended_reports").upsert({venue_id:id,user_id:C.uid,reported_at:new Date().toISOString()},{onConflict:"venue_id,user_id"});if(error){b.disabled=false;b.textContent="Couldn't save"}else{b.textContent="Thanks, reported";await sbLoad()}return}
+    if(act==="report"){b.disabled=true;const{error}=await C.sb.from("post_reports").insert({post_id:b.dataset.pid,user_id:C.uid});b.textContent=error&&!/duplicate/i.test(error.message)?"Couldn't report":"Reported";C.reports[b.dataset.pid]=true;await sbLoad();return}
+    if(act==="restore"){b.disabled=true;await C.sb.from("posts").update({hidden:false}).eq("id",b.dataset.pid);await C.sb.from("post_reports").delete().eq("post_id",b.dataset.pid);await sbLoad();return}
     if(act==="rate"){const n=+b.dataset.n;const{error}=await C.sb.from("ratings").upsert({venue_id:id,user_id:C.uid,stars:n},{onConflict:"venue_id,user_id"});if(error)b.closest(".stars").insertAdjacentHTML("afterend",'<span class="cl">Couldn\'t save your rating.</span>');else sbLoad();return}
     return;
   }
   if(!C.db||!C.uid)return;
+  if(act==="ended"){b.disabled=true;try{await writeMine("e",id,new Date().toISOString());b.textContent="Thanks, reported"}catch(err){b.textContent="Couldn't save"}return}
   if(act==="confirm"){b.disabled=true;try{const iso=new Date().toISOString();await writeMine("c",id,iso);C.confirms[id]=iso;refreshCommunity()}catch(err){b.textContent="Couldn't save";}}
   if(act==="rate"){const n=+b.dataset.n;try{await writeMine("r",id,n)}catch(err){b.closest(".stars").insertAdjacentHTML("afterend",'<span class="cl">Couldn\'t save your rating.</span>')}}
 });
@@ -904,6 +996,7 @@ document.addEventListener("click",async e=>{
   for(const k of ["hood","status","conf","kind","sort"])document.getElementById(k).onchange=e=>{state[k]=e.target.value;render()};
   document.getElementById("q").oninput=e=>{state.q=e.target.value;render()};
   const nb=document.getElementById("nowBtn");nb.onclick=()=>{state.now=!state.now;nb.setAttribute("aria-pressed",state.now);render()};
+  const ob=document.getElementById("oceanBtn");ob.onclick=()=>{state.ocean=!state.ocean;ob.setAttribute("aria-pressed",state.ocean);render()};
   const fh=()=>{const f=document.querySelector(".filters");document.documentElement.style.setProperty("--fh",getComputedStyle(f).position==="sticky"?f.offsetHeight+"px":"0px")};fh();window.addEventListener("resize",fh);
   if(!IN_CLAUDE){document.querySelectorAll("[data-claude-only]").forEach(e=>e.hidden=true);
     if(!WEB_SHARED){document.querySelectorAll("[data-shared]").forEach(e=>e.hidden=true);document.querySelector('#sort option[value="visitor"]')?.remove();}
@@ -913,6 +1006,7 @@ document.addEventListener("click",async e=>{
   document.getElementById("noneSum").textContent=`${none.length} more restaurants we checked had no deals we could find (of ${DATA.roster_total} total)`;
   document.getElementById("noneList").innerHTML=none.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(x=>`<li>${esc(x.name)} <small>· ${esc(x.result)}</small></li>`).join("");
   render();
+  const deep=/^#card-([a-z0-9-]+)$/.exec(location.hash);if(deep)setTimeout(()=>gotoCard(deep[1]),50);
   setInterval(()=>{if(!document.querySelector("details[open]")&&!document.querySelector(".upload:not([hidden])")&&![...document.querySelectorAll(".composer textarea")].some(x=>x.value))render()},60000);
   /* light up shared features when the viewer supports them */
   if(WEB_SHARED){renderAccount();try{await sbInit()}catch(e){console.warn("Shared features unavailable",e)}return}
@@ -920,7 +1014,7 @@ document.addEventListener("click",async e=>{
   const [db,user,sample]=await Promise.all([claude.use("db"),claude.use("user"),claude.use("sample")]);
   C.db=db;C.user=user;C.uid=user?await user.id():null;C.sample=sample;C.isOwner=user?await user.isOwner():false;
   if(sample){try{C.canImg=!!(await sample.limits())?.images}catch(e){C.canImg=false}}
-  if(db){for(const k of ["c","r","s"])db.collection(k).onSnapshot(s=>aggregate(k,s),()=>{});db.collection("m").onSnapshot(s=>aggregatePosts(s),()=>{});}
+  if(db){for(const k of ["c","r","s","e"])db.collection(k).onSnapshot(s=>aggregate(k,s),()=>{});db.collection("m").onSnapshot(s=>aggregatePosts(s),()=>{});}
   render();
 })();
 </script>

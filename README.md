@@ -11,9 +11,12 @@ Happy hours and daily deals at Laguna Beach, California restaurants: hours, drin
 - Daily deals (Taco Tuesday, Wine Wednesday, 2-for-1 burgers and more)
 - "Happening now" filter, day filter, search, sort by savings, rating or distance
 - Street map (OpenStreetMap tiles via Leaflet) with pins, **Use my location**, tap-to-set your spot, landmarks, distance on every listing and directions links
-- Confidence labels (Verified / Likely / Needs confirmation) and the sources behind every listing
+- Confidence labels (Verified / Likely / Needs confirmation) that age: a listing not checked in 90 days drops a level, a visitor confirmation in the last 30 days lifts it, and two "No longer running" reports mark it ended
+- "Ends in 15 min" / "Starts in 20 min" timing, with places sorted by time left and a "Next up today" list when nothing is on
+- Compact cards (best 3 deals up front, "Full menu" for the rest), ocean view filter, seating notes, tap-to-call and share links
+- Link previews, an app icon and install-to-home-screen support
 
-Signed-in visitors can confirm a deal is still running, rate it 0–5 stars, and post notes and photos. These are stored in Supabase (see below). Menu-photo reading is still only in the [Claude version](https://claude.ai/artifact/GhzNP9fe9LD2c3QqsrsDZS).
+Signed-in visitors can confirm a deal is still running, report that it ended, rate it 0–5 stars, post notes and photos, and report posts (3 reports hide a post until the admin restores it). These are stored in Supabase (see below). Menu-photo reading is still only in the [Claude version](https://claude.ai/artifact/GhzNP9fe9LD2c3QqsrsDZS).
 
 ## Files
 
@@ -45,7 +48,20 @@ The page talks to a Supabase project using its URL and publishable key (set as `
 2. In **Authentication → URL Configuration**, set **Site URL** to `https://westwoodeleven.github.io/laguna-happy-hours/` and add the same address under **Redirect URLs**.
 3. Sign in on the site once with your email, then run the last statement in `schema.sql` (with your email filled in) to make yourself admin, so you can delete anyone's posts.
 
-Sign-in is by emailed magic link. Supabase's built-in email sender only sends a few emails per hour; connect your own SMTP service (Authentication → Emails) if more people start signing in. Anyone can read confirmations, ratings and posts; people can only change their own, and each person can post at most 20 times an hour.
+Sign-in is by emailed magic link. Supabase's built-in email sender only sends a few emails per hour; connect your own SMTP service (Authentication → Emails) if more people start signing in. Anyone can read confirmations, ratings and posts; people can only change their own, and each person can post at most 20 times an hour. Photos can only be uploaded for a post the person just made, so uploads share that limit.
+
+After pulling an update that changes `supabase/schema.sql`, run the whole file again in the SQL Editor (it's safe to re-run).
+
+## Automatic checks
+
+Two Claude scheduled tasks open pull requests with proposed data changes for you to review and merge:
+
+- **Monthly re-check** (1st of each month): rechecks official happy hour pages and uncertain listings, and every quarter looks for new places in the restaurant roster.
+- **Weekly visitor review** (Mondays): reads the week's "No longer running" reports, confirmations, notes and photos from Supabase and proposes updates.
+
+## Visitor counts (optional)
+
+Create a free [GoatCounter](https://www.goatcounter.com) account, put its code in `GOATCOUNTER_CODE` in `build.py`, and rebuild.
 
 ## Map tiles
 

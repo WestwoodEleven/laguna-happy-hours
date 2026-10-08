@@ -60,8 +60,13 @@ create table if not exists public.posts (
 );
 create index if not exists posts_venue_created on public.posts (venue_id, created_at desc);
 alter table public.posts enable row level security;
+alter table public.posts add column if not exists hidden boolean not null default false;
 drop policy if exists "posts are public" on public.posts;
-create policy "posts are public" on public.posts for select using (true);
+create policy "posts are public" on public.posts for select
+  using (hidden = false or user_id = auth.uid() or public.is_admin());
+drop policy if exists "admin can restore posts" on public.posts;
+create policy "admin can restore posts" on public.posts for update to authenticated
+  using (public.is_admin()) with check (public.is_admin());
 drop policy if exists "post as yourself" on public.posts;
 create policy "post as yourself" on public.posts for insert to authenticated with check (user_id = auth.uid());
 drop policy if exists "delete your posts or admin" on public.posts;
@@ -92,14 +97,69 @@ create trigger confirmations_time before insert or update on public.confirmation
 drop trigger if exists ratings_time on public.ratings;
 create trigger ratings_time before insert or update on public.ratings for each row execute function public.touch_time();
 
+-- ---------- "Report" on a post: hidden automatically after 3 different people report it ----------
+create table if not exists public.post_reports (
+  post_id     uuid not null references public.posts(id) on delete cascade,
+  user_id     uuid not null default auth.uid() references auth.users(id) on delete cascade,
+  reported_at timestamptz not null default now(),
+  primary key (post_id, user_id)
+);
+alter table public.post_reports enable row level security;
+drop policy if exists "see your own reports or admin" on public.post_reports;
+create policy "see your own reports or admin" on public.post_reports for select to authenticated using (user_id = auth.uid() or public.is_admin());
+drop policy if exists "report as yourself" on public.post_reports;
+create policy "report as yourself" on public.post_reports for insert to authenticated with check (user_id = auth.uid());
+drop policy if exists "admin clears reports" on public.post_reports;
+create policy "admin clears reports" on public.post_reports for delete to authenticated using (public.is_admin());
+
+create or replace function public.hide_reported_post()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  if (select count(*) from public.post_reports where post_id = new.post_id) >= 3 then
+    update public.posts set hidden = true where id = new.post_id;
+  end if;
+  return new;
+end $$;
+drop trigger if exists hide_reported_post on public.post_reports;
+create trigger hide_reported_post after insert on public.post_reports for each row execute function public.hide_reported_post();
+
+-- ---------- "No longer running" reports (one per person per restaurant) ----------
+create table if not exists public.ended_reports (
+  venue_id    text not null check (venue_id ~ '^[a-z0-9-]{1,80}$'),
+  user_id     uuid not null default auth.uid() references auth.users(id) on delete cascade,
+  reported_at timestamptz not null default now(),
+  primary key (venue_id, user_id)
+);
+alter table public.ended_reports enable row level security;
+drop policy if exists "ended reports are public" on public.ended_reports;
+create policy "ended reports are public" on public.ended_reports for select using (true);
+drop policy if exists "report ended as yourself" on public.ended_reports;
+create policy "report ended as yourself" on public.ended_reports for insert to authenticated with check (user_id = auth.uid());
+drop policy if exists "update your ended report" on public.ended_reports;
+create policy "update your ended report" on public.ended_reports for update to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid());
+
+create or replace function public.touch_reported()
+returns trigger language plpgsql as $$ begin new.reported_at := now(); return new; end $$;
+drop trigger if exists ended_time on public.ended_reports;
+create trigger ended_time before insert or update on public.ended_reports for each row execute function public.touch_reported();
+
 -- ---------- photo storage (public read, 2 MB images, each person writes their own folder) ----------
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('photos', 'photos', true, 2097152, array['image/jpeg','image/png','image/webp'])
 on conflict (id) do update set public = true, file_size_limit = 2097152, allowed_mime_types = array['image/jpeg','image/png','image/webp'];
 
+-- A photo can only be uploaded for a post you created in the last 15 minutes that points to it,
+-- so uploads are capped by the 20-posts-per-hour limit and no stray photos pile up.
 drop policy if exists "upload to your photo folder" on storage.objects;
 create policy "upload to your photo folder" on storage.objects for insert to authenticated
-  with check (bucket_id = 'photos' and (storage.foldername(name))[1] = auth.uid()::text);
+  with check (
+    bucket_id = 'photos'
+    and (storage.foldername(name))[1] = auth.uid()::text
+    and exists (select 1 from public.posts p
+                where p.photo_path = name  -- the file being uploaded (posts has no "name" column)
+                  and p.user_id = auth.uid()
+                  and p.created_at > now() - interval '15 minutes')
+  );
 drop policy if exists "delete your photos or admin" on storage.objects;
 create policy "delete your photos or admin" on storage.objects for delete to authenticated
   using (bucket_id = 'photos' and ((storage.foldername(name))[1] = auth.uid()::text or public.is_admin()));
