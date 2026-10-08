@@ -4561,7 +4561,7 @@
    "yelp_url": null,
    "yelp_result": null,
    "google_result": null,
-   "audit_note": "Audit Oct 7: official menu live confirms HH Mon/Wed/Fri 3pm-close, Taco Tuesday and Thirsty Thursday prices, but it is one menu for 3 locations and never names Laguna; downgraded from verified. Fish-taco pairing removed (plate vs a la carte).",
+   "audit_note": "Audit Oct 7: official menu live confirms HH Mon/Wed/Fri 3pm-close, Taco Tuesday and Thirsty Thursday prices, but it is one menu for 3 locations and never names Laguna; downgraded from verified. Fish-taco pairing removed (plate vs a la carte). Oct 7: daily hours 10am-8pm from the official site (Laguna location), used for '3pm to close'.",
    "last_evidence_date": "2026-10",
    "sources": [
     {
@@ -4572,7 +4572,9 @@
    "lat": 33.544794,
    "lng": -117.790515,
    "phone": "(949) 549-4353",
-   "public_note": "Hours and prices from the restaurant's own menu (Oct 2026), shared across its locations; waiting to confirm for Laguna Beach."
+   "public_note": "Hours and prices from the restaurant's own menu (Oct 2026), shared across its locations; waiting to confirm for Laguna Beach.",
+   "open": "10:00",
+   "close": "20:00"
   },
   {
    "id": "ahba",

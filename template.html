@@ -356,6 +356,7 @@ function eff(v){
     confidence:effConf(v),_base:v.confidence,
     _sub:s};
 }
+const closeMin=v=>toMin(v.close)??1260;
 function liveStatus(v,now){
   if(v.status!=="active")return null;
   let soon=null,best=null,dealOn=null;
@@ -364,13 +365,15 @@ function liveStatus(v,now){
     if(!b.days||!b.days.includes(now.day))continue;
     const tag=b.label!=="Happy hour"?" · "+b.label:"";
     if(b.allDay){if(b.days.length===7)continue; /* everyday deals don't make a place "on now" */
-      if(now.min>=660&&now.min<1260){const left=1260-now.min;if(!dealOn||left>dealOn.left)dealOn={on:true,left,text:b.label+" today",label:b.label}}
+      if(now.min>=Math.max(660,toMin(v.open)??0)&&now.min<closeMin(v)){const left=closeMin(v)-now.min;if(!dealOn||left>dealOn.left)dealOn={on:true,left,text:b.label+" today",label:b.label}}
       else if(now.min<660&&(!soon||660<soon.s))soon={s:660,text:b.label+" today"};continue}
-    const s=toMin(b.start),e=toMin(b.end);
+    /* "until close": use the restaurant's closing time if we know it, otherwise assume 9pm */
+    const s=toMin(b.start),e=toMin(b.end)??closeMin(v);
     if(s==null)continue;
-    if(now.min>=s&&(e==null||now.min<e)){const left=e==null?240:e-now.min;
-      const text=e!=null&&left<=30?`Ends in ${left} min${tag}`:"On now"+(b.end?" · until "+fmt(b.end):"")+tag;
-      const cand={on:true,left,text,ending:e!=null&&left<=30,hh:b.label==="Happy hour",label:b.label};
+    if(now.min>=s&&now.min<e){const left=e-now.min;
+      const endTxt=b.end?fmt(b.end):(v.close?"close ("+fmt(v.close)+")":"close");
+      const text=left<=30?`Ends in ${left} min${tag}`:"On now · until "+endTxt+tag;
+      const cand={on:true,left,text,ending:left<=30,hh:b.label==="Happy hour",label:b.label};
       if(!best||(cand.hh&&!best.hh)||(cand.hh===best.hh&&left>best.left))best=cand;continue}
     if(now.min<s&&(soon==null||s<soon.s)){const inm=s-now.min;soon={s,text:(inm<=60?`Starts in ${inm} min`:"Today "+fmt(b.start))+tag}}
   }
