@@ -232,6 +232,15 @@ details.contrib{border-top:1px dashed var(--line);padding-top:8px;display:grid;g
 details.contrib>summary{font-weight:600;font-size:14px;color:var(--sea);cursor:pointer;min-height:32px;display:flex;align-items:center}
 .ratings:empty{display:none}
 .ratings .fresh{margin-left:0}
+.hhsec{border-left:3px solid var(--sea);padding-left:10px}
+.dsec{border-left:3px solid var(--accent);padding-left:10px}
+.dsec h3{color:var(--accent-ink)}
+.grp{display:grid;gap:10px;padding:10px 12px;border-radius:10px}
+.hhgrp{background:var(--sea-soft)}
+.dgrp{background:var(--accent-soft)}
+.gh{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--sea)}
+.dgrp .sec>h3{color:var(--accent-ink)}
+.dgrp .deal{background:var(--surface)}
 .claudelink{font-size:13px;color:var(--muted);background:var(--bg);border-radius:10px;padding:10px 12px}
 .claudelink a{color:var(--sea);font-weight:600}
 @media (max-width:600px){.filters{position:static}}
@@ -753,9 +762,11 @@ function cardHTML(v0,now){
   const subNote=v._sub?`<div class="msrc">Lists updated from a visitor's menu photo on ${esc(shortDate(v._sub.at))}.${v._sub.notes?" "+esc(v._sub.notes):""}</div>`:"";
   const none=!drinks&&!food&&!deals&&v.status!=="closed"?`<div class="restrict">No item prices published yet. A menu photo would fill this in.</div>`:"";
   const picks=topPicks(v),nItems=(v.drink_items||[]).length+(v.food_items||[]).length;
-  const pickHTML=picks.length?`<div class="sec"><h3>Best deals</h3><ul class="menu">${picks.map(i=>itemRow(i,v.id)).join("")}</ul></div>`:(dealKind(v)?`<div class="kind">${esc(dealKind(v))}</div>`:"");
-  const dealChips=(v.daily_deals||[]).length?`<div class="dchips">${v.daily_deals.map(d=>`<span class="dchip">${esc(d.title||"Deal")} · ${esc(dayLabel(d.days))}</span>`).join("")}</div>`:"";
-  const fullBody=drinks+food+deals+subNote;
+  const pickHTML=picks.length?`<div class="sec hhsec"><h3>Best happy hour deals</h3><ul class="menu">${picks.map(i=>itemRow(i,v.id)).join("")}</ul></div>`:(dealKind(v)?`<div class="kind">${esc(dealKind(v))}</div>`:"");
+  const dealChips=(v.daily_deals||[]).length?`<div class="sec dsec"><h3>Daily deals</h3><div class="dchips">${v.daily_deals.map(d=>`<span class="dchip">${esc(d.title||"Deal")} · ${esc(dayLabel(d.days))}</span>`).join("")}</div></div>`:"";
+  const hhMenu=drinks+food?`<div class="grp hhgrp"><div class="gh">Happy hour menu${(v.schedule||[]).length?" · "+esc(v.schedule.map(b=>dayLabel(b.days)+(b.start?" "+fmt(b.start)+"–"+(b.end?fmt(b.end):"close"):"")).join("; ")):""}</div>${drinks}${food}</div>`:"";
+  const dealGrp=deals?`<div class="grp dgrp">${deals}</div>`:"";
+  const fullBody=hhMenu+dealGrp+subNote;
   const needFull=fullBody&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length);
   const full=needFull&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length)?`<details class="full"${state.expandAll?" open":""}><summary>Full menu${nItems?` · ${nItems} item${nItems>1?"s":""}`:""}${(v.daily_deals||[]).length?` · ${v.daily_deals.length} daily deal${v.daily_deals.length>1?"s":""}`:""}</summary>${fullBody}</details>`:fullBody;
   const seat=v.seating_restrictions?`<span class="pill p-seat">${esc(/bar/i.test(v.seating_restrictions)?(/patio/i.test(v.seating_restrictions)?"Bar & patio only":"Bar only"):/dine/i.test(v.seating_restrictions)?"Dine-in only":v.seating_restrictions)}</span>`:"";
