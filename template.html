@@ -759,9 +759,19 @@ function byKind(v){
   if(state.kind==="deal")return {...v,schedule:[],drink_items:[],food_items:[],drink_specials:[],food_specials:[]};
   return v;
 }
+/* "Happening now": keep only the happy hour block and daily specials running at this moment */
+function activeNow(v,now){
+  const today=b=>(b.days||[]).includes(now.day);
+  const inTimes=b=>{const s=toMin(b.start),e=toMin(b.end)??closeMin(v);return s!=null&&now.min>=s&&now.min<e};
+  const openNow=()=>{const os=openState(v,now);if(os)return os.open;return now.min>=Math.max(660,toMin(v.open)??0)&&now.min<closeMin(v)};
+  const sched=(v.schedule||[]).filter(b=>today(b)&&inTimes(b));
+  const hhOn=sched.length>0;
+  return {...v,schedule:sched,drink_items:hhOn?v.drink_items:[],food_items:hhOn?v.food_items:[],drink_specials:hhOn?v.drink_specials:[],food_specials:hhOn?v.food_specials:[],
+    daily_deals:(v.daily_deals||[]).filter(d=>today(d)&&(d.start?inTimes(d):openNow()))};
+}
 function cardHTML(v0,now){
-  const v=byKind(eff(v0));
-  const live=liveStatus(v,now);
+  const v0k=byKind(eff(v0)),v=state.now?activeNow(v0k,now):v0k;
+  const live=liveStatus(v0k,now);
   const cp=v.status==="closed"?["p-closed","Closed"]:({verified:["p-verified","Verified"],likely:["p-likely","Likely"],needs_confirmation:["p-needs","Needs confirmation"]}[v.confidence]||["p-needs","Needs confirmation"]);
   const badges=[live?`<span class="pill ${live.on?(live.ending?"p-ending":"p-on"):"p-soon"}">${esc(live.text)}</span>`:"",live&&live.extra?`<span class="pill p-soon">${esc(live.extra)}</span>`:"",sunsetPill(v,now),v.owner_confirmed?`<span class="pill p-verified">Owner-confirmed ${esc(monthYear(v.owner_confirmed))}</span>`:"",`<span class="pill ${cp[0]}">${cp[1]}</span>`,v.ocean_view===true?'<span class="pill p-seat">Ocean view</span>':"",v.status==="unclear"?'<span class="pill p-needs">Status unclear</span>':"",v._sub?`<span class="pill p-comm">Updated ${esc(shortDate(v._sub.at))}</span>`:""].join("");
   const sched=(v.schedule||[]).length?`<div class="sec"><h3>Happy hour</h3><div class="tide">${v.schedule.map(b=>`<div class="t"><span class="days">${esc(dayLabel(b.days))}</span><span class="hrs">${b.start?fmt(b.start)+" – "+(b.end?fmt(b.end):"close"):"Times not listed"}</span>${b.note?`<span class="tnote">${esc(b.note)}</span>`:""}</div>`).join("")}</div></div>`:"";
@@ -777,7 +787,7 @@ function cardHTML(v0,now){
   const dealGrp=deals?`<div class="grp dgrp">${deals}</div>`:"";
   const fullBody=hhMenu+dealGrp+subNote;
   /* With a deal-type filter on, show that full menu open, with no highlights or collapsed section */
-  const focused=state.kind==="hh"||state.kind==="deal";
+  const focused=state.kind==="hh"||state.kind==="deal"||state.now;
   const needFull=!focused&&fullBody&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length);
   const full=needFull?`<details class="full"${state.expandAll?" open":""}><summary>Full menu${nItems?` · ${nItems} item${nItems>1?"s":""}`:""}${(v.daily_deals||[]).length?` · ${v.daily_deals.length} daily special${v.daily_deals.length>1?"s":""}`:""}</summary>${fullBody}</details>`:fullBody;
   const seat=v.seating_restrictions?`<span class="pill p-seat">${esc(/bar/i.test(v.seating_restrictions)?(/patio/i.test(v.seating_restrictions)?"Bar & patio only":"Bar only"):/dine/i.test(v.seating_restrictions)?"Dine-in only":v.seating_restrictions)}</span>`:"";
