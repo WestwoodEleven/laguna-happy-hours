@@ -20,6 +20,10 @@ page = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'
         '<meta name="description" content="Happy hours and daily deals at Laguna Beach restaurants, with prices, savings and a map.">\n'
         + head.strip() + '\n'
+        # Real street map for the web version (Leaflet + CARTO/OpenStreetMap tiles).
+        # The Claude artifact can't load map tiles, so it keeps the drawn map.
+        '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">\n'
+        '<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>\n'
         '<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}'
         'body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n'
         '<style>' + body.split("</style>", 1)[0] + '</style>\n</head>\n<body>\n'

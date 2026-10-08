@@ -142,6 +142,16 @@ h2{font-weight:600;font-size:21px;line-height:1.15}
 .onmap{background:none;border:0;padding:0;color:var(--sea);font:600 13px/1.4 var(--f-body);cursor:pointer}
 .mapwrap,.venue{scroll-margin-top:calc(var(--fh,0px) + 12px)}
 .venue.hl{outline:2px solid var(--accent);outline-offset:2px}
+.mapbox.real{touch-action:auto}
+#lmap{width:100%;height:clamp(300px,62vh,520px);background:var(--land);z-index:0}
+.mapbox.real .zoom,.mapbox.real .pop,.mapbox.real .setbanner{z-index:1001}
+.mapbox.setting #lmap{cursor:crosshair}
+.lpin{display:grid;place-items:center;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);font:700 11px/1 var(--f-mono);color:#fff;box-sizing:border-box}
+.lpin.on{background:var(--accent)}.lpin.hh{background:var(--sea)}.lpin.deal{background:var(--muted)}
+.lpin.sel{outline:2px solid var(--ink);outline-offset:2px}
+.lme{display:block;width:22px;height:22px;border-radius:50%;background:var(--you);border:3px solid #fff;box-shadow:0 0 0 8px rgba(122,63,209,.25)}
+.leaflet-container{font:inherit}
+.leaflet-control-attribution{font-size:10px}
 .claudelink{font-size:13px;color:var(--muted);background:var(--bg);border-radius:10px;padding:10px 12px}
 .claudelink a{color:var(--sea);font-weight:600}
 @media (max-width:600px){.filters{position:static}}
@@ -333,6 +343,7 @@ function pinGroups(){
   return Object.values(g);
 }
 function drawPins(){
+  if(M.leaf)return leafletPins();
   const svg=document.getElementById("map");if(!M.vb)return;
   const s=M.vb.w/Math.max(1,svg.clientWidth||600),now=laNow();
   svg.querySelectorAll(".road").forEach(r=>r.setAttribute("stroke-width",Math.max(4*s,6)));
@@ -371,12 +382,14 @@ function gotoCard(id){
 function showOnMap(id){
   const v=VENUES.find(x=>x.id===id);if(!v||!v.lat)return;
   setMapOpen(true);
+  if(M.leaf){M.leaf.setView([v.lat,v.lng],17);showPop([id]);document.getElementById("mapwrap").scrollIntoView({behavior:"smooth",block:"start"});return}
   const [x,y]=px(v.lat,v.lng),w=Math.min(M.full.w,1800),h=w*M.full.h/M.full.w;
   setVB({x:x-w/2,y:y-h/2,w,h});showPop([id]);
   document.getElementById("mapwrap").scrollIntoView({behavior:"smooth",block:"start"});
 }
 function setMe(lat,lng,label){
   M.me={lat,lng};M.meLabel=label;
+  if(M.leaf&&label!=="your saved spot")M.leaf.setView([lat,lng],Math.max(M.leaf.getZoom(),15));
   try{localStorage.setItem("lhh-me",JSON.stringify({lat,lng,label}))}catch(e){}
   const st=document.getElementById("mstatus");st.className="mstatus";st.textContent=`Distances are from ${label}. Restaurants are sorted closest first.`;
   state.sort="near";document.getElementById("sort").value="near";
@@ -385,6 +398,7 @@ function setMe(lat,lng,label){
 function setMapOpen(open){
   document.getElementById("mapbody").style.display=open?"grid":"none";
   const t=document.getElementById("mapToggle");t.textContent=open?"Hide map":"Show map";t.setAttribute("aria-expanded",open);
+  if(open&&M.leaf)setTimeout(()=>M.leaf.invalidateSize(),0);
   if(open&&M.vb)drawPins();
 }
 function zoomAt(f,cx,cy){
@@ -393,8 +407,57 @@ function zoomAt(f,cx,cy){
   setVB({x:cx-(cx-vb.x)*k,y:cy-(cy-vb.y)*k,w,h:vb.h*k});
 }
 function svgPt(e){const svg=document.getElementById("map"),r=svg.getBoundingClientRect();return [M.vb.x+(e.clientX-r.left)/r.width*M.vb.w,M.vb.y+(e.clientY-r.top)/r.height*M.vb.h]}
+
+/* ---------- real street map (Leaflet), used outside Claude when Leaflet loaded ---------- */
+function tileLayer(){
+  const dark=matchMedia("(prefers-color-scheme: dark)").matches;
+  return L.tileLayer(`https://{s}.basemaps.cartocdn.com/${dark?"dark_all":"rastertiles/voyager"}/{z}/{x}/{y}{r}.png`,{
+    subdomains:"abcd",maxZoom:19,
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>'});
+}
+function leafletPins(){
+  const map=M.leaf;if(!map)return;
+  M.layer.clearLayers();
+  const groups=pinGroups(),now=laNow();
+  document.getElementById("mapcount").textContent=groups.reduce((n,g)=>n+g.length,0)+" on map";
+  for(const g of groups){
+    const v=g[0],on=g.some(x=>liveStatus(x,now)?.on),hh=g.some(x=>(x.schedule||[]).length);
+    const cls=on?"on":hh?"hh":"deal",sel=g.some(x=>x.id===M.sel);
+    const size=sel?30:24;
+    const icon=L.divIcon({className:"",iconSize:[size,size],iconAnchor:[size/2,size/2],
+      html:`<span class="lpin ${cls}${sel?" sel":""}" style="width:${size}px;height:${size}px">${g.length>1?g.length:""}</span>`});
+    L.marker([v.lat,v.lng],{icon,keyboard:true,title:g.map(x=>x.name).join(", "),riseOnHover:true,zIndexOffset:sel?1000:0})
+      .on("click",e=>{L.DomEvent.stopPropagation(e);showPop(g.map(x=>x.id))}).addTo(M.layer);
+  }
+  if(M.me){const i=L.divIcon({className:"",iconSize:[22,22],iconAnchor:[11,11],html:'<span class="lme"></span>'});
+    L.marker([M.me.lat,M.me.lng],{icon:i,interactive:false,zIndexOffset:2000}).addTo(M.layer)}
+}
+function initLeaflet(){
+  document.getElementById("mapbox").classList.add("real");
+  const svg=document.getElementById("map");
+  const host=document.createElement("div");host.id="lmap";host.setAttribute("aria-label","Street map of Laguna Beach with happy hour pins");
+  svg.replaceWith(host);
+  const pts=VENUES.filter(v=>v.lat).map(v=>[v.lat,v.lng]);
+  const map=L.map(host,{zoomControl:false,attributionControl:true}).fitBounds(pts,{padding:[24,24]});
+  M.leaf=map;M.layer=L.layerGroup().addTo(map);
+  let tiles=tileLayer().addTo(map);
+  const mq=matchMedia("(prefers-color-scheme: dark)");
+  if(mq.addEventListener)mq.addEventListener("change",()=>{map.removeLayer(tiles);tiles=tileLayer().addTo(map)});
+  map.on("click",e=>{
+    if(M.setting){M.setting=false;document.getElementById("setBtn").setAttribute("aria-pressed","false");document.getElementById("setbanner").hidden=true;document.getElementById("mapbox").classList.remove("setting");document.getElementById("spot").value="";setMe(e.latlng.lat,e.latlng.lng,"the spot you picked");return}
+    document.getElementById("pop").hidden=true;M.sel=null;leafletPins()});
+  document.getElementById("zin").onclick=()=>map.zoomIn();
+  document.getElementById("zout").onclick=()=>map.zoomOut();
+  document.getElementById("zfit").onclick=()=>map.fitBounds(pts,{padding:[24,24]});
+  ["pop","setbanner"].forEach(id=>{const el=document.getElementById(id);L.DomEvent.disableClickPropagation(el);L.DomEvent.disableScrollPropagation(el)});
+  document.getElementById("mstatus").textContent="Pins are placed from street addresses.";
+  wireMapControls();
+  leafletPins();
+}
+
 function initMap(){
   if(!DATA.map)return;
+  if(!IN_CLAUDE&&window.L)return initLeaflet();
   mapBase();
   const svg=document.getElementById("map"),ptrs=new Map();let start=null,moved=false,pinch=null;
   svg.addEventListener("pointerdown",e=>{svg.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});moved=false;start={x:e.clientX,y:e.clientY,vb:{...M.vb},pin:e.target.closest("[data-pin]")};
@@ -412,6 +475,10 @@ function initMap(){
   document.getElementById("zin").onclick=()=>zoomAt(1/1.5);
   document.getElementById("zout").onclick=()=>zoomAt(1.5);
   document.getElementById("zfit").onclick=()=>setVB(M.full);
+  wireMapControls();
+  window.addEventListener("resize",()=>{if(M.vb)drawPins()});
+}
+function wireMapControls(){
   document.getElementById("pop").addEventListener("click",e=>{const b=e.target.closest("[data-mact]");if(!b)return;if(b.dataset.mact==="close"){document.getElementById("pop").hidden=true;M.sel=null;drawPins()}if(b.dataset.mact==="goto")gotoCard(b.dataset.id)});
   document.getElementById("mapToggle").onclick=()=>setMapOpen(document.getElementById("mapbody").style.display==="none");
   const sp=document.getElementById("spot");
@@ -427,7 +494,6 @@ function initMap(){
       setMe(lat,lng,"your location")},fail,{enableHighAccuracy:true,timeout:10000,maximumAge:60000})}catch(e){fail()}
   };
   try{const s=JSON.parse(localStorage.getItem("lhh-me")||"null");if(s&&typeof s.lat==="number")setMe(s.lat,s.lng,s.label||"your saved spot")}catch(e){}
-  window.addEventListener("resize",()=>{if(M.vb)drawPins()});
 }
 
 /* ---------- rendering ---------- */
@@ -531,7 +597,7 @@ function render(){
   const list=document.getElementById("list");
   setTimeout(()=>loadPhotos(list),0);
   list.innerHTML=rows.length?rows.map(v=>cardHTML(v,now)).join(""):`<div class="empty">${state.now?"Nothing is running right now with these filters. Most Laguna happy hours start between 2 and 4pm.":"No listings match these filters. Try clearing the search or picking a different day."}</div>`;
-  if(M.vb){drawPins();if(M.sel&&!rows.some(v=>v.id===M.sel)){document.getElementById("pop").hidden=true;M.sel=null}}
+  if(M.vb||M.leaf){drawPins();if(M.sel&&!rows.some(v=>v.id===M.sel)){document.getElementById("pop").hidden=true;M.sel=null}}
 }
 /* refresh one card in place, unless its upload panel is in use */
 function refreshCard(id){
