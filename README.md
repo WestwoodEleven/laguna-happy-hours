@@ -35,6 +35,8 @@ Signed-in visitors can confirm a deal is still running, report that it ended, ra
 | `data/closed-places.json` | Places confirmed permanently closed, removed from the site (kept for reference) |
 | `data/restaurant-roster.json` | Every Laguna Beach restaurant and bar that was checked |
 | `build.py` | Rebuilds `index.html` from the template and data |
+| `data/kids.json` | Kids menus and kids deals, copied from the [Laguna Kids Eats](https://github.com/WestwoodEleven/laguna-kids-eats) project |
+| `sync_kids.py` | Refreshes `data/kids.json` from Kids Eats (run it, then `build.py`) |
 | `supabase/schema.sql` | Database tables, access rules and photo storage for the shared features |
 | `docs/` | Audit reports from the verification passes |
 

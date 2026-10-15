@@ -43,7 +43,32 @@ def strip(o):
         for x in o:
             strip(x)
 strip(data["venues"])
-template = (root / "template.html").read_text()
+
+# Kids menus and kids deals (from the Laguna Kids Eats project, copied by sync_kids.py).
+# Each happy hour listing gets a "kids" record; restaurants that only appear in Kids Eats
+# are added as kids-only listings, shown only when the Kids filter is on.
+kids_path = root / "data" / "kids.json"
+if kids_path.exists():
+    kids = json.loads(kids_path.read_text())
+    by_id = {v["id"]: v for v in data["venues"]}
+    for k in kids["venues"]:
+        rec = {f: k.get(f) for f in k if f not in ("id", "place")}
+        if k["id"] in by_id:
+            by_id[k["id"]]["kids"] = rec
+            continue
+        p = k["place"]
+        data["venues"].append({
+            "id": k["id"], **{f: p.get(f) for f in ("name", "address", "neighborhood", "website", "category",
+                                                    "price_level", "google_rating", "google_count", "google_url",
+                                                    "yelp_url", "lat", "lng", "hours", "hours_note", "hours_source")},
+            "status": "active", "has_happy_hour": False, "confidence": None, "kids_only": True,
+            "schedule": [], "drink_items": [], "food_items": [], "drink_specials": [], "food_specials": [],
+            "daily_deals": [], "sources": [], "public_note": None, "seating_restrictions": None,
+            "ocean_view": None, "happy_hour_url": None, "kids": rec,
+        })
+    data["kids_checked"] = kids.get("checked")
+
+template =(root / "template.html").read_text()
 assert "__DATA__" in template, "template.html is missing the __DATA__ placeholder"
 blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
 page = template.replace("__DATA__", blob, 1)
@@ -71,4 +96,5 @@ page = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
 import sys
 if len(sys.argv) > 2 and sys.argv[1] == "--claude":
     Path(sys.argv[2]).write_text(template.replace("__DATA__", blob, 1))
-print(f"Built index.html with {len(data['venues'])} listings")
+n_kids = sum(1 for v in data["venues"] if v.get("kids_only"))
+print(f"Built index.html with {len(data['venues']) - n_kids} listings and {n_kids} kids-only listings")

@@ -222,6 +222,13 @@ details.contrib>summary{font-weight:600;font-size:14px;color:var(--sea);cursor:p
 .gh{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--sea)}
 .dgrp .sec>h3{color:var(--accent-ink)}
 .dgrp .deal{background:var(--surface)}
+.kgrp{background:var(--surface-2,var(--bg));border:1px solid var(--line)}
+.kgrp .deal{background:var(--surface)}
+.kh{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 8px;margin-bottom:6px}
+.kh h3{margin:0}
+.ktag{font:600 11px/1 var(--f-body);padding:4px 8px;border-radius:999px;background:var(--sea-soft);color:var(--sea)}
+.kn{margin:0 0 6px;font-size:13px;color:var(--muted)}
+select:disabled{opacity:.5}
 details.hrsbox{border:0;padding:0;margin-top:-4px}
 details.hrsbox>summary{font-size:13px;cursor:pointer;min-height:28px;display:flex;align-items:center;flex-wrap:wrap;color:var(--ink);font-weight:400}
 .os{font-weight:600;color:var(--muted)}
@@ -290,6 +297,7 @@ footer ul{margin:6px 0 0;padding-left:18px;columns:2;column-gap:20px}
     <div class="row">
       <button class="chip now" id="nowBtn" aria-pressed="false">Happening now</button>
       <button class="chip" id="oceanBtn" aria-pressed="false">🌅 Ocean view</button>
+      <button class="chip" id="kidsBtn" aria-pressed="false">Kids menus</button>
       <button class="chip" id="favBtn" aria-pressed="false">★ My spots</button>
       <button class="chip" id="expandBtn" aria-pressed="false">Expand all menus</button>
       <select id="kind" aria-label="Deal type">
@@ -354,7 +362,7 @@ const VENUES = DATA.venues;
 const DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 let FAVS=new Set();try{FAVS=new Set(JSON.parse(localStorage.getItem("lhh-favs")||"[]"))}catch(e){}
 function saveFavs(){try{localStorage.setItem("lhh-favs",JSON.stringify([...FAVS]))}catch(e){}}
-const state={q:"",day:"",now:false,ocean:false,favs:false,expandAll:false,kind:"",hood:"",status:"all",conf:"",sort:"now"};
+const state={q:"",day:"",now:false,kids:false,ocean:false,favs:false,expandAll:false,kind:"",hood:"",status:"all",conf:"",sort:"now"};
 const C_ENDED={};
 const C={ended:{},reports:{},dealConf:{},prices:{},db:null,user:null,isOwner:false,posts:{},photoCache:{},myPosts:[],sample:null,uid:null,canImg:false,confirms:{},ratings:{},subs:{},mine:{c:{},r:{},s:{},e:{},d:{},p:{}}};
 
@@ -786,7 +794,18 @@ function communityHTML(v){
   </div>`;
 }
 /* Deal-type filter: "hh" shows only happy hour, "deal" only daily specials; default shows both with highlights */
+/* Kids filter: a listing shows its kids menu and kids deals instead of happy hour content.
+   Kids deals stand in for daily specials so "Happening now", the day buttons and sorting keep working. */
+const KCONF={verified:"verified",likely:"likely",needs:"needs_confirmation"};
+function kidsView(v){
+  const k=v.kids||{};
+  return {...v,schedule:[],drink_items:[],food_items:[],drink_specials:[],food_specials:[],happy_hour_url:null,
+    daily_deals:(k.kids_deals||[]).map(d=>({title:d.title,days:d.days||[],start:d.start,end:d.end,description:d.details,items:[]})),
+    confidence:KCONF[k.confidence]||"needs_confirmation",sources:k.sources||[],public_note:null,owner_confirmed:null,_sub:null};
+}
+const hasKids=v=>!!v.kids&&(((v.kids.kids_items||[]).length>0)||((v.kids.kids_deals||[]).length>0)||!!v.kids.kids_menu_note);
 function byKind(v){
+  if(state.kids)return kidsView(v);
   if(state.kind==="hh")return {...v,daily_deals:[]};
   if(state.kind==="deal")return {...v,schedule:[],drink_items:[],food_items:[],drink_specials:[],food_specials:[]};
   return v;
@@ -800,6 +819,13 @@ function activeNow(v,now){
   const hhOn=sched.length>0;
   return {...v,schedule:sched,drink_items:hhOn?v.drink_items:[],food_items:hhOn?v.food_items:[],drink_specials:hhOn?v.drink_specials:[],food_specials:hhOn?v.food_specials:[],
     daily_deals:(v.daily_deals||[]).filter(d=>today(d)&&(d.start?inTimes(d):openNow()))};
+}
+function kidsHTML(v){
+  const k=v.kids||{},items=k.kids_items||[],deals=k.kids_deals||[];
+  const tags=[k.age_limit?`<span class="ktag">${esc(k.age_limit)}</span>`:"",k.includes_drink?'<span class="ktag">Drink included</span>':""].join("");
+  const menu=`<div class="sec"><div class="kh"><h3>Kids menu${items.length?" · "+items.length:""}</h3>${tags}</div>${k.kids_menu_note?`<p class="kn">${esc(k.kids_menu_note)}</p>`:""}${items.length?`<ul class="menu">${items.map(i=>itemRow({item:i.item,price:i.price,note:i.note},v.id)).join("")}</ul>`:'<p class="kn">Items and prices aren\'t published yet.</p>'}</div>`;
+  const dl=deals.length?`<div class="sec"><h3>Kids deals</h3><div class="deals">${deals.map(d=>`<div class="deal"><div class="dh"><span class="dt">${esc(d.title||"Kids deal")}</span><span class="dd">${esc(dayLabel(d.days||[]))}${d.start?" · from "+fmt(d.start)+(d.end?" to "+fmt(d.end):""):" · all day"}</span></div>${d.details?`<p>${esc(d.details)}</p>`:""}${d.restrictions?`<p class="kn">${esc(d.restrictions)}</p>`:""}</div>`).join("")}</div></div>`:"";
+  return `<div class="grp kgrp">${dl}${menu}</div>`;
 }
 function cardHTML(v0,now){
   const v0k=byKind(eff(v0)),v=state.now?activeNow(v0k,now):v0k;
@@ -817,9 +843,9 @@ function cardHTML(v0,now){
   const dealChips=(v.daily_deals||[]).length?`<div class="sec dsec"><h3>Daily specials</h3><div class="dchips">${v.daily_deals.map(d=>`<span class="dchip">${esc(d.title||"Deal")} · ${esc(dayLabel(d.days))}</span>`).join("")}</div></div>`:"";
   const hhMenu=drinks+food?`<div class="grp hhgrp"><div class="gh">Happy hour menu${(v.schedule||[]).length?" · "+esc(v.schedule.map(b=>dayLabel(b.days)+(b.start?" "+fmt(b.start)+"–"+(b.end?fmt(b.end):"close"):"")).join("; ")):""}</div>${drinks}${food}</div>`:"";
   const dealGrp=deals?`<div class="grp dgrp">${deals}</div>`:"";
-  const fullBody=hhMenu+dealGrp+subNote;
+  const fullBody=state.kids?kidsHTML(v):hhMenu+dealGrp+subNote;
   /* With a deal-type filter on, show that full menu open, with no highlights or collapsed section */
-  const focused=state.kind==="hh"||state.kind==="deal"||state.now;
+  const focused=state.kind==="hh"||state.kind==="deal"||state.now||state.kids;
   const needFull=!focused&&fullBody&&(nItems>picks.length||(v.daily_deals||[]).length||(v.drink_specials||[]).length||(v.food_specials||[]).length);
   const full=needFull?`<details class="full"${state.expandAll?" open":""}><summary>Full menu${nItems?` · ${nItems} item${nItems>1?"s":""}`:""}${(v.daily_deals||[]).length?` · ${v.daily_deals.length} daily special${v.daily_deals.length>1?"s":""}`:""}</summary>${fullBody}</details>`:fullBody;
   const seat=v.seating_restrictions?`<span class="pill p-seat">${esc(/bar/i.test(v.seating_restrictions)?(/patio/i.test(v.seating_restrictions)?"Bar & patio only":"Bar only"):/dine/i.test(v.seating_restrictions)?"Dine-in only":v.seating_restrictions)}</span>`:"";
@@ -832,7 +858,7 @@ function cardHTML(v0,now){
     v.lat?ACT("🗺️","Map",`data-act="onmap" data-id="${v.id}"`):"",
     ACT("↗","Share",`data-act="share" data-id="${v.id}"`)].join("")}</div>`;
   const yelp=v.yelp_url?`<a href="${esc(v.yelp_url)}" target="_blank" rel="noopener">Yelp reviews</a>`:"";
-  const links=[v.happy_hour_url&&state.kind!=="deal"?`<a href="${esc(v.happy_hour_url)}" target="_blank" rel="noopener">Happy hour menu</a>`:"",v.website?`<a href="${esc(v.website)}" target="_blank" rel="noopener">${esc(host(v.website))}</a>`:"",yelp,WEB_SHARED&&v.status!=="closed"?`<button class="onmap" data-act="owner" data-id="${v.id}">Is this your place?</button>`:""].join("");
+  const links=[state.kids&&v.kids?.kids_menu_url?`<a href="${esc(v.kids.kids_menu_url)}" target="_blank" rel="noopener">Kids menu</a>`:"",v.happy_hour_url&&state.kind!=="deal"?`<a href="${esc(v.happy_hour_url)}" target="_blank" rel="noopener">Happy hour menu</a>`:"",v.website?`<a href="${esc(v.website)}" target="_blank" rel="noopener">${esc(host(v.website))}</a>`:"",yelp,WEB_SHARED&&v.status!=="closed"?`<button class="onmap" data-act="owner" data-id="${v.id}">Is this your place?</button>`:""].join("");
   return `<article class="venue ${v.status==="closed"?"closed":""}" id="card-${v.id}">
     <div class="vtop"><h2>${esc(v.name)}</h2><button class="fav" data-act="fav" data-id="${v.id}" aria-pressed="${FAVS.has(v.id)}" aria-label="${FAVS.has(v.id)?"Remove from":"Add to"} my spots">${FAVS.has(v.id)?"★":"☆"}</button></div>
     <div class="badges">${badges}${seat}${ended?'<span class="pill p-recheck">Being re-checked</span>':""}</div>
@@ -843,7 +869,7 @@ function cardHTML(v0,now){
     ${sched}${needFull?pickHTML+dealChips:""}${full}${picks.length||fullBody?"":none}
     ${actions}
     ${links?`<div class="links">${links}</div>`:""}
-    ${v.status==="closed"?"":(IN_CLAUDE||WEB_SHARED)?`<details class="contrib"><summary>Been here? Confirm, rate or add a note${(C.posts[v.id]||[]).length?` · ${(C.posts[v.id]||[]).length} note${(C.posts[v.id]||[]).length>1?"s":""}`:""}</summary>${communityHTML(v)}<div class="notes"><div id="nt-${v.id}">${notesHTML(v)}</div>${composerHTML(v)}</div></details>`:`<div class="claudelink"><a href="${CLAUDE_URL}" target="_blank" rel="noopener">Been here? Update this listing</a></div>`}
+    ${v.status==="closed"||state.kids?"":(IN_CLAUDE||WEB_SHARED)?`<details class="contrib"><summary>Been here? Confirm, rate or add a note${(C.posts[v.id]||[]).length?` · ${(C.posts[v.id]||[]).length} note${(C.posts[v.id]||[]).length>1?"s":""}`:""}</summary>${communityHTML(v)}<div class="notes"><div id="nt-${v.id}">${notesHTML(v)}</div>${composerHTML(v)}</div></details>`:`<div class="claudelink"><a href="${CLAUDE_URL}" target="_blank" rel="noopener">Been here? Update this listing</a></div>`}
     <details><summary>How we checked</summary>
       <dl class="verify">
         ${v.public_note?`<div><dt>About this listing</dt><dd>${esc(v.public_note)}</dd></div>`:""}
@@ -860,17 +886,26 @@ function matches(v0,now){
   if(state.hood&&v.neighborhood!==state.hood)return false;
   if(state.conf==="verified"&&v.confidence!=="verified")return false;
   if(state.conf==="vl"&&v.confidence==="needs_confirmation")return false;
+  /* kids-only restaurants (from Kids Eats) appear only with the Kids filter on */
+  if(v.kids_only&&!state.kids)return false;
+  if(state.kids){
+    if(!hasKids(v))return false;
+    const kv=kidsView(v),os=openState(v,now);
+    const openDay=d=>!v.hours||((v.hours[d]||[]).length>0);
+    if(state.day&&!openDay(state.day)&&!kv.daily_deals.some(d=>d.days.includes(state.day)))return false;
+    if(state.now&&!(os&&os.open)&&!(live&&live.on))return false;
+  }
   const hasHH=(v.schedule||[]).length>0||v.has_happy_hour,hasDeal=(v.daily_deals||[]).length>0;
   if(state.kind==="hh"&&!hasHH)return false;
   if(state.kind==="deal"&&!hasDeal)return false;
   const vk=byKind(v);
-  if(state.day&&!(vk.schedule||[]).some(b=>(b.days||[]).includes(state.day))&&!(vk.daily_deals||[]).some(d=>(d.days||[]).includes(state.day)))return false;
-  if(state.now&&!(live&&live.on))return false;
+  if(!state.kids&&state.day&&!(vk.schedule||[]).some(b=>(b.days||[]).includes(state.day))&&!(vk.daily_deals||[]).some(d=>(d.days||[]).includes(state.day)))return false;
+  if(!state.kids&&state.now&&!(live&&live.on))return false;
   if(state.ocean&&v.ocean_view!==true)return false;
   if(state.favs&&!FAVS.has(v.id))return false;
   if(state.conf==="check"&&!(v.status!=="closed"&&(v.confidence==="needs_confirmation"||v.confidence==="likely")))return false;
   const q=state.q.trim().toLowerCase();
-  if(q){const hay=[v.name,v.neighborhood,v.address,v.category,...(v.drink_specials||[]),...(v.food_specials||[]),...(v.drink_items||[]).map(i=>i.item),...(v.food_items||[]).map(i=>i.item),...(v.daily_deals||[]).flatMap(d=>[d.title,d.description,...(d.items||[]).map(i=>i.item)])].join(" ").toLowerCase();if(!hay.includes(q))return false}
+  if(q){const hay=[v.name,v.neighborhood,v.address,v.category,...(v.drink_specials||[]),...(v.food_specials||[]),...(v.drink_items||[]).map(i=>i.item),...(v.food_items||[]).map(i=>i.item),...(v.daily_deals||[]).flatMap(d=>[d.title,d.description,...(d.items||[]).map(i=>i.item)]),...(state.kids&&v.kids?[v.kids.kids_menu_note,...(v.kids.kids_items||[]).map(i=>i.item),...(v.kids.kids_deals||[]).flatMap(d=>[d.title,d.details])]:[])].join(" ").toLowerCase();if(!hay.includes(q))return false}
   return true;
 }
 function render(){
@@ -1249,6 +1284,9 @@ document.addEventListener("click",async e=>{
   const nb=document.getElementById("nowBtn");nb.onclick=()=>{state.now=!state.now;nb.setAttribute("aria-pressed",state.now);render()};
   const xb=document.getElementById("expandBtn");xb.onclick=()=>{state.expandAll=!state.expandAll;xb.setAttribute("aria-pressed",state.expandAll);xb.textContent=state.expandAll?"Collapse all menus":"Expand all menus";
     document.querySelectorAll("details.full").forEach(d=>d.open=state.expandAll)};
+  const kb=document.getElementById("kidsBtn"),ks=document.getElementById("kind");kb.onclick=()=>{state.kids=!state.kids;kb.setAttribute("aria-pressed",state.kids);
+    /* the deal-type picker is about happy hours and daily specials, so it steps aside while the Kids filter is on */
+    ks.disabled=state.kids;if(state.kids){state.kind="";ks.value=""}render()};
   const fb=document.getElementById("favBtn");fb.onclick=()=>{state.favs=!state.favs;fb.setAttribute("aria-pressed",state.favs);render()};
   const ob=document.getElementById("oceanBtn");ob.onclick=()=>{state.ocean=!state.ocean;ob.setAttribute("aria-pressed",state.ocean);render()};
   const fh=()=>{const f=document.querySelector(".filters");document.documentElement.style.setProperty("--fh",getComputedStyle(f).position==="sticky"?f.offsetHeight+"px":"0px")};fh();window.addEventListener("resize",fh);
