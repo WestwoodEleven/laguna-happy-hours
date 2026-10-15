@@ -804,8 +804,18 @@ function kidsView(v){
     confidence:KCONF[k.confidence]||"needs_confirmation",sources:k.sources||[],public_note:null,owner_confirmed:null,_sub:null};
 }
 const hasKids=v=>!!v.kids&&(((v.kids.kids_items||[]).length>0)||((v.kids.kids_deals||[]).length>0)||!!v.kids.kids_menu_note);
+/* With "Happening now" or a day picked, kids deals join the daily specials (tagged "Kids"),
+   unless the deal-type picker is set to happy hours only */
+function withKidsDeals(v){
+  if(!(state.now||state.day)||state.kind==="hh"||!v.kids)return v;
+  const day=state.day||laNow().day;
+  const kd=(v.kids.kids_deals||[]).filter(d=>(d.days||[]).includes(day))
+    .map(d=>({title:d.title||"Kids deal",days:d.days||[],start:d.start,end:d.end,description:d.details,note:d.restrictions,items:[],kids:true}));
+  return kd.length?{...v,daily_deals:[...(v.daily_deals||[]),...kd]}:v;
+}
 function byKind(v){
   if(state.kids)return kidsView(v);
+  v=withKidsDeals(v);
   if(state.kind==="hh")return {...v,daily_deals:[]};
   if(state.kind==="deal")return {...v,schedule:[],drink_items:[],food_items:[],drink_specials:[],food_specials:[]};
   return v;
@@ -835,7 +845,7 @@ function cardHTML(v0,now){
   const sched=(v.schedule||[]).length?`<div class="sec"><h3>Happy hour</h3><div class="tide">${v.schedule.map(b=>`<div class="t"><span class="days">${esc(dayLabel(b.days))}</span><span class="hrs">${b.start?fmt(b.start)+" – "+(b.end?fmt(b.end):"close"):"Times not listed"}</span>${b.note?`<span class="tnote">${esc(b.note)}</span>`:""}</div>`).join("")}</div></div>`:"";
   const drinks=menuBlock("Drinks",v.drink_items,v.drink_specials,v.id);
   const food=menuBlock("Food",v.food_items,v.food_specials,v.id);
-  const deals=(v.daily_deals||[]).length?`<div class="sec"><h3>Daily specials</h3><div class="deals">${v.daily_deals.map(d=>{const k=dealKey(d),dc=C.dealConf[v.id+"|"+k];return `<div class="deal"><div class="dh"><span class="dt">${esc(d.title||"Deal")}</span><span class="dd">${esc(dayLabel(d.days))}${d.start?" · "+fmt(d.start)+(d.end?"–"+fmt(d.end):""):" · all day"}</span></div>${d.description?`<p>${esc(d.description)}</p>`:""}${(d.items||[]).length?`<ul class="menu">${d.items.map(i=>itemRow(i,v.id)).join("")}</ul>`:""}${SHARED()&&v.status!=="closed"?`<div class="dconf"><button class="linkbtn" data-act="dealok" data-id="${v.id}" data-k="${esc(k)}">Still running? ✓</button>${dc?`<span class="cl">Confirmed by a visitor ${esc(shortDate(dc))}</span>`:""}</div>`:""}</div>`}).join("")}</div></div>`:"";
+  const deals=(v.daily_deals||[]).length?`<div class="sec"><h3>Daily specials</h3><div class="deals">${v.daily_deals.map(d=>{const k=dealKey(d),dc=C.dealConf[v.id+"|"+k];return `<div class="deal"><div class="dh"><span class="dt">${esc(d.title||"Deal")}</span>${d.kids?'<span class="ktag">Kids</span>':""}<span class="dd">${esc(dayLabel(d.days))}${d.start?" · "+fmt(d.start)+(d.end?"–"+fmt(d.end):""):" · all day"}</span></div>${d.description?`<p>${esc(d.description)}</p>`:""}${d.note?`<p class="kn">${esc(d.note)}</p>`:""}${(d.items||[]).length?`<ul class="menu">${d.items.map(i=>itemRow(i,v.id)).join("")}</ul>`:""}${SHARED()&&v.status!=="closed"&&!d.kids?`<div class="dconf"><button class="linkbtn" data-act="dealok" data-id="${v.id}" data-k="${esc(k)}">Still running? ✓</button>${dc?`<span class="cl">Confirmed by a visitor ${esc(shortDate(dc))}</span>`:""}</div>`:""}</div>`}).join("")}</div></div>`:"";
   const subNote=v._sub?`<div class="msrc">Lists updated from a visitor's menu photo on ${esc(shortDate(v._sub.at))}.${v._sub.notes?" "+esc(v._sub.notes):""}</div>`:"";
   const none=!drinks&&!food&&!deals&&v.status!=="closed"?`<div class="restrict">No item prices published yet. A menu photo would fill this in.</div>`:"";
   const picks=topPicks(v),nItems=(v.drink_items||[]).length+(v.food_items||[]).length;
@@ -887,7 +897,7 @@ function matches(v0,now){
   if(state.conf==="verified"&&v.confidence!=="verified")return false;
   if(state.conf==="vl"&&v.confidence==="needs_confirmation")return false;
   /* kids-only restaurants (from Kids Eats) appear only with the Kids filter on */
-  if(v.kids_only&&!state.kids)return false;
+  if(v.kids_only&&!state.kids&&!(byKind(v).daily_deals||[]).some(d=>d.kids))return false;
   if(state.kids){
     if(!hasKids(v))return false;
     const kv=kidsView(v),os=openState(v,now);
@@ -895,7 +905,7 @@ function matches(v0,now){
     if(state.day&&!openDay(state.day)&&!kv.daily_deals.some(d=>d.days.includes(state.day)))return false;
     if(state.now&&!(os&&os.open)&&!(live&&live.on))return false;
   }
-  const hasHH=(v.schedule||[]).length>0||v.has_happy_hour,hasDeal=(v.daily_deals||[]).length>0;
+  const hasHH=(v.schedule||[]).length>0||v.has_happy_hour,hasDeal=(withKidsDeals(v).daily_deals||[]).length>0;
   if(state.kind==="hh"&&!hasHH)return false;
   if(state.kind==="deal"&&!hasDeal)return false;
   const vk=byKind(v);
