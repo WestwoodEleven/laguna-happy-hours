@@ -48,8 +48,6 @@ select{min-height:40px;font:600 13px/1 var(--f-body);padding:8px 10px;border-rad
 .list{display:grid;gap:12px;margin-top:14px}
 .venue{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:12px;min-width:0}
 .venue.closed{opacity:.72}
-.vhead{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
-.vhead > div{min-width:0}
 h2{font-weight:600;font-size:21px;line-height:1.15}
 .meta{color:var(--muted);font-size:13px}
 .ratings{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;margin-top:4px}
@@ -170,9 +168,8 @@ h2{font-weight:600;font-size:21px;line-height:1.15}
 .kind{font-size:14px;color:var(--muted)}
 .dchips{display:flex;flex-wrap:wrap;gap:6px}
 .dchip{font:600 12px/1 var(--f-body);padding:6px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink)}
-details.full,details.notesbox{border-top:1px dashed var(--line);padding-top:8px;display:grid;gap:10px}
-details.full[open],details.notesbox[open]{gap:10px}
-details.full>summary,details.notesbox>summary{font-weight:600;font-size:13px;color:var(--sea);cursor:pointer}
+details.full{border-top:1px dashed var(--line);padding-top:8px;display:grid;gap:10px}
+details.full>summary{font-weight:600;font-size:13px;color:var(--sea);cursor:pointer}
 .nextup{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px;text-align:left}
 .p-sun{background:var(--accent);color:#1c1300}
 .p-recheck{background:var(--line);color:var(--muted)}
@@ -192,7 +189,6 @@ details.full>summary,details.notesbox>summary{font-weight:600;font-size:13px;col
 .pform input{width:6em;font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
 .ownerform{display:grid;gap:8px;background:var(--bg);border-radius:10px;padding:10px 12px}
 .ownerform input:not([type=checkbox]),.ownerform textarea{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);width:100%}
-.sunmark{width:1.05em;height:1.05em;vertical-align:-0.12em;margin-right:.2em}
 .towermark{width:.78em;height:1.2em;vertical-align:-0.2em;margin-right:.22em}
 .sunmini{width:14px;height:9px;margin-right:5px;vertical-align:0}
 .clockrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px}
@@ -363,7 +359,6 @@ const DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 let FAVS=new Set();try{FAVS=new Set(JSON.parse(localStorage.getItem("lhh-favs")||"[]"))}catch(e){}
 function saveFavs(){try{localStorage.setItem("lhh-favs",JSON.stringify([...FAVS]))}catch(e){}}
 const state={q:"",day:"",now:false,kids:false,ocean:false,favs:false,expandAll:false,kind:"",hood:"",status:"all",conf:"",sort:"now"};
-const C_ENDED={};
 const C={ended:{},reports:{},dealConf:{},prices:{},db:null,user:null,isOwner:false,posts:{},photoCache:{},myPosts:[],sample:null,uid:null,canImg:false,confirms:{},ratings:{},subs:{},mine:{c:{},r:{},s:{},e:{},d:{},p:{}}};
 
 function laNow(){
@@ -444,11 +439,14 @@ function weekHours(v){
   return DAYS.map(d=>{const r=(v.hours||{})[d]||[];return `<span class="wd">${d}</span><span>${r.length?r.map(([a,b])=>fmt(a)+"–"+fmt(b)).join(", "):"Closed"}</span>`}).join("");
 }
 /* when a happy hour runs "until close", end it at today's closing time if we know it */
-function closeMin(v){
-  const now=laNow(),r=ranges(v,now.day);
+function closeMin(v,now=laNow()){
+  const r=ranges(v,now.day);
   if(r.length)return Math.max(...r.map(x=>x[1]));
   return toMin(v.close)??1260;
 }
+/* the restaurant's first opening time on a day (0 when hours aren't known), and whether it's open right now */
+function opensFrom(v,day){const r=ranges(v,day);return r.length?Math.min(...r.map(x=>x[0])):0}
+function isOpen(v,now){const os=openState(v,now);return os?os.open:true}
 function liveStatus(v,now){
   if(v.status!=="active")return null;
   let soon=null,best=null,dealOn=null;
@@ -460,17 +458,18 @@ function liveStatus(v,now){
       const os=openState(v,now);
       if(os&&!os.open){if(os.when==="today"&&(!soon||os.opens<soon.s))soon={s:os.opens,text:b.label+" today"};continue}
       if(os&&os.open){const left=os.closes-now.min;if(!dealOn||left>dealOn.left)dealOn={on:true,left,text:b.label+" today",label:b.label};continue}
-      if(now.min>=Math.max(660,toMin(v.open)??0)&&now.min<closeMin(v)){const left=closeMin(v)-now.min;if(!dealOn||left>dealOn.left)dealOn={on:true,left,text:b.label+" today",label:b.label}}
+      if(now.min>=Math.max(660,toMin(v.open)??0)&&now.min<closeMin(v,now)){const left=closeMin(v,now)-now.min;if(!dealOn||left>dealOn.left)dealOn={on:true,left,text:b.label+" today",label:b.label}}
       else if(now.min<660&&(!soon||660<soon.s))soon={s:660,text:b.label+" today"};continue}
     /* "until close": use the restaurant's closing time if we know it, otherwise assume 9pm */
-    const s=toMin(b.start),e=toMin(b.end)??closeMin(v);
-    if(s==null)continue;
-    if(now.min>=s&&now.min<e){const left=e-now.min;
+    const s0=toMin(b.start),e=toMin(b.end)??closeMin(v,now);
+    if(s0==null)continue;
+    const s=Math.max(s0,opensFrom(v,now.day));
+    if(now.min>=s&&now.min<e&&isOpen(v,now)){const left=e-now.min;
       const endTxt=b.end?fmt(b.end):(v.close?"close ("+fmt(v.close)+")":"close");
       const text=left<=30?`Ends in ${left} min${tag}`:"On now · until "+endTxt+tag;
       const cand={on:true,left,text,ending:left<=30,hh:b.label==="Happy hour",label:b.label};
       if(!best||(cand.hh&&!best.hh)||(cand.hh===best.hh&&left>best.left))best=cand;continue}
-    if(now.min<s&&(soon==null||s<soon.s)){const inm=s-now.min;soon={s,text:(inm<=60?`Starts in ${inm} min`:"Today "+fmt(b.start))+tag}}
+    if(now.min<s&&(soon==null||s<soon.s)){const inm=s-now.min;soon={s,text:(inm<=60?`Starts in ${inm} min`:"Today "+fmtM(s))+tag}}
   }
   if(best){if(dealOn&&best.hh)best.extra=dealOn.label+" today";return best}   /* a running happy hour wins; the day's deal becomes a second chip */
   if(dealOn)return dealOn;
@@ -511,7 +510,8 @@ function visitorAvg(id){const r=C.ratings[id];return r&&r.n?r.sum/r.n:null}
 
 /* ---------- map and location ---------- */
 const IN_CLAUDE=!!window.claude?.use;
-const WEB_SHARED=!IN_CLAUDE&&!!window.supabase?.createClient&&!!SB_URL&&!!SB_KEY;
+/* set in init(): the map and sign-in libraries load with "defer", after this script */
+let WEB_SHARED=false;
 const M={lat0:33.525,vb:null,full:null,sel:null,setting:false,me:null,meLabel:""};
 const MLNG=111320*Math.cos(33.525*Math.PI/180),MLAT=111320;
 const px=(lat,lng)=>[(lng+117.78)*MLNG,-(lat-M.lat0)*MLAT];
@@ -823,8 +823,8 @@ function byKind(v){
 /* "Happening now": keep only the happy hour block and daily specials running at this moment */
 function activeNow(v,now){
   const today=b=>(b.days||[]).includes(now.day);
-  const inTimes=b=>{const s=toMin(b.start),e=toMin(b.end)??closeMin(v);return s!=null&&now.min>=s&&now.min<e};
-  const openNow=()=>{const os=openState(v,now);if(os)return os.open;return now.min>=Math.max(660,toMin(v.open)??0)&&now.min<closeMin(v)};
+  const inTimes=b=>{const s0=toMin(b.start),e=toMin(b.end)??closeMin(v,now);return s0!=null&&now.min>=Math.max(s0,opensFrom(v,now.day))&&now.min<e&&isOpen(v,now)};
+  const openNow=()=>{const os=openState(v,now);if(os)return os.open;return now.min>=Math.max(660,toMin(v.open)??0)&&now.min<closeMin(v,now)};
   const sched=(v.schedule||[]).filter(b=>today(b)&&inTimes(b));
   const hhOn=sched.length>0;
   return {...v,schedule:sched,drink_items:hhOn?v.drink_items:[],food_items:hhOn?v.food_items:[],drink_specials:hhOn?v.drink_specials:[],food_specials:hhOn?v.food_specials:[],
@@ -1016,7 +1016,7 @@ function notesHTML(v){
   return head+`<ul class="posts">${show.map(p=>{
     const name=p.name||C.names?.[p.uid]||"A visitor";
     const mine=p.uid===C.uid, canDel=mine||C.isOwner;
-    const ph=p.photoUrl?`<img class="pimg" loading="lazy" onerror="this.remove()" src="${esc(p.photoUrl)}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:p.photo?(C.photoCache[p.uid+"/"+p.id]?`<img class="pimg" src="${C.photoCache[p.uid+"/"+p.id]}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:`<div class="pimg ph" data-photo="${p.uid}/${p.id}">Loading photo…</div>`):"";
+    const ph=p.photoUrl&&String(p.photoUrl).startsWith(SB_URL+"/storage/v1/object/public/photos/")?`<img class="pimg" loading="lazy" onerror="this.remove()" src="${esc(p.photoUrl)}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:p.photo?(C.photoCache[p.uid+"/"+p.id]?`<img class="pimg" src="${C.photoCache[p.uid+"/"+p.id]}" alt="Photo from ${esc(name)} at ${esc(v.name)}">`:`<div class="pimg ph" data-photo="${p.uid}/${p.id}">Loading photo…</div>`):"";
     return `<li class="post"><div class="pm"><b>${esc(mine?"You":name)}</b> · ${esc(shortDate(p.at))}${canDel?` · <button class="linkbtn" data-act="delPost" data-id="${v.id}" data-pid="${p.id}" data-uid="${p.uid}">Delete</button>`:""}${WEB_SHARED&&!mine&&C.uid?` · <button class="linkbtn" data-act="report" data-id="${v.id}" data-pid="${p.id}">${C.reports[p.id]?"Reported":"Report"}</button>`:""}${p.hidden?` · <b>Hidden after reports</b>${C.isOwner?` <button class="linkbtn" data-act="restore" data-id="${v.id}" data-pid="${p.id}">Restore</button>`:""}`:""}</div>${p.text?`<p>${esc(p.text)}</p>`:""}${ph}</li>`}).join("")}</ul>${list.length>3&&!C.expanded?.[v.id]?`<button class="linkbtn" data-act="moreNotes" data-id="${v.id}">Show all ${list.length} notes</button>`:""}`;
 }
 function composerHTML(v){
@@ -1285,7 +1285,8 @@ document.addEventListener("click",async e=>{
   if(act==="rate"){const n=+b.dataset.n;try{await writeMine("r",id,n)}catch(err){b.closest(".stars").insertAdjacentHTML("afterend",'<span class="cl">Couldn\'t save your rating.</span>')}}
 });
 
-(async function init(){
+async function init(){
+  WEB_SHARED=!IN_CLAUDE&&!!window.supabase?.createClient&&!!SB_URL&&!!SB_KEY;
   const dr=document.getElementById("dayRow"),now=laNow();
   [["any","Any day",""],["today","Today",now.day],...DAYS.map(d=>[d,d,d])].forEach(([idk,label,d])=>{const b=document.createElement("button");b.className="chip";b.id="day-"+idk;b.textContent=label;b.setAttribute("aria-pressed",idk==="any"?"true":"false");if(idk===now.day)b.title="Today";b.onclick=()=>{state.day=d;dr.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));render()};dr.appendChild(b)});
   const hs=document.getElementById("hood");[...new Set(VENUES.map(v=>v.neighborhood).filter(Boolean))].sort().forEach(h=>{const o=document.createElement("option");o.value=h;o.textContent=h;hs.appendChild(o)});
@@ -1318,5 +1319,7 @@ document.addEventListener("click",async e=>{
   if(sample){try{C.canImg=!!(await sample.limits())?.images}catch(e){C.canImg=false}}
   if(db){for(const k of ["c","r","s","e","d","p"])db.collection(k).onSnapshot(s=>aggregate(k,s),()=>{});db.collection("m").onSnapshot(s=>aggregatePosts(s),()=>{});}
   render();
-})();
+}
+/* deferred scripts (map, sign-in) have run by DOMContentLoaded */
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 </script>

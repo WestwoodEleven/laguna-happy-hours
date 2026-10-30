@@ -59,6 +59,14 @@ create table if not exists public.posts (
   check (char_length(body) > 0 or photo_path is not null)
 );
 create index if not exists posts_venue_created on public.posts (venue_id, created_at desc);
+-- A post's photo address must point at its own file in this project's photo bucket, so a post
+-- can't show an image from another site. (NOT VALID: existing rows aren't re-checked.)
+alter table public.posts drop constraint if exists posts_photo_url_own_bucket;
+alter table public.posts add constraint posts_photo_url_own_bucket check (
+  photo_url is null
+  or (photo_path is not null
+      and photo_url = 'https://eeyunztuwpgkhrxgygky.supabase.co/storage/v1/object/public/photos/' || photo_path)
+) not valid;
 alter table public.posts enable row level security;
 alter table public.posts add column if not exists hidden boolean not null default false;
 drop policy if exists "posts are public" on public.posts;
