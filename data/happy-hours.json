@@ -32,7 +32,7 @@
      ],
      "start": "11:00",
      "end": "15:00",
-     "note": "Weekend happy hour Sat–Sun 11am–6pm",
+     "note": "Limited time: all-day happy hour Sat–Sun 11am–6pm",
      "internal_note": "Weekend HH from 11am Sat-Sun confirmed by Google owner post (~Oct 2, 2026) and official homepage"
     }
    ],
@@ -316,7 +316,18 @@
    ],
    "drink_specials": [],
    "food_specials": [],
-   "daily_deals": [],
+   "daily_deals": [
+    {
+     "title": "Industry Mondays",
+     "days": [
+      "Mon"
+     ],
+     "start": "11:00",
+     "end": null,
+     "description": "25% off the entire check for you and one guest, food and drinks. Dine-in only; excludes happy hour; proof of hospitality employment required.",
+     "items": []
+    }
+   ],
    "ocean_view": null,
    "price_level": "$$",
    "google_rating": 4.6,
@@ -328,8 +339,8 @@
    "yelp_url": "https://www.yelp.com/biz/starfish-laguna-beach-8",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "'Confirmed' from undated Wanderlog blurb (daily 3-6); no prices.",
-   "audit_note": "Audit Oct 7: HH menu and homepage live (daily 15-18; Sat-Sun from 11:00). Unpaired Korean Tacos and Chili Fire Wontons (dinner piece counts differ / HH count not stated). Oct 8, 2026: official HH page re-read (daily 3-6, all prices match); Google owner post ~Oct 2 2026 confirms weekend HH from 11am.",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Audit Oct 7: HH menu and homepage live (daily 15-18; Sat-Sun from 11:00). Unpaired Korean Tacos and Chili Fire Wontons (dinner piece counts differ / HH count not stated). Oct 8, 2026: official HH page re-read (daily 3-6, all prices match); Google owner post ~Oct 2 2026 confirms weekend HH from 11am. Nov 1 2026 re-check: official HH page matches all items/prices; happenings page: weekend all-day HH marked limited time; added Industry Mondays.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official HH menu (live Oct 2026)",
@@ -347,7 +358,7 @@
    "lat": 33.516106,
    "lng": -117.75699,
    "phone": "(949) 715-9200",
-   "public_note": "Hours and prices from the restaurant's own happy hour menu (Oct 2026).",
+   "public_note": "Happy hour and specials from the restaurant's own website (checked Nov 1, 2026).",
    "hours": {
     "Mon": [
      [
@@ -395,7 +406,8 @@
    "hours_note": "Lunch 11am–3pm, dinner from 3pm. Closing time may vary; call ahead late in the evening.",
    "hours_source": "https://www.opentable.com/r/starfish-laguna-beach",
    "hours_source_kind": "official",
-   "internal_hours_note": "Lunch 11-3, dinner from 3pm; happy hour daily 3-6pm (dine-in). OpenTable's description says dinner until 9pm, so closing time may vary."
+   "internal_hours_note": "Lunch 11-3, dinner from 3pm; happy hour daily 3-6pm (dine-in). OpenTable's description says dinner until 9pm, so closing time may vary.",
+   "checked": "2026-11-01"
   },
   {
    "id": "mozambique",
@@ -597,35 +609,6 @@
       }
      ],
      "internal_description": "7oz steak, veg, mash or fries + house wine; dine-in; site labels it limited-time, no substitutions"
-    },
-    {
-     "title": "$10 Favorites To-Go",
-     "days": [
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat",
-      "Sun"
-     ],
-     "start": null,
-     "end": null,
-     "description": "Takeout only, direct orders",
-     "items": [
-      {
-       "item": "South African Pie",
-       "price": "$10",
-       "regular_price": null,
-       "save_pct": null,
-       "note": null,
-       "internal_note": "dine-in pie is $25 but to-go deal excludes sides; portion may differ, so not paired"
-      },
-      {
-       "item": "Chakalaka Bowl",
-       "price": "$10",
-       "regular_price": null,
-       "save_pct": null
-      }
-     ]
     }
    ],
    "ocean_view": true,
@@ -639,8 +622,8 @@
    "yelp_url": "https://www.yelp.com/biz/mozambique-laguna-beach-4",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Wanderlog mirror: open, no HH info. Confirms closed Mon-Tue.",
-   "audit_note": "Audit Oct 7: official HH and weekly-specials pages match (Wed-Fri 15-17, Sat-Sun 14-16). To-go pie unpaired from $25 dine-in price. Wings, fish n chips, salmon not on dinner menu. Pie regular $25 is dine-in; to-go pie may differ in size.",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Audit Oct 7: official HH and weekly-specials pages match (Wed-Fri 15-17, Sat-Sun 14-16). To-go pie unpaired from $25 dine-in price. Wings, fish n chips, salmon not on dinner menu. Pie regular $25 is dine-in; to-go pie may differ in size. Nov 1 2026 re-check: official HH page matches; weekly specials page no longer lists $10 Favorites To-Go (removed); Steak & Wine Wednesday still listed.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official HH menu (live)",
@@ -658,7 +641,7 @@
    "lat": 33.52925,
    "lng": -117.771643,
    "phone": "(949) 715-7777",
-   "public_note": "Hours and prices from the restaurant's own happy hour and weekly specials pages (Oct 2026).",
+   "public_note": "Happy hour and specials from the restaurant's own website (checked Nov 1, 2026).",
    "hours": {
     "Mon": [],
     "Tue": [],
@@ -696,7 +679,8 @@
    "hours_note": null,
    "hours_source": "https://mozambiqueoc.com/",
    "hours_source_kind": "official",
-   "internal_hours_note": "closed Mon & Tue"
+   "internal_hours_note": "closed Mon & Tue",
+   "checked": "2026-11-01"
   },
   {
    "id": "las-brisas",
@@ -1048,8 +1032,8 @@
    "yelp_url": "https://www.yelp.com/biz/the-cliff-restaurant-laguna-beach",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Wanderlog mirror: open, no HH info. Franki (not Google) Aug 2025 praises HH; too old to count.",
-   "audit_note": "Audit Oct 7: official site confirms HH Mon-Fri 15:00-18:00; Visit Laguna confirms half-off apps. Removed Taco Tuesday (not on official site or Visit Laguna page).",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Audit Oct 7: official site confirms HH Mon-Fri 15:00-18:00; Visit Laguna confirms half-off apps. Removed Taco Tuesday (not on official site or Visit Laguna page). Nov 1 2026 re-check: official homepage: HH Mon-Fri 3-6 confirmed (no prices listed); hours now weekdays 8:30-9, Sat 8-10, Sun 8-9 (was Mon-Thu from 11, Fri to 10).",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official homepage (live)",
@@ -1068,32 +1052,32 @@
    "hours": {
     "Mon": [
      [
-      "11:00",
+      "08:30",
       "21:00"
      ]
     ],
     "Tue": [
      [
-      "11:00",
+      "08:30",
       "21:00"
      ]
     ],
     "Wed": [
      [
-      "11:00",
+      "08:30",
       "21:00"
      ]
     ],
     "Thu": [
      [
-      "11:00",
+      "08:30",
       "21:00"
      ]
     ],
     "Fri": [
      [
       "08:30",
-      "22:00"
+      "21:00"
      ]
     ],
     "Sat": [
@@ -1109,9 +1093,10 @@
      ]
     ]
    },
-   "hours_note": null,
+   "hours_note": "Closed Thanksgiving and Christmas.",
    "hours_source": "https://www.thecliffrestaurant.com/",
-   "hours_source_kind": "official"
+   "hours_source_kind": "official",
+   "checked": "2026-11-01"
   },
   {
    "id": "finneys-crafthouse",
@@ -1237,8 +1222,8 @@
    "yelp_url": "https://www.yelp.com/biz/finneys-crafthouse-laguna-beach-laguna-beach",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "'Confirmed' from undated Wanderlog blurb ($5 beer, apps from $7); days not shown.",
-   "audit_note": "Official confirms daily 3-5 dine-in; HH prices from earlier guides (menu loads dynamically, unreadable). Oct 8, 2026: HH prices replaced from the official Laguna Beach HH menu PDF (beer now $6, combo $16, new $7/$8/$9 bites). PDF says Mon-Fri while the location page says daily; kept daily.",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Official confirms daily 3-5 dine-in; HH prices from earlier guides (menu loads dynamically, unreadable). Oct 8, 2026: HH prices replaced from the official Laguna Beach HH menu PDF (beer now $6, combo $16, new $7/$8/$9 bites). PDF says Mon-Fri while the location page says daily; kept daily. Nov 1 2026 re-check: official location page: Fri/Sat now close 9pm; still says HH daily 3-5 (ticker says Mon-Fri). HH menu page blocked, prices not re-read.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official location page (live)",
@@ -1281,13 +1266,13 @@
     "Fri": [
      [
       "11:00",
-      "22:00"
+      "21:00"
      ]
     ],
     "Sat": [
      [
       "11:00",
-      "22:00"
+      "21:00"
      ]
     ],
     "Sun": [
@@ -1299,7 +1284,8 @@
    },
    "hours_note": null,
    "hours_source": "https://www.finneyscrafthouse.com/laguna-beach",
-   "hours_source_kind": "official"
+   "hours_source_kind": "official",
+   "checked": "2026-11-01"
   },
   {
    "id": "oto-sushi",
@@ -1451,8 +1437,8 @@
    "yelp_url": "https://www.yelp.com/biz/oto-sushi-laguna-beach-4",
    "yelp_result": "Title-only; two listings, no HH info.",
    "google_result": "Not checked (quota). Franki (not Google) Sep 2026 says HH exists; no times.",
-   "audit_note": "Audit: save_pct set to 0 where HH price equals regular (Chef's Roll, oysters). HH daily 3-6 confirmed. PDF may be older than existing data; kept existing HH prices where they conflict. Oct 8, 2026: official homepage still says HH everyday 3-6pm (same Jan 2025 menu PDF); Mon-Wed the restaurant opens at 4:30pm.",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Audit: save_pct set to 0 where HH price equals regular (Chef's Roll, oysters). HH daily 3-6 confirmed. PDF may be older than existing data; kept existing HH prices where they conflict. Oct 8, 2026: official homepage still says HH everyday 3-6pm (same Jan 2025 menu PDF); Mon-Wed the restaurant opens at 4:30pm. Nov 1 2026 re-check: official homepage: HH daily 3-6, hours Mon-Wed 4:30-9, Thu-Sun 11:30-9 (match). Menu PDF blocked; prices not re-read.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official homepage (live)",
@@ -1514,7 +1500,8 @@
    "hours_note": null,
    "hours_source": "https://otosushi.co/",
    "hours_source_kind": "official",
-   "internal_hours_note": "Site lists one set of hours (also has an Encinitas location); assumed to apply to Laguna Beach"
+   "internal_hours_note": "Site lists one set of hours (also has an Encinitas location); assumed to apply to Laguna Beach",
+   "checked": "2026-11-01"
   },
   {
    "id": "wine-gallery-laguna",
@@ -2065,7 +2052,7 @@
    "category": "Californian",
    "status": "active",
    "has_happy_hour": true,
-   "confidence": "likely",
+   "confidence": "verified",
    "schedule": [
     {
      "days": [
@@ -2077,34 +2064,32 @@
      ],
      "start": "14:30",
      "end": "17:30",
-     "note": "Drinks only"
+     "note": "Drinks; excluding holidays"
     }
    ],
    "seating_restrictions": null,
    "happy_hour_url": null,
    "drink_items": [
     {
-     "item": "Beer",
-     "price": "$6",
-     "regular_price": null,
-     "save_pct": null,
-     "note": null,
-     "internal_note": "regular beers $7-$17"
-    },
-    {
-     "item": "Wine",
-     "price": "$8",
+     "item": "House cocktails",
+     "price": "$3 off",
      "regular_price": null,
      "save_pct": null,
      "note": null
     },
     {
-     "item": "Cocktails",
-     "price": "$10",
+     "item": "Wine by the glass",
+     "price": "$2 off",
      "regular_price": null,
      "save_pct": null,
-     "note": null,
-     "internal_note": "regular handcrafted cocktails $19"
+     "note": null
+    },
+    {
+     "item": "Beer",
+     "price": "$1 off",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
     }
    ],
    "food_items": [],
@@ -2122,8 +2107,8 @@
    "yelp_url": "https://www.yelp.com/biz/230-forest-avenue-laguna-beach",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Not checked (search quota ran out).",
-   "audit_note": "Official site shows no HH details; schedule/prices from Visit Laguna.",
-   "last_evidence_date": "2026-03",
+   "audit_note": "Official site shows no HH details; schedule/prices from Visit Laguna. Nov 1 2026 re-check: official HH page now lists $3 off cocktails, $2 off wine, $1 off beer (was flat $6/$8/$10), Mon-Fri 2:30-5:30 excl. holidays.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Visit Laguna directory (live)",
@@ -2137,7 +2122,7 @@
    "lat": 33.542630835683,
    "lng": -117.783036904158,
    "phone": "(949) 494-2545",
-   "public_note": "Times and prices from Visit Laguna Beach (Mar 2026); waiting for the restaurant to confirm.",
+   "public_note": "Happy hour details from the restaurant's own website (checked Nov 1, 2026).",
    "hours": {
     "Mon": [
      [
@@ -2184,7 +2169,8 @@
    },
    "hours_note": null,
    "hours_source": "https://www.visitlagunabeach.com/?p=15765",
-   "hours_source_kind": "directory"
+   "hours_source_kind": "directory",
+   "checked": "2026-11-01"
   },
   {
    "id": "avilas-el-ranchito",
@@ -2251,7 +2237,7 @@
    "yelp_url": "https://www.yelp.com/biz/avilas-el-ranchito-laguna-beach-3",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Wanderlog mirror: open, no HH info. Mentions a Tue taco bar.",
-   "audit_note": "Official site has 'Happy Hour' and 'Daily Specials' menu tabs but contents unreadable; menu page 404. Oct 8, 2026: official site behind a human-verification check (not bypassed); Instagram has chain posts only.",
+   "audit_note": "Official site has 'Happy Hour' and 'Daily Specials' menu tabs but contents unreadable; menu page 404. Oct 8, 2026: official site behind a human-verification check (not bypassed); Instagram has chain posts only. Nov 1 2026 re-check: official site loads now; dine-in hours match; HH/daily specials tabs empty, HH unverified.",
    "last_evidence_date": "2026-08",
    "sources": [
     {
@@ -2311,7 +2297,7 @@
      ]
     ]
    },
-   "hours_note": "Takeout and delivery hours differ slightly.",
+   "hours_note": "Takeout and delivery: Mon–Thu and Sun 11am–8pm, Fri–Sat 11am–9pm.",
    "hours_source": "https://avilaslagunabeach.com/",
    "hours_source_kind": "official",
    "internal_hours_note": "to-go/delivery hours differ slightly (Mon-Thu 11-8, Fri-Sat 11-9, Sun 11-8)"
@@ -2520,7 +2506,7 @@
    "name": "Hennessey's Tavern",
    "address": "213 Ocean Ave, Laguna Beach, CA 92651",
    "neighborhood": "Downtown/Main Beach",
-   "website": "https://www.hennesseystavern.com/laguna-beach",
+   "website": "https://www.hennesseystavern.com/locations-laguna-beach",
    "category": "bar / pub",
    "status": "active",
    "has_happy_hour": true,
@@ -2543,12 +2529,88 @@
    "happy_hour_url": "https://www.hennesseystavern.com/happy-hour",
    "drink_items": [
     {
-     "item": "HH drinks (lemonades, margaritas, beer/shot combos)",
-     "price": "$7-$11",
+     "item": "Hennessey's Lemonade",
+     "price": "$7",
      "regular_price": null,
      "save_pct": null,
-     "note": null,
-     "internal_note": "chain HH page; existing data said $5 drinks"
+     "note": null
+    },
+    {
+     "item": "Fresh-squeezed screwdriver or greyhound",
+     "price": "$7",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Hawaiian 'Rita",
+     "price": "$7",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Coors Light (jumbo 23 oz)",
+     "price": "$7",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Hennessey's 'Rita",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "Blackberry or mango"
+    },
+    {
+     "item": "Tanteo Spicy Jalapeño Margarita",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Summer Spritz",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Elijah Craig Old Fashioned",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Pacifico draft (jumbo 23 oz)",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Lagunitas IPA (jumbo 23 oz)",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "House wine (jumbo 9 oz)",
+     "price": "$9",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Beer & shot combo",
+     "price": "$11",
+     "regular_price": null,
+     "save_pct": null,
+     "note": "The Irishman (Guinness + Busker) or The West Coast (Pacifico + Espero Blanco)"
     }
    ],
    "food_items": [
@@ -2743,37 +2805,6 @@
      ]
     },
     {
-     "title": "Oktoberfest steins",
-     "days": [
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat",
-      "Sun"
-     ],
-     "start": null,
-     "end": null,
-     "description": "Samuel Adams OctoberFest steins every day, through Oct 31.",
-     "items": [
-      {
-       "item": "Half liter",
-       "price": "$8.50",
-       "regular_price": null,
-       "save_pct": null,
-       "note": null
-      },
-      {
-       "item": "Full liter",
-       "price": "$16",
-       "regular_price": null,
-       "save_pct": null,
-       "note": null
-      }
-     ]
-    },
-    {
      "title": "Margarita Flight Wednesday",
      "days": [
       "Wed"
@@ -2827,8 +2858,8 @@
    "yelp_url": "https://www.yelp.com/biz/hennesseys-tavern-laguna-beach-2",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "'Confirmed' from undated Wanderlog blurb; no times. Mentions Tue BOGO burgers.",
-   "audit_note": "Official site checked Oct 7, 2026: Mon–Fri 4–7pm happy hour. Weekly deals from the chain's promotions page (screenshot from a user, Oct 7, 2026) and lunch/dinner menu; the promotions page covers all locations, and the $7 smash burger is only at select ones.",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Official site checked Oct 7, 2026: Mon–Fri 4–7pm happy hour. Weekly deals from the chain's promotions page (screenshot from a user, Oct 7, 2026) and lunch/dinner menu; the promotions page covers all locations, and the $7 smash burger is only at select ones. Nov 1 2026 re-check: official Laguna location page: Thu/Fri now close 2am; HH page Mon-Fri 4-7 with $8 snacks matches, drinks itemized ($7/$9/$11); Oktoberfest ended (removed). Margarita Flight Wednesday and Football deals not on promotions page (kept, unconfirmed).",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Promotions page (user screenshot, Oct 2026)",
@@ -2840,7 +2871,7 @@
     },
     {
      "label": "Official Laguna location page (live)",
-     "url": "https://www.hennesseystavern.com/laguna-beach"
+     "url": "https://www.hennesseystavern.com/locations-laguna-beach"
     },
     {
      "label": "Official HH page (live, chain-wide)",
@@ -2850,7 +2881,7 @@
    "lat": 33.542483,
    "lng": -117.783977,
    "phone": "(949) 494-2743",
-   "public_note": "Hours from the restaurant's website (Oct 2026); weekly deals from its promotions page. Some deals are only at select locations.",
+   "public_note": "Happy hour, specials and hours from the restaurant's own website (checked Nov 1, 2026).",
    "hours": {
     "Mon": [
      [
@@ -2873,13 +2904,13 @@
     "Thu": [
      [
       "10:00",
-      "24:00"
+      "02:00"
      ]
     ],
     "Fri": [
      [
       "10:00",
-      "24:00"
+      "02:00"
      ]
     ],
     "Sat": [
@@ -2895,10 +2926,11 @@
      ]
     ]
    },
-   "hours_note": "Kitchen hours may be shorter than bar hours.",
+   "hours_note": "Breakfast Mon–Fri 10am–noon, Sat–Sun 9am–1pm.",
    "hours_source": "https://www.hennesseystavern.com/laguna-beach",
    "hours_source_kind": "official",
-   "internal_hours_note": "site lists Mon-Fri 10am-12am, Sat-Sun 9am-2am; kitchen hours may be shorter"
+   "internal_hours_note": "site lists Mon-Fri 10am-12am, Sat-Sun 9am-2am; kitchen hours may be shorter",
+   "checked": "2026-11-01"
   },
   {
    "id": "lumberyard",
@@ -3099,7 +3131,7 @@
    "yelp_url": "https://www.yelp.com/biz/lumberyard-laguna-beach",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Wanderlog mirror: open, no HH info.",
-   "audit_note": "Audit Oct 7: official HH menu live (Mon-Fri 15-18, bar & patio). Fixed well drinks to $6 (was $7-$10) and added Retro Old Fashioned $10. Beer now $6 (was $5). Regular menu pages returned a Mother's Day page; no regular prices. Oct 8, 2026: official HH menu re-read; matches, added well martini $9.",
+   "audit_note": "Audit Oct 7: official HH menu live (Mon-Fri 15-18, bar & patio). Fixed well drinks to $6 (was $7-$10) and added Retro Old Fashioned $10. Beer now $6 (was $5). Regular menu pages returned a Mother's Day page; no regular prices. Oct 8, 2026: official HH menu re-read; matches, added well martini $9. Nov 1 2026 re-check: official homepage says 'Happy Hour: Monday thru Friday, 3:30 to 6:30' (JSON 3-6); HH menu page blocked, not changed - needs check.",
    "last_evidence_date": "2026-10",
    "sources": [
     {
@@ -3165,7 +3197,7 @@
    "name": "Oak Laguna Beach",
    "address": "1100 S. Coast Hwy, Suite 202, Laguna Beach, CA 92651",
    "neighborhood": "Central",
-   "website": "https://oak-lagunabeach.com/",
+   "website": "https://www.oak-lagunabeach.com/",
    "category": "Californian",
    "status": "active",
    "has_happy_hour": true,
@@ -3349,12 +3381,12 @@
    "yelp_url": "https://www.yelp.com/biz/oak-laguna-beach",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "'Confirmed' from undated blurb (weekday HH); lists Mon closed.",
-   "audit_note": "Official says Mon-Fri; Visit Laguna Tue-Fri, bites $11-$17. Menu page 429. Oct 8, 2026: official homepage now says HH Tuesdays-Fridays 3-6pm and closed Mondays (was Mon-Fri). Drinks itemized from the official HH menu PDF; Classic Wings added.",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Official says Mon-Fri; Visit Laguna Tue-Fri, bites $11-$17. Menu page 429. Oct 8, 2026: official homepage now says HH Tuesdays-Fridays 3-6pm and closed Mondays (was Mon-Fri). Drinks itemized from the official HH menu PDF; Classic Wings added. Nov 1 2026 re-check: official homepage: HH 3-6 and Wine Wednesday confirmed, hours match; homepage mentions Wed-Fri, Tue-Fri and 'every weekday' in different places (kept Tue-Fri). Website switched to www (bare domain search results show spam pages).",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official homepage (live)",
-     "url": "https://oak-lagunabeach.com/"
+     "url": "https://www.oak-lagunabeach.com/"
     },
     {
      "label": "Visit Laguna directory (live)",
@@ -3407,7 +3439,8 @@
    "hours_note": "Sunday brunch 10am–3pm. Some listings show different hours; call ahead to confirm.",
    "hours_source": "https://www.oak-lagunabeach.com/",
    "hours_source_kind": "official",
-   "internal_hours_note": "Sunday brunch 10am-3pm. Visit Laguna Beach directory lists different hours (Mon closed, Tue-Thu 11-9, Fri 11-10, Sat 10-10, Sun 10-9)"
+   "internal_hours_note": "Sunday brunch 10am-3pm. Visit Laguna Beach directory lists different hours (Mon closed, Tue-Thu 11-9, Fri 11-10, Sat 10-10, Sun 10-9)",
+   "checked": "2026-11-01"
   },
   {
    "id": "royal-hawaiian",
@@ -3573,7 +3606,7 @@
      ],
      "start": "15:00",
      "end": "17:00",
-     "note": "Dine-in; not on holidays"
+     "note": "Not for takeout; excluded on select holidays and holiday weekends"
     }
    ],
    "seating_restrictions": null,
@@ -3741,7 +3774,7 @@
      "price": "$12",
      "regular_price": "$16",
      "save_pct": 25,
-     "note": "Add shrimp, spinach or sun-dried tomato +$2",
+     "note": "Filled with Italian sausage, chicken or seasonal vegetables; shrimp, spinach & sun-dried tomato +$2",
      "internal_note": "+$2 add shrimp/spinach/sun-dried tomato"
     }
    ],
@@ -3759,8 +3792,8 @@
    "yelp_url": "https://www.yelp.com/biz/rumari-laguna-beach-2",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "'Confirmed' from undated Wanderlog blurb; closed Mon-Tue fits.",
-   "audit_note": "Audit Oct 7: official HH page matches (Wed-Sun 15-17).",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Audit Oct 7: official HH page matches (Wed-Sun 15-17). Nov 1 2026 re-check: official HH page: all items/prices match; holiday wording and zucchini filling options updated.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official HH page (live)",
@@ -3778,7 +3811,7 @@
    "lat": 33.528636893508,
    "lng": -117.770916305244,
    "phone": "(949) 494-0400",
-   "public_note": "Hours and prices from the restaurant's own happy hour page (Oct 2026).",
+   "public_note": "Happy hour prices and hours from the restaurant's own website (checked Nov 1, 2026).",
    "hours": {
     "Mon": [],
     "Tue": [],
@@ -3816,7 +3849,8 @@
    "hours_note": null,
    "hours_source": "https://www.rumarioc.com/",
    "hours_source_kind": "official",
-   "internal_hours_note": "Official site lists Wed-Sun 3-9:30pm; Mon/Tue closed per joinpearl.co listing"
+   "internal_hours_note": "Official site lists Wed-Sun 3-9:30pm; Mon/Tue closed per joinpearl.co listing",
+   "checked": "2026-11-01"
   },
   {
    "id": "kya-bistro",
@@ -4036,15 +4070,15 @@
     {
      "item": "Espresso martini",
      "price": "$12",
-     "regular_price": null,
-     "save_pct": null,
+     "regular_price": "$22",
+     "save_pct": 45,
      "note": "Ketel One, Mr. Black coffee liqueur"
     },
     {
      "item": "Sangria (glass)",
      "price": "$12",
-     "regular_price": null,
-     "save_pct": null,
+     "regular_price": "$15",
+     "save_pct": 20,
      "note": "Red or white"
     }
    ],
@@ -4099,8 +4133,8 @@
    "yelp_url": "https://www.yelp.com/biz/the-rooftop-lounge-laguna-beach",
    "yelp_result": "Title-only; also a 'Casa Bistro' at same address (Jun 2026).",
    "google_result": "Wanderlog mirror: open, no HH info. Reviews praise the mojitos.",
-   "audit_note": "Audit Oct 7: official menu matches (Mon-Fri 14-17; $12 drinks; food pairs and $22 mojito confirmed). Oct 8: visitor screenshot of official menu; draft beer now $8 (was $12).",
-   "last_evidence_date": "2026-10-08",
+   "audit_note": "Audit Oct 7: official menu matches (Mon-Fri 14-17; $12 drinks; food pairs and $22 mojito confirmed). Oct 8: visitor screenshot of official menu; draft beer now $8 (was $12). Nov 1 2026 re-check: official menu matches; added regular prices for espresso martini ($22) and sangria glass ($15); winter Mon/Tue closure no longer on homepage, note removed.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official menu (live)",
@@ -4110,7 +4144,7 @@
    "lat": 33.532576879857,
    "lng": -117.775908092616,
    "phone": "(949) 497-2446",
-   "public_note": "Hours and prices from the restaurant's own menu (checked Oct 8, 2026).",
+   "public_note": "Hours and prices from the restaurant's own menu (checked Nov 1, 2026).",
    "hours": {
     "Mon": [
      [
@@ -4155,11 +4189,11 @@
      ]
     ]
    },
-   "hours_note": "Closed Mon & Tue during winter hours; last seating 1 hour before close.",
+   "hours_note": "Last seating 1 hour before close.",
    "hours_source": "https://www.rooftoplagunabeach.com/",
    "hours_source_kind": "official",
-   "internal_hours_note": "Closed Mon & Tue during winter hours; last seating 1 hr before close",
-   "checked": "2026-10-08"
+   "internal_hours_note": "Official homepage (Nov 1 2026) lists Mon-Thu 11-9, Fri 11-10, Sat 10-10, Sun 10-9, no winter closure; last seating 1 hr before close",
+   "checked": "2026-11-01"
   },
   {
    "id": "south-of-nicks",
@@ -4446,11 +4480,11 @@
      ],
      "start": "17:00",
      "end": "19:00",
-     "note": "Not on major holidays"
+     "note": "Not on New Year's Eve, Valentine's Day, Easter, Memorial Day weekend or July 4"
     }
    ],
    "seating_restrictions": null,
-   "happy_hour_url": "https://www.romeocucina.com/menus",
+   "happy_hour_url": "https://romeocucina.com/laguna-beach-menus/happy-hour/",
    "drink_items": [
     {
      "item": "Wine (red/white)",
@@ -4526,19 +4560,24 @@
    "yelp_url": "https://www.yelp.com/biz/romeo-cucina-laguna-beach",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Not checked (search quota ran out).",
-   "audit_note": "HH items listed, prices not shown online. Oct 8, 2026: official menus page confirms daily 5-7pm; renamed Misto Fritto to Misto Fresco per the page. Still no prices online.",
-   "last_evidence_date": "2026-10",
+   "audit_note": "HH items listed, prices not shown online. Oct 8, 2026: official menus page confirms daily 5-7pm; renamed Misto Fritto to Misto Fresco per the page. Still no prices online. Nov 1 2026 re-check: official Laguna HH page (new URL) confirms; no prices listed; contact page says Laguna Beach open daily.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
-     "label": "Official homepage + menus (live)",
-     "url": "https://www.romeocucina.com/menus"
+     "label": "Official Laguna Beach happy hour page (live)",
+     "url": "https://romeocucina.com/laguna-beach-menus/happy-hour/"
+    },
+    {
+     "label": "Official contact page (live)",
+     "url": "https://romeocucina.com/contact/"
     }
    ],
    "lat": 33.543748,
    "lng": -117.784299,
    "phone": "(949) 497-6627",
-   "public_note": "Happy hour items from the restaurant's website (Apr 2026); prices not yet published online.",
-   "hours_note": "Dinner daily from 5pm; closing time not published"
+   "public_note": "Happy hour details from the restaurant's own website (checked Nov 1, 2026).",
+   "hours_note": "Dinner daily from 5pm; closing time not published",
+   "checked": "2026-11-01"
   },
   {
    "id": "neapolitan-pizzeria-birreria",
@@ -4633,7 +4672,7 @@
    "yelp_url": "https://www.yelp.com/biz/neapolitan-pizzeria-and-birreria-laguna-beach",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Wanderlog mirror: open, no HH info.",
-   "audit_note": "Menus are images only; Visit Laguna lists HH amenity without detail. Existing data kept. Oct 8, 2026: site has hours only; Instagram last posted May 2025; no HH found.",
+   "audit_note": "Menus are images only; Visit Laguna lists HH amenity without detail. Existing data kept. Oct 8, 2026: site has hours only; Instagram last posted May 2025; no HH found. Nov 1 2026 re-check: official site hours (daily 11:30-9) and phone match; no HH on site, still unconfirmed.",
    "last_evidence_date": "2026-03",
    "sources": [
     {
@@ -4778,7 +4817,7 @@
    "yelp_url": "https://www.yelp.com/biz/cest-la-vie-restaurant-and-bakery-laguna-beach",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Wanderlog mirror: open, no HH info.",
-   "audit_note": "Audit Oct 7: Visit Laguna page lists the Fri prix fixe, Wed lobster special and Thu free corkage but no happy hour; HH schedule rests only on older existing data, so downgraded. Official site shows no HH or prices; HH schedule from existing data. Oct 8, 2026: site and Instagram (last post 2015) show no happy hour.",
+   "audit_note": "Audit Oct 7: Visit Laguna page lists the Fri prix fixe, Wed lobster special and Thu free corkage but no happy hour; HH schedule rests only on older existing data, so downgraded. Official site shows no HH or prices; HH schedule from existing data. Oct 8, 2026: site and Instagram (last post 2015) show no happy hour. Nov 1 2026 re-check: official homepage: no hours or HH; phone matches.",
    "last_evidence_date": "2026-03",
    "sources": [
     {
@@ -4993,8 +5032,8 @@
    "yelp_url": "https://www.yelp.com/biz/piatti-laguna-beach-2",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Not checked (search quota ran out).",
-   "audit_note": "Audit Oct 7: official site confirms weekday bar HH 15-18 and half-off wine Wednesday (dine-in). Oct 7: happy hour drinks and food added from a user's screenshots of laguna.piatti.com's Happy Hour menu tab.",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Audit Oct 7: official site confirms weekday bar HH 15-18 and half-off wine Wednesday (dine-in). Oct 7: happy hour drinks and food added from a user's screenshots of laguna.piatti.com's Happy Hour menu tab. Nov 1 2026 re-check: official site: HH weekdays 3-6 at the bar, half-off wine Wednesday, daily 11:30-9 all match.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official homepage (live)",
@@ -5004,8 +5043,8 @@
    "lat": 33.542638,
    "lng": -117.784019,
    "phone": "(949) 377-1100",
-   "public_note": "Hours from the restaurant's website; happy hour menu from the restaurant's site (visitor screenshot, Oct 2026).",
-   "checked": "2026-10-07",
+   "public_note": "Happy hour and hours from the restaurant's own website (checked Nov 1, 2026).",
+   "checked": "2026-11-01",
    "internal_seating": "bar only",
    "hours": {
     "Mon": [
@@ -5115,7 +5154,7 @@
    "yelp_url": "https://www.yelp.com/biz/the-sandpiper-lounge-laguna-beach",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Wanderlog mirror: open, no HH info. Open noon-2am; cheap drinks noted.",
-   "audit_note": "Official confirms open daily 1pm-2am; HH details not online. Existing data kept. Oct 8, 2026: site shows daily 1pm-2am, no HH details.",
+   "audit_note": "Official confirms open daily 1pm-2am; HH details not online. Existing data kept. Oct 8, 2026: site shows daily 1pm-2am, no HH details. Nov 1 2026 re-check: official site hours (daily 1pm-2am) match; no HH info on site, still unconfirmed.",
    "last_evidence_date": "2026-03",
    "sources": [
     {
@@ -5369,7 +5408,7 @@
    "yelp_url": "https://www.yelp.com/biz/the-greeters-corner-laguna-beach",
    "yelp_result": "Listing open; undated Q&A asks about weekend HH (no answer).",
    "google_result": "Wanderlog mirror: open, no HH info. Lists open daily, unlike OpenTable's closed-Thu.",
-   "audit_note": "Official site and menu show no HH info; existing data kept. Oct 8, 2026: site and Instagram (posts through Sep 2026) show no HH details.",
+   "audit_note": "Official site and menu show no HH info; existing data kept. Oct 8, 2026: site and Instagram (posts through Sep 2026) show no HH details. Nov 1 2026 re-check: official homepage: no hours or HH; location page errored.",
    "last_evidence_date": "2026-03",
    "sources": [
     {
@@ -5652,7 +5691,7 @@
    "yelp_url": "https://www.yelp.com/biz/sapphire-laguna-beach-4",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Wanderlog mirror: open, no HH info.",
-   "audit_note": "Audit Oct 7: Local's Hour page matches (Mon-Fri 15-18, bar). Duck wings regular is 3 wings at $18; HH count not stated.",
+   "audit_note": "Audit Oct 7: Local's Hour page matches (Mon-Fri 15-18, bar). Duck wings regular is 3 wings at $18; HH count not stated. Nov 1 2026 re-check: Local's Hour page failed to load; hours match on official menu page. Dinner menu read showed no price for duck wings (JSON regular $18) - recheck.",
    "last_evidence_date": "2026-10",
    "sources": [
     {
@@ -5727,35 +5766,61 @@
    "category": "brewery / tasting room",
    "status": "active",
    "has_happy_hour": false,
-   "confidence": "needs_confirmation",
-   "schedule": [],
+   "confidence": "likely",
+   "schedule": [
+    {
+     "days": [
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+     ],
+     "start": "16:20",
+     "end": "17:20",
+     "note": "20 oz pour for the price of a 16 oz"
+    }
+   ],
    "seating_restrictions": null,
    "happy_hour_url": null,
-   "drink_items": [],
+   "drink_items": [
+    {
+     "item": "20 oz beer pour",
+     "price": "Price of 16 oz",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
    "food_items": [],
    "drink_specials": [],
    "food_specials": [],
    "daily_deals": [
     {
-     "title": "Taco Tuesday",
+     "title": "Monday Night Football: jersey upgrade",
      "days": [
-      "Tue"
+      "Mon"
      ],
-     "start": null,
-     "end": null,
-     "description": null,
-     "items": [],
-     "internal_description": "Review summary; unconfirmed"
+     "start": "17:00",
+     "end": "21:00",
+     "description": "Wear your team's jersey and get a 20 oz pour for the price of a 16 oz (football season).",
+     "items": [
+      {
+       "item": "20 oz pour",
+       "price": "Price of 16 oz",
+       "regular_price": null,
+       "save_pct": null,
+       "note": null
+      }
+     ]
     },
     {
-     "title": "Football nights: jersey upgrade",
+     "title": "Sunday halftime pour",
      "days": [
-      "Mon",
-      "Thu"
+      "Sun"
      ],
      "start": null,
      "end": null,
-     "description": "Wear a jersey during Monday and Thursday Night Football and get a 20 oz pour for the price of 16 oz (football season).",
+     "description": "20 oz pour for the price of a 16 oz during any halftime (football season).",
      "items": [
       {
        "item": "20 oz pour",
@@ -5778,8 +5843,8 @@
    "yelp_url": "https://www.yelp.com/biz/laguna-beer-company-laguna-beach-2",
    "yelp_result": "Title-only snippet; listing open, no HH info.",
    "google_result": "Wanderlog mirror: open, no HH info. Mentions Taco Tuesday.",
-   "audit_note": "Official site lists tasting room address/phone only; no hours or deals. Oct 8, 2026: Instagram active (posts through Oct 5 2026), so status set active. Added weekly Mon/Thu football jersey deal. No happy hour posted; Taco Tuesday still unconfirmed.",
-   "last_evidence_date": "2026-09",
+   "audit_note": "Official site lists tasting room address/phone only; no hours or deals. Oct 8, 2026: Instagram active (posts through Oct 5 2026), so status set active. Added weekly Mon/Thu football jersey deal. No happy hour posted; Taco Tuesday still unconfirmed. Nov 1 2026 re-check: official weekly specials page (week of Nov 1-7): Tue-Fri 4:20-5:20 HH (20oz at 16oz price); Mon 5-9pm jersey deal; Sun halftime pour; Sat burger special (no price, not listed). Removed unconfirmed Taco Tuesday and Thursday jersey deal (not on page).",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official site (live)",
@@ -5793,7 +5858,7 @@
    "lat": 33.5501,
    "lng": -117.779813,
    "phone": "(949) 715-0805",
-   "public_note": "Details not yet published online; waiting for the business to confirm hours and deals.",
+   "public_note": "Specials from the brewery's own weekly specials page (checked Nov 1, 2026); deals can change week to week.",
    "hours": {
     "Mon": [
      [
@@ -5840,7 +5905,8 @@
    },
    "hours_note": null,
    "hours_source": "https://www.lagunabeer.com/tasting-room",
-   "hours_source_kind": "official"
+   "hours_source_kind": "official",
+   "checked": "2026-11-01"
   },
   {
    "id": "ginas-pizza",
@@ -5936,12 +6002,12 @@
    "yelp_url": "https://www.yelp.com/biz/ginas-pizza-laguna-beach-4",
    "yelp_result": "1100 S Coast listing open; a closed Gina's at 610 N Coast also shown.",
    "google_result": "Not checked (search quota ran out).",
-   "audit_note": "Official page confirms hours only; HH data from existing record.",
+   "audit_note": "Official page confirms hours only; HH data from existing record. Nov 1 2026 re-check: official location page moved (new URL); hours and phone match; no happy hour on location page or menu, HH still unconfirmed.",
    "last_evidence_date": "2026-03",
    "sources": [
     {
      "label": "Official location page (live)",
-     "url": "https://www.ginaspizza.com/laguna-beach"
+     "url": "https://ginaspizza.com/locations/laguna-beach/"
     }
    ],
    "lat": 33.534168,
@@ -6254,10 +6320,10 @@
     {
      "item": "House lager",
      "price": "$6",
-     "regular_price": "$6",
-     "save_pct": 0,
+     "regular_price": null,
+     "save_pct": null,
      "note": null,
-     "internal_note": "Same price as regular"
+     "internal_note": "Regular menu (Nov 2026) shows no house lager price"
     },
     {
      "item": "Red/white wine",
@@ -6434,8 +6500,8 @@
    "yelp_url": null,
    "yelp_result": null,
    "google_result": null,
-   "audit_note": "Audit Oct 7: official menu live confirms HH Mon-Fri 16-18 dine-in and all prices, but one menu covers Costa Mesa and Laguna and the HH does not name a location; downgraded from verified. Oct 7: Taco Tuesday and Burger Wednesday added from screenshots of AhbA's online ordering menu. Oct 8, 2026: homepage banner still says HH M-F 4-6; store locator lists Laguna hours (opens 11am weekdays, not 5pm).",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Audit Oct 7: official menu live confirms HH Mon-Fri 16-18 dine-in and all prices, but one menu covers Costa Mesa and Laguna and the HH does not name a location; downgraded from verified. Oct 7: Taco Tuesday and Burger Wednesday added from screenshots of AhbA's online ordering menu. Oct 8, 2026: homepage banner still says HH M-F 4-6; store locator lists Laguna hours (opens 11am weekdays, not 5pm). Nov 1 2026 re-check: official menu: HH items/prices and paired regular prices match; house lager regular price not on menu (cleared). HH section does not name a location.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Online ordering menu, daily specials (user screenshots, Oct 2026)",
@@ -6497,7 +6563,8 @@
    "hours_note": "Weekend brunch Sat-Sun.",
    "hours_source": "https://www.eatahba.com/store-locator/",
    "hours_source_kind": "official",
-   "internal_hours_note": "Directory listing; may be out of date (also mentions breakfast/lunch)"
+   "internal_hours_note": "Directory listing; may be out of date (also mentions breakfast/lunch)",
+   "checked": "2026-11-01"
   },
   {
    "id": "laguna-feast",
@@ -6647,8 +6714,8 @@
    "yelp_url": null,
    "yelp_result": null,
    "google_result": null,
-   "audit_note": "Official site confirms Laguna HH 2-4pm; HH menu items/prices didn't render. Rotating daily soups (not discounted). Oct 8, 2026: official Laguna HH menu now renders (published Jun 16 2026): daily 2-4pm excl holidays, full item list added.",
-   "last_evidence_date": "2026-06",
+   "audit_note": "Official site confirms Laguna HH 2-4pm; HH menu items/prices didn't render. Rotating daily soups (not discounted). Oct 8, 2026: official Laguna HH menu now renders (published Jun 16 2026): daily 2-4pm excl holidays, full item list added. Nov 1 2026 re-check: official location page: hours daily 7-4 match; Laguna HH menu page title still '2pm-4pm' but items did not load.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official site (Laguna HH 2-4pm menu link)",
@@ -6710,7 +6777,8 @@
    "hours_note": "Café and market hours.",
    "hours_source": "https://www.zinccafe.com/",
    "hours_source_kind": "official",
-   "internal_hours_note": "Market & Cafe hours; no separate bar hours listed"
+   "internal_hours_note": "Market & Cafe hours; no separate bar hours listed",
+   "checked": "2026-11-01"
   },
   {
    "id": "the-seahorse",
@@ -6896,8 +6964,8 @@
    "yelp_url": null,
    "yelp_result": null,
    "google_result": null,
-   "audit_note": "Audit Oct 7: official site confirms Fri 15-17 HH, 50% off froyo, gelato, draft beer and kombucha, but does not say which of its 4 locations participate; \"All locations\" claim and daily hours not on the site, so downgraded from verified. Oct 8, 2026: homepage Fri 3-5 HH unchanged; Laguna is listed among the 4 locations.",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Audit Oct 7: official site confirms Fri 15-17 HH, 50% off froyo, gelato, draft beer and kombucha, but does not say which of its 4 locations participate; \"All locations\" claim and daily hours not on the site, so downgraded from verified. Oct 8, 2026: homepage Fri 3-5 HH unchanged; Laguna is listed among the 4 locations. Nov 1 2026 re-check: official homepage: Friday 3-5 HH, 50% off frozen yogurt, gelato, draft beer and kombucha (locations not specified). Hours not on Laguna page.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official site (HH banner)",
@@ -6959,7 +7027,8 @@
    "hours_note": null,
    "hours_source": "https://frankiapp.com/business/active-culture-lb-116.md",
    "hours_source_kind": "official",
-   "internal_hours_note": "from third-party listing; own site does not show hours"
+   "internal_hours_note": "from third-party listing; own site does not show hours",
+   "checked": "2026-11-01"
   },
   {
    "id": "biryani-hunter",
@@ -7006,7 +7075,7 @@
    "yelp_url": null,
    "yelp_result": null,
    "google_result": null,
-   "audit_note": "Audit: removed $50 Indian High Tea (set-price service, not a discount). Only OpenTable mentions a happy hour; the official site does not. The high tea is a set-price service, not a discount.",
+   "audit_note": "Audit: removed $50 Indian High Tea (set-price service, not a discount). Only OpenTable mentions a happy hour; the official site does not. The high tea is a set-price service, not a discount. Nov 1 2026 re-check: official site shows no HH or daily hours; only phone listed is 626-224-2062 (possibly corporate; not changed).",
    "last_evidence_date": null,
    "sources": [
     {
@@ -7121,7 +7190,7 @@
    "yelp_url": null,
    "yelp_result": null,
    "google_result": null,
-   "audit_note": "Audit Oct 7: rubys.com still shows the limited-time Mon-Thu 14-17 half-off shake promo; Laguna not named. Chain promo for participating locations, excluding Balboa, casino and airport stores. Laguna's participation is not confirmed, and the promo is labeled limited-time. Store is open 08:00-20:00.",
+   "audit_note": "Audit Oct 7: rubys.com still shows the limited-time Mon-Thu 14-17 half-off shake promo; Laguna not named. Chain promo for participating locations, excluding Balboa, casino and airport stores. Laguna's participation is not confirmed, and the promo is labeled limited-time. Store is open 08:00-20:00. Nov 1 2026 re-check: chain homepage still shows Shake Happy Hour Mon-Thu 2-5 (in-store, participating locations; excludes Balboa, casino, airport); Laguna participation still unconfirmed; hours match.",
    "last_evidence_date": null,
    "sources": [
     {
@@ -7521,7 +7590,7 @@
    "yelp_url": null,
    "yelp_result": null,
    "google_result": null,
-   "audit_note": "Added Oct 7, 2026 from the restaurant's happy hour and Wine Wednesday flyers (photo supplied by a user, undated). Regular prices for savings come from its online menu PDF. Oct 8, 2026: site and Instagram show no HH posts; existing flyer data kept.",
+   "audit_note": "Added Oct 7, 2026 from the restaurant's happy hour and Wine Wednesday flyers (photo supplied by a user, undated). Regular prices for savings come from its online menu PDF. Oct 8, 2026: site and Instagram show no HH posts; existing flyer data kept. Nov 1 2026 re-check: official Laguna page: Fri opens 10am (was 11). Site has no HH or Wine Wednesday info.",
    "last_evidence_date": "2026-10",
    "sources": [
     {
@@ -7559,7 +7628,7 @@
     ],
     "Fri": [
      [
-      "11:00",
+      "10:00",
       "21:00"
      ]
     ],
@@ -7576,9 +7645,9 @@
      ]
     ]
    },
-   "hours_note": null,
-   "hours_source": "https://wanderlog.com/place/details/3158638/saigon-beach-laguna-beach",
-   "hours_source_kind": "listing",
+   "hours_note": "Dining room closes 30 minutes before closing; takeout until close.",
+   "hours_source": "https://www.saigonbeach.com/laguna-beach",
+   "hours_source_kind": "official",
    "internal_hours_note": "Closed Mondays"
   },
   {
@@ -8045,7 +8114,7 @@
      ],
      "start": "16:00",
      "end": "18:00",
-     "note": "'Sip & Savor'"
+     "note": "'Sip & Savor'; at the bar, on the terrace or anywhere you sit"
     }
    ],
    "seating_restrictions": null,
@@ -8194,8 +8263,8 @@
    "yelp_url": null,
    "yelp_result": null,
    "google_result": null,
-   "audit_note": "Added Oct 8, 2026: official HH page says Sip & Savor every day 4-6pm; menu images uploaded Sep 2026 (all plates $12). No regular prices yet.",
-   "last_evidence_date": "2026-09",
+   "audit_note": "Added Oct 8, 2026: official HH page says Sip & Savor every day 4-6pm; menu images uploaded Sep 2026 (all plates $12). No regular prices yet. Nov 1 2026 re-check: official HH page: every day 4-6 confirmed; hours match; menu is image-only, prices not re-read.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official happy hour page",
@@ -8209,7 +8278,7 @@
    "lat": 33.536368896832,
    "lng": -117.778497770092,
    "phone": "(949) 593-0009",
-   "public_note": null,
+   "public_note": "Happy hour times from the restaurant's own website (checked Nov 1, 2026).",
    "hours": {
     "Mon": [
      [
@@ -8256,7 +8325,8 @@
    },
    "hours_note": null,
    "hours_source": "https://amorelialagunabeach.com/happy-hour/",
-   "hours_source_kind": "official"
+   "hours_source_kind": "official",
+   "checked": "2026-11-01"
   },
   {
    "id": "q-terrace",
@@ -8267,7 +8337,7 @@
    "category": "restaurant / bar",
    "status": "active",
    "has_happy_hour": true,
-   "confidence": "likely",
+   "confidence": "verified",
    "schedule": [
     {
      "days": [
@@ -8290,8 +8360,87 @@
    ],
    "seating_restrictions": null,
    "happy_hour_url": "https://qterrace.com/happy-hour/",
-   "drink_items": [],
-   "food_items": [],
+   "drink_items": [
+    {
+     "item": "Cocktail of the Day",
+     "price": "$10",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Sparkling wine",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Pinot Grigio",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Pinot Noir",
+     "price": "$8",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Spritz (any)",
+     "price": "$11",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Beer on tap",
+     "price": "$6",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
+   "food_items": [
+    {
+     "item": "Caesar Salad",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Mediterranean Greek Salad",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Spanish Style Shrimp Cocktail",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Chicken Alfredo",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    },
+    {
+     "item": "Crispy Bacon Brussels Sprouts",
+     "price": "$12",
+     "regular_price": null,
+     "save_pct": null,
+     "note": null
+    }
+   ],
    "drink_specials": [],
    "food_specials": [],
    "daily_deals": [],
@@ -8306,8 +8455,8 @@
    "yelp_url": null,
    "yelp_result": null,
    "google_result": null,
-   "audit_note": "Added Oct 8, 2026: official HH page lists Tue-Thu 4-6pm and Fri 12-5pm. HH menu is a download on the menu page (not fetched), so no items yet.",
-   "last_evidence_date": "2026-10",
+   "audit_note": "Added Oct 8, 2026: official HH page lists Tue-Thu 4-6pm and Fri 12-5pm. HH menu is a download on the menu page (not fetched), so no items yet. Nov 1 2026 re-check: official HH menu PDF (March update) read; added drinks and the $12 plates. PDF text was jumbled: soup, fries, calamari, chicken burger, nachos prices not added.",
+   "last_evidence_date": "2026-11",
    "sources": [
     {
      "label": "Official happy hour page",
@@ -8317,7 +8466,7 @@
    "lat": 33.538142350524,
    "lng": -117.779812990426,
    "phone": "(949) 899-9083",
-   "public_note": "Happy hour times from the official site; menu prices not listed yet.",
+   "public_note": "Happy hour times and prices from the restaurant's own website and menu (checked Nov 1, 2026).",
    "hours": {
     "Mon": [],
     "Tue": [
@@ -8359,7 +8508,8 @@
    },
    "hours_note": null,
    "hours_source": "https://qterrace.com/happy-hour/",
-   "hours_source_kind": "official"
+   "hours_source_kind": "official",
+   "checked": "2026-11-01"
   },
   {
    "id": "peony-chinese-kitchen",
@@ -8405,7 +8555,7 @@
    "yelp_url": null,
    "yelp_result": null,
    "google_result": null,
-   "audit_note": "Added Oct 8, 2026: restaurant Instagram post (Aug 25 2026) advertises happy hour 2-6pm daily with a full sports bar; no prices published.",
+   "audit_note": "Added Oct 8, 2026: restaurant Instagram post (Aug 25 2026) advertises happy hour 2-6pm daily with a full sports bar; no prices published. Nov 1 2026 re-check: official site hours Mon-Sun 11-9:30 added; site does not mention HH (still from Aug 2026 Instagram).",
    "last_evidence_date": "2026-08",
    "sources": [
     {
@@ -8421,10 +8571,53 @@
    "lng": -117.78451213798,
    "phone": "(949) 715-8120",
    "public_note": "Happy hour times from the restaurant's Instagram (Aug 2026); prices not published.",
-   "hours": null,
+   "hours": {
+    "Mon": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ],
+    "Tue": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ],
+    "Wed": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ],
+    "Thu": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ],
+    "Fri": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ],
+    "Sat": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ],
+    "Sun": [
+     [
+      "11:00",
+      "21:30"
+     ]
+    ]
+   },
    "hours_note": null,
-   "hours_source": null,
-   "hours_source_kind": null
+   "hours_source": "https://www.peonylagunabeach.com/",
+   "hours_source_kind": "official"
   }
  ],
  "checked_none": [
@@ -9214,5 +9407,5 @@
    }
   ]
  },
- "checked": "2026-10-08"
+ "checked": "2026-11-01"
 }
